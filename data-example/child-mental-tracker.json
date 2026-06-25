@@ -1,0 +1,255 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T10:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "Xiao Ming",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "assessments": [
+    {
+      "date": "2025-01-14",
+      "age": "5y",
+      "age_months": 60,
+
+      "mood_assessment": {
+        "overall_mood": "stable",
+        "overall_mood_name": "Stable",
+        "mood_rating": 7,
+        "mood_range": "5-9",
+        "emotional_expression": "appropriate",
+        "emotional_expression_name": "Appropriate",
+        "emotional_regulation": "good",
+        "emotional_regulation_name": "Good",
+        "dominant_mood": "happy",
+        "dominant_mood_name": "Happy"
+      },
+
+      "behavior_assessment": {
+        "overall_behavior": "normal",
+        "overall_behavior_name": "Normal",
+        "activity_level": "appropriate",
+        "activity_level_name": "Moderate",
+        "attention_span": "age_appropriate",
+        "attention_span_minutes": "10-15",
+        "compliance": "good",
+        "compliance_name": "Good",
+        "aggression": "none",
+        "oppositional": "none",
+        "tantrums": "rare"
+      },
+
+      "anxiety_screening": {
+        "separation_anxiety": "none",
+        "separation_anxiety_score": 0,
+        "social_anxiety": "none",
+        "social_anxiety_score": 1,
+        "generalized_anxiety": "none",
+        "generalized_anxiety_score": 0,
+        "specific_phobias": "none",
+        "specific_phobias_score": 0,
+        "overall_anxiety": "low_risk",
+        "overall_anxiety_name": "Low risk"
+      },
+
+      "attention_screening": {
+        "inattention_score": 8,
+        "hyperactivity_score": 5,
+        "total_score": 13,
+        "max_score": 54,
+        "interpretation": "below_clinical_range",
+        "interpretation_name": "Below clinical range",
+        "recommendation": "monitoring",
+        "recommendation_name": "Continue monitoring"
+      },
+
+      "social_assessment": {
+        "peer_relationships": "good",
+        "peer_relationships_name": "Good",
+        "social_skills": "age_appropriate",
+        "social_skills_name": "Age-appropriate",
+        "play_behavior": "cooperative",
+        "play_behavior_name": "Cooperative",
+        "communication": "age_appropriate",
+        "communication_name": "Age-appropriate",
+        "sharing": "good",
+        "sharing_name": "Good"
+      },
+
+      "sleep_assessment": {
+        "sleep_problems": false,
+        "bedtime_resistance": false,
+        "night_waking": false,
+        "morning_waking": "normal"
+      },
+
+      "overall_assessment": "normal",
+      "overall_assessment_name": "Normal",
+      "recommendations": [
+        "Continue to maintain a positive home environment",
+        "Encourage social activities",
+        "Maintain a regular routine"
+      ],
+      "concerns": [],
+      "notes": ""
+    }
+  ],
+
+  "mood_tracking": [
+    {
+      "date": "2025-01-14",
+      "time": "16:00",
+      "mood": "happy",
+      "mood_name": "Happy",
+      "mood_rating": 7,
+      "context": "playing",
+      "context_name": "Playing",
+      "duration": null,
+      "notes": ""
+    },
+    {
+      "date": "2025-01-13",
+      "time": "19:00",
+      "mood": "happy",
+      "mood_name": "Happy",
+      "mood_rating": 8,
+      "context": "family_time",
+      "context_name": "Family time",
+      "duration": null,
+      "notes": ""
+    },
+    {
+      "date": "2025-01-13",
+      "time": "14:00",
+      "mood": "sad",
+      "mood_name": "Sad",
+      "mood_rating": 3,
+      "context": "fell_down",
+      "context_name": "Fell down",
+      "duration": 30,
+      "notes": "Quickly comforted"
+    }
+  ],
+
+  "behavior_tracking": {
+    "tantrums": {
+      "frequency": "rare",
+      "frequency_name": "Occasional",
+      "triggers": ["hungry", "tired"],
+      "average_duration_minutes": 5,
+      "intervention_effective": true,
+      "last_tantrum_date": "2025-01-10"
+    },
+    "sleep_issues": false,
+    "appetite_changes": false,
+    "social_withdrawal": false,
+    "aggression": false,
+    "regressive_behaviors": false,
+    "repetitive_behaviors": false
+  },
+
+  "milestones": {
+    "emotional_milestones": [
+      {
+        "milestone": "Distinguishing basic emotions",
+        "achieved": true,
+        "age_achieved": 36
+      },
+      {
+        "milestone": "Expressing emotions",
+        "achieved": true,
+        "age_achieved": 24
+      },
+      {
+        "milestone": "Self-soothing",
+        "achieved": true,
+        "age_achieved": 48
+      },
+      {
+        "milestone": "Understanding others' emotions",
+        "achieved": true,
+        "age_achieved": 48
+      }
+    ],
+    "social_milestones": [
+      {
+        "milestone": "Parallel play",
+        "achieved": true,
+        "age_achieved": 30
+      },
+      {
+        "milestone": "Cooperative play",
+        "achieved": true,
+        "age_achieved": 54
+      },
+      {
+        "milestone": "Sharing",
+        "achieved": true,
+        "age_achieved": 48
+      },
+      {
+        "milestone": "Empathy",
+        "achieved": false,
+        "age_achieved": null
+      }
+    ]
+  },
+
+  "scales": {
+    "sdq": {
+      "completed": false,
+      "completed_date": null,
+      "total_difficulties": null,
+      "emotional_symptoms": null,
+      "conduct_problems": null,
+      "hyperactivity": null,
+      "peer_problems": null,
+      "prosocial": null
+    },
+    "rcads": {
+      "completed": false,
+      "completed_date": null,
+      "separation_anxiety": null,
+      "social_phobia": null,
+      "generalized_anxiety": null,
+      "obsessive_compulsive": null,
+      "depression": null
+    },
+    "conners": {
+      "completed": false,
+      "completed_date": null,
+      "inattention": null,
+      "hyperactivity": null,
+      "learning_problems": null
+    }
+  },
+
+  "risk_factors": [],
+
+  "alerts": [],
+
+  "professional_help": {
+    "sought": false,
+    "referrals": [],
+    "diagnoses": [],
+    "therapies": []
+  },
+
+  "statistics": {
+    "total_assessments": 1,
+    "last_assessment_date": "2025-01-14",
+    "overall_trend": "stable",
+    "mood_trend": "stable_positive",
+    "behavior_trend": "stable",
+    "concerns_count": 0
+  },
+
+  "settings": {
+    "reminder_frequency": "monthly",
+    "parent_report_only": false,
+    "teacher_report_needed": false
+  }
+}

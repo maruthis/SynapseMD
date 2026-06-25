@@ -1,0 +1,965 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_date": "2026-01-06",
+    "last_updated": "2026-01-06",
+    "language": "en",
+    "description": "Nutrient Reference Intake Database",
+    "data_source": [
+      "Chinese Dietary Reference Intakes (DRIs 2013)",
+      "US Dietary Reference Intakes (DRI 2023)",
+      "WHO/FAO Nutrient Requirements"
+    ]
+  },
+
+  "population_groups": {
+    "adult_male_19_50": {
+      "name": "Adult Male (19-50 years)",
+      "name_en": "Adult Male (19-50 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "Sedentary",
+          "calories": 2400,
+          "notes": "Little to no exercise; primarily seated work"
+        },
+        "moderate": {
+          "name": "Moderately active",
+          "calories": 2600,
+          "notes": "Moderate-intensity exercise 3–5 days per week"
+        },
+        "active": {
+          "name": "Active",
+          "calories": 3000,
+          "notes": "High-intensity exercise 6–7 days per week"
+        }
+      }
+    },
+    "adult_female_19_50": {
+      "name": "Adult Female (19-50 years)",
+      "name_en": "Adult Female (19-50 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "Sedentary",
+          "calories": 1800,
+          "notes": "Little to no exercise; primarily seated work"
+        },
+        "moderate": {
+          "name": "Moderately active",
+          "calories": 2000,
+          "notes": "Moderate-intensity exercise 3–5 days per week"
+        },
+        "active": {
+          "name": "Active",
+          "calories": 2400,
+          "notes": "High-intensity exercise 6–7 days per week"
+        }
+      }
+    },
+    "adult_male_51_70": {
+      "name": "Adult Male (51-70 years)",
+      "name_en": "Adult Male (51-70 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "Sedentary",
+          "calories": 2200
+        },
+        "moderate": {
+          "name": "Moderately active",
+          "calories": 2400
+        },
+        "active": {
+          "name": "Active",
+          "calories": 2800
+        }
+      }
+    },
+    "adult_female_51_70": {
+      "name": "Adult Female (51-70 years)",
+      "name_en": "Adult Female (51-70 years)",
+      "activity_levels": {
+        "sedentary": {
+          "name": "Sedentary",
+          "calories": 1600
+        },
+        "moderate": {
+          "name": "Moderately active",
+          "calories": 1800
+        },
+        "active": {
+          "name": "Active",
+          "calories": 2200
+        }
+      }
+    },
+    "pregnant": {
+      "name": "Pregnant Women",
+      "name_en": "Pregnant Women",
+      "activity_levels": {
+        "moderate": {
+          "name": "Moderately active",
+          "calories": 2200,
+          "notes": "Second and third trimesters"
+        }
+      },
+      "special_notes": "Nutritional needs increase during pregnancy; extra attention needed for folate, iron, and calcium"
+    },
+    "lactating": {
+      "name": "Lactating Women",
+      "name_en": "Lactating Women",
+      "activity_levels": {
+        "moderate": {
+          "name": "Moderately active",
+          "calories": 2400
+        }
+      },
+      "special_notes": "Energy and nutritional needs are increased during lactation"
+    },
+    "children_4_8": {
+      "name": "Children (4-8 years)",
+      "name_en": "Children (4-8 years)",
+      "activity_levels": {
+        "moderate": {
+          "name": "Moderately active",
+          "calories": 1400
+        }
+      }
+    },
+    "children_9_13": {
+      "name": "Children (9-13 years)",
+      "name_en": "Children (9-13 years)",
+      "activity_levels": {
+        "moderate_male": {
+          "name": "Moderately active (male)",
+          "calories": 1800
+        },
+        "moderate_female": {
+          "name": "Moderately active (female)",
+          "calories": 1600
+        }
+      }
+    },
+    "adolescents_14_18": {
+      "name": "Adolescents (14-18 years)",
+      "name_en": "Adolescents (14-18 years)",
+      "activity_levels": {
+        "moderate_male": {
+          "name": "Moderately active (male)",
+          "calories": 2200
+        },
+        "moderate_female": {
+          "name": "Moderately active (female)",
+          "calories": 1800
+        }
+      }
+    }
+  },
+
+  "reference_daily_intake": {
+    "macronutrients": {
+      "calories": {
+        "name": "Calories",
+        "name_en": "Calories",
+        "unit": "kcal/day",
+        "adult_male": {
+          "rda": 2600,
+          "min": 2000,
+          "max": 3200
+        },
+        "adult_female": {
+          "rda": 2000,
+          "min": 1600,
+          "max": 2400
+        },
+        "notes": "Adjust based on activity level"
+      },
+      "protein": {
+        "name": "Protein",
+        "name_en": "Protein",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 56,
+          "ear": 0.66,
+          "ul": null,
+          "notes": "Approximately 0.8 g/kg body weight/day"
+        },
+        "adult_female": {
+          "rda": 46,
+          "ear": 0.66,
+          "ul": null,
+          "notes": "Approximately 0.8 g/kg body weight/day"
+        },
+        "pregnant": {
+          "rda": 71,
+          "notes": "+25 g during pregnancy"
+        },
+        "lactating": {
+          "rda": 71,
+          "notes": "+25 g during lactation"
+        },
+        "calculations": {
+          "sedentary": 0.8,
+          "active": 1.2,
+          "endurance": 1.4,
+          "strength": 1.7
+        }
+      },
+      "carbohydrates": {
+        "name": "Carbohydrates",
+        "name_en": "Carbohydrates",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 130,
+          "min": 130,
+          "notes": "Minimum value; actual needs may increase with activity level"
+        },
+        "adult_female": {
+          "rda": 130,
+          "min": 130
+        },
+        "acceptable_range": {
+          "min_percent": 45,
+          "max_percent": 65,
+          "notes": "Percentage of total caloric intake"
+        },
+        "added_sugar": {
+          "max": 50,
+          "ideal": 25,
+          "notes": "Daily upper limit for added sugar (grams)"
+        }
+      },
+      "total_fat": {
+        "name": "Total Fat",
+        "name_en": "Total Fat",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 70,
+          "notes": "Approximately 20–35% of total caloric intake"
+        },
+        "adult_female": {
+          "rda": 55
+        },
+        "acceptable_range": {
+          "min_percent": 20,
+          "max_percent": 35,
+          "notes": "Percentage of total caloric intake"
+        }
+      },
+      "saturated_fat": {
+        "name": "Saturated Fat",
+        "name_en": "Saturated Fat",
+        "unit": "g/day",
+        "limit": {
+          "adult": 22,
+          "notes": "<10% of total calories; lower is better (<7%)"
+        }
+      },
+      "trans_fat": {
+        "name": "Trans Fat",
+        "name_en": "Trans Fat",
+        "unit": "g/day",
+        "limit": {
+          "adult": 2,
+          "notes": "Avoid as much as possible"
+        }
+      },
+      "dietary_fiber": {
+        "name": "Dietary Fiber",
+        "name_en": "Dietary Fiber",
+        "unit": "g/day",
+        "adult_male": {
+          "rda": 38,
+          "notes": "Ages 19–50"
+        },
+        "adult_male_51_plus": {
+          "rda": 30,
+          "notes": "Ages 51 and above"
+        },
+        "adult_female": {
+          "rda": 25,
+          "notes": "Ages 19–50"
+        },
+        "adult_female_51_plus": {
+          "rda": 21,
+          "notes": "Ages 51 and above"
+        },
+        "notes": "Soluble fiber: 25%; insoluble fiber: 75%"
+      },
+      "water": {
+        "name": "Water",
+        "name_en": "Water",
+        "unit": "ml/day",
+        "adult_male": {
+          "ai": 3700,
+          "notes": "Includes water from beverages and food"
+        },
+        "adult_female": {
+          "ai": 2700
+        },
+        "notes": "AI = Adequate Intake; actual needs vary with climate and activity level"
+      }
+    },
+
+    "vitamins": {
+      "vitamin_a": {
+        "name": "Vitamin A",
+        "name_en": "Vitamin A",
+        "unit": "mcg RAE/day",
+        "adult_male": {
+          "rda": 900,
+          "ear": 625,
+          "ul": 3000
+        },
+        "adult_female": {
+          "rda": 700,
+          "ear": 500,
+          "ul": 3000
+        },
+        "sources": ["Liver", "Carrots", "Spinach", "Sweet potato"],
+        "notes": "RAE = Retinol Activity Equivalent"
+      },
+      "vitamin_c": {
+        "name": "Vitamin C",
+        "name_en": "Vitamin C",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 90,
+          "ear": 75,
+          "ul": 2000
+        },
+        "adult_female": {
+          "rda": 75,
+          "ear": 60,
+          "ul": 2000
+        },
+        "pregnant": {
+          "rda": 85
+        },
+        "lactating": {
+          "rda": 120
+        },
+        "sources": ["Citrus fruits", "Strawberries", "Broccoli", "Green bell pepper"],
+        "notes": "Smokers need an additional +35 mg/day"
+      },
+      "vitamin_d": {
+        "name": "Vitamin D",
+        "name_en": "Vitamin D",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 15,
+          "ear": 10,
+          "ul": 100
+        },
+        "adult_female": {
+          "rda": 15,
+          "ear": 10,
+          "ul": 100
+        },
+        "older_adults": {
+          "rda": 20,
+          "notes": "Ages 71 and above"
+        },
+        "sources": ["Sunlight exposure", "Fatty fish", "Fortified milk"],
+        "notes": "1 mcg = 40 IU; serum level of 30–60 ng/mL is optimal"
+      },
+      "vitamin_e": {
+        "name": "Vitamin E",
+        "name_en": "Vitamin E",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 15,
+          "ear": 12,
+          "ul": 1000
+        },
+        "adult_female": {
+          "rda": 15,
+          "ear": 12,
+          "ul": 1000
+        },
+        "sources": ["Nuts", "Seeds", "Vegetable oils", "Green leafy vegetables"],
+        "notes": "Expressed as alpha-tocopherol equivalents"
+      },
+      "vitamin_k": {
+        "name": "Vitamin K",
+        "name_en": "Vitamin K",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 120,
+          "ai": 120,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 90,
+          "ai": 90,
+          "ul": null
+        },
+        "sources": ["Green leafy vegetables", "Broccoli", "Natto"],
+        "notes": "AI = Adequate Intake; no UL established"
+      },
+      "thiamine": {
+        "name": "Thiamine (Vitamin B1)",
+        "name_en": "Thiamine (B1)",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1.2,
+          "ear": 1.0,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 1.1,
+          "ear": 0.9,
+          "ul": null
+        },
+        "sources": ["Whole grains", "Pork", "Legumes"],
+        "notes": "Essential for energy metabolism"
+      },
+      "riboflavin": {
+        "name": "Riboflavin (Vitamin B2)",
+        "name_en": "Riboflavin (B2)",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1.3,
+          "ear": 1.1,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 1.1,
+          "ear": 0.9,
+          "ul": null
+        },
+        "sources": ["Dairy products", "Eggs", "Green leafy vegetables", "Fortified cereals"]
+      },
+      "niacin": {
+        "name": "Niacin (Vitamin B3)",
+        "name_en": "Niacin (B3)",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 16,
+          "ear": 12,
+          "ul": 35
+        },
+        "adult_female": {
+          "rda": 14,
+          "ear": 11,
+          "ul": 35
+        },
+        "sources": ["Meat", "Fish", "Whole grains", "Mushrooms"],
+        "notes": "UL applies only to synthetic niacin"
+      },
+      "vitamin_b6": {
+        "name": "Vitamin B6",
+        "name_en": "Vitamin B6",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1.3,
+          "ear": 1.1,
+          "ul": 100
+        },
+        "adult_female": {
+          "rda": 1.3,
+          "ear": 1.1,
+          "ul": 100
+        },
+        "older_adults": {
+          "rda": 1.7,
+          "notes": "Ages 51 and above"
+        },
+        "sources": ["Chicken", "Fish", "Potatoes", "Bananas"]
+      },
+      "folate": {
+        "name": "Folate",
+        "name_en": "Folate",
+        "unit": "mcg DFE/day",
+        "adult_male": {
+          "rda": 400,
+          "ear": 320,
+          "ul": 1000
+        },
+        "adult_female": {
+          "rda": 400,
+          "ear": 320,
+          "ul": 1000
+        },
+        "pregnant": {
+          "rda": 600,
+          "notes": "Increased needs during pregnancy"
+        },
+        "lactating": {
+          "rda": 500
+        },
+        "sources": ["Green leafy vegetables", "Legumes", "Fortified cereals"],
+        "notes": "DFE = Dietary Folate Equivalent; UL applies only to synthetic folic acid"
+      },
+      "vitamin_b12": {
+        "name": "Vitamin B12",
+        "name_en": "Vitamin B12",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 2.4,
+          "ear": 2.0,
+          "ul": null
+        },
+        "adult_female": {
+          "rda": 2.4,
+          "ear": 2.0,
+          "ul": null
+        },
+        "pregnant": {
+          "rda": 2.6
+        },
+        "lactating": {
+          "rda": 2.8
+        },
+        "sources": ["Animal-based foods", "Fortified foods"],
+        "notes": "Vegetarians and vegans should pay special attention"
+      },
+      "pantothenic_acid": {
+        "name": "Pantothenic Acid (Vitamin B5)",
+        "name_en": "Pantothenic Acid (B5)",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 5,
+          "ul": null
+        },
+        "adult_female": {
+          "ai": 5,
+          "ul": null
+        },
+        "sources": ["Widely found in a variety of foods"]
+      },
+      "biotin": {
+        "name": "Biotin (Vitamin B7)",
+        "name_en": "Biotin (B7)",
+        "unit": "mcg/day",
+        "adult_male": {
+          "ai": 30,
+          "ul": null
+        },
+        "adult_female": {
+          "ai": 30,
+          "ul": null
+        },
+        "sources": ["Eggs", "Nuts", "Legumes"]
+      }
+    },
+
+    "minerals": {
+      "calcium": {
+        "name": "Calcium",
+        "name_en": "Calcium",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 1000,
+          "ear": 800,
+          "ul": 2500
+        },
+        "adult_female": {
+          "rda": 1000,
+          "ear": 800,
+          "ul": 2500
+        },
+        "older_adults": {
+          "rda": 1200,
+          "notes": "Women 51+; men 71+"
+        },
+        "sources": ["Dairy products", "Green leafy vegetables", "Tofu (calcium sulfate)"],
+        "notes": "Vitamin D promotes calcium absorption"
+      },
+      "iron": {
+        "name": "Iron",
+        "name_en": "Iron",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 8,
+          "ear": 6,
+          "ul": 45
+        },
+        "adult_female": {
+          "rda": 18,
+          "ear": 8,
+          "ul": 45,
+          "notes": "Reproductive age"
+        },
+        "older_female": {
+          "rda": 8,
+          "notes": "Post-menopausal"
+        },
+        "pregnant": {
+          "rda": 27
+        },
+        "lactating": {
+          "rda": 9
+        },
+        "sources": ["Red meat", "Poultry", "Fish", "Legumes", "Fortified cereals"],
+        "notes": "Heme iron (animal-based) has higher bioavailability than non-heme iron (plant-based)"
+      },
+      "magnesium": {
+        "name": "Magnesium",
+        "name_en": "Magnesium",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 400,
+          "ear": 330,
+          "ul": 350
+        },
+        "adult_female": {
+          "rda": 310,
+          "ear": 255,
+          "ul": 350
+        },
+        "older_adults": {
+          "rda": 420,
+          "notes": "Men 31+"
+        },
+        "sources": ["Nuts", "Whole grains", "Green leafy vegetables", "Legumes"]
+      },
+      "phosphorus": {
+        "name": "Phosphorus",
+        "name_en": "Phosphorus",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 700,
+          "ear": 580,
+          "ul": 4000
+        },
+        "adult_female": {
+          "rda": 700,
+          "ear": 580,
+          "ul": 4000
+        },
+        "sources": ["Protein-rich foods", "Dairy products", "Cereals"],
+        "notes": "Calcium-to-phosphorus ratio is important"
+      },
+      "potassium": {
+        "name": "Potassium",
+        "name_en": "Potassium",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 3400,
+          "ul": null
+        },
+        "adult_female": {
+          "ai": 2600,
+          "ul": null
+        },
+        "sources": ["Fruits", "Vegetables", "Legumes", "Dairy products"],
+        "notes": "Helps lower blood pressure"
+      },
+      "sodium": {
+        "name": "Sodium",
+        "name_en": "Sodium",
+        "unit": "mg/day",
+        "adult": {
+          "ai": 1500,
+          "ul": 2300,
+          "notes": "Approximately 1 teaspoon of salt"
+        },
+        "hypertension": {
+          "limit": 1500,
+          "notes": "Recommended for hypertensive patients"
+        },
+        "sources": ["Table salt", "Processed foods", "Pickled foods"],
+        "notes": "Limiting sodium intake helps control blood pressure"
+      },
+      "zinc": {
+        "name": "Zinc",
+        "name_en": "Zinc",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 11,
+          "ear": 9.4,
+          "ul": 40
+        },
+        "adult_female": {
+          "rda": 8,
+          "ear": 6.8,
+          "ul": 40
+        },
+        "pregnant": {
+          "rda": 11
+        },
+        "lactating": {
+          "rda": 12
+        },
+        "sources": ["Red meat", "Shellfish", "Nuts", "Whole grains"],
+        "notes": "Bioavailability of plant-based zinc is lower"
+      },
+      "copper": {
+        "name": "Copper",
+        "name_en": "Copper",
+        "unit": "mg/day",
+        "adult_male": {
+          "rda": 0.9,
+          "ear": 0.7,
+          "ul": 10
+        },
+        "adult_female": {
+          "rda": 0.9,
+          "ear": 0.7,
+          "ul": 10
+        },
+        "sources": ["Shellfish", "Nuts", "Seeds", "Whole grains"]
+      },
+      "manganese": {
+        "name": "Manganese",
+        "name_en": "Manganese",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 2.3,
+          "ul": 11
+        },
+        "adult_female": {
+          "ai": 1.8,
+          "ul": 11
+        },
+        "sources": ["Whole grains", "Nuts", "Tea"]
+      },
+      "selenium": {
+        "name": "Selenium",
+        "name_en": "Selenium",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 55,
+          "ear": 45,
+          "ul": 400
+        },
+        "adult_female": {
+          "rda": 55,
+          "ear": 45,
+          "ul": 400
+        },
+        "sources": ["Brazil nuts", "Seafood", "Meat", "Cereals"]
+      },
+      "iodine": {
+        "name": "Iodine",
+        "name_en": "Iodine",
+        "unit": "mcg/day",
+        "adult_male": {
+          "rda": 150,
+          "ear": 95,
+          "ul": 1100
+        },
+        "adult_female": {
+          "rda": 150,
+          "ear": 95,
+          "ul": 1100
+        },
+        "pregnant": {
+          "rda": 220
+        },
+        "lactating": {
+          "rda": 290
+        },
+        "sources": ["Seafood", "Iodized salt", "Dairy products"],
+        "notes": "Iodized salt is the primary source"
+      }
+    },
+
+    "special_nutrients": {
+      "omega_3_fatty_acids": {
+        "name": "Omega-3 Fatty Acids",
+        "name_en": "Omega-3 Fatty Acids",
+        "unit": "g/day",
+        "ai": 1.6,
+        "notes": "Includes ALA, EPA, DHA",
+        "components": {
+          "ala": {
+            "name": "ALA (alpha-linolenic acid)",
+            "ai": 1.6,
+            "sources": ["Flaxseed", "Walnuts", "Chia seeds"]
+          },
+          "epa_dha": {
+            "name": "EPA + DHA",
+            "recommendation": "0.25-0.5",
+            "optimal": "0.5-1.0",
+            "sources": ["Fatty fish", "Fish oil supplements"],
+            "notes": "Can be increased to 1–4 g in those at cardiovascular risk"
+          }
+        }
+      },
+      "omega_6_fatty_acids": {
+        "name": "Omega-6 Fatty Acids",
+        "name_en": "Omega-6 Fatty Acids",
+        "unit": "g/day",
+        "ai": 17,
+        "notes": "Includes LA, AA",
+        "ratio": {
+          "omega_6_to_omega_3": {
+            "typical": "15:1",
+            "recommended": "4:1 or lower",
+            "notes": "Modern diets contain excess omega-6; increase omega-3 intake"
+          }
+        }
+      },
+      "choline": {
+        "name": "Choline",
+        "name_en": "Choline",
+        "unit": "mg/day",
+        "adult_male": {
+          "ai": 550,
+          "ul": 3500
+        },
+        "adult_female": {
+          "ai": 425,
+          "ul": 3500
+        },
+        "pregnant": {
+          "ai": 450
+        },
+        "lactating": {
+          "ai": 550
+        },
+        "sources": ["Eggs", "Liver", "Soybeans", "Wheat germ"]
+      },
+      "fiber_breakdown": {
+        "name": "Dietary Fiber Composition",
+        "soluble": {
+          "name": "Soluble fiber",
+          "percent": 25,
+          "sources": ["Oats", "Legumes", "Apples", "Citrus fruits"],
+          "benefits": ["Lowers cholesterol", "Regulates blood glucose"]
+        },
+        "insoluble": {
+          "name": "Insoluble fiber",
+          "percent": 75,
+          "sources": ["Whole grains", "Nuts", "Vegetables"],
+          "benefits": ["Promotes intestinal motility", "Prevents constipation"]
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "rda": "Recommended Dietary Allowance — The nutrient intake level that meets the needs of 97–98% of healthy individuals",
+    "ear": "Estimated Average Requirement — The nutrient intake level that meets the needs of 50% of the population",
+    "ai": "Adequate Intake — The intake level established by observation or experiment when RDA data are unavailable",
+    "ul": "Tolerable Upper Intake Level — The highest daily intake unlikely to cause adverse effects in almost all individuals",
+    "dri": "Dietary Reference Intakes — A comprehensive reference system that includes RDA, EAR, AI, and UL"
+  },
+
+  "special_diets": {
+    "dash": {
+      "name": "DASH Diet (Hypertension)",
+      "description": "Dietary Approaches to Stop Hypertension",
+      "key_principles": [
+        "Low sodium (<2300 mg/day; ideally <1500 mg)",
+        "High potassium (3500–4700 mg/day)",
+        "High calcium and magnesium",
+        "Abundant vegetables and fruits, low-fat dairy, whole grains"
+      ],
+      "servings": {
+        "grains": "6–8 servings/day",
+        "vegetables": "4–5 servings/day",
+        "fruits": "4–5 servings/day",
+        "dairy": "2–3 servings/day",
+        "meat_poultry_fish": "6 oz or less/day",
+        "nuts_seeds_legumes": "4–5 servings/week"
+      }
+    },
+    "mediterranean": {
+      "name": "Mediterranean Diet",
+      "description": "Mediterranean Diet Pattern",
+      "key_principles": [
+        "Abundant plant-based foods",
+        "Olive oil as the primary fat source",
+        "Moderate dairy (mainly cheese and yogurt)",
+        "Fish at least twice per week",
+        "Moderate poultry and eggs",
+        "Small amounts of red meat",
+        "Moderate wine (optional)"
+      ]
+    },
+    "vegetarian": {
+      "name": "Vegetarian",
+      "types": {
+        "lacto_ovo": "Lacto-ovo vegetarian — includes eggs and dairy",
+        "lacto": "Lacto vegetarian — includes dairy but not eggs",
+        "vegan": "Vegan — excludes all animal products",
+        "pescatarian": "Pescatarian — includes fish"
+      },
+      "nutrients_to_monitor": [
+        "Vitamin B12",
+        "Iron",
+        "Calcium",
+        "Zinc",
+        "Omega-3 (EPA/DHA)",
+        "Protein",
+        "Vitamin D"
+      ]
+    },
+    "low_carb": {
+      "name": "Low-Carbohydrate Diet",
+      "variations": {
+        "very_low": "Ketogenic diet (<50 g/day)",
+        "moderate": "Moderate low-carb (50–150 g/day)",
+        "liberal": "Liberal low-carb (150–200 g/day)"
+      },
+      "notes": "Consult a physician before starting, especially if you have a chronic illness"
+    },
+    "diabetic_friendly": {
+      "name": "Diabetes-Friendly Diet",
+      "principles": [
+        "Choose low-GI foods (GI ≤ 55)",
+        "Control total carbohydrate intake",
+        "High-fiber foods",
+        "Regular meal timing",
+        "Portion control"
+      ],
+      "gi_categories": {
+        "low": "0-55",
+        "medium": "56-69",
+        "high": "70+"
+      }
+    }
+  },
+
+  "health_conditions": {
+    "hypertension": {
+      "name": "Hypertension",
+      "nutritional_focus": [
+        {"nutrient": "Sodium", "recommendation": "Limit to <2300 mg; ideally <1500 mg/day"},
+        {"nutrient": "Potassium", "recommendation": "Increase to 3500–4700 mg/day"},
+        {"nutrient": "Calcium", "recommendation": "Ensure adequate intake of 1000–1200 mg/day"},
+        {"nutrient": "Magnesium", "recommendation": "Ensure adequate intake of 400–420 mg/day"}
+      ],
+      "recommended_diet": "DASH diet"
+    },
+    "diabetes": {
+      "name": "Diabetes mellitus",
+      "nutritional_focus": [
+        {"nutrient": "Carbohydrates", "recommendation": "Control total amount and type"},
+        {"nutrient": "Dietary fiber", "recommendation": "Increase to 25–35 g/day"},
+        {"nutrient": "Glycemic index", "recommendation": "Choose low-GI foods"}
+      ],
+      "recommended_diet": "Low-GI diet, Mediterranean diet"
+    },
+    "hyperlipidemia": {
+      "name": "Hyperlipidemia",
+      "nutritional_focus": [
+        {"nutrient": "Saturated fat", "recommendation": "Limit to <7% of total calories"},
+        {"nutrient": "Trans fat", "recommendation": "Avoid as much as possible"},
+        {"nutrient": "Omega-3", "recommendation": "Increase to 500–1000 mg/day"},
+        {"nutrient": "Soluble fiber", "recommendation": "Increase to 10–25 g/day"}
+      ],
+      "recommended_diet": "Mediterranean diet, TLC diet"
+    },
+    "osteoporosis": {
+      "name": "Osteoporosis",
+      "nutritional_focus": [
+        {"nutrient": "Calcium", "recommendation": "1000–1200 mg/day"},
+        {"nutrient": "Vitamin D", "recommendation": "15–20 mcg/day (600–800 IU)"},
+        {"nutrient": "Vitamin K", "recommendation": "90–120 mcg/day"},
+        {"nutrient": "Protein", "recommendation": "Adequate but not excessive"}
+      ]
+    },
+    "anemia": {
+      "name": "Anemia",
+      "nutritional_focus": [
+        {"nutrient": "Iron", "recommendation": "Dose determined by type of anemia"},
+        {"nutrient": "Folate", "recommendation": "400–600 mcg/day"},
+        {"nutrient": "Vitamin B12", "recommendation": "2.4–2.8 mcg/day"},
+        {"nutrient": "Vitamin C", "recommendation": "Increase to promote iron absorption"}
+      ],
+      "notes": "Type of anemia must be confirmed by a physician before targeted supplementation"
+    }
+  }
+}

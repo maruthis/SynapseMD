@@ -1,0 +1,325 @@
+{
+  "travel_health_management": {
+    "user_id": "user_20250108_001",
+    "user_profile": {
+      "name": "Zhang San",
+      "date_of_birth": "1990-01-01",
+      "passport_number": "E12345678",
+      "nationality": "Chinese",
+      "blood_type": "A+",
+      "organ_donor": false,
+      "medical_conditions": [
+        {
+          "condition": "Hypertension",
+          "diagnosis_date": "2020-05-15",
+          "severity": "controlled",
+          "medications": ["Amlodipine 5mg once daily"]
+        }
+      ],
+      "allergies": [
+        {
+          "allergen": "Penicillin",
+          "reaction": "Rash, difficulty breathing",
+          "severity": "Severe"
+        }
+      ],
+      "chronic_medications": [
+        {
+          "medication": "Amlodipine",
+          "dosage": "5mg",
+          "frequency": "Once daily",
+          "purpose": "Blood pressure control"
+        }
+      ],
+      "emergency_contacts": [
+        {
+          "relationship": "Spouse",
+          "name": "Li Si",
+          "phone": "+86-138-1234-5678",
+          "email": "lisi@example.com"
+        },
+        {
+          "relationship": "Personal Physician",
+          "name": "Dr. Wang",
+          "phone": "+86-10-8765-4321",
+          "hospital": "Peking Union Medical College Hospital"
+        }
+      ]
+    },
+    "travel_plans": [
+      {
+        "trip_id": "trip_20250801_seasia",
+        "destination": "Southeast Asia",
+        "countries": ["Thailand", "Vietnam", "Cambodia"],
+        "departure_date": "2025-08-01",
+        "return_date": "2025-08-15",
+        "duration_days": 14,
+        "purpose": "tourism",
+        "health_risks": {
+          "infectious_diseases": [
+            {
+              "disease": "Dengue Fever",
+              "risk_level": "high",
+              "season": "year-round",
+              "transmission": "Mosquito bites",
+              "prevention_methods": [
+                "Use insect repellent (DEET 20-30%)",
+                "Wear long-sleeved clothing",
+                "Stay in accommodations with air conditioning or mosquito nets",
+                "Avoid areas with standing water"
+              ],
+              "symptoms": "High fever, headache, muscle and joint pain, rash",
+              "who_reference": "https://www.who.int/ith/diseases/dengue",
+              "cdc_reference": "https://www.cdc.gov/dengue"
+            },
+            {
+              "disease": "Hepatitis A",
+              "risk_level": "medium",
+              "season": "year-round",
+              "transmission": "Contaminated food and water",
+              "prevention_methods": [
+                "Get vaccinated against Hepatitis A",
+                "Drink bottled or boiled water",
+                "Avoid raw foods",
+                "Peel fruits yourself"
+              ],
+              "symptoms": "Fever, fatigue, nausea, jaundice",
+              "who_reference": "https://www.who.int/ith/vaccines/hepatitis_a",
+              "cdc_reference": "https://www.cdc.gov/hepatitis"
+            },
+            {
+              "disease": "Typhoid Fever",
+              "risk_level": "medium",
+              "season": "year-round",
+              "transmission": "Contaminated food and water",
+              "prevention_methods": [
+                "Get vaccinated against typhoid",
+                "Practice food hygiene",
+                "Avoid street food vendors",
+                "Drink safe water sources"
+              ],
+              "symptoms": "Persistent fever, abdominal pain, diarrhea",
+              "who_reference": "https://www.who.int/ith/diseases/typhoid",
+              "cdc_reference": "https://www.cdc.gov/typhoid"
+            },
+            {
+              "disease": "Malaria",
+              "risk_level": "low",
+              "season": "year-round",
+              "transmission": "Mosquito bites",
+              "prevention_methods": [
+                "Use insect repellent",
+                "Take malaria prophylaxis medications (if recommended by physician)",
+                "Wear long-sleeved clothing",
+                "Use mosquito nets"
+              ],
+              "symptoms": "Periodic fever, chills, sweating",
+              "who_reference": "https://www.who.int/ith/diseases/malaria",
+              "cdc_reference": "https://www.cdc.gov/malaria"
+            }
+          ],
+          "food_water_safety": {
+            "risk_level": "medium",
+            "recommendations": [
+              "Drink bottled or boiled water",
+              "Avoid ice",
+              "Avoid raw foods",
+              "Choose hot cooked foods",
+              "Peel fruits yourself"
+            ]
+          },
+          "environmental_risks": [
+            {
+              "risk": "Heat stroke",
+              "severity": "medium",
+              "prevention": "Stay hydrated, avoid direct midday sun, wear breathable clothing"
+            }
+          ],
+          "outbreak_alerts": []
+        },
+        "recommended_vaccinations": [
+          {
+            "vaccine": "Hepatitis A Vaccine",
+            "status": "completed",
+            "date": "2025-06-15",
+            "booster_required": false,
+            "notes": "Vaccination completed"
+          },
+          {
+            "vaccine": "Typhoid Vaccine",
+            "status": "completed",
+            "date": "2025-06-20",
+            "booster_required": false,
+            "notes": "Vaccination completed"
+          },
+          {
+            "vaccine": "Japanese Encephalitis Vaccine",
+            "status": "planned",
+            "date": null,
+            "booster_required": false,
+            "notes": "Recommended, especially for rural areas"
+          },
+          {
+            "vaccine": "Rabies Vaccine",
+            "status": "not_required",
+            "date": null,
+            "booster_required": false,
+            "notes": "Recommended only when risk of animal contact is high"
+          }
+        ],
+        "malaria_prophylaxis": {
+          "required": false,
+          "medication": null,
+          "start_date": null,
+          "end_date": null,
+          "dosage": null,
+          "notes": "According to CDC assessment, malaria risk is low in major tourist cities"
+        },
+        "travel_kit": [
+          {
+            "category": "Prescription Medications",
+            "item": "Amlodipine",
+            "quantity": "16 tablets",
+            "purpose": "Blood pressure control",
+            "packed": false
+          },
+          {
+            "category": "Over-the-Counter Medications",
+            "item": "Anti-diarrheal (Loperamide)",
+            "quantity": "10 tablets",
+            "purpose": "Treat diarrhea",
+            "packed": false
+          },
+          {
+            "category": "Over-the-Counter Medications",
+            "item": "Oral rehydration salts",
+            "quantity": "10 packets",
+            "purpose": "Prevent dehydration",
+            "packed": false
+          },
+          {
+            "category": "Over-the-Counter Medications",
+            "item": "Antipyretic/analgesic (Acetaminophen)",
+            "quantity": "20 tablets",
+            "purpose": "Reduce fever and relieve pain",
+            "packed": false
+          },
+          {
+            "category": "Over-the-Counter Medications",
+            "item": "Antihistamine (Loratadine)",
+            "quantity": "10 tablets",
+            "purpose": "Allergic reactions",
+            "packed": false
+          },
+          {
+            "category": "Protective Supplies",
+            "item": "Insect repellent (DEET 30%)",
+            "quantity": "100ml",
+            "purpose": "Prevent mosquito bites",
+            "packed": false
+          },
+          {
+            "category": "Protective Supplies",
+            "item": "Sunscreen (SPF 50+)",
+            "quantity": "100ml",
+            "purpose": "Sun protection",
+            "packed": false
+          },
+          {
+            "category": "First Aid Supplies",
+            "item": "Adhesive bandages",
+            "quantity": "20 pieces",
+            "purpose": "Minor wound care",
+            "packed": false
+          },
+          {
+            "category": "First Aid Supplies",
+            "item": "Antiseptic solution",
+            "quantity": "50ml",
+            "purpose": "Wound disinfection",
+            "packed": false
+          },
+          {
+            "category": "Other",
+            "item": "Thermometer",
+            "quantity": "1",
+            "purpose": "Monitor body temperature",
+            "packed": false
+          }
+        ],
+        "insurance": {
+          "policy_number": "TRAVEL-2025-001234",
+          "provider": "Allianz Insurance",
+          "coverage_amount": "$100,000",
+          "medical_coverage": true,
+          "medical_evacuation": true,
+          "trip_cancellation": true,
+          "emergency_hotline": "+1-855-270-7270",
+          "notes": "Covers medical expenses, medical evacuation, trip cancellation"
+        },
+        "pre_trip_checklist": {
+          "consultation_completed": true,
+          "consultation_date": "2025-07-15",
+          "vaccinations_completed": true,
+          "travel_kit_ready": false,
+          "insurance_purchased": true,
+          "emergency_contacts_set": true,
+          "emergency_card_generated": false
+        }
+      }
+    ],
+    "vaccination_records": [
+      {
+        "vaccine_id": "vaccine_001",
+        "vaccine_name": "Hepatitis A Vaccine",
+        "date": "2025-06-15",
+        "dose": "Single dose",
+        "provider": "Beijing International Travel Health Care Center",
+        "lot_number": "AH20250615001",
+        "next_dose": null,
+        "adverse_events": []
+      },
+      {
+        "vaccine_id": "vaccine_002",
+        "vaccine_name": "Typhoid Vaccine",
+        "date": "2025-06-20",
+        "dose": "Single dose",
+        "provider": "Beijing International Travel Health Care Center",
+        "lot_number": "TY20250620001",
+        "next_dose": null,
+        "adverse_events": []
+      }
+    ],
+    "emergency_cards": [
+      {
+        "card_id": "card_20250801",
+        "trip_id": "trip_20250801_seasia",
+        "languages": ["en", "zh", "th", "ja"],
+        "qrcode_url": "https://wellally.app/qr/abc123",
+        "generated_at": "2025-07-28T10:00:00.000Z",
+        "last_updated": "2025-07-28T10:00:00.000Z"
+      }
+    ],
+    "alerts_subscriptions": [
+      {
+        "subscription_id": "alert_001",
+        "destination": "Thailand",
+        "countries": ["Thailand", "Vietnam", "Cambodia"],
+        "alert_types": ["disease_outbreak", "natural_disaster", "travel_advisory"],
+        "active": true,
+        "subscribed_date": "2025-07-01"
+      }
+    ],
+    "post_trip_health_checks": [],
+    "metadata": {
+      "created_at": "2025-01-08T00:00:00.000Z",
+      "last_updated": "2025-07-28T10:00:00.000Z",
+      "data_sources": [
+        "WHO - World Health Organization International Travel Health",
+        "CDC - Centers for Disease Control and Prevention Travel Health",
+        "Local Health Authority"
+      ],
+      "version": "1.0.0"
+    }
+  }
+}

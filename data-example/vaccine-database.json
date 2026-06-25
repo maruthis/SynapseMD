@@ -1,0 +1,990 @@
+{
+  "version": "1.0.0",
+  "created_at": "2025-12-31T12:34:56.789Z",
+  "last_updated": "2025-12-31T12:34:56.789Z",
+
+  "vaccines": [
+    {
+      "id": "hepb",
+      "name": "Hepatitis B Vaccine",
+      "english_name": "Hepatitis B Vaccine",
+      "aliases": ["HepB Vaccine", "HepB", "Recombinant Hepatitis B Vaccine"],
+      "type": "recombinant",
+      "manufacturers": ["Beijing Biological", "Kangtai Biological", "GlaxoSmithKline", "Merck"],
+
+      "schedule": {
+        "is_series": true,
+        "series_type": "primary",
+        "standard_schedule": "0-1-6",
+        "doses": [
+          {
+            "dose_number": 1,
+            "timing": "birth",
+            "timing_description": "Within 24 hours of birth",
+            "recommended_age": "0 months",
+            "min_age": "0 months",
+            "max_age": null,
+            "min_interval": null
+          },
+          {
+            "dose_number": 2,
+            "timing": "1_month_after_dose1",
+            "timing_description": "1 month after dose 1",
+            "interval_after_previous_dose": {
+              "value": 1,
+              "unit": "months"
+            },
+            "recommended_age": "1 month",
+            "min_interval": "4 weeks",
+            "grace_period": null
+          },
+          {
+            "dose_number": 3,
+            "timing": "6_months_after_dose1",
+            "timing_description": "6 months after dose 1",
+            "interval_after_previous_dose": {
+              "value": 5,
+              "unit": "months"
+            },
+            "recommended_age": "6 months",
+            "min_interval": "16 weeks",
+            "grace_period": "4 weeks"
+          }
+        ],
+        "catch_up": {
+          "Ages 1-19": {
+            "doses": 3,
+            "intervals": ["Day 0", "2 months", "4 months"],
+            "notes": "Dose 2 at least 2 months after dose 1; dose 3 at least 4 months after dose 1"
+          },
+          "Age 20+": {
+            "doses": 3,
+            "intervals": ["Day 0", "1 month", "6 months"],
+            "notes": "Standard 0-1-6 schedule"
+          }
+        },
+        "booster": {
+          "required": false,
+          "indications": ["High-risk individuals", "Immunocompromised persons", "Hemodialysis patients"],
+          "interval": "5 years",
+          "notes": "Booster dose may be considered for high-risk individuals"
+        }
+      },
+
+      "contraindications": [
+        {
+          "type": "allergy",
+          "allergen": "Yeast",
+          "severity": "severe",
+          "description": "Contraindicated in persons with severe allergy to any vaccine component (including yeast)"
+        },
+        {
+          "type": "disease",
+          "condition": "Severe acute febrile illness",
+          "severity": "temporary",
+          "description": "Defer vaccination during fever; vaccination may resume after fever resolves"
+        }
+      ],
+
+      "age_recommendations": {
+        "recommended_age": "At birth",
+        "min_age": "0 months",
+        "max_age": null,
+        "catch_up_schedule": "May begin vaccination at any age",
+        "notes": "Unimmunized individuals may receive vaccination regardless of age"
+      },
+
+      "interactions": [
+        {
+          "drug_category": "Immunosuppressants",
+          "interaction_type": "reduced_efficacy",
+          "severity": "moderate",
+          "description": "Immunosuppressants may reduce vaccine immune response",
+          "recommendation": "Check antibody titer 2-3 months after vaccination; administer booster if necessary"
+        },
+        {
+          "drug_category": "Anticoagulants",
+          "interaction_type": "administration",
+          "severity": "mild",
+          "description": "May increase risk of bleeding at injection site",
+          "recommendation": "Apply pressure to injection site for 5-10 minutes; avoid rubbing"
+        }
+      ],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Injection site pain",
+          "frequency": "common",
+          "severity": "mild",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "1-3 days"
+        },
+        {
+          "reaction": "Fever",
+          "frequency": "occasional",
+          "severity": "mild_to_moderate",
+          "onset": "6-24 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Fatigue",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "24-48 hours after vaccination",
+          "duration": "1-2 days"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during pregnancy"
+        },
+        "lactation": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during breastfeeding"
+        },
+        "immunocompromised": {
+          "recommendation": "recommended",
+          "notes": "Immunocompromised persons are especially recommended to receive the vaccine; antibody titer monitoring required"
+        }
+      }
+    },
+    {
+      "id": "influenza",
+      "name": "Influenza Vaccine",
+      "english_name": "Influenza Vaccine",
+      "aliases": ["Flu Vaccine", "Flu vaccine", "Split Influenza Vaccine"],
+      "type": "inactivated",
+      "manufacturers": ["Sanofi", "GlaxoSmithKline", "Sinovac", "Hualan Biological"],
+
+      "schedule": {
+        "is_series": false,
+        "frequency": "annual",
+        "timing": "September-November",
+        "timing_description": "Administer before each annual influenza season (September-November)",
+        "doses": [
+          {
+            "dose_number": 1,
+            "timing": "annual",
+            "timing_description": "Once per year"
+          }
+        ],
+        "age_specific_dosing": {
+          "6 months - 8 years": {
+            "first_time_vaccinated": {
+              "doses": 2,
+              "interval": "4 weeks",
+              "notes": "First-time recipients need 2 doses, at least 4 weeks apart"
+            },
+            "previously_vaccinated": {
+              "doses": 1,
+              "notes": "Previously vaccinated individuals need only 1 dose"
+            }
+          },
+          "9 years and older": {
+            "doses": 1,
+            "notes": "1 dose per season"
+          }
+        }
+      },
+
+      "contraindications": [
+        {
+          "type": "allergy",
+          "allergen": "Egg",
+          "severity": "severe",
+          "description": "Severe egg allergy (history of allergic reaction following influenza vaccination)",
+          "notes": "Mild egg allergy is not a contraindication"
+        },
+        {
+          "type": "disease",
+          "condition": "Febrile illness",
+          "severity": "temporary",
+          "description": "Defer vaccination during fever",
+          "notes": "Mild upper respiratory infection is not a contraindication"
+        },
+        {
+          "type": "history",
+          "condition": "Guillain-Barré Syndrome",
+          "severity": "precaution",
+          "description": "Persons with history of GBS should be carefully evaluated before vaccination",
+          "notes": "If GBS occurred within 6 weeks after a previous influenza vaccination, avoid future influenza vaccines"
+        }
+      ],
+
+      "age_recommendations": {
+        "recommended_age": "6 months and older",
+        "min_age": "6 months",
+        "max_age": null,
+        "target_groups": [
+          "Children aged 6 months to 5 years",
+          "Adults aged 60 and older",
+          "Pregnant women",
+          "Patients with chronic illness",
+          "Healthcare workers",
+          "Nursing home residents"
+        ],
+        "notes": "Recommended annually for all persons aged 6 months and older unless contraindicated"
+      },
+
+      "interactions": [],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Injection site pain and redness/swelling",
+          "frequency": "common",
+          "severity": "mild",
+          "onset": "6-24 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Low-grade fever",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "6-12 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Muscle aches",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "1-2 days"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "recommended",
+          "notes": "Recommended for pregnant women, especially in the second and third trimesters"
+        },
+        "lactation": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during breastfeeding"
+        },
+        "immunocompromised": {
+          "recommendation": "recommended",
+          "notes": "Recommended for immunocompromised persons; live vaccines are contraindicated"
+        }
+      }
+    },
+    {
+      "id": "hpv",
+      "name": "Human Papillomavirus Vaccine",
+      "english_name": "Human Papillomavirus Vaccine",
+      "aliases": ["HPV Vaccine", "Cervical Cancer Vaccine"],
+      "types": ["2-valent", "4-valent", "9-valent"],
+      "manufacturers": ["GlaxoSmithKline (2-valent)", "Merck (4-valent, 9-valent)"],
+
+      "schedule": {
+        "is_series": true,
+        "series_type": "primary",
+        "standard_schedule": "0-2-6",
+        "doses_by_age": {
+          "Age 15 and under": {
+            "total_doses": 2,
+            "intervals": ["Day 0", "6-12 months"],
+            "notes": "Dose 2 given 6-12 months after dose 1"
+          },
+          "Age 15 and older": {
+            "total_doses": 3,
+            "intervals": ["Day 0", "2 months", "6 months"],
+            "notes": "Dose 2 at least 2 months after dose 1; dose 3 at least 6 months after dose 1"
+          }
+        },
+        "grace_period": "2 weeks",
+        "catch_up": {
+          "delayed_dose2": {
+            "notes": "If dose 2 is delayed, it can still be given; no need to restart the series"
+          },
+          "delayed_dose3": {
+            "notes": "Dose 3 can be completed within 12 months of dose 1"
+          }
+        }
+      },
+
+      "contraindications": [
+        {
+          "type": "pregnancy",
+          "severity": "temporary",
+          "description": "Contraindicated during pregnancy",
+          "notes": "If pregnancy is discovered during the series, stop subsequent doses; resume after delivery"
+        },
+        {
+          "type": "allergy",
+          "allergen": "Yeast",
+          "severity": "severe",
+          "description": "Contraindicated in persons with severe yeast allergy"
+        },
+        {
+          "type": "allergy",
+          "allergen": "Vaccine components",
+          "severity": "severe",
+          "description": "Contraindicated in persons with allergy to any vaccine component"
+        }
+      ],
+
+      "age_recommendations": {
+        "best_age": "9-14 years",
+        "min_age": "9 years",
+        "max_age": {
+          "2-valent": "45 years",
+          "4-valent": "45 years",
+          "9-valent": "26 years"
+        },
+        "notes": "Ages 9-14 are the optimal vaccination age with the best immune response"
+      },
+
+      "interactions": [
+        {
+          "drug_category": "Immunosuppressants",
+          "interaction_type": "reduced_efficacy",
+          "severity": "moderate",
+          "description": "May reduce vaccine immune response",
+          "recommendation": "Immunocompromised persons may receive the vaccine, but efficacy may be reduced"
+        }
+      ],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Injection site pain",
+          "frequency": "common",
+          "severity": "mild_to_moderate",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "3-5 days"
+        },
+        {
+          "reaction": "Headache",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "24-48 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Fever",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "6-24 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Fatigue",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "24-48 hours after vaccination",
+          "duration": "1-3 days"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "contraindicated",
+          "notes": "Contraindicated during pregnancy; safe during breastfeeding"
+        },
+        "lactation": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during breastfeeding"
+        },
+        "immunocompromised": {
+          "recommendation": "safe",
+          "notes": "Immunocompromised persons may receive the vaccine, but efficacy may be reduced"
+        }
+      }
+    },
+    {
+      "id": "covid19",
+      "name": "COVID-19 Vaccine",
+      "english_name": "COVID-19 Vaccine",
+      "aliases": ["COVID-19 Vaccine", "Novel Coronavirus Vaccine", "Coronavirus Vaccine"],
+      "types": ["Inactivated vaccine", "Adenoviral vector vaccine", "mRNA vaccine", "Recombinant protein vaccine"],
+      "manufacturers": ["Sinopharm", "Sinovac", "CanSino Biologics", "Zhifei Biological"],
+
+      "schedule": {
+        "is_series": true,
+        "series_type": "primary",
+        "standard_schedule": "0-21",
+        "doses": [
+          {
+            "dose_number": 1,
+            "timing": "day0",
+            "timing_description": "Dose 1"
+          },
+          {
+            "dose_number": 2,
+            "timing": "21_days_after_dose1",
+            "timing_description": "21 days after dose 1",
+            "interval_after_previous_dose": {
+              "value": 3,
+              "unit": "weeks"
+            },
+            "min_interval": "3 weeks",
+            "recommended_interval": "3-8 weeks"
+          }
+        ],
+        "booster": {
+          "required": true,
+          "timing": "6 months after completion of primary series",
+          "doses": 1,
+          "notes": "Booster dose recommended 6 months after completing primary series"
+        }
+      },
+
+      "contraindications": [
+        {
+          "type": "allergy",
+          "allergen": "Vaccine components",
+          "severity": "severe",
+          "description": "Contraindicated in persons with severe allergy to any vaccine component"
+        },
+        {
+          "type": "history",
+          "condition": "Severe allergic reaction to previous dose",
+          "severity": "severe",
+          "description": "Contraindicated in persons who experienced a severe allergic reaction to a previous dose of the same type of vaccine"
+        },
+        {
+          "type": "disease",
+          "condition": "Febrile illness",
+          "severity": "temporary",
+          "description": "Defer vaccination during fever"
+        },
+        {
+          "type": "disease",
+          "condition": "Acute illness",
+          "severity": "temporary",
+          "description": "Defer vaccination during acute illness"
+        }
+      ],
+
+      "age_recommendations": {
+        "recommended_age": "3 years and older",
+        "min_age": {
+          "Inactivated vaccine": "3 years",
+          "Other types": "18 years"
+        },
+        "max_age": null,
+        "notes": "Recommended for all eligible age groups"
+      },
+
+      "interactions": [
+        {
+          "drug_category": "Immunosuppressants",
+          "interaction_type": "reduced_efficacy",
+          "severity": "moderate",
+          "description": "May reduce vaccine immune response",
+          "recommendation": "Immunocompromised persons may receive the vaccine, but efficacy may be reduced; antibody testing recommended"
+        }
+      ],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Injection site pain",
+          "frequency": "common",
+          "severity": "mild_to_moderate",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "1-3 days"
+        },
+        {
+          "reaction": "Fever",
+          "frequency": "common",
+          "severity": "mild_to_moderate",
+          "onset": "6-24 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Fatigue",
+          "frequency": "common",
+          "severity": "mild",
+          "onset": "24-48 hours after vaccination",
+          "duration": "1-3 days"
+        },
+        {
+          "reaction": "Headache",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "24-48 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Muscle aches",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "1-3 days"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "caution",
+          "notes": "Use with caution during pregnancy; consult a physician"
+        },
+        "lactation": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during breastfeeding"
+        },
+        "immunocompromised": {
+          "recommendation": "recommended",
+          "notes": "Recommended for immunocompromised persons; booster doses may be needed"
+        }
+      }
+    },
+    {
+      "id": "bcg",
+      "name": "BCG Vaccine",
+      "english_name": "Bacille Calmette-Guérin Vaccine",
+      "aliases": ["BCG Vaccine", "BCG"],
+      "type": "live_attenuated",
+      "manufacturers": ["Shanghai Biological", "Beijing Biological"],
+
+      "schedule": {
+        "is_series": false,
+        "standard_schedule": "single",
+        "doses": [
+          {
+            "dose_number": 1,
+            "timing": "birth",
+            "timing_description": "At birth"
+          }
+        ],
+        "timing": "Within 24 hours of birth",
+        "notes": "Generally administered as a single dose only"
+      },
+
+      "contraindications": [
+        {
+          "type": "immune_status",
+          "condition": "Immunodeficiency",
+          "severity": "severe",
+          "description": "Contraindicated in persons with primary or secondary immunodeficiency"
+        },
+        {
+          "type": "disease",
+          "condition": "Febrile illness",
+          "severity": "temporary",
+          "description": "Defer vaccination during fever"
+        },
+        {
+          "type": "pregnancy",
+          "severity": "severe",
+          "description": "Contraindicated during pregnancy"
+        }
+      ],
+
+      "age_recommendations": {
+        "recommended_age": "At birth",
+        "min_age": "Within 24 hours of birth",
+        "max_age": "3 months",
+        "catch_up": "Generally not administered after 3 months of age",
+        "notes": "May be deferred for premature or low-birth-weight infants; administer once weight is adequate"
+      },
+
+      "interactions": [
+        {
+          "drug_category": "Immunosuppressants",
+          "interaction_type": "contraindication",
+          "severity": "severe",
+          "description": "Live vaccines are contraindicated in persons on immunosuppressants"
+        }
+      ],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Injection site redness and swelling",
+          "frequency": "common",
+          "severity": "mild",
+          "onset": "2-4 weeks after vaccination",
+          "duration": "Several weeks",
+          "notes": "Normal reaction; a pustule and ulcer will form"
+        },
+        {
+          "reaction": "Local lymph node enlargement",
+          "frequency": "occasional",
+          "severity": "mild_to_moderate",
+          "onset": "Several weeks after vaccination",
+          "duration": "Several weeks to months"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "contraindicated",
+          "notes": "Contraindicated during pregnancy"
+        },
+        "lactation": {
+          "recommendation": "safe",
+          "notes": "May be used during breastfeeding"
+        },
+        "immunocompromised": {
+          "recommendation": "contraindicated",
+          "notes": "Contraindicated in persons with immunodeficiency"
+        }
+      }
+    },
+    {
+      "id": "dpt",
+      "name": "DTaP Vaccine",
+      "english_name": "Diphtheria, Tetanus, Pertussis Vaccine",
+      "aliases": ["DTaP Vaccine", "DPT", "Combined DTaP Vaccine"],
+      "type": "inactivated",
+      "manufacturers": ["Wuhan Biological", "Chengdu Biological"],
+
+      "schedule": {
+        "is_series": true,
+        "series_type": "primary",
+        "standard_schedule": "2-3-4",
+        "doses": [
+          {
+            "dose_number": 1,
+            "timing": "3_months",
+            "timing_description": "3 months of age",
+            "recommended_age": "3 months"
+          },
+          {
+            "dose_number": 2,
+            "timing": "4_months",
+            "timing_description": "4 months of age",
+            "interval_after_previous_dose": {
+              "value": 1,
+              "unit": "months"
+            }
+          },
+          {
+            "dose_number": 3,
+            "timing": "5_months",
+            "timing_description": "5 months of age",
+            "interval_after_previous_dose": {
+              "value": 1,
+              "unit": "months"
+            }
+          },
+          {
+            "dose_number": 4,
+            "timing": "18_months",
+            "timing_description": "Booster at 18 months",
+            "interval_after_previous_dose": {
+              "value": 13,
+              "unit": "months"
+            }
+          }
+        ],
+        "booster": {
+          "required": true,
+          "doses": 1,
+          "timing": "6 years of age",
+          "notes": "Diphtheria-Tetanus (DT) booster at age 6"
+        }
+      },
+
+      "contraindications": [
+        {
+          "type": "cns_disorder",
+          "condition": "Progressive neurological disease",
+          "severity": "severe",
+          "description": "Contraindicated in uncontrolled epilepsy and progressive neurological disorders"
+        },
+        {
+          "type": "allergy",
+          "allergen": "Vaccine components",
+          "severity": "severe",
+          "description": "Contraindicated in persons with allergy to any vaccine component"
+        },
+        {
+          "type": "history",
+          "condition": "Severe reaction to previous dose",
+          "severity": "severe",
+          "description": "Contraindicated in persons who experienced a severe neurological reaction following a previous dose"
+        }
+      ],
+
+      "age_recommendations": {
+        "recommended_age": "3 months",
+        "min_age": "3 months",
+        "max_age": "7 years",
+        "notes": "Use Tdap or Td for those older than 7 years"
+      },
+
+      "interactions": [],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Injection site redness, swelling, and pain",
+          "frequency": "common",
+          "severity": "mild_to_moderate",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "1-3 days"
+        },
+        {
+          "reaction": "Fever",
+          "frequency": "occasional",
+          "severity": "mild_to_moderate",
+          "onset": "6-24 hours after vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Irritability and crying",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "Several hours after vaccination",
+          "duration": "1-2 days"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "not_applicable",
+          "notes": "Infant vaccine"
+        },
+        "lactation": {
+          "recommendation": "not_applicable",
+          "notes": "Infant vaccine"
+        },
+        "immunocompromised": {
+          "recommendation": "safe",
+          "notes": "Safe to administer"
+        }
+      }
+    },
+    {
+      "id": "mmr",
+      "name": "MMR Vaccine",
+      "english_name": "Measles, Mumps, Rubella Vaccine",
+      "aliases": ["MMR Vaccine", "MMR", "Measles Vaccine", "Rubella Vaccine"],
+      "type": "live_attenuated",
+      "manufacturers": ["Shanghai Biological", "Beijing Biological", "Merck"],
+
+      "schedule": {
+        "is_series": true,
+        "series_type": "primary",
+        "standard_schedule": "8-18",
+        "doses": [
+          {
+            "dose_number": 1,
+            "timing": "8_months",
+            "timing_description": "8 months of age",
+            "recommended_age": "8 months",
+            "notes": "Some countries start at 12 months; China starts at 8 months"
+          },
+          {
+            "dose_number": 2,
+            "timing": "18_months",
+            "timing_description": "18 months of age",
+            "interval_after_previous_dose": {
+              "value": 10,
+              "unit": "months"
+            },
+            "min_interval": "4 weeks"
+          }
+        ],
+        "catch_up": {
+          "notes": "Unvaccinated persons of any age may receive 2 catch-up doses at least 4 weeks apart"
+        }
+      },
+
+      "contraindications": [
+        {
+          "type": "pregnancy",
+          "severity": "severe",
+          "description": "Contraindicated during pregnancy; avoid pregnancy for at least 1 month after vaccination",
+          "notes": "Avoid pregnancy for 1-3 months after vaccination"
+        },
+        {
+          "type": "immune_status",
+          "condition": "Immunodeficiency",
+          "severity": "severe",
+          "description": "Contraindicated in persons with primary or secondary immunodeficiency"
+        },
+        {
+          "type": "allergy",
+          "allergen": "Vaccine components",
+          "severity": "severe",
+          "description": "Contraindicated in persons with severe allergy to any vaccine component",
+          "notes": "Includes allergy to gelatin or neomycin"
+        },
+        {
+          "type": "disease",
+          "condition": "Febrile illness",
+          "severity": "temporary",
+          "description": "Defer vaccination during fever"
+        }
+      ],
+
+      "age_recommendations": {
+        "recommended_age": "8 months",
+        "min_age": "8 months",
+        "max_age": null,
+        "catch_up": "Unimmunized persons should be vaccinated as soon as possible",
+        "notes": "Adults who have not been immunized should receive 2 doses"
+      },
+
+      "interactions": [
+        {
+          "drug_category": "Immunosuppressants",
+          "interaction_type": "contraindication",
+          "severity": "severe",
+          "description": "Live vaccines are contraindicated in persons on immunosuppressants",
+          "recommendation": "Vaccinate 3-6 months after stopping immunosuppressants"
+        },
+        {
+          "drug_category": "Immune globulin",
+          "interaction_type": "delay",
+          "severity": "moderate",
+          "description": "Immune globulin can interfere with vaccine efficacy",
+          "recommendation": "Wait 3-11 months after receiving immune globulin before vaccination"
+        }
+      ],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Fever",
+          "frequency": "common",
+          "severity": "mild_to_moderate",
+          "onset": "6-12 days after vaccination",
+          "duration": "3-5 days",
+          "notes": "Peak fever period is 7-12 days post-vaccination"
+        },
+        {
+          "reaction": "Rash",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "7-10 days after vaccination",
+          "duration": "2-5 days"
+        },
+        {
+          "reaction": "Parotid gland swelling",
+          "frequency": "rare",
+          "severity": "mild_to_moderate",
+          "onset": "10-14 days after vaccination",
+          "duration": "3-7 days"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "contraindicated",
+          "notes": "Contraindicated during pregnancy; avoid pregnancy for 1 month after vaccination"
+        },
+        "lactation": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during breastfeeding"
+        },
+        "immunocompromised": {
+          "recommendation": "contraindicated",
+          "notes": "Live vaccines contraindicated in persons with immunodeficiency"
+        }
+      }
+    },
+    {
+      "id": "pneumococcal",
+      "name": "Pneumococcal Vaccine",
+      "english_name": "Pneumococcal Vaccine",
+      "aliases": ["Pneumonia Vaccine", "Pneumococcal Vaccine"],
+      "types": ["PCV13", "PPSV23"],
+      "type": "conjugate_polysaccharide",
+      "manufacturers": ["Pfizer", "Merck", "Chengdu Biological"],
+
+      "schedule": {
+        "is_series": true,
+        "series_type": "primary",
+        "standard_schedule": "varies_by_age",
+        "doses": {
+          "Infants and toddlers": {
+            "vaccine_type": "PCV13",
+            "doses": 3,
+            "schedule": ["2 months", "4 months", "12 months"],
+            "notes": "One dose each at 2, 4, and 12 months"
+          },
+          "Age 65 and older": {
+            "vaccine_type": "PPSV23",
+            "doses": 1,
+            "schedule": "At age 65",
+            "booster": "Booster dose possible after 5 years"
+          },
+          "High-risk individuals": {
+            "vaccine_type": "PCV13 + PPSV23",
+            "schedule": "PCV13 first dose, followed by PPSV23 1 year later",
+            "booster": "PPSV23 booster possible after 5 years"
+          }
+        }
+      },
+
+      "contraindications": [
+        {
+          "type": "allergy",
+          "allergen": "Vaccine components",
+          "severity": "severe",
+          "description": "Contraindicated in persons with severe allergy to any vaccine component"
+        },
+        {
+          "type": "disease",
+          "condition": "Febrile illness",
+          "severity": "temporary",
+          "description": "Defer vaccination during fever"
+        }
+      ],
+
+      "age_recommendations": {
+        "recommended_age": {
+          "PCV13": "2 months - 15 years",
+          "PPSV23": "High-risk persons aged ≥2 years; routine use for those aged ≥65"
+        },
+        "target_groups": [
+          "Adults aged 65 and older",
+          "Patients with chronic cardiopulmonary disease",
+          "Patients with diabetes",
+          "Immunocompromised persons",
+          "Asplenic persons"
+        ]
+      },
+
+      "interactions": [],
+
+      "common_adverse_reactions": [
+        {
+          "reaction": "Injection site pain",
+          "frequency": "common",
+          "severity": "mild_to_moderate",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "1-3 days"
+        },
+        {
+          "reaction": "Fever",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "Within 24 hours of vaccination",
+          "duration": "1-2 days"
+        },
+        {
+          "reaction": "Muscle aches",
+          "frequency": "occasional",
+          "severity": "mild",
+          "onset": "24-48 hours after vaccination",
+          "duration": "1-2 days"
+        }
+      ],
+
+      "special_populations": {
+        "pregnancy": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during pregnancy"
+        },
+        "lactation": {
+          "recommendation": "safe",
+          "notes": "Safe to administer during breastfeeding"
+        },
+        "immunocompromised": {
+          "recommendation": "recommended",
+          "notes": "Strongly recommended for immunocompromised persons"
+        }
+      }
+    }
+  ],
+
+  "categories": {
+    "routine_childhood": ["hepb", "bcg", "polio", "dpt", "mmr", "varicella", "pneumococcal"],
+    "routine_adult": ["influenza", "tdap", "pneumococcal", "shingles", "covid19"],
+    "travel": ["hepa", "typhoid", "yellow_fever", "japanese_encephalitis"],
+    "high_risk": ["pneumococcal", "meningococcal", "hib"]
+  }
+}

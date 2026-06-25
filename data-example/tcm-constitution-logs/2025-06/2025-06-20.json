@@ -1,0 +1,85 @@
+{
+  "date": "2025-06-20",
+  "assessment_record": {
+    "questionnaire": {
+      "questions": [
+        {
+          "id": 1,
+          "constitution": "Qi Deficiency Constitution",
+          "question": "Do you fatigue easily?",
+          "answer": 4,
+          "weight": 1.0
+        },
+        {
+          "id": 2,
+          "constitution": "Qi Deficiency Constitution",
+          "question": "Do you experience shortness of breath (rapid, shallow breathing, unable to catch breath)?",
+          "answer": 4,
+          "weight": 1.0
+        },
+        {
+          "id": 3,
+          "constitution": "Qi Deficiency Constitution",
+          "question": "Do you catch colds more easily than most people?",
+          "answer": 3,
+          "weight": 1.0
+        },
+        {
+          "id": 9,
+          "constitution": "Yang Deficiency Constitution",
+          "question": "Do your hands and feet feel cold?",
+          "answer": 4,
+          "weight": 1.0
+        },
+        {
+          "id": 10,
+          "constitution": "Yang Deficiency Constitution",
+          "question": "Do you feel cold in the epigastric region, back, or lumbar-knee area?",
+          "answer": 4,
+          "weight": 1.0
+        }
+      ],
+      "total_questions": 60,
+      "completed_questions": 60,
+      "completion_rate": 100
+    },
+    "results": {
+      "primary_constitution": "Qi Deficiency Constitution",
+      "secondary_constitutions": ["Yang Deficiency Constitution"],
+      "constitution_scores": {
+        "Balanced Constitution": 42.1,
+        "Qi Deficiency Constitution": 78.5,
+        "Yang Deficiency Constitution": 62.3,
+        "Yin Deficiency Constitution": 32.1,
+        "Phlegm-Dampness Constitution": 38.7,
+        "Damp-Heat Constitution": 28.4,
+        "Blood Stasis Constitution": 25.6,
+        "Qi Stagnation Constitution": 35.2,
+        "Inherited Special Constitution": 18.3
+      },
+      "constitution_type": "compound"
+    },
+    "user_notes": "After 3 months of conditioning, energy levels have improved somewhat, but fatigue persists",
+    "system_notes": "Compared to last assessment, Qi Deficiency Constitution score decreased by 0.8, Yang Deficiency Constitution decreased by 1.5 — clear improvement"
+  },
+  "recommendations_given": {
+    "diet": {
+      "beneficial_foods": ["Chinese yam", "Jujube (red dates)", "Astragalus root", "Lamb", "Chinese chives"],
+      "avoid_foods": ["Raw and cold foods", "Greasy and heavy foods"]
+    },
+    "exercise": {
+      "recommended": ["Tai Chi", "Baduanjin (Eight Brocades)", "Walking"],
+      "frequency": "1-2 times daily, 20-30 minutes each session"
+    },
+    "lifestyle": {
+      "sleep": "Ensure adequate sleep",
+      "environment": "Keep environment warm"
+    }
+  },
+  "metadata": {
+    "assessment_time": "2025-06-20T10:30:00",
+    "assessment_duration_minutes": 15,
+    "user_age": 52,
+    "user_gender": "male"
+  }
+}

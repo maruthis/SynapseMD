@@ -1,0 +1,280 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T10:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "Xiao Ming",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "dietary_records": [
+    {
+      "date": "2025-01-14",
+      "age": "2y5m",
+      "age_months": 29,
+
+      "meals": {
+        "breakfast": {
+          "time": "08:00",
+          "foods": [
+            {
+              "name": "Milk",
+              "amount": "200ml",
+              "category": "dairy",
+              "nutrients": ["protein", "calcium", "vitamin_d"]
+            },
+            {
+              "name": "Egg",
+              "amount": "1 piece",
+              "category": "protein",
+              "nutrients": ["protein", "iron", "vitamin_a"]
+            },
+            {
+              "name": "Bread",
+              "amount": "1 slice",
+              "category": "grain",
+              "nutrients": ["carbohydrate"]
+            },
+            {
+              "name": "Apple",
+              "amount": "half",
+              "category": "fruit",
+              "nutrients": ["vitamin_c", "fiber"]
+            }
+          ]
+        },
+        "morning_snack": {
+          "time": "10:30",
+          "foods": [
+            {
+              "name": "Yogurt",
+              "amount": "100ml",
+              "category": "dairy",
+              "nutrients": ["protein", "calcium"]
+            }
+          ]
+        },
+        "lunch": {
+          "time": "12:00",
+          "foods": [
+            {
+              "name": "Rice",
+              "amount": "1 small bowl",
+              "category": "grain",
+              "nutrients": ["carbohydrate"]
+            },
+            {
+              "name": "Green vegetables",
+              "amount": "appropriate amount",
+              "category": "vegetable",
+              "nutrients": ["vitamin_c", "fiber", "calcium"]
+            },
+            {
+              "name": "Chicken",
+              "amount": "50g",
+              "category": "protein",
+              "nutrients": ["protein", "iron", "zinc"]
+            },
+            {
+              "name": "Tomato and egg stir-fry",
+              "amount": "appropriate amount",
+              "category": "mixed",
+              "nutrients": ["protein", "vitamin_a", "vitamin_c"]
+            }
+          ]
+        },
+        "afternoon_snack": {
+          "time": "15:30",
+          "foods": [
+            {
+              "name": "Banana",
+              "amount": "1",
+              "category": "fruit",
+              "nutrients": ["potassium", "vitamin_c"]
+            }
+          ]
+        },
+        "dinner": {
+          "time": "18:00",
+          "foods": [
+            {
+              "name": "Noodles",
+              "amount": "1 small bowl",
+              "category": "grain",
+              "nutrients": ["carbohydrate"]
+            },
+            {
+              "name": "Beef",
+              "amount": "50g",
+              "category": "protein",
+              "nutrients": ["protein", "iron", "zinc"]
+            },
+            {
+              "name": "Tomato",
+              "amount": "appropriate amount",
+              "category": "vegetable",
+              "nutrients": ["vitamin_c", "vitamin_a"]
+            },
+            {
+              "name": "Cucumber",
+              "amount": "appropriate amount",
+              "category": "vegetable",
+              "nutrients": ["vitamin_c", "fiber"]
+            }
+          ]
+        }
+      },
+
+      "water_intake": {
+        "amount_ml": 800,
+        "times": 6,
+        "recommended_min": 1000,
+        "recommended_max": 1300,
+        "adequate": false,
+        "notes": "Water intake is slightly low, recommend increasing"
+      },
+
+      "supplements": [
+        {
+          "name": "Vitamin D",
+          "dosage": "400IU",
+          "frequency": "daily",
+          "time": "morning",
+          "consistent": true
+        }
+      ],
+
+      "nutrition_assessment": {
+        "calories": {
+          "status": "adequate",
+          "estimated": "approximately 1200kcal",
+          "recommended": "1000-1400kcal"
+        },
+        "protein": {
+          "status": "adequate",
+          "sources": ["dairy", "egg", "meat"],
+          "estimated_g": 35
+        },
+        "calcium": {
+          "status": "adequate",
+          "estimated_mg": 600,
+          "recommended_mg": 600
+        },
+        "iron": {
+          "status": "adequate",
+          "sources": ["meat", "egg"],
+          "estimated_mg": 10
+        },
+        "vitamin_d": {
+          "status": "supplemented",
+          "food_sources_insufficient": true,
+          "supplement_adequate": true
+        },
+        "zinc": {
+          "status": "adequate",
+          "sources": ["meat"]
+        },
+        "vitamin_a": {
+          "status": "adequate",
+          "sources": ["egg", "vegetables"]
+        },
+        "vitamin_c": {
+          "status": "adequate",
+          "sources": ["fruit", "vegetables"]
+        },
+        "fiber": {
+          "status": "adequate",
+          "estimated_g": 12,
+          "recommended_g": "10+"
+        },
+        "overall": "good"
+      },
+
+      "food_variety": {
+        "total_items": 15,
+        "categories_count": 5,
+        "categories_covered": ["grain", "protein", "vegetable", "fruit", "dairy"],
+        "colors": ["white", "yellow", "green", "red"],
+        "assessment": "good"
+      },
+
+      "notes": ""
+    }
+  ],
+
+  "picky_eating": {
+    "level": "mild",
+    "level_name": "Mild",
+    "refused_foods": [
+      {
+        "name": "Carrots",
+        "reason": "taste",
+        "since_age": "2y"
+      },
+      {
+        "name": "Green bell pepper",
+        "reason": "taste/texture",
+        "since_age": "2y"
+      },
+      {
+        "name": "Spinach",
+        "reason": "texture",
+        "since_age": "2y"
+      }
+    ],
+    "preferred_foods": [
+      "Chicken",
+      "Beef",
+      "Banana",
+      "Apple",
+      "Dairy products",
+      "Noodles",
+      "Rice"
+    ],
+    "strategies_tried": [
+      "Chopping and mixing into other foods",
+      "Changing cooking methods"
+    ],
+    "improvement_notes": "Gradually trying new foods",
+    "impact_on_nutrition": "minimal"
+  },
+
+  "nutritional_status": {
+    "protein_status": "adequate",
+    "calcium_status": "adequate",
+    "iron_status": "adequate",
+    "zinc_status": "adequate",
+    "vitamin_d_status": "supplemented",
+    "vitamin_a_status": "adequate",
+    "vitamin_c_status": "adequate",
+    "vitamin_b_complex_status": "adequate",
+    "overall_status": "good",
+    "last_assessment_date": "2025-01-14"
+  },
+
+  "growth_nutrition_correlation": {
+    "height_percentile": 50,
+    "weight_percentile": 55,
+    "growth_velocity": "normal",
+    "nutrition_adequate_for_growth": true
+  },
+
+  "allergies": [],
+  "intolerances": [],
+  "special_diet": false,
+
+  "statistics": {
+    "total_records": 7,
+    "average_food_variety": "good",
+    "average_nutrition_score": "good",
+    "picky_eating_trend": "stable",
+    "water_intake_adequacy_percentage": 70
+  },
+
+  "settings": {
+    "reminder_enabled": false,
+    "track_water": true
+  }
+}

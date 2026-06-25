@@ -1,0 +1,234 @@
+{
+  "created_at": "2025-01-14T00:00:00.000Z",
+  "last_updated": "2025-01-14T20:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "Xiao Ming",
+    "birth_date": "2020-01-01",
+    "gender": "male"
+  },
+
+  "illness_records": [
+    {
+      "id": "illness_20250112",
+      "date": "2025-01-12",
+      "onset_date": "2025-01-12",
+      "recovery_date": null,
+      "days_illness": 3,
+      "days_to_recovery": null,
+
+      "condition": {
+        "name": "Acute upper respiratory tract infection",
+        "category": "respiratory",
+        "type": "viral",
+        "severity": "mild",
+        "severity_name": "Mild",
+        "doctor_visit": false,
+        "diagnosis": "Self-observation",
+        "icd_code": null
+      },
+
+      "symptoms": [
+        {
+          "name": "Fever",
+          "severity": "moderate",
+          "severity_level": 2,
+          "status": "improving",
+          "onset_date": "2025-01-12",
+          "notes": "Peak temperature 38.5°C"
+        },
+        {
+          "name": "Cough",
+          "severity": "mild",
+          "severity_level": 1,
+          "status": "improving",
+          "onset_date": "2025-01-12",
+          "notes": "Dry cough"
+        },
+        {
+          "name": "Runny nose",
+          "severity": "mild",
+          "severity_level": 1,
+          "status": "improving",
+          "onset_date": "2025-01-12",
+          "notes": "Clear discharge"
+        },
+        {
+          "name": "Sore throat",
+          "severity": "mild",
+          "severity_level": 1,
+          "status": "resolved",
+          "onset_date": "2025-01-12",
+          "notes": ""
+        }
+      ],
+
+      "fever_tracking": [
+        {
+          "date": "2025-01-12T18:00:00",
+          "temperature": 38.2,
+          "medication": null,
+          "notes": ""
+        },
+        {
+          "date": "2025-01-13T08:00:00",
+          "temperature": 38.5,
+          "medication": "Ibuprofen oral suspension 5ml",
+          "notes": "Peak fever"
+        },
+        {
+          "date": "2025-01-13T14:00:00",
+          "temperature": 38.0,
+          "medication": null,
+          "notes": ""
+        },
+        {
+          "date": "2025-01-13T20:00:00",
+          "temperature": 37.8,
+          "medication": null,
+          "notes": ""
+        },
+        {
+          "date": "2025-01-14T08:00:00",
+          "temperature": 37.5,
+          "medication": null,
+          "notes": "Temperature decreasing"
+        },
+        {
+          "date": "2025-01-14T20:00:00",
+          "temperature": 37.0,
+          "medication": null,
+          "notes": "Temperature normal"
+        }
+      ],
+
+      "medications": [
+        {
+          "name": "Ibuprofen oral suspension",
+          "generic_name": "Ibuprofen",
+          "dosage": "5ml",
+          "dosage_unit": "ml",
+          "frequency": "as needed",
+          "times_given": 1,
+          "start_date": "2025-01-13",
+          "end_date": null,
+          "notes": "Use when temperature ≥38.5°C"
+        }
+      ],
+
+      "recovery_tracking": {
+        "day_1": {
+          "date": "2025-01-12",
+          "fever": 38.2,
+          "cough": "moderate",
+          "runny_nose": "moderate",
+          "spirit": "normal",
+          "appetite": "slightly_decreased",
+          "notes": "Day 1 of illness"
+        },
+        "day_2": {
+          "date": "2025-01-13",
+          "fever": 38.5,
+          "cough": "moderate",
+          "runny_nose": "moderate",
+          "spirit": "slightly_poor",
+          "appetite": "decreased",
+          "notes": "Fever peak, slightly lethargic"
+        },
+        "day_3": {
+          "date": "2025-01-14",
+          "fever": 37.0,
+          "cough": "mild",
+          "runny_nose": "mild",
+          "spirit": "normal",
+          "appetite": "normal",
+          "notes": "Temperature normal, improving"
+        }
+      },
+
+      "complications": [],
+
+      "follow_up": {
+        "needed": true,
+        "follow_up_date": "2025-01-17",
+        "reason": "Assess whether fully recovered"
+      },
+
+      "notes": "Under home observation, condition is good"
+    }
+  ],
+
+  "symptom_history": [
+    {
+      "date": "2025-01-12",
+      "symptoms": ["Fever", "Cough", "Runny nose", "Sore throat"],
+      "condition": "Acute upper respiratory tract infection"
+    },
+    {
+      "date": "2025-01-13",
+      "symptoms": ["Fever", "Cough", "Runny nose"],
+      "condition": "Acute upper respiratory tract infection"
+    },
+    {
+      "date": "2025-01-14",
+      "symptoms": ["Cough", "Runny nose"],
+      "condition": "Acute upper respiratory tract infection"
+    }
+  ],
+
+  "medication_log": [
+    {
+      "date": "2025-01-13T08:00:00",
+      "medication": "Ibuprofen oral suspension",
+      "dosage": "5ml",
+      "indication": "Fever 38.5°C",
+      "condition_id": "illness_20250112"
+    }
+  ],
+
+  "statistics": {
+    "total_illnesses": 6,
+    "total_days_ill": 33,
+    "average_duration": 5.5,
+    "most_common_condition": "Acute upper respiratory tract infection",
+    "illnesses_last_12_months": 6,
+    "doctors_visits": 0,
+    "emergency_visits": 0,
+    "hospitalizations": 0,
+
+    "condition_distribution": {
+      "Acute upper respiratory tract infection": 4,
+      "Acute gastroenteritis": 1,
+      "Hand, foot and mouth disease": 1
+    },
+
+    "monthly_distribution": {
+      "1": 1,
+      "2": 0,
+      "3": 1,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 1,
+      "8": 0,
+      "9": 1,
+      "10": 1,
+      "11": 0,
+      "12": 0
+    }
+  },
+
+  "medical_history": {
+    "allergies": [],
+    "chronic_conditions": [],
+    "surgeries": [],
+    "hospitalizations": []
+  },
+
+  "settings": {
+    "temperature_unit": "celsius",
+    "reminder_enabled": true,
+    "auto_track_fever": true
+  }
+}

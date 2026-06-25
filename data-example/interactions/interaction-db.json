@@ -1,0 +1,1139 @@
+{
+  "version": "1.0.0",
+  "created_at": "2025-12-31T12:34:56.789Z",
+  "last_updated": "2025-12-31T12:34:56.789Z",
+  "statistics": {
+    "total_rules": 30,
+    "by_severity": {
+      "A": 0,
+      "B": 2,
+      "C": 8,
+      "D": 17,
+      "X": 3
+    },
+    "by_type": {
+      "drug_drug": 21,
+      "drug_disease": 4,
+      "drug_dosage": 2,
+      "drug_food": 3
+    }
+  },
+  "interactions": [
+    {
+      "id": "int_001",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Warfarin",
+          "generic_name": "Warfarin",
+          "category": "Anticoagulant",
+          "synonyms": ["Coumadin"]
+        },
+        {
+          "name": "Aspirin",
+          "generic_name": "Aspirin",
+          "category": "Antiplatelet",
+          "synonyms": ["Acetylsalicylic acid"]
+        }
+      ],
+      "severity": {
+        "level": "X",
+        "level_name": "Absolutely Contraindicated",
+        "level_code": 5,
+        "color": "🆘"
+      },
+      "interaction_details": {
+        "mechanism": "Aspirin inhibits platelet function, producing a synergistic effect with warfarin's anticoagulant action",
+        "effect": "Significantly increased bleeding risk",
+        "clinical_impact": "May cause serious bleeding, including intracranial hemorrhage and gastrointestinal bleeding"
+      },
+      "recommendations": [
+        "Avoid concomitant use unless there is a clear cardiovascular indication and under specialist guidance",
+        "If concomitant use is necessary, closely monitor coagulation function (INR)",
+        "Patients should watch for signs of bleeding: bruising, gum bleeding, nosebleeds, black stools, etc."
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Coagulation function (INR)", "Bleeding symptoms", "Hemoglobin"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_002",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Warfarin",
+          "generic_name": "Warfarin",
+          "category": "Anticoagulant"
+        },
+        {
+          "name": "Ibuprofen",
+          "generic_name": "Ibuprofen",
+          "category": "NSAID",
+          "synonyms": ["Motrin"]
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "NSAIDs inhibit platelet function and may damage the gastric mucosa",
+        "effect": "Increased bleeding risk",
+        "clinical_impact": "Gastrointestinal bleeding risk increased 2–3 fold"
+      },
+      "recommendations": [
+        "Avoid concomitant use",
+        "If an NSAID is necessary, consider using a COX-2 inhibitor",
+        "Use a proton pump inhibitor concurrently to protect the gastric mucosa"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Bleeding symptoms", "Fecal occult blood"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_003",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Digoxin",
+          "generic_name": "Digoxin",
+          "category": "Cardiac glycoside"
+        },
+        {
+          "name": "Furosemide",
+          "generic_name": "Furosemide",
+          "category": "Potassium-wasting diuretic",
+          "synonyms": ["Lasix"]
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Potassium-wasting diuretics cause hypokalemia, increasing myocardial sensitivity to digoxin",
+        "effect": "Increased risk of digoxin toxicity",
+        "clinical_impact": "May manifest as arrhythmia, nausea, vomiting, and other signs of toxicity"
+      },
+      "recommendations": [
+        "Avoid concomitant use; if unavoidable, closely monitor serum potassium and digoxin plasma levels",
+        "Consider using a potassium-sparing diuretic or potassium supplementation",
+        "Seek immediate medical attention if signs of toxicity appear"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Serum potassium", "Digoxin plasma concentration", "ECG"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_004",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Enalapril",
+          "generic_name": "Enalapril",
+          "category": "ACE Inhibitor"
+        },
+        {
+          "name": "Spironolactone",
+          "generic_name": "Spironolactone",
+          "category": "Potassium-sparing diuretic"
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "ACE inhibitors reduce aldosterone secretion; spironolactone retains potassium — the combination synergistically causes hyperkalemia",
+        "effect": "Elevated serum potassium",
+        "clinical_impact": "Severe hyperkalemia may lead to arrhythmia or even cardiac arrest"
+      },
+      "recommendations": [
+        "Avoid concomitant use, especially in patients with renal impairment",
+        "If concomitant use is necessary, closely monitor serum potassium",
+        "Avoid potassium supplements or potassium-containing salt substitutes"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Serum potassium", "Renal function", "ECG"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_005",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Nitroglycerin",
+          "generic_name": "Nitroglycerin",
+          "category": "Nitrate"
+        },
+        {
+          "name": "Sildenafil",
+          "generic_name": "Sildenafil",
+          "category": "PDE5 Inhibitor",
+          "synonyms": ["Viagra"]
+        }
+      ],
+      "severity": {
+        "level": "X",
+        "level_name": "Absolutely Contraindicated",
+        "level_code": 5,
+        "color": "🆘"
+      },
+      "interaction_details": {
+        "mechanism": "Both agents vasodilate, producing a synergistic blood-pressure–lowering effect",
+        "effect": "Severe hypotension",
+        "clinical_impact": "May cause syncope, shock, or even be life-threatening"
+      },
+      "recommendations": [
+        "Strictly prohibit concomitant use",
+        "PDE5 inhibitors are contraindicated in patients using nitroglycerin",
+        "If a PDE5 inhibitor is required, nitroglycerin must be discontinued for at least 24 hours beforehand"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Blood pressure", "Heart rate"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_006",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Amlodipine",
+          "generic_name": "Amlodipine",
+          "category": "Calcium channel blocker"
+        },
+        {
+          "name": "Simvastatin",
+          "generic_name": "Simvastatin",
+          "category": "Statin"
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Amlodipine inhibits CYP3A4-mediated metabolism of simvastatin, increasing its plasma concentration",
+        "effect": "Increased risk of muscle toxicity",
+        "clinical_impact": "Risk of myalgia, myositis, and rhabdomyolysis increased 2–3 fold"
+      },
+      "recommendations": [
+        "Simvastatin dose should not exceed 20 mg",
+        "Consider switching to a statin not metabolized via CYP3A4 (e.g., rosuvastatin, pravastatin)",
+        "If muscle pain or weakness occurs, seek immediate medical attention and check creatine kinase"
+      ],
+      "management": {
+        "action": "adjust",
+        "monitoring": ["Creatine kinase (CK)", "Muscle symptoms"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_007",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Clarithromycin",
+          "generic_name": "Clarithromycin",
+          "category": "Macrolide antibiotic"
+        },
+        {
+          "name": "Simvastatin",
+          "generic_name": "Simvastatin",
+          "category": "Statin"
+        }
+      ],
+      "severity": {
+        "level": "X",
+        "level_name": "Absolutely Contraindicated",
+        "level_code": 5,
+        "color": "🆘"
+      },
+      "interaction_details": {
+        "mechanism": "Clarithromycin is a potent CYP3A4 inhibitor, markedly elevating simvastatin plasma concentration",
+        "effect": "Sharply increased risk of rhabdomyolysis",
+        "clinical_impact": "May lead to acute renal failure or death"
+      },
+      "recommendations": [
+        "Strictly prohibit concomitant use",
+        "Simvastatin should be suspended during macrolide antibiotic therapy",
+        "Consider switching to a statin not metabolized via CYP3A4"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Creatine kinase (CK)", "Renal function"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_008",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Metronidazole",
+          "generic_name": "Metronidazole",
+          "category": "Antibiotic"
+        },
+        {
+          "name": "Alcohol",
+          "generic_name": "Alcohol",
+          "category": "Other"
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Metronidazole inhibits aldehyde dehydrogenase, causing acetaldehyde accumulation",
+        "effect": "Disulfiram-like reaction",
+        "clinical_impact": "Facial flushing, headache, nausea, vomiting, chest tightness, palpitations, and hypotension"
+      },
+      "recommendations": [
+        "Alcohol is prohibited during treatment and for at least 3 days after the last dose",
+        "Avoid alcoholic beverages, foods, and medications containing alcohol"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Blood pressure", "Heart rate"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_009",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Cefoperazone",
+          "generic_name": "Cefoperazone",
+          "category": "Cephalosporin"
+        },
+        {
+          "name": "Alcohol",
+          "generic_name": "Alcohol",
+          "category": "Other"
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Cefoperazone inhibits aldehyde dehydrogenase, causing acetaldehyde accumulation",
+        "effect": "Disulfiram-like reaction",
+        "clinical_impact": "Facial flushing, headache, chest tightness, palpitations, hypotension; severe cases may progress to shock"
+      },
+      "recommendations": [
+        "Alcohol is prohibited during treatment and for at least 7 days after the last dose",
+        "Avoid alcoholic beverages and alcohol-containing medications"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Blood pressure", "Heart rate"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_010",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Phenytoin",
+          "generic_name": "Phenytoin",
+          "category": "Antiepileptic"
+        },
+        {
+          "name": "Warfarin",
+          "generic_name": "Warfarin",
+          "category": "Anticoagulant"
+        }
+      ],
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Phenytoin induces hepatic enzymes, accelerating warfarin metabolism",
+        "effect": "Reduced anticoagulant effect of warfarin",
+        "clinical_impact": "Decreased INR, increased thrombosis risk"
+      },
+      "recommendations": [
+        "If concomitant use is necessary, closely monitor INR",
+        "Warfarin dose may need to be increased",
+        "When phenytoin is discontinued, warfarin dose should be reduced accordingly"
+      ],
+      "management": {
+        "action": "monitor",
+        "monitoring": ["INR", "Warfarin plasma concentration"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_011",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Levofloxacin",
+          "generic_name": "Levofloxacin",
+          "category": "Fluoroquinolone"
+        },
+        {
+          "name": "Prednisone",
+          "generic_name": "Prednisone",
+          "category": "Corticosteroid"
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Both fluoroquinolones and corticosteroids may impair tendon function",
+        "effect": "Increased risk of tendinitis and tendon rupture",
+        "clinical_impact": "Particularly affects the Achilles tendon; surgical repair may be required"
+      },
+      "recommendations": [
+        "Avoid concomitant use, especially in elderly patients and renal transplant recipients",
+        "If tendon pain or inflammation occurs, discontinue immediately and seek medical attention"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Tendon symptoms"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_012",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Sulfamethoxazole",
+          "generic_name": "Sulfamethoxazole",
+          "category": "Sulfonamide"
+        },
+        {
+          "name": "Warfarin",
+          "generic_name": "Warfarin",
+          "category": "Anticoagulant"
+        }
+      ],
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Sulfonamides displace warfarin from albumin binding sites and inhibit its metabolism",
+        "effect": "Enhanced anticoagulant effect of warfarin",
+        "clinical_impact": "Elevated INR, increased bleeding risk"
+      },
+      "recommendations": [
+        "Closely monitor INR during concomitant use",
+        "Warfarin dose may need to be reduced",
+        "Watch for signs of bleeding"
+      ],
+      "management": {
+        "action": "monitor",
+        "monitoring": ["INR", "Bleeding symptoms"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_013",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Fluoxetine",
+          "generic_name": "Fluoxetine",
+          "category": "SSRI",
+          "synonyms": ["Prozac"]
+        },
+        {
+          "name": "Tramadol",
+          "generic_name": "Tramadol",
+          "category": "Analgesic"
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Both agents increase serotonin levels through a synergistic mechanism",
+        "effect": "Risk of serotonin syndrome",
+        "clinical_impact": "Agitation, confusion, muscle rigidity, hyperthermia, and seizures"
+      },
+      "recommendations": [
+        "Avoid concomitant use",
+        "If concomitant use is unavoidable, closely monitor for serotonin syndrome symptoms"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Neurological symptoms", "Body temperature", "Muscle tone"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_014",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {
+          "name": "Diazepam",
+          "generic_name": "Diazepam",
+          "category": "Benzodiazepine",
+          "synonyms": ["Valium"]
+        },
+        {
+          "name": "Alcohol",
+          "generic_name": "Alcohol",
+          "category": "Other"
+        }
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Both agents enhance CNS depression through a synergistic effect",
+        "effect": "Excessive sedation and respiratory depression",
+        "clinical_impact": "May lead to coma, respiratory depression, or death"
+      },
+      "recommendations": [
+        "Strictly avoid alcohol",
+        "Avoid driving or operating machinery while taking this medication"
+      ],
+      "management": {
+        "action": "avoid",
+        "monitoring": ["Level of consciousness", "Respiratory function"]
+      },
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_015",
+      "type": "drug_disease",
+      "type_name": "Drug-Disease Interaction",
+      "drug": {
+        "name": "Ibuprofen",
+        "generic_name": "Ibuprofen",
+        "category": "NSAID",
+        "synonyms": ["Advil", "Motrin"]
+      },
+      "disease": {
+        "name": "Peptic ulcer",
+        "icd_code": "K25",
+        "synonyms": ["Gastric ulcer", "Duodenal ulcer", "peptic ulcer"]
+      },
+      "severity": {
+        "level": "X",
+        "level_name": "Absolutely Contraindicated",
+        "level_code": 5,
+        "color": "🆘"
+      },
+      "interaction_details": {
+        "mechanism": "NSAIDs inhibit prostaglandin synthesis, weakening the gastric mucosal protective barrier",
+        "effect": "Aggravates ulcers; may cause bleeding or perforation",
+        "clinical_impact": "Significantly increased risk of serious complications"
+      },
+      "recommendations": [
+        "NSAIDs are contraindicated during the active phase of peptic ulcer disease",
+        "Patients with a history of healed ulcers should avoid NSAIDs",
+        "If an NSAID must be used, a proton pump inhibitor should be co-prescribed",
+        "Consider alternative analgesics (e.g., acetaminophen)"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_016",
+      "type": "drug_disease",
+      "type_name": "Drug-Disease Interaction",
+      "drug": {
+        "name": "Propranolol",
+        "generic_name": "Propranolol",
+        "category": "Beta-blocker"
+      },
+      "disease": {
+        "name": "Asthma",
+        "icd_code": "J45",
+        "synonyms": ["Bronchial asthma"]
+      },
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Beta-blockade may provoke bronchospasm",
+        "effect": "Triggers asthma attack",
+        "clinical_impact": "May cause a severe asthma attack or status asthmaticus"
+      },
+      "recommendations": [
+        "Patients with asthma should avoid non-selective beta-blockers",
+        "If a beta-blocker is necessary, consider a selective beta-1 blocker",
+        "Closely monitor pulmonary function"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_017",
+      "type": "drug_disease",
+      "type_name": "Drug-Disease Interaction",
+      "drug": {
+        "name": "Prednisone",
+        "generic_name": "Prednisone",
+        "category": "Corticosteroid"
+      },
+      "disease": {
+        "name": "Diabetes mellitus",
+        "icd_code": "E11",
+        "synonyms": ["Type 2 diabetes mellitus", "Type 1 diabetes mellitus"]
+      },
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Corticosteroids promote gluconeogenesis and reduce insulin sensitivity",
+        "effect": "Elevated blood glucose",
+        "clinical_impact": "May worsen glycemic control"
+      },
+      "recommendations": [
+        "Use corticosteroids with caution in patients with diabetes",
+        "Closely monitor blood glucose",
+        "Antidiabetic medication doses may need adjustment",
+        "Use the lowest effective dose whenever possible"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_018",
+      "type": "drug_disease",
+      "type_name": "Drug-Disease Interaction",
+      "drug": {
+        "name": "Atropine",
+        "generic_name": "Atropine",
+        "category": "Anticholinergic"
+      },
+      "disease": {
+        "name": "Glaucoma",
+        "icd_code": "H40",
+        "synonyms": ["Angle-closure glaucoma", "Open-angle glaucoma"]
+      },
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Anticholinergics cause pupil dilation, which may precipitate an acute attack of angle-closure glaucoma",
+        "effect": "Elevated intraocular pressure",
+        "clinical_impact": "May trigger an acute glaucoma attack and damage the optic nerve"
+      },
+      "recommendations": [
+        "Contraindicated in patients with angle-closure glaucoma",
+        "Use with caution in patients with open-angle glaucoma",
+        "Monitor intraocular pressure closely after use"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_019",
+      "type": "drug_food",
+      "type_name": "Drug-Food Interaction",
+      "drug": {
+        "name": "Warfarin",
+        "generic_name": "Warfarin",
+        "category": "Anticoagulant"
+      },
+      "food": {
+        "name": "Vitamin K-rich foods",
+        "category": "Vegetables",
+        "examples": ["Spinach", "Kale", "Broccoli", "Cabbage", "Lettuce", "Chinese kale"]
+      },
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Vitamin K is a cofactor required for the synthesis of clotting factors",
+        "effect": "Reduced anticoagulant effect of warfarin",
+        "amount_threshold": "Effect is significant with large intake"
+      },
+      "recommendations": [
+        "Maintain a consistent dietary intake of vitamin K",
+        "Avoid large fluctuations in dietary vitamin K content",
+        "Inform your doctor if increasing green vegetable consumption",
+        "Monitor INR regularly"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_020",
+      "type": "drug_food",
+      "type_name": "Drug-Food Interaction",
+      "drug": {
+        "name": "Simvastatin",
+        "generic_name": "Simvastatin",
+        "category": "Statin"
+      },
+      "food": {
+        "name": "Grapefruit juice",
+        "category": "Juice",
+        "examples": ["Grapefruit juice", "Pomelo juice"]
+      },
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Grapefruit juice inhibits CYP3A4, reducing statin metabolism",
+        "effect": "Increased statin plasma concentration",
+        "clinical_impact": "Increased risk of muscle toxicity"
+      },
+      "recommendations": [
+        "Avoid grapefruit juice while taking statins",
+        "If consumed, allow a gap of at least 4 hours",
+        "Consider switching to a different statin"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_021",
+      "type": "drug_food",
+      "type_name": "Drug-Food Interaction",
+      "drug": {
+        "name": "Phenelzine",
+        "generic_name": "Phenelzine",
+        "category": "MAOI"
+      },
+      "food": {
+        "name": "Tyramine-rich foods",
+        "category": "Fermented foods",
+        "examples": ["Aged cheese", "Cured meats", "Red wine", "Beer", "Soy products", "Bananas"]
+      },
+      "severity": {
+        "level": "X",
+        "level_name": "Absolutely Contraindicated",
+        "level_code": 5,
+        "color": "🆘"
+      },
+      "interaction_details": {
+        "mechanism": "MAOIs inhibit tyramine metabolism, causing tyramine accumulation",
+        "effect": "Hypertensive crisis",
+        "clinical_impact": "Severe headache, palpitations, sweating, hypertension; possible cerebral hemorrhage"
+      },
+      "recommendations": [
+        "Strictly avoid tyramine-rich foods",
+        "Dietary restriction must be maintained during treatment and for 2 weeks after the last dose",
+        "Read food labels carefully to avoid tyramine-containing products"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_022",
+      "type": "drug_food",
+      "type_name": "Drug-Food Interaction",
+      "drug": {
+        "name": "Metformin",
+        "generic_name": "Metformin",
+        "category": "Biguanide"
+      },
+      "food": {
+        "name": "Alcohol",
+        "category": "Beverages",
+        "examples": ["Spirits", "Beer", "Wine", "Alcoholic beverages"]
+      },
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Alcohol inhibits lactate metabolism, increasing the risk of lactic acidosis",
+        "effect": "Lactic acidosis",
+        "clinical_impact": "Potentially life-threatening metabolic complication"
+      },
+      "recommendations": [
+        "Limit alcohol intake while taking metformin",
+        "Avoid heavy or chronic alcohol use",
+        "Patients with hepatic impairment should abstain from alcohol completely"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_023",
+      "type": "drug_dosage",
+      "type_name": "Drug Dosage Conflict",
+      "drug": {
+        "name": "Digoxin",
+        "generic_name": "Digoxin",
+        "category": "Cardiac glycoside"
+      },
+      "dosage_limit": {
+        "max_daily_dose": {
+          "value": 0.25,
+          "unit": "mg"
+        },
+        "warning_threshold": {
+          "value": 0.5,
+          "unit": "mg"
+        },
+        "age_adjustments": [
+          {
+            "age_group": "Elderly (>65 years)",
+            "max_dose": {"value": 0.125, "unit": "mg"},
+            "note": "Reduced renal function in the elderly requires dose reduction"
+          },
+          {
+            "age_group": "Renal impairment",
+            "reduction": "50%",
+            "note": "Adjust dose based on creatinine clearance"
+          }
+        ]
+      },
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "toxicity_details": {
+        "symptoms": ["Nausea", "Vomiting", "Visual disturbances", "Arrhythmia"],
+        "monitoring": ["Plasma drug concentration", "ECG", "Electrolytes"],
+        "toxicity_level": "Narrow therapeutic index; high risk of overdose"
+      },
+      "recommendations": [
+        "Strictly follow prescribed doses",
+        "Dose reduction required in elderly patients",
+        "Dose adjustment required in patients with renal impairment",
+        "Monitor digoxin plasma concentration regularly"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_024",
+      "type": "drug_dosage",
+      "type_name": "Drug Dosage Conflict",
+      "drug": {
+        "name": "Acetaminophen",
+        "generic_name": "Acetaminophen",
+        "category": "Antipyretic analgesic",
+        "synonyms": ["Paracetamol", "Tylenol"]
+      },
+      "dosage_limit": {
+        "max_daily_dose": {
+          "value": 4,
+          "unit": "g"
+        },
+        "warning_threshold": {
+          "value": 3,
+          "unit": "g"
+        },
+        "age_adjustments": [
+          {
+            "age_group": "Hepatic impairment",
+            "reduction": "50%",
+            "note": "Contraindicated in severe hepatic impairment"
+          },
+          {
+            "age_group": "Chronic alcohol users",
+            "max_dose": {"value": 2, "unit": "g"},
+            "note": "Alcohol increases the risk of hepatotoxicity"
+          }
+        ]
+      },
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "toxicity_details": {
+        "symptoms": ["Nausea", "Vomiting", "Abdominal pain", "Abnormal liver function"],
+        "monitoring": ["Liver function", "Coagulation function"],
+        "toxicity_level": "Overdose may cause acute liver failure"
+      },
+      "recommendations": [
+        "Maximum adult daily dose is 4 g",
+        "Dose reduction or discontinuation required in patients with hepatic impairment",
+        "Avoid taking multiple acetaminophen-containing products simultaneously",
+        "Patients who consume alcohol should limit their dose"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_025",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {"name": "Aspirin", "generic_name": "Aspirin", "category": "Antiplatelet"},
+        {"name": "Enoxaparin", "generic_name": "Enoxaparin", "category": "Low molecular weight heparin"}
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Both agents have anticoagulant effects; synergistic action",
+        "effect": "Significantly increased bleeding risk",
+        "clinical_impact": "May cause serious bleeding"
+      },
+      "recommendations": [
+        "Avoid concomitant use unless there is a clear indication",
+        "Closely monitor for signs of bleeding",
+        "Regularly check complete blood count and coagulation function"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_026",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {"name": "Carbamazepine", "generic_name": "Carbamazepine", "category": "Antiepileptic"},
+        {"name": "Warfarin", "generic_name": "Warfarin", "category": "Anticoagulant"}
+      ],
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Carbamazepine induces hepatic enzymes, accelerating warfarin metabolism",
+        "effect": "Reduced anticoagulant effect of warfarin",
+        "clinical_impact": "Decreased INR, increased thrombosis risk"
+      },
+      "recommendations": [
+        "Closely monitor INR during concomitant use",
+        "Warfarin dose may need to be increased",
+        "When carbamazepine is discontinued, warfarin dose should be adjusted accordingly"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_027",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {"name": "Amiodarone", "generic_name": "Amiodarone", "category": "Antiarrhythmic"},
+        {"name": "Digoxin", "generic_name": "Digoxin", "category": "Cardiac glycoside"}
+      ],
+      "severity": {
+        "level": "D",
+        "level_name": "Contraindicated",
+        "level_code": 4,
+        "color": "🔴"
+      },
+      "interaction_details": {
+        "mechanism": "Amiodarone inhibits P-glycoprotein, reducing digoxin excretion",
+        "effect": "Elevated digoxin plasma concentration",
+        "clinical_impact": "Increased risk of digoxin toxicity"
+      },
+      "recommendations": [
+        "Digoxin dose should be halved when used concomitantly",
+        "Closely monitor digoxin plasma concentration",
+        "Watch for signs of toxicity"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_028",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {"name": "Erythromycin", "generic_name": "Erythromycin", "category": "Macrolide"},
+        {"name": "Terfenadine", "generic_name": "Terfenadine", "category": "Antihistamine"}
+      ],
+      "severity": {
+        "level": "X",
+        "level_name": "Absolutely Contraindicated",
+        "level_code": 5,
+        "color": "🆘"
+      },
+      "interaction_details": {
+        "mechanism": "Erythromycin inhibits CYP3A4, reducing terfenadine metabolism",
+        "effect": "Markedly elevated terfenadine plasma concentration",
+        "clinical_impact": "Fatal arrhythmia (torsades de pointes)"
+      },
+      "recommendations": [
+        "Strictly prohibit concomitant use",
+        "Terfenadine has largely been withdrawn from the market, but similar drugs require caution"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_029",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {"name": "Cimetidine", "generic_name": "Cimetidine", "category": "H2 receptor blocker"},
+        {"name": "Warfarin", "generic_name": "Warfarin", "category": "Anticoagulant"}
+      ],
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Cimetidine inhibits hepatic enzymes, reducing warfarin metabolism",
+        "effect": "Enhanced anticoagulant effect of warfarin",
+        "clinical_impact": "Elevated INR, increased bleeding risk"
+      },
+      "recommendations": [
+        "Monitor INR during concomitant use",
+        "Warfarin dose may need to be reduced",
+        "Consider switching to another H2 receptor blocker (e.g., famotidine)"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    },
+    {
+      "id": "int_030",
+      "type": "drug_drug",
+      "type_name": "Drug-Drug Interaction",
+      "drugs": [
+        {"name": "Aspirin", "generic_name": "Aspirin", "category": "Antiplatelet"},
+        {"name": "Ibuprofen", "generic_name": "Ibuprofen", "category": "NSAID"}
+      ],
+      "severity": {
+        "level": "C",
+        "level_name": "Relatively Contraindicated",
+        "level_code": 3,
+        "color": "🟠"
+      },
+      "interaction_details": {
+        "mechanism": "Ibuprofen interferes with aspirin's antiplatelet effect",
+        "effect": "Reduced cardiovascular protective effect of aspirin",
+        "clinical_impact": "May increase the risk of thrombotic events"
+      },
+      "recommendations": [
+        "If aspirin is being used for cardiovascular protection, ibuprofen should be taken at least 2 hours later",
+        "Consider using another NSAID",
+        "Consult a physician"
+      ],
+      "active": true,
+      "is_custom": false,
+      "created_at": "2025-12-31T12:34:56.789Z"
+    }
+  ],
+  "metadata": {
+    "source": "System preset database",
+    "disclaimer": "This database is for reference only and cannot replace professional medical advice",
+    "last_review": "2025-12-31",
+    "next_review": "2026-06-30"
+  }
+}

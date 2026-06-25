@@ -1,0 +1,255 @@
+{
+  "constitution_tracking": {
+    "user_profile": {
+      "age": 52,
+      "gender": "male",
+      "first_assessment_date": "2025-03-20",
+      "last_assessment_date": "2025-06-20",
+      "assessment_count": 4,
+      "notes": "Qi Deficiency + Yang Deficiency mixed constitution; some improvement after 3 months of conditioning"
+    },
+    "latest_assessment": {
+      "date": "2025-06-20",
+      "primary_constitution": "Qi Deficiency Constitution",
+      "secondary_constitutions": ["Yang Deficiency Constitution"],
+      "constitution_type": "compound",
+      "constitution_scores": {
+        "Balanced Constitution": 42.1,
+        "Qi Deficiency Constitution": 78.5,
+        "Yang Deficiency Constitution": 62.3,
+        "Yin Deficiency Constitution": 32.1,
+        "Phlegm-Dampness Constitution": 38.7,
+        "Damp-Heat Constitution": 28.4,
+        "Blood Stasis Constitution": 25.6,
+        "Qi Stagnation Constitution": 35.2,
+        "Inherited Special Constitution": 18.3
+      },
+      "characteristics": {
+        "physical": [
+          "Easily fatigued",
+          "Shortness of breath, reluctant to speak",
+          "Spontaneous sweating",
+          "Aversion to cold",
+          "Cold hands and feet",
+          "Prefers quiet, dislikes activity"
+        ],
+        "psychological": [
+          "Introverted personality",
+          "Dislikes risk-taking",
+          "Emotionally stable but tends toward quietness"
+        ],
+        "susceptibility": [
+          "Prone to colds",
+          "Easily fatigued",
+          "Cold intolerance",
+          "Weak digestive function"
+        ]
+      }
+    },
+    "assessment_history": [
+      {
+        "date": "2025-03-20",
+        "primary_constitution": "Qi Deficiency Constitution",
+        "secondary_constitutions": ["Yang Deficiency Constitution"],
+        "constitution_scores": {
+          "Balanced Constitution": 38.2,
+          "Qi Deficiency Constitution": 82.3,
+          "Yang Deficiency Constitution": 68.7,
+          "Yin Deficiency Constitution": 30.5,
+          "Phlegm-Dampness Constitution": 40.1,
+          "Damp-Heat Constitution": 26.8,
+          "Blood Stasis Constitution": 24.3,
+          "Qi Stagnation Constitution": 32.7,
+          "Inherited Special Constitution": 16.5
+        },
+        "notes": "Initial assessment; Qi Deficiency and Yang Deficiency constitutions pronounced"
+      },
+      {
+        "date": "2025-04-20",
+        "primary_constitution": "Qi Deficiency Constitution",
+        "secondary_constitutions": ["Yang Deficiency Constitution"],
+        "constitution_scores": {
+          "Balanced Constitution": 40.1,
+          "Qi Deficiency Constitution": 80.1,
+          "Yang Deficiency Constitution": 65.4,
+          "Yin Deficiency Constitution": 31.2,
+          "Phlegm-Dampness Constitution": 39.5,
+          "Damp-Heat Constitution": 27.6,
+          "Blood Stasis Constitution": 25.1,
+          "Qi Stagnation Constitution": 34.0,
+          "Inherited Special Constitution": 17.2
+        },
+        "notes": "Conditioning started; Qi Deficiency score declining"
+      },
+      {
+        "date": "2025-05-20",
+        "primary_constitution": "Qi Deficiency Constitution",
+        "secondary_constitutions": ["Yang Deficiency Constitution"],
+        "constitution_scores": {
+          "Balanced Constitution": 41.5,
+          "Qi Deficiency Constitution": 79.3,
+          "Yang Deficiency Constitution": 63.8,
+          "Yin Deficiency Constitution": 31.8,
+          "Phlegm-Dampness Constitution": 39.1,
+          "Damp-Heat Constitution": 28.1,
+          "Blood Stasis Constitution": 25.3,
+          "Qi Stagnation Constitution": 34.6,
+          "Inherited Special Constitution": 17.8
+        },
+        "notes": "Ongoing conditioning; noticeable constitutional improvement"
+      },
+      {
+        "date": "2025-06-20",
+        "primary_constitution": "Qi Deficiency Constitution",
+        "secondary_constitutions": ["Yang Deficiency Constitution"],
+        "constitution_scores": {
+          "Balanced Constitution": 42.1,
+          "Qi Deficiency Constitution": 78.5,
+          "Yang Deficiency Constitution": 62.3,
+          "Yin Deficiency Constitution": 32.1,
+          "Phlegm-Dampness Constitution": 38.7,
+          "Damp-Heat Constitution": 28.4,
+          "Blood Stasis Constitution": 25.6,
+          "Qi Stagnation Constitution": 35.2,
+          "Inherited Special Constitution": 18.3
+        },
+        "notes": "3 months of conditioning; Qi Deficiency score decreased by 3.8, Yang Deficiency decreased by 6.4 — significant results"
+      }
+    ],
+    "trend_analysis": {
+      "period": "3 months",
+      "start_date": "2025-03-20",
+      "end_date": "2025-06-20",
+      "primary_constitution": "Qi Deficiency Constitution",
+      "stability": "Stable",
+      "improvement_analysis": {
+        "qi_deficiency": {
+          "start_score": 82.3,
+          "current_score": 78.5,
+          "change": -3.8,
+          "trend": "⬇️ Improving",
+          "interpretation": "Qi Deficiency score decreased by 3.8, indicating constitutional improvement"
+        },
+        "yang_deficiency": {
+          "start_score": 68.7,
+          "current_score": 62.3,
+          "change": -6.4,
+          "trend": "⬇️ Significant improvement",
+          "interpretation": "Yang Deficiency score decreased by 6.4, indicating significant constitutional improvement"
+        },
+        "peaceful": {
+          "start_score": 38.2,
+          "current_score": 42.1,
+          "change": +3.9,
+          "trend": "⬆️ Rising",
+          "interpretation": "Balanced Constitution score increased by 3.9, moving toward Balanced Constitution"
+        }
+      },
+      "monthly_change_rate": {
+        "qi_deficiency": -1.27,
+        "yang_deficiency": -2.13,
+        "peaceful": 1.3
+      },
+      "overall_assessment": "Constitutional conditioning results are significant; recommend continuing current conditioning plan"
+    },
+    "current_recommendations": {
+      "diet": {
+        "principles": ["Tonify qi and strengthen the spleen", "Warm and tonify kidney yang"],
+        "beneficial_foods": ["Chinese yam", "Jujube (red dates)", "Astragalus root", "Lamb", "Chinese chives", "Longan"],
+        "avoid_foods": ["Raw and cold foods", "Greasy and heavy foods", "Pungent and drying foods"],
+        "meal_suggestions": "Eat small frequent meals, chew slowly, eat warm food"
+      },
+      "exercise": {
+        "principles": "Gentle exercise, avoid vigorous activity",
+        "recommended_exercises": ["Tai Chi", "Baduanjin (Eight Brocades)", "Walking"],
+        "frequency": "1-2 times daily, 20-30 minutes each session",
+        "intensity": "Low to moderate intensity"
+      },
+      "lifestyle": {
+        "sleep": "Ensure adequate sleep; aim for 8 or more hours",
+        "environment": "Keep environment warm, avoid wind and cold",
+        "special": ["Get moderate sun exposure", "Soak feet in warm water", "Keep warm"]
+      },
+      "emotional": {
+        "principles": "Maintain emotional well-being, avoid excessive worrying",
+        "strategies": ["Stay positive and optimistic", "Participate in social activities appropriately"]
+      },
+      "acupoints": [
+        {
+          "name": "Zusanli (ST36)",
+          "method": "Massage 3-5 minutes daily; moxibustion may be applied"
+        },
+        {
+          "name": "Qihai (CV6)",
+          "method": "Massage 3-5 minutes daily; moxibustion may be applied"
+        },
+        {
+          "name": "Guanyuan (CV4)",
+          "method": "Massage 3-5 minutes daily; moxibustion 10-15 minutes"
+        }
+      ],
+      "herbal_support": {
+        "formula": "Modified Sijunzi Decoction (Four Gentlemen Decoction)",
+        "note": "For reference only; consult a TCM practitioner before use"
+      }
+    },
+    "adjustment_records": [
+      {
+        "date": "2025-03-25",
+        "type": "diet",
+        "content": "Began increasing qi-tonifying foods such as Chinese yam and jujube"
+      },
+      {
+        "date": "2025-03-25",
+        "type": "exercise",
+        "content": "Began daily Tai Chi practice for 30 minutes"
+      },
+      {
+        "date": "2025-04-01",
+        "type": "acupoint",
+        "content": "Began daily massage of Zusanli, Qihai, and Guanyuan acupoints"
+      },
+      {
+        "date": "2025-04-15",
+        "type": "lifestyle",
+        "content": "Adjusted daily routine; ensured 8 hours of sleep, warm foot soaking"
+      }
+    ],
+    "next_assessment_date": "2025-09-20",
+    "goals": {
+      "short_term": {
+        "period": "1-3 months",
+        "targets": [
+          "Reduce Qi Deficiency score to below 75",
+          "Reduce Yang Deficiency score to below 60",
+          "Significant improvement in fatigue symptoms",
+          "Improved physical fitness"
+        ]
+      },
+      "medium_term": {
+        "period": "3-6 months",
+        "targets": [
+          "Reduce Qi Deficiency score to below 70",
+          "Reduce Yang Deficiency score to below 55",
+          "Raise Balanced Constitution score above 50",
+          "Reduce or eliminate secondary constitutions"
+        ]
+      },
+      "long_term": {
+        "period": "6-12 months",
+        "targets": [
+          "Approach Balanced Constitution state",
+          "Establish healthy lifestyle habits",
+          "Strengthen constitution, prevent disease",
+          "Significant improvement in overall health"
+        ]
+      }
+    },
+    "metadata": {
+      "version": "1.0",
+      "created_date": "2025-03-20",
+      "last_updated": "2025-06-20",
+      "data_source": "TCM Constitution Identification System"
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "date": "2025-06-20",
+  "rehabilitation_phase": 3,
+  "phase_name": "Strengthening Phase",
+  "daily_summary": {
+    "exercises_completed": 5,
+    "total_duration_minutes": 41,
+    "total_sets": 15,
+    "total_reps": 63,
+    "average_pain_level": 1.2,
+    "average_rpe": 9.6,
+    "exercises_performed": [
+      "straight_leg_raise",
+      "quadriceps_sets",
+      "hamstring_curls",
+      "heel_raises",
+      "single_leg_stance"
+    ],
+    "adherence": "excellent",
+    "notes": "Training completed well; all exercise items completed as planned"
+  },
+  "exercise_sessions": [
+    {
+      "session_id": "session_20250620_001",
+      "time": "08:00",
+      "duration_minutes": 10,
+      "exercises": [
+        {
+          "exercise_name": "straight_leg_raise",
+          "sets": 3,
+          "reps": 15,
+          "resistance": "bodyweight",
+          "pain_level": 2,
+          "rpe": 10,
+          "technique_notes": "Keep knee straight, control slow descent"
+        }
+      ]
+    },
+    {
+      "session_id": "session_20250620_002",
+      "time": "08:15",
+      "duration_minutes": 8,
+      "exercises": [
+        {
+          "exercise_name": "quadriceps_sets",
+          "sets": 3,
+          "reps": 12,
+          "resistance": "bodyweight",
+          "pain_level": 1,
+          "rpe": 9,
+          "technique_notes": "Quadriceps isometric contraction, hold 5 seconds"
+        }
+      ]
+    },
+    {
+      "session_id": "session_20250620_003",
+      "time": "08:30",
+      "duration_minutes": 10,
+      "exercises": [
+        {
+          "exercise_name": "hamstring_curls",
+          "sets": 3,
+          "reps": 15,
+          "resistance": "2kg_resistance_band",
+          "pain_level": 2,
+          "rpe": 11,
+          "technique_notes": "Prone position, slow controlled movement"
+        }
+      ]
+    },
+    {
+      "session_id": "session_20250620_004",
+      "time": "08:45",
+      "duration_minutes": 8,
+      "exercises": [
+        {
+          "exercise_name": "heel_raises",
+          "sets": 3,
+          "reps": 20,
+          "resistance": "bodyweight",
+          "pain_level": 1,
+          "rpe": 10,
+          "technique_notes": "Bilateral heel raises, maintain balance"
+        }
+      ]
+    },
+    {
+      "session_id": "session_20250620_005",
+      "time": "09:00",
+      "duration_minutes": 5,
+      "exercises": [
+        {
+          "exercise_name": "single_leg_stance",
+          "sets": 3,
+          "reps": 1,
+          "resistance": "none",
+          "pain_level": 0,
+          "rpe": 8,
+          "technique_notes": "Affected side single-leg stance 30 seconds x3"
+        }
+      ]
+    }
+  ],
+  "assessments": [
+    {
+      "assessment_time": "10:00",
+      "assessment_type": "rom_check",
+      "knee_flexion": 120,
+      "knee_extension": 0,
+      "notes": "ROM maintained well, no change from last assessment"
+    }
+  ],
+  "pain_entries": [
+    {
+      "entry_id": "pain_001",
+      "time": "08:00",
+      "pain_level": 1,
+      "location": "anterior_knee",
+      "activity": "before_exercise",
+      "character": "mild_aching"
+    },
+    {
+      "entry_id": "pain_002",
+      "time": "09:05",
+      "pain_level": 2,
+      "location": "anterior_knee",
+      "activity": "after_exercise",
+      "character": "mild_aching",
+      "notes": "Brief pain after exercise, relieved with rest"
+    },
+    {
+      "entry_id": "pain_003",
+      "pain_level": 2,
+      "location": "anterior_knee",
+      "activity": "evening",
+      "character": "mild_aching",
+      "notes": "Mild pain in the evening, does not affect daily activities"
+    }
+  ],
+  "swelling_assessment": {
+    "time": "20:00",
+    "level": "minimal",
+    "circumference_cm": 38,
+    "baseline_cm": 36,
+    "change_from_baseline": "+2cm",
+    "notes": "Mild swelling, well controlled"
+  },
+  "medication": {
+    "pain_medication": "none",
+    "anti_inflammatory": "none",
+    "notes": "No pain medication taken"
+  },
+  "functional_activities": {
+    "walking": {
+      "distance_m": 2000,
+      "assistance": "none",
+      "gait_pattern": "normal",
+      "notes": "Independent walking, normal gait pattern"
+    },
+    "stairs": {
+      "attempts": 5,
+      "up": "independent",
+      "down": "independent_with_rail",
+      "pain_level": 2,
+      "notes": "Independent on stairs; requires handrail going down"
+    },
+    "squat": {
+      "max_depth": "45_degrees",
+      "reps": 5,
+      "pain_level": 2,
+      "notes": "Partial squat, well controlled"
+    }
+  },
+  "notes": "Rehabilitation progressing well; ROM maintained, muscle strength gradually improving, balance ability improved. Excellent exercise adherence today, good pain control. Recommend continuing current training intensity.",
+
+  "goals_progress": [
+    {
+      "goal": "knee_flexion_135",
+      "current": 120,
+      "target": 135,
+      "progress": "89%"
+    },
+    {
+      "goal": "quadriceps_strength_5",
+      "current": "4/5",
+      "target": "5/5",
+      "progress": "80%"
+    },
+    {
+      "goal": "pain_control",
+      "current": 2,
+      "target": 0,
+      "progress": "60%"
+    }
+  ],
+
+  "next_day_plan": {
+    "planned_exercises": [
+      "straight_leg_raise",
+      "quadriceps_sets",
+      "hamstring_curls",
+      "step_ups",
+      "balance_training"
+    ],
+    "expected_duration_minutes": 45,
+    "focus_areas": [
+      "Quadriceps strengthening",
+      "Balance training",
+      "Functional activities"
+    ],
+    "notes": "Maintain current training intensity, monitor pain response"
+  },
+
+  "metadata": {
+    "created_at": "2025-06-20T08:00:00.000Z",
+    "last_updated": "2025-06-20T20:00:00.000Z"
+  }
+}

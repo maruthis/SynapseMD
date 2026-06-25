@@ -1,0 +1,93 @@
+{
+  "date": "2025-01-01",
+  "goal_updates": [
+    {
+      "goal_id": "goal_20250101",
+      "goal_title": "Lose 5 kg",
+      "current_value": 0.0,
+      "progress": 0,
+      "motivation": 10,
+      "notes": "Goal started, current weight 75.0 kg",
+      "status_update": "started"
+    },
+    {
+      "goal_id": "goal_20250102",
+      "goal_title": "Exercise 4 times per week",
+      "current_value": 0,
+      "progress": 0,
+      "motivation": 10,
+      "notes": "Goal started, exercise plan created",
+      "status_update": "started"
+    },
+    {
+      "goal_id": "goal_20250103",
+      "goal_title": "Eat 5 servings of fruits and vegetables daily",
+      "current_value": 4,
+      "progress": 80,
+      "motivation": 9,
+      "notes": "Ate 4 servings of fruits and vegetables today, a good start",
+      "status_update": "on_track"
+    },
+    {
+      "goal_id": "goal_20250104",
+      "goal_title": "Sleep 8 hours every night",
+      "current_value": 7.5,
+      "progress": 93.75,
+      "motivation": 9,
+      "notes": "Slept 7.5 hours last night, close to the goal",
+      "status_update": "on_track"
+    },
+    {
+      "goal_id": "goal_20250105",
+      "goal_title": "Keep blood pressure below 120/80",
+      "current_value": "135/88",
+      "progress": 0,
+      "motivation": 10,
+      "notes": "Goal started, baseline blood pressure 135/88",
+      "status_update": "started"
+    }
+  ],
+  "habit_log": [
+    {
+      "habit_id": "habit_20250101",
+      "habit_name": "morning_stretch",
+      "completed": true,
+      "duration_minutes": 10,
+      "streak": 1,
+      "trigger": "wake_up",
+      "reward_received": true,
+      "notes": "First morning exercise, feeling great"
+    },
+    {
+      "habit_id": "habit_20250102",
+      "habit_name": "drink_water_on_waking",
+      "completed": true,
+      "streak": 1,
+      "trigger": "wake_up",
+      "reward_received": true,
+      "notes": "Drank a glass of warm water after waking up"
+    },
+    {
+      "habit_id": "habit_20250103",
+      "habit_name": "evening_walk",
+      "completed": true,
+      "duration_minutes": 20,
+      "streak": 1,
+      "trigger": "after_dinner",
+      "reward_received": true,
+      "notes": "Evening walk after dinner, nice weather"
+    },
+    {
+      "habit_id": "habit_20250105",
+      "habit_name": "weekly_meal_prep",
+      "completed": true,
+      "duration_minutes": 90,
+      "streak": 1,
+      "trigger": "sunday_morning",
+      "reward_received": true,
+      "notes": "Prepared a week's worth of healthy meals"
+    }
+  ],
+  "achievements_unlocked": [],
+  "reflections": "New year, new beginning — full of motivation! All plans completed today, hope to keep it up."
+}

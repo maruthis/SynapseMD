@@ -1,0 +1,130 @@
+{
+  "created_at": "2020-01-01T00:00:00.000Z",
+  "last_updated": "2025-06-20T10:00:00.000Z",
+
+  "child_profile": {
+    "child_id": "child_20200101",
+    "name": "Xiao Ming",
+    "birth_date": "2020-01-01"
+  },
+
+  "scheduled_vaccines": [
+    {
+      "vaccine_id": "hepb_b1",
+      "vaccine_name": "Hepatitis B vaccine",
+      "category": "class_1",
+      "dose": "Dose 1",
+      "scheduled_age": "birth",
+      "scheduled_date": "2020-01-01",
+      "status": "completed",
+      "actual_date": "2020-01-01",
+      "batch_number": "202001001",
+      "manufacturer": "Kangtai Biological",
+      "site": "left_thigh",
+      "adverse_reaction": null
+    },
+    {
+      "vaccine_id": "bcg",
+      "vaccine_name": "BCG vaccine",
+      "category": "class_1",
+      "dose": "Dose 1",
+      "scheduled_age": "birth",
+      "scheduled_date": "2020-01-01",
+      "status": "completed",
+      "actual_date": "2020-01-01",
+      "batch_number": "202001002",
+      "manufacturer": "Shanghai Biological",
+      "site": "left_arm",
+      "adverse_reaction": null
+    },
+    {
+      "vaccine_id": "hepb_b2",
+      "vaccine_name": "Hepatitis B vaccine",
+      "category": "class_1",
+      "dose": "Dose 2",
+      "scheduled_age": "1_month",
+      "scheduled_date": "2020-02-01",
+      "status": "completed",
+      "actual_date": "2020-02-01",
+      "batch_number": "202002001",
+      "manufacturer": "Kangtai Biological",
+      "site": "right_thigh",
+      "adverse_reaction": null
+    },
+    {
+      "vaccine_id": "polio_ipv1",
+      "vaccine_name": "Polio vaccine",
+      "category": "class_1",
+      "dose": "Dose 1",
+      "scheduled_age": "2_months",
+      "scheduled_date": "2020-03-01",
+      "status": "completed",
+      "actual_date": "2020-03-05",
+      "batch_number": "202003001",
+      "manufacturer": "Beijing Biological",
+      "site": "left_thigh",
+      "adverse_reaction": null
+    }
+  ],
+
+  "upcoming": [
+    {
+      "vaccine": "Meningococcal Group A vaccine",
+      "dose": "Dose 1",
+      "scheduled_date": "2025-08-01",
+      "days_until": 42,
+      "status": "scheduled"
+    }
+  ],
+
+  "overdue": [],
+
+  "completed": [
+    {
+      "vaccine": "Hepatitis B vaccine",
+      "doses_completed": 2,
+      "doses_total": 3,
+      "completion_date": "2020-02-01"
+    },
+    {
+      "vaccine": "BCG vaccine",
+      "doses_completed": 1,
+      "doses_total": 1,
+      "completion_date": "2020-01-01"
+    },
+    {
+      "vaccine": "Polio vaccine",
+      "doses_completed": 1,
+      "doses_total": 4,
+      "completion_date": "2020-03-05"
+    }
+  ],
+
+  "adverse_reactions": [
+    {
+      "vaccine": "DTaP (Diphtheria, Tetanus, Pertussis) vaccine",
+      "date": "2020-09-15",
+      "reaction": "low_grade_fever",
+      "severity": "mild",
+      "duration": "24_hours",
+      "treatment": "physical_cooling"
+    }
+  ],
+
+  "next_checkup": "2025-08-01",
+  "last_updated": "2025-06-20T10:00:00.000Z",
+
+  "statistics": {
+    "total_vaccines": 4,
+    "class_1_completed": 4,
+    "class_2_completed": 0,
+    "overdue_count": 0,
+    "upcoming_30_days": 0
+  },
+
+  "settings": {
+    "reminder_days_before": 7,
+    "include_class_2": true,
+    "auto_generate_schedule": true
+  }
+}

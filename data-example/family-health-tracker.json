@@ -1,0 +1,527 @@
+{
+  "family_health_tracking": {
+    "family_info": {
+      "family_id": "fam_example_001",
+      "created_date": "2025-01-08",
+      "last_updated": "2025-01-08"
+    },
+
+    "members": [
+      {
+        "member_id": "mem_001",
+        "name": "Zhang Wei",
+        "relationship": "self",
+        "gender": "male",
+        "birth_date": "1985-06-15",
+        "blood_type": "A+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": [],
+          "allergies": ["Pollen allergy"],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_002",
+        "name": "Zhang Ming",
+        "relationship": "father",
+        "gender": "male",
+        "birth_date": "1958-03-20",
+        "blood_type": "A+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["Hypertension", "Hyperlipidemia"],
+          "allergies": [],
+          "medications": ["Amlodipine", "Atorvastatin"],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_003",
+        "name": "Li Xiuying",
+        "relationship": "mother",
+        "gender": "female",
+        "birth_date": "1960-08-12",
+        "blood_type": "B+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["Diabetes"],
+          "allergies": ["Penicillin"],
+          "medications": ["Metformin"],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_004",
+        "name": "Zhang Ting",
+        "relationship": "spouse",
+        "gender": "female",
+        "birth_date": "1987-09-25",
+        "blood_type": "O+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": [],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_005",
+        "name": "Zhang Xiaoming",
+        "relationship": "son",
+        "gender": "male",
+        "birth_date": "2015-05-01",
+        "blood_type": "A+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": [],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_006",
+        "name": "Zhang Jianguo",
+        "relationship": "paternal_grandfather",
+        "gender": "male",
+        "birth_date": "1935-02-10",
+        "blood_type": "A+",
+        "status": "deceased",
+        "deceased_date": "2020-11-05",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["Hypertension", "Coronary artery disease"],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_007",
+        "name": "Wang Shufen",
+        "relationship": "paternal_grandmother",
+        "gender": "female",
+        "birth_date": "1938-07-18",
+        "blood_type": "AB+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["Hypertension"],
+          "allergies": [],
+          "medications": ["Nifedipine"],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_008",
+        "name": "Li Guoqiang",
+        "relationship": "maternal_grandfather",
+        "gender": "male",
+        "birth_date": "1940-11-25",
+        "blood_type": "B+",
+        "status": "deceased",
+        "deceased_date": "2018-06-30",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["Diabetes", "Hypertension"],
+          "allergies": [],
+          "medications": [],
+          "genetic_tests": []
+        }
+      },
+      {
+        "member_id": "mem_009",
+        "name": "Chen Guifang",
+        "relationship": "maternal_grandmother",
+        "gender": "female",
+        "birth_date": "1942-04-08",
+        "blood_type": "B+",
+        "status": "living",
+        "created_at": "2025-01-08T10:00:00.000Z",
+        "personal_health": {
+          "chronic_conditions": ["Diabetes"],
+          "allergies": [],
+          "medications": ["Glimepiride"],
+          "genetic_tests": []
+        }
+      }
+    ],
+
+    "family_medical_history": {
+      "hereditary_diseases": [
+        {
+          "disease_name": "Hypertension",
+          "disease_category": "cardiovascular",
+          "affected_members": ["mem_002", "mem_006", "mem_007", "mem_008"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 45,
+            "max": 65,
+            "average": 55
+          },
+          "notes": "Family history of hypertension on both paternal and maternal sides"
+        },
+        {
+          "disease_name": "Diabetes",
+          "disease_category": "metabolic",
+          "affected_members": ["mem_003", "mem_008", "mem_009"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 50,
+            "max": 60,
+            "average": 55
+          },
+          "notes": "Significant maternal family history of diabetes"
+        },
+        {
+          "disease_name": "Coronary artery disease",
+          "disease_category": "cardiovascular",
+          "affected_members": ["mem_006"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 70,
+            "max": 75,
+            "average": 72
+          },
+          "notes": "Paternal grandfather diagnosed with coronary artery disease at age 70"
+        },
+        {
+          "disease_name": "Hyperlipidemia",
+          "disease_category": "metabolic",
+          "affected_members": ["mem_002"],
+          "inheritance_pattern": "complex",
+          "age_of_onset_range": {
+            "min": 50,
+            "max": 55,
+            "average": 52
+          },
+          "notes": "Father diagnosed with hyperlipidemia at age 50"
+        }
+      ],
+      "common_conditions": [
+        {
+          "condition": "Pollen allergy",
+          "affected_members": ["mem_001"],
+          "notes": "Self is allergic to pollen"
+        },
+        {
+          "condition": "Penicillin allergy",
+          "affected_members": ["mem_003"],
+          "notes": "Mother is allergic to penicillin"
+        }
+      ],
+      "genetic_disorders": [],
+      "age_related_onset": [
+        {
+          "disease": "Hypertension",
+          "early_onset_cases": ["mem_002"],
+          "early_onset_age": 48,
+          "notes": "Father diagnosed with hypertension at age 48 (early onset)"
+        },
+        {
+          "disease": "Diabetes",
+          "early_onset_cases": ["mem_003"],
+          "early_onset_age": 52,
+          "notes": "Mother diagnosed with diabetes at age 52 (early onset)"
+        }
+      ]
+    },
+
+    "risk_assessment": {
+      "last_assessment_date": "2025-01-08",
+      "hereditary_risks": [
+        {
+          "disease": "Hypertension",
+          "disease_category": "cardiovascular",
+          "risk_level": "high",
+          "confidence": "medium",
+          "confidence_score": 0.75,
+          "affected_members": ["Father", "Paternal grandfather", "Paternal grandmother", "Maternal grandfather"],
+          "risk_factors": [
+            "First-degree relative affected (father)",
+            "Second-degree relatives affected (3 out of 4 grandparents)",
+            "Early onset case (father at age 48)",
+            "High familial clustering"
+          ],
+          "risk_score": 0.82,
+          "data_coverage": 0.85
+        },
+        {
+          "disease": "Diabetes",
+          "disease_category": "metabolic",
+          "risk_level": "moderate",
+          "confidence": "medium",
+          "confidence_score": 0.65,
+          "affected_members": ["Mother", "Maternal grandfather", "Maternal grandmother"],
+          "risk_factors": [
+            "First-degree relative affected (mother)",
+            "Second-degree relatives affected (both maternal grandparents)",
+            "Early onset case (mother at age 52)",
+            "Maternal family clustering"
+          ],
+          "risk_score": 0.58,
+          "data_coverage": 0.75
+        },
+        {
+          "disease": "Coronary artery disease",
+          "disease_category": "cardiovascular",
+          "risk_level": "low",
+          "confidence": "low",
+          "confidence_score": 0.45,
+          "affected_members": ["Paternal grandfather"],
+          "risk_factors": [
+            "Second-degree relative affected (paternal grandfather)",
+            "Late onset case (after age 70)",
+            "Single case"
+          ],
+          "risk_score": 0.32,
+          "data_coverage": 0.60
+        },
+        {
+          "disease": "Hyperlipidemia",
+          "disease_category": "metabolic",
+          "risk_level": "low",
+          "confidence": "low",
+          "confidence_score": 0.40,
+          "affected_members": ["Father"],
+          "risk_factors": [
+            "First-degree relative affected (father)",
+            "Age-related onset (after age 50)"
+          ],
+          "risk_score": 0.35,
+          "data_coverage": 0.50
+        }
+      ],
+      "shared_risks": [
+        {
+          "risk_type": "Cardiometabolic syndrome",
+          "related_diseases": ["Hypertension", "Diabetes", "Hyperlipidemia"],
+          "affected_members": ["Father", "Mother"],
+          "notes": "Both parents have cardiometabolic diseases"
+        }
+      ],
+      "preventive_recommendations": [
+        {
+          "recommendation_id": "rec_001",
+          "category": "screening",
+          "target_disease": "Hypertension",
+          "action": "Regular blood pressure monitoring",
+          "frequency": "3 times per week",
+          "start_age": 30,
+          "priority": "high",
+          "details": "Measure morning and evening, record values, maintain <130/80 mmHg",
+          "evidence_level": "strong",
+          "source": "Based on family history of hypertension (father + multiple grandparents)"
+        },
+        {
+          "recommendation_id": "rec_002",
+          "category": "screening",
+          "target_disease": "Diabetes",
+          "action": "Fasting blood glucose testing",
+          "frequency": "Once per year",
+          "start_age": 35,
+          "priority": "high",
+          "details": "Test fasting blood glucose and HbA1c during annual physical",
+          "evidence_level": "moderate",
+          "source": "Based on family history of diabetes (mother + maternal grandparents)"
+        },
+        {
+          "recommendation_id": "rec_003",
+          "category": "screening",
+          "target_disease": "Dyslipidemia",
+          "action": "Lipid panel testing",
+          "frequency": "Once every 2 years",
+          "start_age": 35,
+          "priority": "medium",
+          "details": "Test total cholesterol, triglycerides, LDL-C, HDL-C",
+          "evidence_level": "moderate",
+          "source": "Based on family history of hyperlipidemia (father)"
+        },
+        {
+          "recommendation_id": "rec_004",
+          "category": "lifestyle",
+          "target_disease": "Cardiometabolic syndrome",
+          "action": "Restrict sodium intake",
+          "target": "<5g/day",
+          "priority": "high",
+          "details": "Avoid high-salt foods, use low-sodium salt, reduce processed foods",
+          "evidence_level": "strong",
+          "source": "Based on family history of hypertension"
+        },
+        {
+          "recommendation_id": "rec_005",
+          "category": "lifestyle",
+          "target_disease": "Cardiometabolic syndrome",
+          "action": "Regular aerobic exercise",
+          "target": "150 minutes per week",
+          "priority": "high",
+          "details": "Brisk walking, swimming, cycling, etc., split into 3-5 sessions",
+          "evidence_level": "strong",
+          "source": "Based on family history of cardiometabolic disease"
+        },
+        {
+          "recommendation_id": "rec_006",
+          "category": "lifestyle",
+          "target_disease": "Diabetes",
+          "action": "Control weight and waist circumference",
+          "target": "BMI<24, waist circumference <90cm for men, <85cm for women",
+          "priority": "medium",
+          "details": "Maintain healthy weight, avoid abdominal obesity",
+          "evidence_level": "moderate",
+          "source": "Based on family history of diabetes"
+        },
+        {
+          "recommendation_id": "rec_007",
+          "category": "lifestyle",
+          "target_disease": "Cardiometabolic syndrome",
+          "action": "Low-fat, low-sugar diet",
+          "target": "Reduce saturated fat and added sugar",
+          "priority": "medium",
+          "details": "Increase vegetables, fruits, whole grains; reduce red meat",
+          "evidence_level": "moderate",
+          "source": "Based on family history of cardiometabolic disease"
+        },
+        {
+          "recommendation_id": "rec_008",
+          "category": "medical",
+          "target_disease": "General",
+          "action": "Regular physical examination",
+          "frequency": "Once per year",
+          "start_age": 30,
+          "priority": "high",
+          "details": "Including blood pressure, blood glucose, lipids, liver and kidney function, ECG, etc.",
+          "evidence_level": "strong",
+          "source": "Based on comprehensive family history"
+        },
+        {
+          "recommendation_id": "rec_009",
+          "category": "medical",
+          "target_disease": "Genetic counseling",
+          "action": "Consider genetic counseling",
+          "priority": "low",
+          "details": "If planning to have children, consult a genetic counselor to understand hereditary risks for offspring",
+          "evidence_level": "weak",
+          "source": "Based on family history of multi-system diseases"
+        },
+        {
+          "recommendation_id": "rec_010",
+          "category": "lifestyle",
+          "target_disease": "General",
+          "action": "Quit smoking and limit alcohol",
+          "target": "Quit smoking, restrict alcohol consumption",
+          "priority": "high",
+          "details": "If smoking, quit; if drinking, moderate consumption (men <25g/day, women <15g/day)",
+          "evidence_level": "strong",
+          "source": "General cardiovascular health recommendation"
+        }
+      ]
+    },
+
+    "health_records": [],
+
+    "pedigree_data": {
+      "generations": [
+        {
+          "generation_id": "gen_1",
+          "generation_name": "First generation (grandparents)",
+          "members": ["mem_006", "mem_007", "mem_008", "mem_009"],
+          "birth_year_range": "1935-1942"
+        },
+        {
+          "generation_id": "gen_2",
+          "generation_name": "Second generation (parents)",
+          "members": ["mem_002", "mem_003"],
+          "birth_year_range": "1958-1960"
+        },
+        {
+          "generation_id": "gen_3",
+          "generation_name": "Third generation (self)",
+          "members": ["mem_001", "mem_004"],
+          "birth_year_range": "1985-1987"
+        },
+        {
+          "generation_id": "gen_4",
+          "generation_name": "Fourth generation (children)",
+          "members": ["mem_005"],
+          "birth_year_range": "2015"
+        }
+      ],
+      "relationships": [
+        {
+          "from_member": "mem_002",
+          "to_member": "mem_001",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_003",
+          "to_member": "mem_001",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_001",
+          "to_member": "mem_005",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_004",
+          "to_member": "mem_005",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_001",
+          "to_member": "mem_004",
+          "relationship_type": "spouse"
+        },
+        {
+          "from_member": "mem_002",
+          "to_member": "mem_003",
+          "relationship_type": "spouse"
+        },
+        {
+          "from_member": "mem_006",
+          "to_member": "mem_002",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_007",
+          "to_member": "mem_002",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_008",
+          "to_member": "mem_003",
+          "relationship_type": "parent-child"
+        },
+        {
+          "from_member": "mem_009",
+          "to_member": "mem_003",
+          "relationship_type": "parent-child"
+        }
+      ],
+      "affected_members": {
+        "hypertension": ["mem_002", "mem_006", "mem_007", "mem_008"],
+        "diabetes": ["mem_003", "mem_008", "mem_009"],
+        "coronary_artery_disease": ["mem_006"],
+        "hyperlipidemia": ["mem_002"]
+      }
+    },
+
+    "metadata": {
+      "created_at": "2025-01-08T10:00:00.000Z",
+      "last_updated": "2025-01-08T10:00:00.000Z",
+      "data_version": "1.0",
+      "total_members": 9,
+      "living_members": 7,
+      "deceased_members": 2,
+      "generations_count": 4
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "date": "2025-03-20",
+  "goal_updates": [
+    {
+      "goal_id": "goal_20250101",
+      "goal_title": "Lose 5 kg",
+      "current_value": 3.5,
+      "progress": 70,
+      "motivation": 8,
+      "notes": "Lost 0.3 kg this week, progress is smooth. Keep it up!",
+      "status_update": "ahead_of_schedule"
+    },
+    {
+      "goal_id": "goal_20250102",
+      "goal_title": "Exercise 4 times per week",
+      "current_value": 4.2,
+      "progress": 105,
+      "motivation": 9,
+      "notes": "Exercised 5 times this week, exceeded the goal",
+      "status_update": "exceeding"
+    },
+    {
+      "goal_id": "goal_20250103",
+      "goal_title": "Eat 5 servings of fruits and vegetables daily",
+      "current_value": 4.2,
+      "progress": 84,
+      "motivation": 7,
+      "notes": "Ate 4 servings of fruits and vegetables today, just a bit short. Need to eat one more serving tomorrow",
+      "status_update": "on_track"
+    },
+    {
+      "goal_id": "goal_20250104",
+      "goal_title": "Sleep 8 hours every night",
+      "current_value": 7.4,
+      "progress": 92.5,
+      "motivation": 8,
+      "notes": "Slept 7.4 hours last night, good quality",
+      "status_update": "on_track"
+    },
+    {
+      "goal_id": "goal_20250105",
+      "goal_title": "Keep blood pressure below 120/80",
+      "current_value": "125/82",
+      "progress": 60,
+      "motivation": 9,
+      "notes": "Blood pressure continues to improve, approaching the target value",
+      "status_update": "improving"
+    }
+  ],
+  "habit_log": [
+    {
+      "habit_id": "habit_20250101",
+      "habit_name": "morning_stretch",
+      "completed": true,
+      "duration_minutes": 12,
+      "streak": 21,
+      "trigger": "wake_up",
+      "reward_received": true,
+      "notes": "Completed morning exercise 21 consecutive days! The habit is forming"
+    },
+    {
+      "habit_id": "habit_20250102",
+      "habit_name": "drink_water_on_waking",
+      "completed": true,
+      "streak": 45,
+      "trigger": "wake_up",
+      "reward_received": true,
+      "notes": "45 consecutive days, fully automated now"
+    },
+    {
+      "habit_id": "habit_20250103",
+      "habit_name": "evening_walk",
+      "completed": true,
+      "duration_minutes": 25,
+      "streak": 15,
+      "trigger": "after_dinner",
+      "reward_received": true,
+      "notes": "Walked 25 minutes this evening, great weather"
+    },
+    {
+      "habit_id": "habit_20250104",
+      "habit_name": "no_phone_in_bed",
+      "completed": true,
+      "streak": 8,
+      "trigger": "bedtime",
+      "reward_received": true,
+      "notes": "No phone use 30 minutes before bed, sleep quality improved"
+    }
+  ],
+  "achievements_unlocked": [
+    {
+      "achievement_id": "achieve_003",
+      "name": "21 Consecutive Days",
+      "unlocked_at": "2025-03-20T07:30:00Z",
+      "related_habit": "habit_20250101",
+      "notes": "Morning stretch habit completed 21 consecutive days!"
+    }
+  ],
+  "reflections": "Completed the morning exercise habit for 21 consecutive days, feeling physically great. All goal progress is good, especially the exercise goal which was exceeded. Need to keep focusing on fruit and vegetable intake to reach the daily goal of 5 servings."
+}

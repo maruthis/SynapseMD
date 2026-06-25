@@ -1,0 +1,330 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created_date": "2026-01-06",
+    "last_updated": "2026-01-06",
+    "language": "zh-CN",
+    "description": "Food classification system"
+  },
+
+  "categories": [
+    {
+      "id": "CAT_001",
+      "code": "grains",
+      "name": "Grains",
+      "name_en": "Grains",
+      "description": "Includes whole grains, refined grains, and grain products",
+      "subcategories": [
+        {
+          "code": "whole_grains",
+          "name": "Whole Grains",
+          "name_en": "Whole Grains",
+          "examples": ["Oats", "Brown rice", "Quinoa", "Whole wheat bread", "Corn"]
+        },
+        {
+          "code": "refined_grains",
+          "name": "Refined Grains",
+          "name_en": "Refined Grains",
+          "examples": ["White rice", "White bread", "Noodles", "Steamed buns", "Cake"]
+        },
+        {
+          "code": "pseudocereals",
+          "name": "Pseudocereals",
+          "name_en": "Pseudocereals",
+          "examples": ["Quinoa", "Buckwheat", "Amaranth seeds"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_002",
+      "code": "vegetables",
+      "name": "Vegetables",
+      "name_en": "Vegetables",
+      "description": "Includes all types of vegetables",
+      "subcategories": [
+        {
+          "code": "leafy_greens",
+          "name": "Leafy Greens",
+          "name_en": "Leafy Greens",
+          "examples": ["Spinach", "Lettuce", "Chinese cabbage", "Rapeseed greens", "Kale"]
+        },
+        {
+          "code": "cruciferous",
+          "name": "Cruciferous",
+          "name_en": "Cruciferous",
+          "examples": ["Broccoli", "Cauliflower", "Cabbage", "Bok choy"]
+        },
+        {
+          "code": "root_vegetables",
+          "name": "Root Vegetables",
+          "name_en": "Root Vegetables",
+          "examples": ["Carrots", "Potatoes", "Sweet potatoes", "Chinese yam", "Onions"]
+        },
+        {
+          "code": "nightshades",
+          "name": "Nightshades",
+          "name_en": "Nightshades",
+          "examples": ["Tomatoes", "Eggplant", "Green peppers", "Chili peppers"]
+        },
+        {
+          "code": "cucurbits",
+          "name": "Cucurbits",
+          "name_en": "Cucurbits",
+          "examples": ["Cucumber", "Pumpkin", "Zucchini", "Winter melon"]
+        },
+        {
+          "code": "allium",
+          "name": "Allium",
+          "name_en": "Allium",
+          "examples": ["Garlic", "Chinese chives", "Green onions", "Onions"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_003",
+      "code": "fruits",
+      "name": "Fruits",
+      "name_en": "Fruits",
+      "description": "Includes all types of fruits",
+      "subcategories": [
+        {
+          "code": "citrus",
+          "name": "Citrus",
+          "name_en": "Citrus",
+          "examples": ["Oranges", "Tangerines", "Lemons", "Grapefruit", "Pomelo"]
+        },
+        {
+          "code": "berries",
+          "name": "Berries",
+          "name_en": "Berries",
+          "examples": ["Strawberries", "Blueberries", "Raspberries", "Blackberries", "Mulberries"]
+        },
+        {
+          "code": "tropical",
+          "name": "Tropical Fruits",
+          "name_en": "Tropical",
+          "examples": ["Bananas", "Mangoes", "Pineapples", "Durian", "Lychee"]
+        },
+        {
+          "code": "temperate",
+          "name": "Temperate Fruits",
+          "name_en": "Temperate",
+          "examples": ["Apples", "Pears", "Peaches", "Apricots", "Plums"]
+        },
+        {
+          "code": "melons",
+          "name": "Melons",
+          "name_en": "Melons",
+          "examples": ["Watermelon", "Hami melon", "Cantaloupe", "Papaya"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_004",
+      "code": "protein",
+      "name": "Protein Sources",
+      "name_en": "Protein Sources",
+      "description": "Includes animal and plant protein sources",
+      "subcategories": [
+        {
+          "code": "meat",
+          "name": "Meat",
+          "name_en": "Meat",
+          "examples": ["Beef", "Pork", "Lamb", "Lean meat", "Fatty meat"]
+        },
+        {
+          "code": "poultry",
+          "name": "Poultry",
+          "name_en": "Poultry",
+          "examples": ["Chicken breast", "Chicken thigh", "Duck meat", "Goose meat"]
+        },
+        {
+          "code": "fish_seafood",
+          "name": "Fish & Seafood",
+          "name_en": "Fish & Seafood",
+          "examples": ["Salmon", "Tuna", "Shrimp", "Crab", "Scallops"]
+        },
+        {
+          "code": "eggs",
+          "name": "Eggs",
+          "name_en": "Eggs",
+          "examples": ["Chicken eggs", "Duck eggs", "Quail eggs"]
+        },
+        {
+          "code": "legumes",
+          "name": "Legumes",
+          "name_en": "Legumes",
+          "examples": ["Tofu", "Soy milk", "Black beans", "Red beans", "Mung beans"]
+        },
+        {
+          "code": "nuts_seeds",
+          "name": "Nuts & Seeds",
+          "name_en": "Nuts & Seeds",
+          "examples": ["Almonds", "Walnuts", "Peanuts", "Sunflower seeds", "Chia seeds"]
+        },
+        {
+          "code": "dairy",
+          "name": "Dairy",
+          "name_en": "Dairy",
+          "examples": ["Milk", "Yogurt", "Cheese", "Milk powder"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_005",
+      "code": "fats_oils",
+      "name": "Fats & Oils",
+      "name_en": "Fats & Oils",
+      "description": "Includes cooking oils and fat sources",
+      "subcategories": [
+        {
+          "code": "vegetable_oils",
+          "name": "Vegetable Oils",
+          "name_en": "Vegetable Oils",
+          "examples": ["Olive oil", "Canola oil", "Soybean oil", "Peanut oil", "Sesame oil"]
+        },
+        {
+          "code": "animal_fats",
+          "name": "Animal Fats",
+          "name_en": "Animal Fats",
+          "examples": ["Butter", "Lard", "Beef tallow", "Cream"]
+        },
+        {
+          "code": "special_oils",
+          "name": "Special Oils",
+          "name_en": "Special Oils",
+          "examples": ["Fish oil", "Flaxseed oil", "Coconut oil", "MCT oil"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_006",
+      "code": "beverages",
+      "name": "Beverages",
+      "name_en": "Beverages",
+      "description": "Includes all types of drinks",
+      "subcategories": [
+        {
+          "code": "non_sugar",
+          "name": "Sugar-free Beverages",
+          "name_en": "Sugar-free",
+          "examples": ["Water", "Tea", "Black coffee", "Sparkling water"]
+        },
+        {
+          "code": "sugary",
+          "name": "Sugary Beverages",
+          "name_en": "Sugary",
+          "examples": ["Fruit juice", "Soda water", "Sports drinks", "Milk tea"]
+        },
+        {
+          "code": "dairy_beverages",
+          "name": "Dairy Beverages",
+          "name_en": "Dairy Beverages",
+          "examples": ["Milk", "Soy milk", "Almond milk", "Oat milk"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_007",
+      "code": "snacks",
+      "name": "Snacks",
+      "name_en": "Snacks",
+      "description": "Includes all types of snacks",
+      "subcategories": [
+        {
+          "code": "healthy_snacks",
+          "name": "Healthy Snacks",
+          "name_en": "Healthy Snacks",
+          "examples": ["Nuts", "Yogurt", "Dried fruit", "Dark chocolate"]
+        },
+        {
+          "code": "processed_snacks",
+          "name": "Processed Snacks",
+          "name_en": "Processed Snacks",
+          "examples": ["Chips", "Crackers", "Candy", "Cake"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_008",
+      "code": "condiments",
+      "name": "Condiments",
+      "name_en": "Condiments",
+      "description": "Includes all types of condiments",
+      "subcategories": [
+        {
+          "code": "spices",
+          "name": "Spices",
+          "name_en": "Spices",
+          "examples": ["Salt", "Pepper", "Chili powder", "Cinnamon", "Cumin"]
+        },
+        {
+          "code": "sauces",
+          "name": "Sauces",
+          "name_en": "Sauces",
+          "examples": ["Ketchup", "Chili sauce", "Salad dressing", "Soy sauce"]
+        },
+        {
+          "code": "seasonings",
+          "name": "Seasonings",
+          "name_en": "Seasonings",
+          "examples": ["MSG", "Chicken bouillon powder", "Vinegar", "Sugar"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_009",
+      "code": "processed",
+      "name": "Processed Foods",
+      "name_en": "Processed Foods",
+      "description": "Includes all types of processed foods",
+      "subcategories": [
+        {
+          "code": "frozen_foods",
+          "name": "Frozen Foods",
+          "name_en": "Frozen Foods",
+          "examples": ["Frozen dumplings", "Frozen pizza", "Ice cream"]
+        },
+        {
+          "code": "canned_foods",
+          "name": "Canned Foods",
+          "name_en": "Canned Foods",
+          "examples": ["Canned fish", "Canned fruit", "Canned vegetables"]
+        },
+        {
+          "code": "packaged_foods",
+          "name": "Packaged Foods",
+          "name_en": "Packaged Foods",
+          "examples": ["Instant noodles", "Cereal", "Energy bars"]
+        }
+      ]
+    },
+    {
+      "id": "CAT_010",
+      "code": "traditional_chinese",
+      "name": "Traditional Chinese Foods",
+      "name_en": "Traditional Chinese",
+      "description": "Traditional Chinese foods",
+      "subcategories": [
+        {
+          "code": "staple_foods",
+          "name": "Staple Foods",
+          "name_en": "Staple Foods",
+          "examples": ["Steamed buns", "Flower rolls", "Baozi", "Fried dough sticks", "Jianbing crepes"]
+        },
+        {
+          "code": "dim_sum",
+          "name": "Dim Sum",
+          "name_en": "Dim Sum",
+          "examples": ["Dumplings", "Wonton", "Tangyuan", "Zongzi", "Mooncakes"]
+        },
+        {
+          "code": "traditional_dishes",
+          "name": "Traditional Dishes",
+          "name_en": "Traditional Dishes",
+          "examples": ["Red-braised pork belly", "Sweet and sour pork tenderloin", "Kung Pao chicken"]
+        }
+      ]
+    }
+  ]
+}

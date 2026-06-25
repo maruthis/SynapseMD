@@ -1,0 +1,164 @@
+{
+  "log_id": "log_20250728_pretrip",
+  "log_type": "pre_trip_assessment",
+  "trip_id": "trip_20250801_seasia",
+  "generated_at": "2025-07-28T10:00:00.000Z",
+  "assessment_results": {
+    "overall_status": "suitable_for_travel",
+    "health_assessment": {
+      "chronic_conditions": {
+        "status": "stable",
+        "conditions": [
+          {
+            "condition": "Hypertension",
+            "control_status": "Good",
+            "notes": "Blood pressure stable and well-controlled; suitable for travel"
+          }
+        ]
+      },
+      "medications": {
+        "adequate": true,
+        "medications": [
+          {
+            "name": "Amlodipine",
+            "days_available": 16,
+            "days_required": 14,
+            "status": "Sufficient"
+          }
+        ]
+      }
+    },
+    "vaccination_status": {
+      "required": {
+        "total": 2,
+        "completed": 2,
+        "status": "✅ Completed"
+      },
+      "vaccinations": [
+        {
+          "vaccine": "Hepatitis A Vaccine",
+          "status": "completed",
+          "date": "2025-06-15"
+        },
+        {
+          "vaccine": "Typhoid Vaccine",
+          "status": "completed",
+          "date": "2025-06-20"
+        }
+      ],
+      "recommended": [
+        {
+          "vaccine": "Japanese Encephalitis Vaccine",
+          "status": "planned",
+          "priority": "Recommended",
+          "notes": "Especially for travel to rural areas"
+        }
+      ]
+    },
+    "risk_assessment": {
+      "destination": "Southeast Asia (Thailand, Vietnam, Cambodia)",
+      "overall_risk": "Moderate",
+      "major_risks": [
+        {
+          "disease": "Dengue Fever",
+          "risk_level": "high",
+          "prevention": "Use insect repellent, wear long-sleeved clothing"
+        },
+        {
+          "disease": "Hepatitis A",
+          "risk_level": "medium",
+          "prevention": "Vaccination completed; practice food and water hygiene"
+        },
+        {
+          "disease": "Typhoid Fever",
+          "risk_level": "medium",
+          "prevention": "Vaccination completed; practice food and water hygiene"
+        }
+      ],
+      "food_water_safety": "Moderate risk; attention to food and water hygiene required"
+    },
+    "travel_kit_status": {
+      "status": "In preparation",
+      "categories": {
+        "Prescription Medications": "✅ Prepared",
+        "Over-the-Counter Medications": "✅ Prepared",
+        "Protective Supplies": "⚠️ Partially prepared",
+        "First Aid Supplies": "⚠️ Partially prepared"
+      },
+      "missing_items": [
+        "Insect repellent",
+        "Sunscreen",
+        "Thermometer"
+      ]
+    },
+    "insurance_status": {
+      "purchased": true,
+      "policy_number": "TRAVEL-2025-001234",
+      "coverage": {
+        "medical": true,
+        "evacuation": true,
+        "cancellation": true
+      },
+      "emergency_hotline": "+1-855-270-7270"
+    },
+    "emergency_card_status": {
+      "generated": false,
+      "recommended_languages": ["en", "zh", "th", "ja"],
+      "urgency": "High"
+    },
+    "recommendations": [
+      "✅ Generate multilingual emergency medical card (English/Chinese/Thai/Japanese)",
+      "✅ Complete travel kit preparation — add insect repellent, sunscreen, and thermometer",
+      "✅ Bring sufficient chronic disease medications (travel days + 3 days extra)",
+      "✅ Monitor blood pressure during travel",
+      "✅ Take precautions against mosquito bites, especially during morning and evening hours",
+      "✅ Drink bottled water, avoid raw foods",
+      "✅ Save insurance emergency hotline number",
+      "✅ Know the location of medical facilities at the destination"
+    ],
+    "pre_trip_checklist": {
+      "consultation_completed": true,
+      "vaccinations_completed": true,
+      "travel_kit_ready": false,
+      "insurance_purchased": true,
+      "emergency_contacts_set": true,
+      "emergency_card_generated": false
+    },
+    "ready_for_travel": false,
+    "critical_items_to_complete": [
+      "Complete travel kit preparation",
+      "Generate multilingual emergency card"
+    ]
+  },
+  "health_guidance": {
+    "during_travel": [
+      "Take chronic disease medications on schedule",
+      "Use insect repellent to prevent mosquito bites",
+      "Drink bottled or boiled water",
+      "Avoid raw foods and street vendors",
+      "Wear breathable clothing; protect against sun exposure",
+      "Monitor blood pressure; pay attention to physical condition"
+    ],
+    "post_travel_monitoring": [
+      "Continue monitoring health status for 2-4 weeks",
+      "If fever develops, seek medical care immediately and report travel history",
+      "Watch for gastrointestinal symptoms",
+      "Complete malaria prophylaxis course (if applicable)"
+    ]
+  },
+  "emergency_contacts": {
+    "local": [
+      {
+        "relationship": "Spouse",
+        "name": "Li Si",
+        "phone": "+86-138-1234-5678"
+      },
+      {
+        "relationship": "Personal Physician",
+        "name": "Dr. Wang",
+        "phone": "+86-10-8765-4321"
+      }
+    ],
+    "insurance_emergency": "+1-855-270-7270"
+  }
+}

@@ -1,0 +1,92 @@
+# ============================================================
+# MEDICAL DATA PRIVACY — never commit real patient data
+# ============================================================
+data/
+Report/
+Medical Report/
+emergency-cards/
+*.pdf
+*.hl7
+*.fhir
+
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ============================================================
+# Node / npm
+# ============================================================
+node_modules/
+.npm
+.node_repl_history
+*.tgz
+.yarn-integrity
+
+# ============================================================
+# Build / coverage output
+# ============================================================
+dist/
+build/
+.nyc_output/
+coverage/
+*.lcov
+htmlcov/
+
+# ============================================================
+# Claude Code & MCP
+# ============================================================
+.claude/settings.local.json
+.swarm/
+.claude-flow/
+.test/
+.tests/
+
+# ============================================================
+# IDE & OS
+# ============================================================
+.DS_Store
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+Thumbs.db
+
+# ============================================================
+# Secrets & credentials
+# ============================================================
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials.json
+service-account*.json
+.secrets/
+
+# ============================================================
+# Logs & temporary files
+# ============================================================
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
