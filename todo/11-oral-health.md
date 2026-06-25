@@ -88,4 +88,4 @@ The Oral Health module provides comprehensive management of dental health, treat
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

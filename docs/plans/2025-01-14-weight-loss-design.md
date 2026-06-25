@@ -1143,5 +1143,5 @@ For extreme weight loss, eating disorders, or obesity-related diseases, please c
 
 ---
 
-**Document Maintainer**: WellAlly Tech
+**Document Maintainer**: SynapseMD
 **Last Updated**: 2025-01-14

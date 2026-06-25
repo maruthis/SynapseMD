@@ -401,6 +401,6 @@ Create `data-example/import-template.json`:
 
 ---
 
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD
 **Last Updated**: 2026-01-06
 **Document Version**: v1.0

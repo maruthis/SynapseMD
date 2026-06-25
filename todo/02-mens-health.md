@@ -724,4 +724,4 @@ Management of hypogonadism (male menopause) in middle-aged and older men, includ
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

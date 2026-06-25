@@ -389,4 +389,4 @@ A: Sensitive skin should use gentle, fragrance-free, alcohol-free products. Avoi
 
 **Version**: v1.0.0
 **Last updated**: 2025-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

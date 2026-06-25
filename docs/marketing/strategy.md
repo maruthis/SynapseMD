@@ -1,4 +1,4 @@
-# Claude-Ally-Health Global Promotion Strategy
+# SynapseMD Global Promotion Strategy
 
 > Zero-budget, purely community-driven open source project promotion plan
 

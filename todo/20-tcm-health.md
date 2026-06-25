@@ -161,4 +161,4 @@ The TCM constitution module provides constitution identification, characteristic
 **Document Version**: v2.0
 **Created Date**: 2025-12-31
 **Completion Date**: 2026-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

@@ -586,4 +586,4 @@ A: Yes. Condom + hormonal contraception is a common combination that both preven
 
 **Version**: v2.0.0
 **Last updated**: 2025-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

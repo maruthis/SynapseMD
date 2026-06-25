@@ -1,6 +1,6 @@
-# Sleep Health - WellAlly Knowledge Base
+# Sleep Health - SynapseMD Knowledge Base
 
-This page compiles articles and resources related to sleep health management on the WellAlly.tech platform.
+This page compiles articles and resources related to sleep health management on the SynapseMD platform.
 
 ## Core Topics
 
@@ -28,37 +28,37 @@ This page compiles articles and resources related to sleep health management on 
 - Relaxation techniques
 - Environment optimization
 
-## WellAlly Platform Resources
+## SynapseMD Platform Resources
 
 ### Knowledge Base Articles
 
 **Sleep Basics**
-- Sleep basics: https://wellally.tech/knowledge-base/sleep/sleep-basics
-- Sleep stages explained: https://wellally.tech/knowledge-base/sleep/sleep-stages
-- Sleep cycles: https://wellally.tech/knowledge-base/sleep/sleep-cycles
-- Circadian rhythm: https://wellally.tech/knowledge-base/sleep/circadian-rhythm
+- Sleep basics: https://synapsemd.com/knowledge-base/sleep/sleep-basics
+- Sleep stages explained: https://synapsemd.com/knowledge-base/sleep/sleep-stages
+- Sleep cycles: https://synapsemd.com/knowledge-base/sleep/sleep-cycles
+- Circadian rhythm: https://synapsemd.com/knowledge-base/sleep/circadian-rhythm
 
 **Sleep Quality Assessment**
-- Sleep quality metrics: https://wellally.tech/knowledge-base/sleep/sleep-quality-metrics
-- Sleep efficiency calculation: https://wellally.tech/knowledge-base/sleep/sleep-efficiency
-- Sleep score interpretation: https://wellally.tech/knowledge-base/sleep/sleep-score-interpretation
-- Sleep tracking devices: https://wellally.tech/knowledge-base/sleep/sleep-tracking-devices
+- Sleep quality metrics: https://synapsemd.com/knowledge-base/sleep/sleep-quality-metrics
+- Sleep efficiency calculation: https://synapsemd.com/knowledge-base/sleep/sleep-efficiency
+- Sleep score interpretation: https://synapsemd.com/knowledge-base/sleep/sleep-score-interpretation
+- Sleep tracking devices: https://synapsemd.com/knowledge-base/sleep/sleep-tracking-devices
 
 **Sleep Disorders**
-- Insomnia: https://wellally.tech/knowledge-base/sleep/insomnia
-- Obstructive sleep apnea: https://wellally.tech/knowledge-base/sleep/obstructive-sleep-apnea
-- Restless legs syndrome: https://wellally.tech/knowledge-base/sleep/restless-legs-syndrome
-- Circadian rhythm disorders: https://wellally.tech/knowledge-base/sleep/circadian-disorders
+- Insomnia: https://synapsemd.com/knowledge-base/sleep/insomnia
+- Obstructive sleep apnea: https://synapsemd.com/knowledge-base/sleep/obstructive-sleep-apnea
+- Restless legs syndrome: https://synapsemd.com/knowledge-base/sleep/restless-legs-syndrome
+- Circadian rhythm disorders: https://synapsemd.com/knowledge-base/sleep/circadian-disorders
 
 **Sleep Improvement**
-- Sleep hygiene guide: https://wellally.tech/knowledge-base/sleep/sleep-hygiene
-- Improve sleep environment: https://wellally.tech/knowledge-base/sleep/sleep-environment
-- Relaxation techniques: https://wellally.tech/knowledge-base/sleep/relaxation-techniques
-- CBT for insomnia: https://wellally.tech/knowledge-base/sleep/cbt-insomnia
+- Sleep hygiene guide: https://synapsemd.com/knowledge-base/sleep/sleep-hygiene
+- Improve sleep environment: https://synapsemd.com/knowledge-base/sleep/sleep-environment
+- Relaxation techniques: https://synapsemd.com/knowledge-base/sleep/relaxation-techniques
+- CBT for insomnia: https://synapsemd.com/knowledge-base/sleep/cbt-insomnia
 
 ### Related Feature Modules
 
-The WellAlly platform provides the following sleep management features:
+The SynapseMD platform provides the following sleep management features:
 
 1. **Sleep Tracker**
    - Nightly sleep recording
@@ -82,47 +82,47 @@ The WellAlly platform provides the following sleep management features:
 ### By Problem
 
 **Difficulty Falling Asleep**
-- Fall asleep faster techniques: https://wellally.tech/knowledge-base/sleep/fall-asleep-faster
-- Bedtime routine: https://wellally.tech/knowledge-base/sleep/bedtime-routine
-- Relaxation breathing exercises: https://wellally.tech/knowledge-base/sleep/breathing-exercises
+- Fall asleep faster techniques: https://synapsemd.com/knowledge-base/sleep/fall-asleep-faster
+- Bedtime routine: https://synapsemd.com/knowledge-base/sleep/bedtime-routine
+- Relaxation breathing exercises: https://synapsemd.com/knowledge-base/sleep/breathing-exercises
 
 **Early Awakening**
-- Early awakening causes: https://wellally.tech/knowledge-base/sleep/early-awakening-causes
-- Extend sleep duration: https://wellally.tech/knowledge-base/sleep/extend-sleep-duration
-- Morning light management: https://wellally.tech/knowledge-base/sleep/morning-light
+- Early awakening causes: https://synapsemd.com/knowledge-base/sleep/early-awakening-causes
+- Extend sleep duration: https://synapsemd.com/knowledge-base/sleep/extend-sleep-duration
+- Morning light management: https://synapsemd.com/knowledge-base/sleep/morning-light
 
 **Poor Sleep Quality**
-- Deep sleep improvement: https://wellally.tech/knowledge-base/sleep/deep-sleep-improvement
-- Reduce night awakenings: https://wellally.tech/knowledge-base/sleep/reduce-night-awakenings
-- Sleep continuity: https://wellally.tech/knowledge-base/sleep/sleep-continuity
+- Deep sleep improvement: https://synapsemd.com/knowledge-base/sleep/deep-sleep-improvement
+- Reduce night awakenings: https://synapsemd.com/knowledge-base/sleep/reduce-night-awakenings
+- Sleep continuity: https://synapsemd.com/knowledge-base/sleep/sleep-continuity
 
 **Daytime Sleepiness**
-- Daytime sleepiness causes: https://wellally.tech/knowledge-base/sleep/daytime-sleepiness-causes
-- Improve night sleep: https://wellally.tech/knowledge-base/sleep/improve-night-sleep
-- Nap guidelines: https://wellally.tech/knowledge-base/sleep/nap-guidelines
+- Daytime sleepiness causes: https://synapsemd.com/knowledge-base/sleep/daytime-sleepiness-causes
+- Improve night sleep: https://synapsemd.com/knowledge-base/sleep/improve-night-sleep
+- Nap guidelines: https://synapsemd.com/knowledge-base/sleep/nap-guidelines
 
 ### By Population
 
 **Adults**
-- Adult sleep needs: https://wellally.tech/knowledge-base/sleep/adult-sleep-needs
-- Work-sleep balance: https://wellally.tech/knowledge-base/sleep/work-sleep-balance
-- Stress and sleep: https://wellally.tech/knowledge-base/sleep/stress-sleep
+- Adult sleep needs: https://synapsemd.com/knowledge-base/sleep/adult-sleep-needs
+- Work-sleep balance: https://synapsemd.com/knowledge-base/sleep/work-sleep-balance
+- Stress and sleep: https://synapsemd.com/knowledge-base/sleep/stress-sleep
 
 **Older Adults**
-- Senior sleep changes: https://wellally.tech/knowledge-base/sleep/senior-sleep-changes
-- Senior sleep tips: https://wellally.tech/knowledge-base/sleep/senior-sleep-tips
-- Sleep medication precautions: https://wellally.tech/knowledge-base/sleep/senior-sleep-medication
+- Senior sleep changes: https://synapsemd.com/knowledge-base/sleep/senior-sleep-changes
+- Senior sleep tips: https://synapsemd.com/knowledge-base/sleep/senior-sleep-tips
+- Sleep medication precautions: https://synapsemd.com/knowledge-base/sleep/senior-sleep-medication
 
 **Children and Adolescents**
-- Child sleep needs: https://wellally.tech/knowledge-base/sleep/child-sleep-needs
-- Teen sleep: https://wellally.tech/knowledge-base/sleep/teen-sleep
-- Establishing sleep habits: https://wellally.tech/knowledge-base/sleep/sleep-habits-children
+- Child sleep needs: https://synapsemd.com/knowledge-base/sleep/child-sleep-needs
+- Teen sleep: https://synapsemd.com/knowledge-base/sleep/teen-sleep
+- Establishing sleep habits: https://synapsemd.com/knowledge-base/sleep/sleep-habits-children
 
 ## Sleep Assessment Tools
 
 ### Sleep Quality Assessment
 
-Use the sleep analysis features of the Claude-Ally-Health system:
+Use the sleep analysis features of the SynapseMD system:
 
 ```bash
 # Use the sleep command to record sleep
@@ -316,10 +316,10 @@ A: Recommendations:
 
 ## Related Articles
 
-### WellAlly Blog
+### SynapseMD Blog
 
-- [Sleep Data Analysis](https://wellally.tech/blog/sleep-data-analysis)
-- [Sleep and Mental Health](https://wellally.tech/blog/sleep-mental-health)
+- [Sleep Data Analysis](https://synapsemd.com/blog/sleep-data-analysis)
+- [Sleep and Mental Health](https://synapsemd.com/blog/sleep-mental-health)
 
 ### External Resources
 
@@ -336,7 +336,7 @@ A: Recommendations:
 
 ---
 
-**Disclaimer**: The links on this page point to sleep health knowledge articles on the WellAlly.tech platform. This content is for reference only and does not replace the diagnosis and treatment of professional doctors or sleep specialists. If you have persistent sleep problems, please consult qualified medical professionals.
+**Disclaimer**: The links on this page point to sleep health knowledge articles on the SynapseMD platform. This content is for reference only and does not replace the diagnosis and treatment of professional doctors or sleep specialists. If you have persistent sleep problems, please consult qualified medical professionals.
 
 **Last Updated**: 2025-01-22
 **Categories**: #sleep #insomnia #sleep-quality #sleep-hygiene

@@ -86,7 +86,7 @@ The travel health module provides pre-travel health preparation, disease prevent
 
 **Document Version**: v1.0
 **Last Updated**: 2025-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD
 
 ---
 

@@ -4,7 +4,7 @@
 
 As a developer, have you ever wanted to have full control over your own health data?
 
-I developed **Claude-Ally-Health**, a file-based personal health information management system using the Claude Code CLI.
+I developed **SynapseMD**, a file-based personal health information management system using the Claude Code CLI.
 
 ## Features
 
@@ -28,7 +28,7 @@ I developed **Claude-Ally-Health**, a file-based personal health information man
 ## Quick Start
 
 ```bash
-git clone https://github.com/huifer/Claude-Ally-Health.git
+git clone https://github.com/huifer/SynapseMD.git
 
 # Set up profile
 /profile set 175 70 1990-01-01
@@ -94,8 +94,8 @@ my-his/
 
 ## Links
 
-- GitHub: https://github.com/huifer/Claude-Ally-Health
-- Documentation: https://github.com/huifer/Claude-Ally-Health#readme
+- GitHub: https://github.com/huifer/SynapseMD
+- Documentation: https://github.com/huifer/SynapseMD#readme
 - License: MIT
 
 We look forward to your feedback!

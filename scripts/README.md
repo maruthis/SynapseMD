@@ -287,7 +287,7 @@ A: The health score is for reference only and is calculated based on your record
 
 ## Technical Support
 
-For questions or suggestions, please visit: https://github.com/huifer/Claude-Ally-Health
+For questions or suggestions, please visit: https://github.com/huifer/SynapseMD
 
 ## Disclaimer
 
@@ -295,6 +295,6 @@ This report generation tool and the generated reports are for reference only and
 
 ---
 
-**Developer**: WellAlly Tech
-**Project**: https://github.com/huifer/Claude-Ally-Health
+**Developer**: SynapseMD
+**Project**: https://github.com/huifer/SynapseMD
 **License**: MIT License

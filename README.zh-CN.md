@@ -1,24 +1,24 @@
-# Personal Medical Data Center (Personal Health Information System)
+# SynapseMD - Personal Health Information System
 
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-red.svg)](README.zh-CN.md)
 
-[![GitHub stars](https://img.shields.io/github/stars/huifer/Claude-Ally-Health?style=social)](https://github.com/huifer/Claude-Ally-Health)
-[![GitHub forks](https://img.shields.io/github/forks/huifer/Claude-Ally-Health?style=social)](https://github.com/huifer/Claude-Ally-Health)
+[![GitHub stars](https://img.shields.io/github/stars/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD)
+[![GitHub forks](https://img.shields.io/github/forks/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Star History Chart](https://api.star-history.com/svg?repos=huifer/Claude-Ally-Health&type=date&legend=top-left)](https://www.star-history.com/#huifer/Claude-Ally-Health&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=huifer/SynapseMD&type=date&legend=top-left)](https://www.star-history.com/#huifer/SynapseMD&type=date&legend=top-left)
 
 A file-system-based personal medical health data management system, using the Claude Code command-line tool for data management.
 
-**GitHub**: https://github.com/huifer/Claude-Ally-Health
+**GitHub**: https://github.com/huifer/SynapseMD
 
-> **⚠️ Disclaimer**: This project has **no affiliation, endorsement, or association** with [Anthropic](https://www.anthropic.com/) or [Claude.ai](https://claude.ai/). This project is an independent open-source project developed by [WellAlly Tech](https://www.wellally.tech/).
+> **⚠️ Disclaimer**: This project has **no affiliation, endorsement, or association** with [Anthropic](https://www.anthropic.com/) or [Claude.ai](https://claude.ai/). This project is an independent open-source project developed by [SynapseMD](https://www.synapsemd.com/).
 >
 > **📝 Note**: This project uses mcp__4_5v_mcp__analyze_image provided by GLM.
 
 ## Project Developer
 
-This project is developed and maintained by [WellAlly Tech](https://www.wellally.tech/).
+This project is developed and maintained by [SynapseMD](https://www.synapsemd.com/).
 
 ## System Features
 

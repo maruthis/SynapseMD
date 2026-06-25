@@ -587,8 +587,8 @@ All features must strictly adhere to the following safety principles:
 
 ## Contact
 
-- **Project Maintainer**: WellAlly Tech
-- **GitHub**: https://github.com/huifer/Claude-Ally-Health
+- **Project Maintainer**: SynapseMD
+- **GitHub**: https://github.com/huifer/SynapseMD
 - **Issue Reporting**: GitHub Issues
 - **Feature Discussion**: GitHub Discussions
 
@@ -597,4 +597,4 @@ All features must strictly adhere to the following safety principles:
 **Document Version**: v1.0
 **Created Date**: 2025-12-31
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

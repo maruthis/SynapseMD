@@ -204,4 +204,4 @@ Subscribe to and manage destination outbreak alerts.
 
 **Version**: v1.0.0
 **Last updated**: 2025-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

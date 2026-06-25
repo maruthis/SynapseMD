@@ -9,7 +9,7 @@
 - 能量缺口计算与预测
 - 平台期检测与突破建议
 
-Author: Claude-Ally-Health
+Author: SynapseMD
 Date: 2025
 """
 

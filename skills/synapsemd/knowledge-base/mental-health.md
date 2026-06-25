@@ -1,6 +1,6 @@
-# Mental Health - WellAlly Knowledge Base
+# Mental Health - SynapseMD Knowledge Base
 
-This page compiles articles and resources related to mental health management on the WellAlly.tech platform.
+This page compiles articles and resources related to mental health management on the SynapseMD platform.
 
 ## Core Topics
 
@@ -28,37 +28,37 @@ This page compiles articles and resources related to mental health management on
 - Self-help tools
 - Community resources
 
-## WellAlly Platform Resources
+## SynapseMD Platform Resources
 
 ### Knowledge Base Articles
 
 **Stress Management**
-- Stress basics: https://wellally.tech/knowledge-base/mental-health/stress-basics
-- Stress identification: https://wellally.tech/knowledge-base/mental-health/stress-identification
-- Stress coping strategies: https://wellally.tech/knowledge-base/mental-health/stress-coping
-- Work stress management: https://wellally.tech/knowledge-base/mental-health/work-stress
+- Stress basics: https://synapsemd.com/knowledge-base/mental-health/stress-basics
+- Stress identification: https://synapsemd.com/knowledge-base/mental-health/stress-identification
+- Stress coping strategies: https://synapsemd.com/knowledge-base/mental-health/stress-coping
+- Work stress management: https://synapsemd.com/knowledge-base/mental-health/work-stress
 
 **Emotional Health**
-- Emotion basics: https://wellally.tech/knowledge-base/mental-health/emotions-basics
-- Emotion recognition techniques: https://wellally.tech/knowledge-base/mental-health/emotion-recognition
-- Emotion regulation methods: https://wellally.tech/knowledge-base/mental-health/emotion-regulation
-- Mood tracking guide: https://wellally.tech/knowledge-base/mental-health/mood-tracking
+- Emotion basics: https://synapsemd.com/knowledge-base/mental-health/emotions-basics
+- Emotion recognition techniques: https://synapsemd.com/knowledge-base/mental-health/emotion-recognition
+- Emotion regulation methods: https://synapsemd.com/knowledge-base/mental-health/emotion-regulation
+- Mood tracking guide: https://synapsemd.com/knowledge-base/mental-health/mood-tracking
 
 **Anxiety and Depression**
-- Anxiety basics: https://wellally.tech/knowledge-base/mental-health/anxiety-basics
-- Anxiety coping strategies: https://wellally.tech/knowledge-base/mental-health/anxiety-coping
-- Depression recognition: https://wellally.tech/knowledge-base/mental-health/depression-recognition
-- Depression self-help: https://wellally.tech/knowledge-base/mental-health/depression-self-help
+- Anxiety basics: https://synapsemd.com/knowledge-base/mental-health/anxiety-basics
+- Anxiety coping strategies: https://synapsemd.com/knowledge-base/mental-health/anxiety-coping
+- Depression recognition: https://synapsemd.com/knowledge-base/mental-health/depression-recognition
+- Depression self-help: https://synapsemd.com/knowledge-base/mental-health/depression-self-help
 
 **Mindfulness and Relaxation**
-- Mindfulness introduction: https://wellally.tech/knowledge-base/mental-health/mindfulness-intro
-- Meditation practice: https://wellally.tech/knowledge-base/mental-health/meditation-practice
-- Progressive muscle relaxation: https://wellally.tech/knowledge-base/mental-health/progressive-relaxation
-- Breathing exercises: https://wellally.tech/knowledge-base/mental-health/breathing-exercises
+- Mindfulness introduction: https://synapsemd.com/knowledge-base/mental-health/mindfulness-intro
+- Meditation practice: https://synapsemd.com/knowledge-base/mental-health/meditation-practice
+- Progressive muscle relaxation: https://synapsemd.com/knowledge-base/mental-health/progressive-relaxation
+- Breathing exercises: https://synapsemd.com/knowledge-base/mental-health/breathing-exercises
 
 ### Related Feature Modules
 
-The WellAlly platform provides the following mental health management features:
+The SynapseMD platform provides the following mental health management features:
 
 1. **Mood Tracker**
    - Daily mood recording
@@ -83,54 +83,54 @@ The WellAlly platform provides the following mental health management features:
 ### By Problem
 
 **Work Stress**
-- Workplace stress coping: https://wellally.tech/knowledge-base/mental-health/workplace-stress
-- Burnout prevention: https://wellally.tech/knowledge-base/mental-health/burnout-prevention
-- Work-life balance: https://wellally.tech/knowledge-base/mental-health/work-life-balance
-- Time management techniques: https://wellally.tech/knowledge-base/mental-health/time-management
+- Workplace stress coping: https://synapsemd.com/knowledge-base/mental-health/workplace-stress
+- Burnout prevention: https://synapsemd.com/knowledge-base/mental-health/burnout-prevention
+- Work-life balance: https://synapsemd.com/knowledge-base/mental-health/work-life-balance
+- Time management techniques: https://synapsemd.com/knowledge-base/mental-health/time-management
 
 **Mood Swings**
-- Emotional stability techniques: https://wellally.tech/knowledge-base/mental-health/emotional-stability
-- Emotional journaling: https://wellally.tech/knowledge-base/mental-health/emotional-journaling
-- Identify emotional triggers: https://wellally.tech/knowledge-base/mental-health/identify-triggers
-- Emotion regulation strategies: https://wellally.tech/knowledge-base/mental-health/regulation-strategies
+- Emotional stability techniques: https://synapsemd.com/knowledge-base/mental-health/emotional-stability
+- Emotional journaling: https://synapsemd.com/knowledge-base/mental-health/emotional-journaling
+- Identify emotional triggers: https://synapsemd.com/knowledge-base/mental-health/identify-triggers
+- Emotion regulation strategies: https://synapsemd.com/knowledge-base/mental-health/regulation-strategies
 
 **Anxiety Symptoms**
-- Anxiety self-management: https://wellally.tech/knowledge-base/mental-health/anxiety-self-management
-- Anxiety relaxation techniques: https://wellally.tech/knowledge-base/mental-health/anxiety-relaxation
-- Cognitive reframing for anxiety: https://wellally.tech/knowledge-base/mental-health/cognitive-reframing
-- Exposure therapy for anxiety: https://wellally.tech/knowledge-base/mental-health/exposure-therapy
+- Anxiety self-management: https://synapsemd.com/knowledge-base/mental-health/anxiety-self-management
+- Anxiety relaxation techniques: https://synapsemd.com/knowledge-base/mental-health/anxiety-relaxation
+- Cognitive reframing for anxiety: https://synapsemd.com/knowledge-base/mental-health/cognitive-reframing
+- Exposure therapy for anxiety: https://synapsemd.com/knowledge-base/mental-health/exposure-therapy
 
 **Low Mood**
-- Mood boosting strategies: https://wellally.tech/knowledge-base/mental-health/mood-boosting
-- Positive psychology: https://wellally.tech/knowledge-base/mental-health/positive-psychology
-- Gratitude practice: https://wellally.tech/knowledge-base/mental-health/gratitude-practice
-- Building social support: https://wellally.tech/knowledge-base/mental-health/social-support
+- Mood boosting strategies: https://synapsemd.com/knowledge-base/mental-health/mood-boosting
+- Positive psychology: https://synapsemd.com/knowledge-base/mental-health/positive-psychology
+- Gratitude practice: https://synapsemd.com/knowledge-base/mental-health/gratitude-practice
+- Building social support: https://synapsemd.com/knowledge-base/mental-health/social-support
 
 ### By Method
 
 **Mindfulness Practice**
-- Mindful breathing: https://wellally.tech/knowledge-base/mental-health/mindful-breathing
-- Body scan: https://wellally.tech/knowledge-base/mental-health/body-scan
-- Mindful walking: https://wellally.tech/knowledge-base/mental-health/mindful-walking
-- Mindful eating: https://wellally.tech/knowledge-base/mental-health/mindful-eating
+- Mindful breathing: https://synapsemd.com/knowledge-base/mental-health/mindful-breathing
+- Body scan: https://synapsemd.com/knowledge-base/mental-health/body-scan
+- Mindful walking: https://synapsemd.com/knowledge-base/mental-health/mindful-walking
+- Mindful eating: https://synapsemd.com/knowledge-base/mental-health/mindful-eating
 
 **Relaxation Techniques**
-- Deep breathing exercises: https://wellally.tech/knowledge-base/mental-health/deep-breathing
-- Progressive muscle relaxation (PMR): https://wellally.tech/knowledge-base/mental-health/pmr-technique
-- Guided imagery: https://wellally.tech/knowledge-base/mental-health/guided-imagery
-- Self-hypnosis: https://wellally.tech/knowledge-base/mental-health/self-hypnosis
+- Deep breathing exercises: https://synapsemd.com/knowledge-base/mental-health/deep-breathing
+- Progressive muscle relaxation (PMR): https://synapsemd.com/knowledge-base/mental-health/pmr-technique
+- Guided imagery: https://synapsemd.com/knowledge-base/mental-health/guided-imagery
+- Self-hypnosis: https://synapsemd.com/knowledge-base/mental-health/self-hypnosis
 
 **Cognitive Techniques**
-- Cognitive reframing: https://wellally.tech/knowledge-base/mental-health/cognitive-reframing
-- Thought records: https://wellally.tech/knowledge-base/mental-health/thought-records
-- Positive self-talk: https://wellally.tech/knowledge-base/mental-health/positive-self-talk
-- Problem-solving techniques: https://wellally.tech/knowledge-base/mental-health/problem-solving
+- Cognitive reframing: https://synapsemd.com/knowledge-base/mental-health/cognitive-reframing
+- Thought records: https://synapsemd.com/knowledge-base/mental-health/thought-records
+- Positive self-talk: https://synapsemd.com/knowledge-base/mental-health/positive-self-talk
+- Problem-solving techniques: https://synapsemd.com/knowledge-base/mental-health/problem-solving
 
 ## Mental Assessment Tools
 
 ### Mental Status Assessment
 
-Use the mental health analysis features of the Claude-Ally-Health system:
+Use the mental health analysis features of the SynapseMD system:
 
 ```bash
 # Use the mood command to record emotions
@@ -328,10 +328,10 @@ A: You can find through:
 
 ## Related Articles
 
-### WellAlly Blog
+### SynapseMD Blog
 
-- [Mental Health Data Analysis](https://wellally.tech/blog/mental-health-data)
-- [Stress and Health](https://wellally.tech/blog/stress-health)
+- [Mental Health Data Analysis](https://synapsemd.com/blog/mental-health-data)
+- [Stress and Health](https://synapsemd.com/blog/stress-health)
 
 ### External Resources
 
@@ -348,7 +348,7 @@ A: You can find through:
 
 ---
 
-**Disclaimer**: The links on this page point to mental health knowledge articles on the WellAlly.tech platform. This content is for reference only and does not replace the diagnosis and treatment of professional mental health workers. If you have persistent psychological distress, please consult qualified mental health professionals.
+**Disclaimer**: The links on this page point to mental health knowledge articles on the SynapseMD platform. This content is for reference only and does not replace the diagnosis and treatment of professional mental health workers. If you have persistent psychological distress, please consult qualified mental health professionals.
 
 **Emergency**: If you have thoughts of self-harm or suicide, please seek help immediately:
 - China Psychological Crisis Intervention Hotline: 400-161-9995

@@ -1,4 +1,4 @@
-# WellAlly-Health: Architecture & Developer Guide
+# SynapseMD: Architecture & Developer Guide
 
 ## Table of Contents
 1. [Project Overview](#1-project-overview)
@@ -13,7 +13,7 @@
 
 ## 1. Project Overview
 
-WellAlly-Health is a **file-based personal health data management system** built on top of the Claude Code CLI. It has no traditional backend or database — all health data lives in local JSON files, and all intelligence is provided by slash commands and skills executed by Claude Code (or any compatible LLM).
+SynapseMD is a **file-based personal health data management system** built on top of the Claude Code CLI. It has no traditional backend or database — all health data lives in local JSON files, and all intelligence is provided by slash commands and skills executed by Claude Code (or any compatible LLM).
 
 **What it is not:** a web app, a React/Next.js project, or a REST API server. The `package.json` at the root is a publishing manifest only — all script entries are no-ops.
 
@@ -36,7 +36,7 @@ User Input (natural language or slash commands)
 ## 2. Project Structure
 
 ```
-WellAlly-health/
+SynapseMD/
 │
 ├── .claude/                    # Active Claude Code workspace (see §3)
 │   ├── settings.local.json     # Permissions, MCP servers, allowed tools
@@ -294,7 +294,7 @@ After this, editing `commands/allergy.md` is immediately reflected in `.claude/c
 ### Recommended Folder Layout (Optimized)
 
 ```
-WellAlly-health/
+SynapseMD/
 │
 ├── .claude/
 │   ├── settings.local.json
@@ -337,8 +337,8 @@ WellAlly-health/
 The simplest deployment — users clone the repo and interact via Claude Code terminal:
 
 ```bash
-git clone https://github.com/huifer/WellAlly-health
-cd WellAlly-health
+git clone https://github.com/huifer/SynapseMD
+cd SynapseMD
 cp -r data-example/ data/     # Bootstrap data directory
 claude                         # Open Claude Code
 # Then use: /profile set 175 70 1990-01-01
@@ -359,7 +359,7 @@ UI (web app / mobile) ──HTTP──▶ MCP Server ──▶ Commands/Skills �
 ```bash
 # Using the built-in claude-flow MCP (already in settings.local.json)
 npx @anthropic-ai/claude-flow serve \
-  --root /path/to/WellAlly-health \
+  --root /path/to/SynapseMD \
   --port 3001
 ```
 

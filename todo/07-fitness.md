@@ -701,4 +701,4 @@ Provide personalized exercise prescriptions and recommendations based on the use
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

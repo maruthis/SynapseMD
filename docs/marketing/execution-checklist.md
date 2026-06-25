@@ -1,4 +1,4 @@
-# Claude-Ally-Health Promotion Execution Checklist
+# SynapseMD Promotion Execution Checklist
 
 ## Marketing Content Created
 
@@ -113,7 +113,7 @@
 
 ### Hacker News Show HN
 ```markdown
-Title: Show HN: Claude-Ally-Health - AI-Native Personal Health System
+Title: Show HN: SynapseMD - AI-Native Personal Health System
 
 Text: See README.en.md
 ```

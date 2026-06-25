@@ -673,4 +673,4 @@ Please enter A/B/C/D/E:
 
 **Command version**: v1.0
 **Creation date**: 2026-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

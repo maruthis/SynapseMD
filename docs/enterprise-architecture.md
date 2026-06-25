@@ -1,4 +1,4 @@
-# WellAlly-Health: Enterprise Architecture Blueprint
+# SynapseMD: Enterprise Architecture Blueprint
 
 ## Table of Contents
 1. [Executive Summary](#1-executive-summary)
@@ -18,7 +18,7 @@
 
 ## 1. Executive Summary
 
-The current WellAlly-Health system is a single-user, file-based CLI tool. This document defines the enterprise architecture required to transform it into a **multi-tenant, regulatory-compliant, AI-powered health platform** suitable for healthcare organizations, insurance providers, and digital health companies.
+The current SynapseMD system is a single-user, file-based CLI tool. This document defines the enterprise architecture required to transform it into a **multi-tenant, regulatory-compliant, AI-powered health platform** suitable for healthcare organizations, insurance providers, and digital health companies.
 
 ### Key Transformation Axes
 
@@ -1040,4 +1040,4 @@ External:
 ---
 
 *Document version: 1.0 — June 2025*
-*Maintained by: WellAlly Tech Platform Team*
+*Maintained by: SynapseMD Platform Team*

@@ -112,7 +112,7 @@ The AI assistant enhancement module leverages AI technology to provide smarter h
 
 **Document Version**: v2.0
 **Last Updated**: 2025-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD
 **Implementation Status**: ✅ Production Ready
 
 ---

@@ -777,4 +777,4 @@ Provide personalized sleep hygiene recommendations to improve sleep quality.
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

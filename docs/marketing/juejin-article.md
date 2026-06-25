@@ -1,6 +1,6 @@
 # Building an AI-Native Personal Health Management System from Scratch
 
-![Cover](https://via.placeholder.com/800x400/000000/FFFFFF?text=Claude-Ally-Health)
+![Cover](https://via.placeholder.com/800x400/000000/FFFFFF?text=SynapseMD)
 
 ## Introduction
 
@@ -39,7 +39,7 @@ I had been playing with **Claude Code** - Anthropic's CLI tool that lets you ext
 
 "What if," I thought, "you could just tell the computer to analyze your blood test report?"
 
-That idea became **Claude-Ally-Health**.
+That idea became **SynapseMD**.
 
 ## Project Architecture
 
@@ -176,8 +176,8 @@ The consultation system uses a coordinator pattern:
 
 ```bash
 # Clone the repository
-git clone https://github.com/huifer/Claude-Ally-Health.git
-cd Claude-Ally-Health/my-his
+git clone https://github.com/huifer/SynapseMD.git
+cd SynapseMD/my-his
 
 # Open in Claude Code
 claude-code .
@@ -221,9 +221,9 @@ Claude Code's extensibility allows us to build complex domain-specific tools. Wh
 
 ## Related Links
 
-- **GitHub**: https://github.com/huifer/Claude-Ally-Health
-- **Documentation**: https://github.com/huifer/Claude-Ally-Health#readme
-- **Contribution Guide**: https://github.com/huifer/Claude-Ally-Health/blob/main/CONTRIBUTING.md
+- **GitHub**: https://github.com/huifer/SynapseMD
+- **Documentation**: https://github.com/huifer/SynapseMD#readme
+- **Contribution Guide**: https://github.com/huifer/SynapseMD/blob/main/CONTRIBUTING.md
 
 > ⚠️ Disclaimer: This system is for personal health management use only and should not be used as a basis for medical diagnosis. All medical decisions require consultation with a professional doctor.
 

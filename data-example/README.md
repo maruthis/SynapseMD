@@ -154,6 +154,6 @@ Contributions to data improvements are welcome!
 
 ---
 
-**Directory Maintainer**: WellAlly Tech
+**Directory Maintainer**: SynapseMD
 **Last Updated**: 2026-01-06
 **Version**: v1.0

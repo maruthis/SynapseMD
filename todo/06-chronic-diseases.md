@@ -844,5 +844,5 @@ Long-term management of Chronic Obstructive Pulmonary Disease (COPD), including 
 
 **Document Version**: v2.0 (Completed)
 **Last Updated**: 2025-01-02
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD
 **Implemented by**: Claude Code AI Assistant

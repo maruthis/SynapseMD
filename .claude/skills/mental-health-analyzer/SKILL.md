@@ -977,4 +977,4 @@ For large datasets (e.g., >6 months of mood diary), use the following optimizati
 
 **Skill Version**: v1.0.0
 **Last Updated**: 2025-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

@@ -772,4 +772,4 @@ Detect the following danger signals during analysis:
 
 **Skill Version**: v1.0
 **Created**: 2026-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

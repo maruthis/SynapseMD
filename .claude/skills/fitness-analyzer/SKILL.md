@@ -428,4 +428,4 @@ Output:
 
 **Skill version**: v1.0
 **Last updated**: 2026-01-02
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

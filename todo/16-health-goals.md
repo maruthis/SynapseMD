@@ -123,4 +123,4 @@ The health goals module provides goal setting, progress tracking, and habit form
 
 **Document Version**: v2.0
 **Last Updated**: 2025-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

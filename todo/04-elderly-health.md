@@ -851,4 +851,4 @@ Polypharmacy management and drug interaction checks for older adults, identifyin
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

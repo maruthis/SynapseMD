@@ -295,7 +295,7 @@
         "card_id": "card_20250801",
         "trip_id": "trip_20250801_seasia",
         "languages": ["en", "zh", "th", "ja"],
-        "qrcode_url": "https://wellally.app/qr/abc123",
+        "qrcode_url": "https://synapsemd.app/qr/abc123",
         "generated_at": "2025-07-28T10:00:00.000Z",
         "last_updated": "2025-07-28T10:00:00.000Z"
       }

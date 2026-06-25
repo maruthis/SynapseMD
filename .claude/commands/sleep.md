@@ -598,4 +598,4 @@ Assesses 7 questions (each scored 0-4):
 
 **Command version**: v1.0
 **Creation date**: 2026-01-02
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

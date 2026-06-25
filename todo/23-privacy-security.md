@@ -688,4 +688,4 @@ Ensure the system complies with relevant laws, regulations, and data protection 
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

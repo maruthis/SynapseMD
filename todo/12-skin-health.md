@@ -132,4 +132,4 @@ Pass rate: 100%
 
 **Document Version**: v2.0
 **Last Updated**: 2025-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

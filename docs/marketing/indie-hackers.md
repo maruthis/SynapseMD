@@ -37,7 +37,7 @@ I had been playing with **Claude Code** - Anthropic's new CLI tool that lets you
 
 "What if," I thought, "I could just tell my computer to analyze my blood test?"
 
-That thought became **Claude-Ally-Health**.
+That thought became **SynapseMD**.
 
 ## What It Does
 
@@ -121,7 +121,7 @@ If you're interested in:
 - Claude Code extensions
 - Open source healthcare
 
-**Check out the project:** [GitHub](https://github.com/huifer/Claude-Ally-Health)
+**Check out the project:** [GitHub](https://github.com/huifer/SynapseMD)
 
 And if you find it useful, **give it a star!** ⭐
 
@@ -129,4 +129,4 @@ Feedback, suggestions, and contributions are all welcome.
 
 ---
 
-**TL;DR:** I built a privacy-first personal health system using Claude Code CLI. It's open source, local-only, and AI-powered. Check it out: [GitHub](https://github.com/huifer/Claude-Ally-Health)
+**TL;DR:** I built a privacy-first personal health system using Claude Code CLI. It's open source, local-only, and AI-powered. Check it out: [GitHub](https://github.com/huifer/SynapseMD)

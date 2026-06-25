@@ -777,4 +777,4 @@ RDA_FEMALE = {
 
 **Skill Version**: v1.0
 **Last Updated**: 2026-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

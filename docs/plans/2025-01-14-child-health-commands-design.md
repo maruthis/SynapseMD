@@ -8,7 +8,7 @@
 
 ## 1. Overview
 
-This design adds 6 child health-related slash commands to the Claude-Ally-Health project, covering the medical and mental health needs of children ages 0-18.
+This design adds 6 child health-related slash commands to the SynapseMD project, covering the medical and mental health needs of children ages 0-18.
 
 ### 1.1 New Command List
 

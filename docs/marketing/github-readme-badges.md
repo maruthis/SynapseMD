@@ -9,12 +9,12 @@
 ## Suggested README Structure
 
 ```markdown
-# Claude-Ally-Health
+# SynapseMD
 
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
 [![Chinese](https://img.shields.io/badge/lang-Chinese-red.svg)](README.zh-CN.md)
-[![GitHub stars](https://img.shields.io/github/stars/huifer/Claude-Ally-Health?style=social)](https://github.com/huifer/Claude-Ally-Health/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/huifer/Claude-Ally-Health?style=social)](https://github.com/huifer/Claude-Ally-Health/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Claude-Code-cc5252.svg)](https://claude.ai/code)
 
@@ -23,11 +23,11 @@
 
 ## ⭐ Star us on GitHub!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=huifer/Claude-Ally-Health&type=date)](https://www.star-history.com/#huifer/Claude-Ally-Health&type=date)
+[![Star History Chart](https://api.star-history.com/svg?repos=huifer/SynapseMD&type=date)](https://www.star-history.com/#huifer/SynapseMD&type=date)
 
 ## 🎯 What is it?
 
-**Claude-Ally-Health** is a file-based personal health information system using Claude Code CLI for data management.
+**SynapseMD** is a file-based personal health information system using Claude Code CLI for data management.
 
 ### Key Features
 
@@ -43,8 +43,8 @@
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/huifer/Claude-Ally-Health.git
-cd Claude-Ally-Health/my-his
+git clone https://github.com/huifer/SynapseMD.git
+cd SynapseMD/my-his
 
 # 2. Open in Claude Code
 claude-code .
@@ -93,9 +93,9 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-Made with ❤️ by [WellAlly Tech](https://www.wellally.tech/)
+Made with ❤️ by [SynapseMD](https://www.synapsemd.com/)
 
-[⬆ Back to Top](#claude-ally-health)
+[⬆ Back to Top](#synapsemd)
 
 </div>
 ```

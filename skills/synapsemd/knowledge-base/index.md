@@ -1,6 +1,6 @@
-# WellAlly.tech Knowledge Base Index
+# SynapseMD Knowledge Base Index
 
-This is the categorized index of knowledge base articles from the WellAlly.tech platform for quick access to health management and medical articles.
+This is the categorized index of knowledge base articles from the SynapseMD platform for quick access to health management and medical articles.
 
 ## 📚 Table of Contents
 
@@ -12,17 +12,17 @@ This is the categorized index of knowledge base articles from the WellAlly.tech 
 
 ## Platform Overview
 
-### WellAlly.tech Platform
+### SynapseMD Platform
 
-- **Official Website**: https://www.wellally.tech/
-- **Knowledge Base**: https://wellally.tech/knowledge-base/
-- **Blog**: https://wellally.tech/blog/
-- **Features**: https://wellally.tech/features/
-- **About Us**: https://wellally.tech/about/
+- **Official Website**: https://www.synapsemd.com/
+- **Knowledge Base**: https://synapsemd.com/knowledge-base/
+- **Blog**: https://synapsemd.com/blog/
+- **Features**: https://synapsemd.com/features/
+- **About Us**: https://synapsemd.com/about/
 
 ### Platform Features
 
-WellAlly is a personal health record management platform focused on:
+SynapseMD is a personal health record management platform focused on:
 
 - **Personal Health Records**: Centralized management of all health data
 - **AI-Driven Insights**: Intelligent analysis based on data patterns
@@ -44,9 +44,9 @@ Detailed articles: [nutrition.md](nutrition.md)
 - Weight management
 
 **Key Links**:
-- Home: https://wellally.tech/knowledge-base/nutrition/
-- Diet tracking guide: https://wellally.tech/knowledge-base/nutrition/diet-tracking
-- Nutritional analysis: https://wellally.tech/knowledge-base/nutrition/nutritional-analysis
+- Home: https://synapsemd.com/knowledge-base/nutrition/
+- Diet tracking guide: https://synapsemd.com/knowledge-base/nutrition/diet-tracking
+- Nutritional analysis: https://synapsemd.com/knowledge-base/nutrition/nutritional-analysis
 
 **Related Tags**: `#nutrition` `#diet` `#weight-management` `#healthy-diet`
 
@@ -62,9 +62,9 @@ Detailed articles: [fitness.md](fitness.md)
 - Exercise and health management
 
 **Key Links**:
-- Home: https://wellally.tech/knowledge-base/fitness/
-- Exercise tracking: https://wellally.tech/knowledge-base/fitness/exercise-tracking
-- Activity recommendations: https://wellally.tech/knowledge-base/fitness/activity-recommendations
+- Home: https://synapsemd.com/knowledge-base/fitness/
+- Exercise tracking: https://synapsemd.com/knowledge-base/fitness/exercise-tracking
+- Activity recommendations: https://synapsemd.com/knowledge-base/fitness/activity-recommendations
 
 **Related Tags**: `#fitness` `#exercise` `#activity` `#workout`
 
@@ -80,9 +80,9 @@ Detailed articles: [sleep.md](sleep.md)
 - Sleep hygiene
 
 **Key Links**:
-- Home: https://wellally.tech/knowledge-base/sleep/
-- Sleep analysis: https://wellally.tech/knowledge-base/sleep/sleep-analysis
-- Sleep improvement: https://wellally.tech/knowledge-base/sleep/sleep-improvement
+- Home: https://synapsemd.com/knowledge-base/sleep/
+- Sleep analysis: https://synapsemd.com/knowledge-base/sleep/sleep-analysis
+- Sleep improvement: https://synapsemd.com/knowledge-base/sleep/sleep-improvement
 
 **Related Tags**: `#sleep` `#insomnia` `#sleep-quality` `#sleep-hygiene`
 
@@ -98,9 +98,9 @@ Detailed articles: [mental-health.md](mental-health.md)
 - Mindfulness practice
 
 **Key Links**:
-- Home: https://wellally.tech/knowledge-base/mental-health/
-- Stress management: https://wellally.tech/knowledge-base/mental-health/stress-management
-- Emotional wellness: https://wellally.tech/knowledge-base/mental-health/emotional-wellness
+- Home: https://synapsemd.com/knowledge-base/mental-health/
+- Stress management: https://synapsemd.com/knowledge-base/mental-health/stress-management
+- Emotional wellness: https://synapsemd.com/knowledge-base/mental-health/emotional-wellness
 
 **Related Tags**: `#mental-health` `#stress` `#mood` `#mindfulness`
 
@@ -116,28 +116,28 @@ Detailed articles: [chronic-disease.md](chronic-disease.md)
 - Medication adherence
 
 **Key Links**:
-- Home: https://wellally.tech/knowledge-base/chronic-disease/
-- Hypertension management: https://wellally.tech/knowledge-base/chronic-disease/hypertension
-- Diabetes management: https://wellally.tech/knowledge-base/chronic-disease/diabetes
-- COPD care: https://wellally.tech/knowledge-base/chronic-disease/copd
+- Home: https://synapsemd.com/knowledge-base/chronic-disease/
+- Hypertension management: https://synapsemd.com/knowledge-base/chronic-disease/hypertension
+- Diabetes management: https://synapsemd.com/knowledge-base/chronic-disease/diabetes
+- COPD care: https://synapsemd.com/knowledge-base/chronic-disease/copd
 
 **Related Tags**: `#chronic-disease` `#hypertension` `#diabetes` `#COPD`
 
 ## Popular Articles
 
-### Featured Content from WellAlly.tech
+### Featured Content from SynapseMD
 
-1. **[Building the Future of Care: An Architectural Deep Dive into the AI-Driven WellAlly Health Platform](https://coderlegion.com/9809/building-the-future-care-architectural-deep-dive-into-the-driven-wellally-health-platform)**
-   - Deep dive into WellAlly platform architecture
+1. **[Building the Future of Care: An Architectural Deep Dive into the AI-Driven SynapseMD Platform](https://coderlegion.com/9809/building-the-future-care-architectural-deep-dive-into-the-driven-synapsemd-platform)**
+   - Deep dive into SynapseMD platform architecture
    - AI-driven health management implementation
    - Category: `#technical-architecture` `#AI` `#platform-design`
 
-2. **[Nutrition Chatbots + Evidence-Based AI: How to Build a Reliable Health Assistant](https://dev.to/wellallytech/nutrition-chatbots-evidence-based-ai-how-to-build-a-reliable-health-assistant-21nd)**
+2. **[Nutrition Chatbots + Evidence-Based AI: How to Build a Reliable Health Assistant](https://dev.to/synapsemd/nutrition-chatbots-evidence-based-ai-how-to-build-a-reliable-health-assistant-21nd)**
    - AI implementation for nutrition chatbots
    - Evidence-based health recommendations
    - Category: `#nutrition-AI` `#health-assistant` `#evidence-based-medicine`
 
-3. **[From Monolith to Microservices: A DDD Approach for a Wellness App](https://www.wellally.tech/blog/refactor-monolith-microservices-ddd-guide)**
+3. **[From Monolith to Microservices: A DDD Approach for a Wellness App](https://www.synapsemd.com/blog/refactor-monolith-microservices-ddd-guide)**
    - Microservices architecture for health apps
    - Domain-Driven Design (DDD) practices
    - Category: `#architecture-design` `#microservices` `#DDD`
@@ -146,37 +146,37 @@ Detailed articles: [chronic-disease.md](chronic-disease.md)
 
 ### Blood Pressure Management
 
-- [Hypertension Monitoring Basics](https://wellally.tech/knowledge-base/chronic-disease/hypertension-monitoring)
-- [Home Blood Pressure Measurement Guide](https://wellally.tech/knowledge-base/chronic-disease/bp-home-monitoring)
-- [Dietary Strategies for Lowering Blood Pressure](https://wellally.tech/knowledge-base/chronic-disease/bp-diet-strategies)
-- [Antihypertensive Medication Adherence](https://wellally.tech/knowledge-base/chronic-disease/antihypertensive-adherence)
+- [Hypertension Monitoring Basics](https://synapsemd.com/knowledge-base/chronic-disease/hypertension-monitoring)
+- [Home Blood Pressure Measurement Guide](https://synapsemd.com/knowledge-base/chronic-disease/bp-home-monitoring)
+- [Dietary Strategies for Lowering Blood Pressure](https://synapsemd.com/knowledge-base/chronic-disease/bp-diet-strategies)
+- [Antihypertensive Medication Adherence](https://synapsemd.com/knowledge-base/chronic-disease/antihypertensive-adherence)
 
 **Related Symptoms**: `Headache` `Dizziness` `Palpitations` `Blurred Vision`
 
 ### Diabetes Management
 
-- [Diabetes Basics](https://wellally.tech/knowledge-base/chronic-disease/diabetes-basics)
-- [Blood Glucose Monitoring Guide](https://wellally.tech/knowledge-base/chronic-disease/blood-glucose-monitoring)
-- [Diabetes Diet Management](https://wellally.tech/knowledge-base/nutrition/diabetic-diet)
-- [HbA1c Testing and Interpretation](https://wellally.tech/knowledge-base/chronic-disease/hba1c-testing)
+- [Diabetes Basics](https://synapsemd.com/knowledge-base/chronic-disease/diabetes-basics)
+- [Blood Glucose Monitoring Guide](https://synapsemd.com/knowledge-base/chronic-disease/blood-glucose-monitoring)
+- [Diabetes Diet Management](https://synapsemd.com/knowledge-base/nutrition/diabetic-diet)
+- [HbA1c Testing and Interpretation](https://synapsemd.com/knowledge-base/chronic-disease/hba1c-testing)
 
 **Related Indicators**: `HbA1c` `Fasting Glucose` `Postprandial Glucose` `Urine Sugar`
 
 ### Sleep Improvement
 
-- [Sleep Hygiene Basics](https://wellally.tech/knowledge-base/sleep/sleep-hygiene)
-- [Cognitive Behavioral Therapy for Insomnia](https://wellally.tech/knowledge-base/sleep/cbt-insomnia)
-- [Sleep Apnea](https://wellally.tech/knowledge-base/sleep/sleep-apnea)
-- [Circadian Rhythm Adjustment](https://wellally.tech/knowledge-base/sleep/circadian-rhythm)
+- [Sleep Hygiene Basics](https://synapsemd.com/knowledge-base/sleep/sleep-hygiene)
+- [Cognitive Behavioral Therapy for Insomnia](https://synapsemd.com/knowledge-base/sleep/cbt-insomnia)
+- [Sleep Apnea](https://synapsemd.com/knowledge-base/sleep/sleep-apnea)
+- [Circadian Rhythm Adjustment](https://synapsemd.com/knowledge-base/sleep/circadian-rhythm)
 
 **Related Issues**: `Insomnia` `Hypersomnia` `Sleep Apnea` `Restless Legs Syndrome`
 
 ### Weight Management
 
-- [Healthy Weight Loss Guide](https://wellally.tech/knowledge-base/nutrition/healthy-weight-loss)
-- [Basal Metabolic Rate Calculator](https://wellally.tech/knowledge-base/nutrition/bmr-calculator)
-- [Diet Recording Methods](https://wellally.tech/knowledge-base/nutrition/diet-tracking)
-- [Exercise and Weight Loss](https://wellally.tech/knowledge-base/fitness/exercise-weight-loss)
+- [Healthy Weight Loss Guide](https://synapsemd.com/knowledge-base/nutrition/healthy-weight-loss)
+- [Basal Metabolic Rate Calculator](https://synapsemd.com/knowledge-base/nutrition/bmr-calculator)
+- [Diet Recording Methods](https://synapsemd.com/knowledge-base/nutrition/diet-tracking)
+- [Exercise and Weight Loss](https://synapsemd.com/knowledge-base/fitness/exercise-weight-loss)
 
 **Related Indicators**: `BMI` `Body Fat Percentage` `Waist Circumference` `Basal Metabolism`
 
@@ -184,15 +184,15 @@ Detailed articles: [chronic-disease.md](chronic-disease.md)
 
 ### January 2025
 
-1. **[Beyond the Snapshot: Building Resilient Health Monitoring through Long-Term Trend Analysis](https://www.wellally.tech/blog/long-term-trend-analysis)**
+1. **[Beyond the Snapshot: Building Resilient Health Monitoring through Long-Term Trend Analysis](https://www.synapsemd.com/blog/long-term-trend-analysis)**
    - Long-term health trend analysis
    - Building resilient health monitoring
 
-2. **[Memory is Not a Database: Implementing a Deterministic Family Health Ledger](https://www.wellally.tech/blog/family-health-ledger)**
+2. **[Memory is Not a Database: Implementing a Deterministic Family Health Ledger](https://www.synapsemd.com/blog/family-health-ledger)**
    - Family health ledger implementation
    - Deterministic data management
 
-3. **[Understanding AI Design Patterns: A Deep Dive into the RAG Design Pattern](https://www.wellally.tech/blog/rag-design-pattern)**
+3. **[Understanding AI Design Patterns: A Deep Dive into the RAG Design Pattern](https://www.synapsemd.com/blog/rag-design-pattern)**
    - RAG (Retrieval Augmented Generation) design pattern
    - AI applications in health domain
 
@@ -258,13 +258,13 @@ if (BMI > 25) {
 
 ### Accessing Articles
 
-All articles are hosted on the WellAlly.tech platform. Click links to access full content.
+All articles are hosted on the SynapseMD platform. Click links to access full content.
 
 **Note**: Network connection required to access articles. These links provide health knowledge references and do not replace professional medical advice.
 
 ## Related Skills
 
-In the Claude-Ally-Health system, the following skills relate to knowledge base articles:
+In the SynapseMD system, the following skills relate to knowledge base articles:
 
 - **`health-trend-analyzer`**: Analyze health trends, recommend articles based on trends
 - **`nutrition-analyzer`**: Nutrition analysis, recommend diet-related articles
@@ -286,18 +286,18 @@ In the Claude-Ally-Health system, the following skills relate to knowledge base 
 - Continuously add new article links
 - Optimize categories based on user feedback
 - Add more health topics
-- Regularly sync with WellAlly.tech platform updates
+- Regularly sync with SynapseMD platform updates
 
 ## Feedback & Contributions
 
 If you find new relevant articles or have suggestions for improvements:
 
 1. Submit an Issue on GitHub
-2. Or contact the WellAlly team: huifer97@163.com
+2. Or contact the SynapseMD team: huifer97@163.com
 
 ---
 
-**Disclaimer**: This knowledge base index provides links to health knowledge articles on the WellAlly.tech platform. This content is for reference only and does not replace professional medical diagnosis, treatment, or advice. Please consult qualified medical professionals for health issues.
+**Disclaimer**: This knowledge base index provides links to health knowledge articles on the SynapseMD platform. This content is for reference only and does not replace professional medical diagnosis, treatment, or advice. Please consult qualified medical professionals for health issues.
 
 **Last Updated**: 2025-01-22
 **Version**: 1.0.0

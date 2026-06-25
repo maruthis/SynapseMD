@@ -1,6 +1,6 @@
 # External Data Sources Documentation
 
-This document describes the various external health data sources supported by the wellally-tech skill and their integration methods.
+This document describes the various external health data sources supported by the synapsemd skill and their integration methods.
 
 ## Table of Contents
 

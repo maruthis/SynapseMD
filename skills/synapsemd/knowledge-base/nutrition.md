@@ -1,6 +1,6 @@
-# Nutrition & Diet - WellAlly Knowledge Base
+# Nutrition & Diet - SynapseMD Knowledge Base
 
-This page compiles articles and resources related to nutrition and diet management on the WellAlly.tech platform.
+This page compiles articles and resources related to nutrition and diet management on the SynapseMD platform.
 
 ## Core Topics
 
@@ -22,34 +22,34 @@ This page compiles articles and resources related to nutrition and diet manageme
 - Dietary fiber
 - Water intake
 
-## WellAlly Platform Resources
+## SynapseMD Platform Resources
 
 ### Knowledge Base Articles
 
 **Basic Nutrition**
-- Nutrition basics: https://wellally.tech/knowledge-base/nutrition/nutrition-basics
-- Macronutrients guide: https://wellally.tech/knowledge-base/nutrition/macronutrients
-- Micronutrients guide: https://wellally.tech/knowledge-base/nutrition/micronutrients
+- Nutrition basics: https://synapsemd.com/knowledge-base/nutrition/nutrition-basics
+- Macronutrients guide: https://synapsemd.com/knowledge-base/nutrition/macronutrients
+- Micronutrients guide: https://synapsemd.com/knowledge-base/nutrition/micronutrients
 
 **Diet Tracking**
-- How to track your diet: https://wellally.tech/knowledge-base/nutrition/diet-tracking
-- Using the food database: https://wellally.tech/knowledge-base/nutrition/food-database
-- Reading nutrition labels: https://wellally.tech/knowledge-base/nutrition/reading-labels
+- How to track your diet: https://synapsemd.com/knowledge-base/nutrition/diet-tracking
+- Using the food database: https://synapsemd.com/knowledge-base/nutrition/food-database
+- Reading nutrition labels: https://synapsemd.com/knowledge-base/nutrition/reading-labels
 
 **Weight Management**
-- Healthy weight loss strategies: https://wellally.tech/knowledge-base/nutrition/healthy-weight-loss
-- BMR calculator: https://wellally.tech/knowledge-base/nutrition/bmr-calculator
-- Energy balance principles: https://wellally.tech/knowledge-base/nutrition/energy-balance
+- Healthy weight loss strategies: https://synapsemd.com/knowledge-base/nutrition/healthy-weight-loss
+- BMR calculator: https://synapsemd.com/knowledge-base/nutrition/bmr-calculator
+- Energy balance principles: https://synapsemd.com/knowledge-base/nutrition/energy-balance
 
 **Special Diets**
-- Diabetic diet: https://wellally.tech/knowledge-base/nutrition/diabetic-diet
-- Low-sodium diet: https://wellally.tech/knowledge-base/nutrition/low-sodium-diet
-- Low-fat diet: https://wellally.tech/knowledge-base/nutrition/low-fat-diet
-- Vegetarian nutrition: https://wellally.tech/knowledge-base/nutrition/vegetarian-nutrition
+- Diabetic diet: https://synapsemd.com/knowledge-base/nutrition/diabetic-diet
+- Low-sodium diet: https://synapsemd.com/knowledge-base/nutrition/low-sodium-diet
+- Low-fat diet: https://synapsemd.com/knowledge-base/nutrition/low-fat-diet
+- Vegetarian nutrition: https://synapsemd.com/knowledge-base/nutrition/vegetarian-nutrition
 
 ### Related Feature Modules
 
-The WellAlly platform provides the following nutrition management features:
+The SynapseMD platform provides the following nutrition management features:
 
 1. **Diet Tracker**
    - Daily meal recording
@@ -71,47 +71,47 @@ The WellAlly platform provides the following nutrition management features:
 ### By Health Condition
 
 **Hypertension**
-- DASH diet guide: https://wellally.tech/knowledge-base/nutrition/dash-diet
-- Low-sodium diet tips: https://wellally.tech/knowledge-base/nutrition/low-sodium-tips
-- Blood pressure lowering foods: https://wellally.tech/knowledge-base/nutrition/bp-lowering-foods
+- DASH diet guide: https://synapsemd.com/knowledge-base/nutrition/dash-diet
+- Low-sodium diet tips: https://synapsemd.com/knowledge-base/nutrition/low-sodium-tips
+- Blood pressure lowering foods: https://synapsemd.com/knowledge-base/nutrition/bp-lowering-foods
 
 **Diabetes**
-- Carbohydrate counting: https://wellally.tech/knowledge-base/nutrition/carb-counting
-- Glycemic index (GI) explained: https://wellally.tech/knowledge-base/nutrition/glycemic-index
-- Diabetes diet principles: https://wellally.tech/knowledge-base/nutrition/diabetes-diet-principles
+- Carbohydrate counting: https://synapsemd.com/knowledge-base/nutrition/carb-counting
+- Glycemic index (GI) explained: https://synapsemd.com/knowledge-base/nutrition/glycemic-index
+- Diabetes diet principles: https://synapsemd.com/knowledge-base/nutrition/diabetes-diet-principles
 
 **High Cholesterol**
-- Cholesterol-lowering diet guide: https://wellally.tech/knowledge-base/nutrition/cholesterol-lowering-diet
-- Healthy fat choices: https://wellally.tech/knowledge-base/nutrition/healthy-fats
-- Dietary fiber and cholesterol: https://wellally.tech/knowledge-base/nutrition/fiber-cholesterol
+- Cholesterol-lowering diet guide: https://synapsemd.com/knowledge-base/nutrition/cholesterol-lowering-diet
+- Healthy fat choices: https://synapsemd.com/knowledge-base/nutrition/healthy-fats
+- Dietary fiber and cholesterol: https://synapsemd.com/knowledge-base/nutrition/fiber-cholesterol
 
 **Obesity/Overweight**
-- Weight loss diet strategies: https://wellally.tech/knowledge-base/nutrition/weight-loss-diet
-- Hunger control: https://wellally.tech/knowledge-base/nutrition/hunger-control
-- Long-term weight maintenance: https://wellally.tech/knowledge-base/nutrition/weight-maintenance
+- Weight loss diet strategies: https://synapsemd.com/knowledge-base/nutrition/weight-loss-diet
+- Hunger control: https://synapsemd.com/knowledge-base/nutrition/hunger-control
+- Long-term weight maintenance: https://synapsemd.com/knowledge-base/nutrition/weight-maintenance
 
 ### By Nutrient
 
 **Protein**
-- Protein intake guide: https://wellally.tech/knowledge-base/nutrition/protein-guide
-- High-quality protein sources: https://wellally.tech/knowledge-base/nutrition/protein-sources
-- Exercise and protein: https://wellally.tech/knowledge-base/nutrition/protein-exercise
+- Protein intake guide: https://synapsemd.com/knowledge-base/nutrition/protein-guide
+- High-quality protein sources: https://synapsemd.com/knowledge-base/nutrition/protein-sources
+- Exercise and protein: https://synapsemd.com/knowledge-base/nutrition/protein-exercise
 
 **Dietary Fiber**
-- Importance of dietary fiber: https://wellally.tech/knowledge-base/nutrition/fiber-importance
-- High-fiber foods: https://wellally.tech/knowledge-base/nutrition/high-fiber-foods
-- Dietary fiber and digestion: https://wellally.tech/knowledge-base/nutrition/fiber-digestion
+- Importance of dietary fiber: https://synapsemd.com/knowledge-base/nutrition/fiber-importance
+- High-fiber foods: https://synapsemd.com/knowledge-base/nutrition/high-fiber-foods
+- Dietary fiber and digestion: https://synapsemd.com/knowledge-base/nutrition/fiber-digestion
 
 **Vitamins and Minerals**
-- Complete vitamin guide: https://wellally.tech/knowledge-base/nutrition/vitamins-guide
-- Complete mineral guide: https://wellally.tech/knowledge-base/nutrition/minerals-guide
-- Nutritional supplements: https://wellally.tech/knowledge-base/nutrition/supplements-guide
+- Complete vitamin guide: https://synapsemd.com/knowledge-base/nutrition/vitamins-guide
+- Complete mineral guide: https://synapsemd.com/knowledge-base/nutrition/minerals-guide
+- Nutritional supplements: https://synapsemd.com/knowledge-base/nutrition/supplements-guide
 
 ## Nutrition Assessment Tools
 
 ### Nutritional Status Assessment
 
-Use the nutrition analysis features of the Claude-Ally-Health system:
+Use the nutrition analysis features of the SynapseMD system:
 
 ```bash
 # Use the nutrition command to record diet
@@ -156,7 +156,7 @@ A: Use the Mifflin-St Jeor formula:
 
 **Q: How to accurately track diet?**
 A:
-1. Use WellAlly's food database
+1. Use SynapseMD's food database
 2. Record food and portions for each meal
 3. Use a kitchen scale for weighing
 4. Record cooking methods
@@ -207,10 +207,10 @@ Nutrition-related data is saved in:
 
 ## Related Articles
 
-### WellAlly Blog
+### SynapseMD Blog
 
-- [Nutrition Chatbots and AI](https://dev.to/wellallytech/nutrition-chatbots-evidence-based-ai-how-to-build-a-reliable-health-assistant-21nd)
-- [Nutritional Data Analysis Methods](https://wellally.tech/blog/nutritional-data-analysis)
+- [Nutrition Chatbots and AI](https://dev.to/synapsemd/nutrition-chatbots-evidence-based-ai-how-to-build-a-reliable-health-assistant-21nd)
+- [Nutritional Data Analysis Methods](https://synapsemd.com/blog/nutritional-data-analysis)
 
 ### External Resources
 
@@ -227,7 +227,7 @@ Nutrition-related data is saved in:
 
 ---
 
-**Disclaimer**: The links on this page point to nutrition knowledge articles on the WellAlly.tech platform. This content is for reference only and does not replace the advice of professional nutritionists or doctors. If you have special nutritional needs, please consult a qualified nutritionist.
+**Disclaimer**: The links on this page point to nutrition knowledge articles on the SynapseMD platform. This content is for reference only and does not replace the advice of professional nutritionists or doctors. If you have special nutritional needs, please consult a qualified nutritionist.
 
 **Last Updated**: 2025-01-22
 **Categories**: #nutrition #diet #weight-management #healthy-eating

@@ -1,12 +1,12 @@
 {
-  "name": "wellally-health",
+  "name": "synapsemd",
   "version": "2.0.0",
   "description": "A comprehensive personal health information management system powered by Claude AI - featuring 28+ interconnected health modules for intelligent medical data tracking and analysis.",
   "type": "module",
   "author": {
-    "name": "WellAlly Tech",
+    "name": "SynapseMD",
     "email": "huifer97@163.com",
-    "url": "https://www.wellally.tech"
+    "url": "https://www.synapsemd.com"
   },
   "maintainers": [
     {
@@ -17,12 +17,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/huifer/WellAlly-health.git"
+    "url": "git+https://github.com/huifer/SynapseMD.git"
   },
   "bugs": {
-    "url": "https://github.com/huifer/WellAlly-health/issues"
+    "url": "https://github.com/huifer/SynapseMD/issues"
   },
-  "homepage": "https://www.wellally.tech",
+  "homepage": "https://www.synapsemd.com",
   "keywords": [
     "health",
     "personal-health-record",
@@ -62,7 +62,7 @@
     "build": "echo 'Building project...' && exit 0",
     "clean": "rm -rf node_modules dist .nyc_output .swarm .claude-flow",
     "preinstall": "echo 'Ensure Python 3.8+ is installed for health report generation'",
-    "postinstall": "echo 'WellAlly Health installed successfully! Visit https://www.wellally.tech for documentation.'",
+    "postinstall": "echo 'SynapseMD installed successfully! Visit https://www.synapsemd.com for documentation.'",
     "release": "echo 'Creating release...' && exit 0",
     "docs": "echo 'Generating documentation...' && exit 0"
   },
@@ -81,8 +81,8 @@
     "LICENSE"
   ],
   "config": {
-    "project_name": "WellAlly-Health",
-    "project_url": "https://github.com/huifer/WellAlly-health"
+    "project_name": "SynapseMD",
+    "project_url": "https://github.com/huifer/SynapseMD"
   },
   "devDependencies": {},
   "dependencies": {},

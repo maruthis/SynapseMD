@@ -287,4 +287,4 @@ A: Occasional gum bleeding may be caused by brushing too hard, but frequent blee
 
 **Version**: v1.0.0
 **Last Updated**: 2025-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

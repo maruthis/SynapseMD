@@ -469,4 +469,4 @@ A: Individuals can: understand risks in the work environment, correctly use prot
 
 **Version**: v1.0.0
 **Last Updated**: 2025-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

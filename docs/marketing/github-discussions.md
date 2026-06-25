@@ -1,15 +1,15 @@
 # GitHub Discussions Templates
 
-## Welcome to the Claude-Ally-Health Community!
+## Welcome to the SynapseMD Community!
 
-This is the place to discuss the **Claude-Ally-Health** project - a personal health management system based on Claude Code.
+This is the place to discuss the **SynapseMD** project - a personal health management system based on Claude Code.
 
 ## Quick Links
 
-- 📖 [Documentation](https://github.com/huifer/Claude-Ally-Health#readme)
-- 🐛 [Report Issues](https://github.com/huifer/Claude-Ally-Health/issues)
-- 💡 [Feature Requests](https://github.com/huifer/Claude-Ally-Health/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
-- 📝 [Contribution Guide](https://github.com/huifer/Claude-Ally-Health/blob/main/CONTRIBUTING.md)
+- 📖 [Documentation](https://github.com/huifer/SynapseMD#readme)
+- 🐛 [Report Issues](https://github.com/huifer/SynapseMD/issues)
+- 💡 [Feature Requests](https://github.com/huifer/SynapseMD/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+- 📝 [Contribution Guide](https://github.com/huifer/SynapseMD/blob/main/CONTRIBUTING.md)
 
 ## Discussion Categories
 
@@ -60,7 +60,7 @@ We welcome all forms of contribution:
 - 🌍 Help with translation
 - 💬 Answer community questions
 
-See the [Contribution Guide](https://github.com/huifer/Claude-Ally-Health/blob/main/CONTRIBUTING.md) for more information.
+See the [Contribution Guide](https://github.com/huifer/SynapseMD/blob/main/CONTRIBUTING.md) for more information.
 
 ---
 

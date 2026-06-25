@@ -191,4 +191,4 @@ Postpartum recovery tracking module, with comprehensive focus on physical and me
 
 **Document Version**: v2.0
 **Last Updated**: 2026-01-01
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

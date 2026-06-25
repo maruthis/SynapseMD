@@ -714,4 +714,4 @@ A: It's recommended to tell your therapist. The data you record can help the the
 
 **Version**: v1.0.0
 **Last updated**: 2025-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

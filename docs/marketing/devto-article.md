@@ -1,6 +1,6 @@
 # Building a Personal Health System with Claude Code CLI
 
-![Claude-Ally-Health Banner](https://via.placeholder.com/1000x400/000000/FFFFFF?text=Claude-Ally-Health)
+![SynapseMD Banner](https://via.placeholder.com/1000x400/000000/FFFFFF?text=SynapseMD)
 
 ## Introduction
 
@@ -11,7 +11,7 @@ I wanted to build a personal health management system that:
 2. **Leverages AI** - intelligent analysis of my health data
 3. **Works like I do** - command-line first, automation-friendly
 
-Enter **Claude-Ally-Health** - a personal health information system powered by Claude Code CLI.
+Enter **SynapseMD** - a personal health information system powered by Claude Code CLI.
 
 ## What is Claude Code?
 
@@ -139,8 +139,8 @@ The consultation system uses a coordinator pattern:
 
 ```bash
 # Clone the repository
-git clone https://github.com/huifer/Claude-Ally-Health.git
-cd Claude-Ally-Health/my-his
+git clone https://github.com/huifer/SynapseMD.git
+cd SynapseMD/my-his
 
 # Open in Claude Code
 claude-code .
@@ -171,7 +171,7 @@ The answer, so far, is: **Very well, with the right tools.**
 
 Claude Code's extensibility makes it possible to build sophisticated domain-specific tools. Whether it's health data, project management, or something entirely different - the Skill system lets you mold AI to your needs.
 
-**Check it out:** [GitHub](https://github.com/huifer/Claude-Ally-Health)
+**Check it out:** [GitHub](https://github.com/huifer/SynapseMD)
 
 **Star it if you find it interesting!** ⭐
 
@@ -181,6 +181,6 @@ Claude Code's extensibility makes it possible to build sophisticated domain-spec
 
 ## Links
 
-- [GitHub Repository](https://github.com/huifer/Claude-Ally-Health)
-- [Documentation](https://github.com/huifer/Claude-Ally-Health#readme)
-- [Contributing Guidelines](https://github.com/huifer/Claude-Ally-Health/blob/main/CONTRIBUTING.md)
+- [GitHub Repository](https://github.com/huifer/SynapseMD)
+- [Documentation](https://github.com/huifer/SynapseMD#readme)
+- [Contributing Guidelines](https://github.com/huifer/SynapseMD/blob/main/CONTRIBUTING.md)

@@ -1,6 +1,6 @@
-# Fitness & Exercise - WellAlly Knowledge Base
+# Fitness & Exercise - SynapseMD Knowledge Base
 
-This page compiles articles and resources related to fitness and exercise management on the WellAlly.tech platform.
+This page compiles articles and resources related to fitness and exercise management on the SynapseMD platform.
 
 ## Core Topics
 
@@ -23,35 +23,35 @@ This page compiles articles and resources related to fitness and exercise manage
 - Exercise and sleep
 - Exercise and mental health
 
-## WellAlly Platform Resources
+## SynapseMD Platform Resources
 
 ### Knowledge Base Articles
 
 **Basic Exercise Knowledge**
-- Exercise basics: https://wellally.tech/knowledge-base/fitness/exercise-basics
-- Exercise intensity assessment: https://wellally.tech/knowledge-base/fitness/exercise-intensity
-- Types of exercise: https://wellally.tech/knowledge-base/fitness/types-of-exercise
+- Exercise basics: https://synapsemd.com/knowledge-base/fitness/exercise-basics
+- Exercise intensity assessment: https://synapsemd.com/knowledge-base/fitness/exercise-intensity
+- Types of exercise: https://synapsemd.com/knowledge-base/fitness/types-of-exercise
 
 **Exercise Tracking**
-- Step tracking guide: https://wellally.tech/knowledge-base/fitness/step-tracking
-- Heart rate monitoring: https://wellally.tech/knowledge-base/fitness/heart-rate-monitoring
-- Active minutes recording: https://wellally.tech/knowledge-base/fitness/active-minutes
+- Step tracking guide: https://synapsemd.com/knowledge-base/fitness/step-tracking
+- Heart rate monitoring: https://synapsemd.com/knowledge-base/fitness/heart-rate-monitoring
+- Active minutes recording: https://synapsemd.com/knowledge-base/fitness/active-minutes
 
 **Exercise and Health Management**
-- Exercise and weight loss: https://wellally.tech/knowledge-base/fitness/exercise-weight-loss
-- Exercise and heart health: https://wellally.tech/knowledge-base/fitness/exercise-heart-health
-- Exercise and sleep: https://wellally.tech/knowledge-base/fitness/exercise-sleep
-- Exercise and stress: https://wellally.tech/knowledge-base/fitness/exercise-stress
+- Exercise and weight loss: https://synapsemd.com/knowledge-base/fitness/exercise-weight-loss
+- Exercise and heart health: https://synapsemd.com/knowledge-base/fitness/exercise-heart-health
+- Exercise and sleep: https://synapsemd.com/knowledge-base/fitness/exercise-sleep
+- Exercise and stress: https://synapsemd.com/knowledge-base/fitness/exercise-stress
 
 **Training Plans**
-- Cardio exercise plans: https://wellally.tech/knowledge-base/fitness/cardio-plans
-- Strength training guide: https://wellally.tech/knowledge-base/fitness/strength-training
-- Flexibility training: https://wellally.tech/knowledge-base/fitness/flexibility-training
-- Balance training: https://wellally.tech/knowledge-base/fitness/balance-training
+- Cardio exercise plans: https://synapsemd.com/knowledge-base/fitness/cardio-plans
+- Strength training guide: https://synapsemd.com/knowledge-base/fitness/strength-training
+- Flexibility training: https://synapsemd.com/knowledge-base/fitness/flexibility-training
+- Balance training: https://synapsemd.com/knowledge-base/fitness/balance-training
 
 ### Related Feature Modules
 
-The WellAlly platform provides the following fitness management features:
+The SynapseMD platform provides the following fitness management features:
 
 1. **Activity Tracker**
    - Daily activity recording
@@ -76,50 +76,50 @@ The WellAlly platform provides the following fitness management features:
 ### By Goal
 
 **Weight Loss**
-- Weight loss exercise guide: https://wellally.tech/knowledge-base/fitness/weight-loss-exercise
-- Cardio exercise selection: https://wellally.tech/knowledge-base/fitness/cardio-for-weight-loss
-- HIIT training introduction: https://wellally.tech/knowledge-base/fitness/hiit-guide
+- Weight loss exercise guide: https://synapsemd.com/knowledge-base/fitness/weight-loss-exercise
+- Cardio exercise selection: https://synapsemd.com/knowledge-base/fitness/cardio-for-weight-loss
+- HIIT training introduction: https://synapsemd.com/knowledge-base/fitness/hiit-guide
 
 **Improve Fitness**
-- Endurance training basics: https://wellally.tech/knowledge-base/fitness/endurance-training
-- VO2max: https://wellally.tech/knowledge-base/fitness/vo2max
-- Fitness improvement plan: https://wellally.tech/knowledge-base/fitness/fitness-improvement
+- Endurance training basics: https://synapsemd.com/knowledge-base/fitness/endurance-training
+- VO2max: https://synapsemd.com/knowledge-base/fitness/vo2max
+- Fitness improvement plan: https://synapsemd.com/knowledge-base/fitness/fitness-improvement
 
 **Muscle Building**
-- Strength training introduction: https://wellally.tech/knowledge-base/fitness/strength-training-basics
-- Muscle growth principles: https://wellally.tech/knowledge-base/fitness/muscle-growth
-- Muscle building diet: https://wellally.tech/knowledge-base/fitness/muscle-building-diet
+- Strength training introduction: https://synapsemd.com/knowledge-base/fitness/strength-training-basics
+- Muscle growth principles: https://synapsemd.com/knowledge-base/fitness/muscle-growth
+- Muscle building diet: https://synapsemd.com/knowledge-base/fitness/muscle-building-diet
 
 **Improve Health**
-- Heart healthy exercise: https://wellally.tech/knowledge-base/fitness/heart-healthy-exercise
-- Blood pressure lowering exercise: https://wellally.tech/knowledge-base/fitness/bp-lowering-exercise
-- Blood sugar control exercise: https://wellally.tech/knowledge-base/fitness/blood-sugar-exercise
+- Heart healthy exercise: https://synapsemd.com/knowledge-base/fitness/heart-healthy-exercise
+- Blood pressure lowering exercise: https://synapsemd.com/knowledge-base/fitness/bp-lowering-exercise
+- Blood sugar control exercise: https://synapsemd.com/knowledge-base/fitness/blood-sugar-exercise
 
 ### By Exercise Type
 
 **Aerobic Exercise**
-- Running guide: https://wellally.tech/knowledge-base/fitness/running-guide
-- Walking plans: https://wellally.tech/knowledge-base/fitness/walking-plans
-- Swimming training: https://wellally.tech/knowledge-base/fitness/swimming-training
-- Cycling training: https://wellally.tech/knowledge-base/fitness/cycling-training
+- Running guide: https://synapsemd.com/knowledge-base/fitness/running-guide
+- Walking plans: https://synapsemd.com/knowledge-base/fitness/walking-plans
+- Swimming training: https://synapsemd.com/knowledge-base/fitness/swimming-training
+- Cycling training: https://synapsemd.com/knowledge-base/fitness/cycling-training
 
 **Strength Training**
-- Bodyweight training: https://wellally.tech/knowledge-base/fitness/bodyweight-training
-- Dumbbell training: https://wellally.tech/knowledge-base/fitness/dumbbell-training
-- Barbell training: https://wellally.tech/knowledge-base/fitness/barbell-training
-- Resistance band training: https://wellally.tech/knowledge-base/fitness/resistance-band-training
+- Bodyweight training: https://synapsemd.com/knowledge-base/fitness/bodyweight-training
+- Dumbbell training: https://synapsemd.com/knowledge-base/fitness/dumbbell-training
+- Barbell training: https://synapsemd.com/knowledge-base/fitness/barbell-training
+- Resistance band training: https://synapsemd.com/knowledge-base/fitness/resistance-band-training
 
 **Flexibility and Balance**
-- Stretching guide: https://wellally.tech/knowledge-base/fitness/stretching-guide
-- Yoga basics: https://wellally.tech/knowledge-base/fitness/yoga-basics
-- Pilates introduction: https://wellally.tech/knowledge-base/fitness/pilates-intro
-- Balance exercises: https://wellally.tech/knowledge-base/fitness/balance-exercises
+- Stretching guide: https://synapsemd.com/knowledge-base/fitness/stretching-guide
+- Yoga basics: https://synapsemd.com/knowledge-base/fitness/yoga-basics
+- Pilates introduction: https://synapsemd.com/knowledge-base/fitness/pilates-intro
+- Balance exercises: https://synapsemd.com/knowledge-base/fitness/balance-exercises
 
 ## Exercise Assessment Tools
 
 ### Exercise Capacity Assessment
 
-Use the exercise analysis features of the Claude-Ally-Health system:
+Use the exercise analysis features of the SynapseMD system:
 
 ```bash
 # Use the fitness command to record exercise
@@ -297,10 +297,10 @@ A: Older adults should:
 
 ## Related Articles
 
-### WellAlly Blog
+### SynapseMD Blog
 
-- [Exercise Data Analysis](https://wellally.tech/blog/exercise-data-analysis)
-- [Exercise and Mental Health](https://wellally.tech/blog/exercise-mental-health)
+- [Exercise Data Analysis](https://synapsemd.com/blog/exercise-data-analysis)
+- [Exercise and Mental Health](https://synapsemd.com/blog/exercise-mental-health)
 
 ### External Resources
 
@@ -317,7 +317,7 @@ A: Older adults should:
 
 ---
 
-**Disclaimer**: The links on this page point to fitness knowledge articles on the WellAlly.tech platform. This content is for reference only and does not replace the advice of professional fitness trainers or doctors. Before starting an exercise program, especially if you have chronic diseases or other health problems, please consult qualified professionals.
+**Disclaimer**: The links on this page point to fitness knowledge articles on the SynapseMD platform. This content is for reference only and does not replace the advice of professional fitness trainers or doctors. Before starting an exercise program, especially if you have chronic diseases or other health problems, please consult qualified professionals.
 
 **Last Updated**: 2025-01-22
 **Categories**: #fitness #exercise #activity #workout

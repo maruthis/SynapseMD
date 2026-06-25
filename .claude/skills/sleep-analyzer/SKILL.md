@@ -770,4 +770,4 @@ The analysis and recommendations provided by this skill are for reference only a
 
 **Skill Version**: v1.0
 **Created**: 2026-01-02
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

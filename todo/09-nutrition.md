@@ -142,4 +142,4 @@ The Nutrition Analysis module provides comprehensive nutritional intake records,
 
 **Document Version**: v2.0 (Completed)
 **Last Updated**: 2026-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

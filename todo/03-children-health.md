@@ -571,4 +571,4 @@ Child vaccination schedule management, including National Immunization Program (
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

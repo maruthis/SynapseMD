@@ -317,4 +317,4 @@ Please consult a doctor in the following situations:
 
 **Skill version**: v1.0
 **Last updated**: 2026-01-14
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

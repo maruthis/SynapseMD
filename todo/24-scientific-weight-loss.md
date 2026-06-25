@@ -1341,4 +1341,4 @@ Establish long-term maintenance strategies to prevent weight rebound.
 
 **Document Version**: v1.0
 **Last Updated**: 2025-12-31
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

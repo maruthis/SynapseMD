@@ -395,4 +395,4 @@ For extreme weight loss or eating disorders, please consult a doctor.
 
 **Version**: v1.0
 **Last Updated**: 2026-01-02
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

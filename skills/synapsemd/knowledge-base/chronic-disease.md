@@ -1,6 +1,6 @@
-# Chronic Disease Management - WellAlly Knowledge Base
+# Chronic Disease Management - SynapseMD Knowledge Base
 
-This page compiles articles and resources related to chronic disease management on the WellAlly.tech platform.
+This page compiles articles and resources related to chronic disease management on the SynapseMD platform.
 
 ## Core Topics
 
@@ -28,37 +28,37 @@ This page compiles articles and resources related to chronic disease management 
 - Medication management
 - Rehabilitation
 
-## WellAlly Platform Resources
+## SynapseMD Platform Resources
 
 ### Knowledge Base Articles
 
 **Hypertension**
-- Hypertension basics: https://wellally.tech/knowledge-base/chronic-disease/hypertension-basics
-- Blood pressure monitoring guide: https://wellally.tech/knowledge-base/chronic-disease/blood-pressure-monitoring
-- Home blood pressure measurement: https://wellally.tech/knowledge-base/chronic-disease/home-bp-monitoring
-- Blood pressure target setting: https://wellally.tech/knowledge-base/chronic-disease/bp-targets
+- Hypertension basics: https://synapsemd.com/knowledge-base/chronic-disease/hypertension-basics
+- Blood pressure monitoring guide: https://synapsemd.com/knowledge-base/chronic-disease/blood-pressure-monitoring
+- Home blood pressure measurement: https://synapsemd.com/knowledge-base/chronic-disease/home-bp-monitoring
+- Blood pressure target setting: https://synapsemd.com/knowledge-base/chronic-disease/bp-targets
 
 **Diabetes**
-- Diabetes basics: https://wellally.tech/knowledge-base/chronic-disease/diabetes-basics
-- Blood glucose monitoring guide: https://wellally.tech/knowledge-base/chronic-disease/blood-glucose-monitoring
-- HbA1c testing: https://wellally.tech/knowledge-base/chronic-disease/hba1c-testing
-- Diabetes complication screening: https://wellally.tech/knowledge-base/chronic-disease/diabetes-complications
+- Diabetes basics: https://synapsemd.com/knowledge-base/chronic-disease/diabetes-basics
+- Blood glucose monitoring guide: https://synapsemd.com/knowledge-base/chronic-disease/blood-glucose-monitoring
+- HbA1c testing: https://synapsemd.com/knowledge-base/chronic-disease/hba1c-testing
+- Diabetes complication screening: https://synapsemd.com/knowledge-base/chronic-disease/diabetes-complications
 
 **COPD**
-- COPD basics: https://wellally.tech/knowledge-base/chronic-disease/copd-basics
-- Lung function monitoring: https://wellally.tech/knowledge-base/chronic-disease/lung-function-monitoring
-- CAT score: https://wellally.tech/knowledge-base/chronic-disease/cat-score
-- COPD exacerbation prevention: https://wellally.tech/knowledge-base/chronic-disease/copd-exacerbation-prevention
+- COPD basics: https://synapsemd.com/knowledge-base/chronic-disease/copd-basics
+- Lung function monitoring: https://synapsemd.com/knowledge-base/chronic-disease/lung-function-monitoring
+- CAT score: https://synapsemd.com/knowledge-base/chronic-disease/cat-score
+- COPD exacerbation prevention: https://synapsemd.com/knowledge-base/chronic-disease/copd-exacerbation-prevention
 
 **Cardiovascular Disease**
-- Cardiovascular risk assessment: https://wellally.tech/knowledge-base/chronic-disease/cv-risk-assessment
-- Coronary artery disease management: https://wellally.tech/knowledge-base/chronic-disease/cad-management
-- Heart failure management: https://wellally.tech/knowledge-base/chronic-disease/heart-failure-management
-- Arrhythmia: https://wellally.tech/knowledge-base/chronic-disease/arrhythmia
+- Cardiovascular risk assessment: https://synapsemd.com/knowledge-base/chronic-disease/cv-risk-assessment
+- Coronary artery disease management: https://synapsemd.com/knowledge-base/chronic-disease/cad-management
+- Heart failure management: https://synapsemd.com/knowledge-base/chronic-disease/heart-failure-management
+- Arrhythmia: https://synapsemd.com/knowledge-base/chronic-disease/arrhythmia
 
 ### Related Feature Modules
 
-The WellAlly platform provides the following chronic disease management features:
+The SynapseMD platform provides the following chronic disease management features:
 
 1. **Hypertension Manager**
    - Blood pressure recording
@@ -89,79 +89,79 @@ The WellAlly platform provides the following chronic disease management features
 ### Hypertension Management
 
 **Blood Pressure Monitoring**
-- Proper blood pressure measurement: https://wellally.tech/knowledge-base/chronic-disease/proper-bp-measurement
-- Blood pressure monitor selection: https://wellally.tech/knowledge-base/chronic-disease/bp-monitor-selection
-- Measurement frequency recommendations: https://wellally.tech/knowledge-base/chronic-disease/bp-measurement-frequency
-- Blood pressure variability analysis: https://wellally.tech/knowledge-base/chronic-disease/bp-variability
+- Proper blood pressure measurement: https://synapsemd.com/knowledge-base/chronic-disease/proper-bp-measurement
+- Blood pressure monitor selection: https://synapsemd.com/knowledge-base/chronic-disease/bp-monitor-selection
+- Measurement frequency recommendations: https://synapsemd.com/knowledge-base/chronic-disease/bp-measurement-frequency
+- Blood pressure variability analysis: https://synapsemd.com/knowledge-base/chronic-disease/bp-variability
 
 **Lifestyle Intervention**
-- DASH diet: https://wellally.tech/knowledge-base/chronic-disease/dash-diet
-- Sodium reduction strategies: https://wellally.tech/knowledge-base/chronic-disease/sodium-reduction
-- Exercise for blood pressure: https://wellally.tech/knowledge-base/chronic-disease/exercise-bp
-- Weight and blood pressure: https://wellally.tech/knowledge-base/chronic-disease/weight-bp
+- DASH diet: https://synapsemd.com/knowledge-base/chronic-disease/dash-diet
+- Sodium reduction strategies: https://synapsemd.com/knowledge-base/chronic-disease/sodium-reduction
+- Exercise for blood pressure: https://synapsemd.com/knowledge-base/chronic-disease/exercise-bp
+- Weight and blood pressure: https://synapsemd.com/knowledge-base/chronic-disease/weight-bp
 
 **Medication Treatment**
-- Antihypertensive drug classes: https://wellally.tech/knowledge-base/chronic-disease/antihypertensive-classes
-- Medication adherence: https://wellally.tech/knowledge-base/chronic-disease/medication-adherence
-- Side effect management: https://wellally.tech/knowledge-base/chronic-disease/bp-med-side-effects
-- Combination therapy: https://wellally.tech/knowledge-base/chronic-disease/combo-therapy
+- Antihypertensive drug classes: https://synapsemd.com/knowledge-base/chronic-disease/antihypertensive-classes
+- Medication adherence: https://synapsemd.com/knowledge-base/chronic-disease/medication-adherence
+- Side effect management: https://synapsemd.com/knowledge-base/chronic-disease/bp-med-side-effects
+- Combination therapy: https://synapsemd.com/knowledge-base/chronic-disease/combo-therapy
 
 **Complication Prevention**
-- Target organ damage: https://wellally.tech/knowledge-base/chronic-disease/target-organ-damage
-- Cardiovascular risk assessment: https://wellally.tech/knowledge-base/chronic-disease/cv-risk-hypertension
-- Kidney protection: https://wellally.tech/knowledge-base/chronic-disease/kidney-protection
+- Target organ damage: https://synapsemd.com/knowledge-base/chronic-disease/target-organ-damage
+- Cardiovascular risk assessment: https://synapsemd.com/knowledge-base/chronic-disease/cv-risk-hypertension
+- Kidney protection: https://synapsemd.com/knowledge-base/chronic-disease/kidney-protection
 
 ### Diabetes Management
 
 **Blood Glucose Monitoring**
-- Self-monitoring of blood glucose (SMBG): https://wellally.tech/knowledge-base/chronic-disease/smbg-guide
-- Continuous glucose monitoring (CGM): https://wellally.tech/knowledge-base/chronic-disease/cgm-guide
-- Blood glucose targets: https://wellally.tech/knowledge-base/chronic-disease/glucose-targets
-- Blood glucose pattern recognition: https://wellally.tech/knowledge-base/chronic-disease/glucose-patterns
+- Self-monitoring of blood glucose (SMBG): https://synapsemd.com/knowledge-base/chronic-disease/smbg-guide
+- Continuous glucose monitoring (CGM): https://synapsemd.com/knowledge-base/chronic-disease/cgm-guide
+- Blood glucose targets: https://synapsemd.com/knowledge-base/chronic-disease/glucose-targets
+- Blood glucose pattern recognition: https://synapsemd.com/knowledge-base/chronic-disease/glucose-patterns
 
 **Dietary Management**
-- Diabetes diet principles: https://wellally.tech/knowledge-base/chronic-disease/diabetes-diet-principles
-- Carbohydrate counting: https://wellally.tech/knowledge-base/chronic-disease/carb-counting
-- Glycemic index: https://wellally.tech/knowledge-base/chronic-disease/glycemic-index
-- Postprandial glucose management: https://wellally.tech/knowledge-base/chronic-disease/postprandial-glucose
+- Diabetes diet principles: https://synapsemd.com/knowledge-base/chronic-disease/diabetes-diet-principles
+- Carbohydrate counting: https://synapsemd.com/knowledge-base/chronic-disease/carb-counting
+- Glycemic index: https://synapsemd.com/knowledge-base/chronic-disease/glycemic-index
+- Postprandial glucose management: https://synapsemd.com/knowledge-base/chronic-disease/postprandial-glucose
 
 **Exercise Therapy**
-- Exercise and blood glucose: https://wellally.tech/knowledge-base/chronic-disease/exercise-diabetes
-- Exercise safety for diabetes: https://wellally.tech/knowledge-base/chronic-disease/exercise-safety-diabetes
-- Exercise type selection: https://wellally.tech/knowledge-base/chronic-disease/exercise-types-diabetes
-- Exercise timing: https://wellally.tech/knowledge-base/chronic-disease/timing-exercise-diabetes
+- Exercise and blood glucose: https://synapsemd.com/knowledge-base/chronic-disease/exercise-diabetes
+- Exercise safety for diabetes: https://synapsemd.com/knowledge-base/chronic-disease/exercise-safety-diabetes
+- Exercise type selection: https://synapsemd.com/knowledge-base/chronic-disease/exercise-types-diabetes
+- Exercise timing: https://synapsemd.com/knowledge-base/chronic-disease/timing-exercise-diabetes
 
 **Complication Prevention**
-- Diabetic nephropathy: https://wellally.tech/knowledge-base/chronic-disease/diabetic-nephropathy
-- Diabetic retinopathy: https://wellally.tech/knowledge-base/chronic-disease/diabetic-retinopathy
-- Diabetic neuropathy: https://wellally.tech/knowledge-base/chronic-disease/diabetic-neuropathy
-- Foot care for diabetes: https://wellally.tech/knowledge-base/chronic-disease/foot-care-diabetes
+- Diabetic nephropathy: https://synapsemd.com/knowledge-base/chronic-disease/diabetic-nephropathy
+- Diabetic retinopathy: https://synapsemd.com/knowledge-base/chronic-disease/diabetic-retinopathy
+- Diabetic neuropathy: https://synapsemd.com/knowledge-base/chronic-disease/diabetic-neuropathy
+- Foot care for diabetes: https://synapsemd.com/knowledge-base/chronic-disease/foot-care-diabetes
 
 ### COPD Management
 
 **Symptom Management**
-- Dyspnea management: https://wellally.tech/knowledge-base/chronic-disease/dyspnea-management
-- Cough and sputum management: https://wellally.tech/knowledge-base/chronic-disease/cough-management
-- Breathing techniques: https://wellally.tech/knowledge-base/chronic-disease/breathing-techniques
-- Sputum clearance: https://wellally.tech/knowledge-base/chronic-disease/sputum-clearance
+- Dyspnea management: https://synapsemd.com/knowledge-base/chronic-disease/dyspnea-management
+- Cough and sputum management: https://synapsemd.com/knowledge-base/chronic-disease/cough-management
+- Breathing techniques: https://synapsemd.com/knowledge-base/chronic-disease/breathing-techniques
+- Sputum clearance: https://synapsemd.com/knowledge-base/chronic-disease/sputum-clearance
 
 **Exacerbation Prevention**
-- Trigger identification: https://wellally.tech/knowledge-base/chronic-disease/copd-triggers
-- Vaccinations: https://wellally.tech/knowledge-base/chronic-disease/copd-vaccinations
-- Early recognition of exacerbation: https://wellally.tech/knowledge-base/chronic-disease/exacerbation-early-recognition
-- COPD action plan: https://wellally.tech/knowledge-base/chronic-disease/copd-action-plan
+- Trigger identification: https://synapsemd.com/knowledge-base/chronic-disease/copd-triggers
+- Vaccinations: https://synapsemd.com/knowledge-base/chronic-disease/copd-vaccinations
+- Early recognition of exacerbation: https://synapsemd.com/knowledge-base/chronic-disease/exacerbation-early-recognition
+- COPD action plan: https://synapsemd.com/knowledge-base/chronic-disease/copd-action-plan
 
 **Rehabilitation Training**
-- Pulmonary rehabilitation: https://wellally.tech/knowledge-base/chronic-disease/pulmonary-rehab
-- Exercise training: https://wellally.tech/knowledge-base/chronic-disease/exercise-copd
-- Breathing training: https://wellally.tech/knowledge-base/chronic-disease/breathing-training
-- Energy conservation in daily activities: https://wellally.tech/knowledge-base/chronic-disease/energy-conservation
+- Pulmonary rehabilitation: https://synapsemd.com/knowledge-base/chronic-disease/pulmonary-rehab
+- Exercise training: https://synapsemd.com/knowledge-base/chronic-disease/exercise-copd
+- Breathing training: https://synapsemd.com/knowledge-base/chronic-disease/breathing-training
+- Energy conservation in daily activities: https://synapsemd.com/knowledge-base/chronic-disease/energy-conservation
 
 ## Chronic Disease Assessment Tools
 
 ### Hypertension Assessment
 
-Use the hypertension management features of the Claude-Ally-Health system:
+Use the hypertension management features of the SynapseMD system:
 
 ```bash
 # Use the hypertension command to manage hypertension
@@ -442,10 +442,10 @@ Use the COPD management features of the system:
 
 ## Related Articles
 
-### WellAlly Blog
+### SynapseMD Blog
 
-- [Chronic Disease Long-term Management](https://wellally.tech/blog/chronic-disease-management)
-- [Medication Adherence Strategies](https://wellally.tech/blog/medication-adherence)
+- [Chronic Disease Long-term Management](https://synapsemd.com/blog/chronic-disease-management)
+- [Medication Adherence Strategies](https://synapsemd.com/blog/medication-adherence)
 
 ### External Resources
 
@@ -465,7 +465,7 @@ Use the COPD management features of the system:
 
 ---
 
-**Disclaimer**: The links on this page point to chronic disease management knowledge articles on the WellAlly.tech platform. This content is for reference only and does not replace the diagnosis and treatment of professional doctors. Chronic disease management should be conducted under medical guidance.
+**Disclaimer**: The links on this page point to chronic disease management knowledge articles on the SynapseMD platform. This content is for reference only and does not replace the diagnosis and treatment of professional doctors. Chronic disease management should be conducted under medical guidance.
 
 **Last Updated**: 2025-01-22
 **Categories**: #chronic-disease #hypertension #diabetes #COPD

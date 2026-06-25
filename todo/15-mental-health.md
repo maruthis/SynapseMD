@@ -831,7 +831,7 @@ All implementations strictly follow medical safety principles:
 
 **Current Version**: v1.0.0
 **Last Updated**: 2025-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD
 **Status**: Production Ready ✓
 
 **File List**:
@@ -847,4 +847,4 @@ All implementations strictly follow medical safety principles:
 
 **Document Version**: v2.0 (Completed)
 **Last Updated**: 2025-01-08
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

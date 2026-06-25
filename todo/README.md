@@ -489,7 +489,7 @@ Each feature proposal document should include the following sections:
 
 ## Contact
 
-- **Project Maintainer**: WellAlly Tech
+- **Project Maintainer**: SynapseMD
 - **Issue Reporting**: GitHub Issues
 - **Feature Suggestions**: GitHub Discussions
 

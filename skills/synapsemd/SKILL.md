@@ -1,12 +1,12 @@
 ---
-name: wellally-tech
-description: Integrate digital health data sources (Apple Health, Fitbit, Oura Ring) and connect to WellAlly.tech knowledge base. Import external health device data, standardize to local format, and recommend relevant WellAlly.tech knowledge base articles based on health data. Support generic CSV/JSON import, provide intelligent article recommendations, and help users better manage personal health data.
+name: synapsemd
+description: Integrate digital health data sources (Apple Health, Fitbit, Oura Ring) and connect to SynapseMD knowledge base. Import external health device data, standardize to local format, and recommend relevant SynapseMD knowledge base articles based on health data. Support generic CSV/JSON import, provide intelligent article recommendations, and help users better manage personal health data.
 allowed-tools: Read, Grep, Glob, Write
 ---
 
-# WellAlly Digital Health Integration
+# SynapseMD Digital Health Integration
 
-Integrate multiple digital health data sources, connect to [WellAlly.tech](https://www.wellally.tech/) knowledge base, providing data import and knowledge reference for personal health management systems.
+Integrate multiple digital health data sources, connect to [SynapseMD](https://www.synapsemd.com/) knowledge base, providing data import and knowledge reference for personal health management systems.
 
 ## Core Features
 
@@ -16,10 +16,10 @@ Integrate multiple digital health data sources, connect to [WellAlly.tech](https
 - **Oura Ring**: API v2 data synchronization
 - **Generic Import**: CSV/JSON file import with field mapping
 
-### 2. WellAlly.tech Knowledge Base Integration
+### 2. SynapseMD Knowledge Base Integration
 - **Categorized Article Index**: Nutrition, fitness, sleep, mental health, chronic disease management
 - **Intelligent Recommendations**: Recommend relevant articles based on user health data
-- **URL References**: Provide direct links to [WellAlly.tech](https://www.wellally.tech/) platform
+- **URL References**: Provide direct links to [SynapseMD](https://www.synapsemd.com/) platform
 
 ### 3. Data Standardization
 - **Format Conversion**: Convert external data to local JSON format
@@ -45,10 +45,10 @@ Use this skill when users mention the following scenarios:
 - ✅ "How to import fitness tracker/smartwatch data"
 
 **Knowledge Base Query**:
-- ✅ "Articles about hypertension on WellAlly platform"
+- ✅ "Articles about hypertension on SynapseMD platform"
 - ✅ "Recommend some health management reading materials"
 - ✅ "Recommend articles based on my health data"
-- ✅ "WellAlly knowledge base articles about sleep"
+- ✅ "SynapseMD knowledge base articles about sleep"
 - ✅ "How to improve my blood pressure (check knowledge base)"
 
 **Data Management**:
@@ -62,7 +62,7 @@ Use this skill when users mention the following scenarios:
 
 Determine what the user wants:
 1. **Import Data**: Import data from external health platforms
-2. **Query Knowledge Base**: Find [WellAlly.tech](https://www.wellally.tech/) related articles
+2. **Query Knowledge Base**: Find [SynapseMD](https://www.synapsemd.com/) related articles
 3. **Get Recommendations**: Recommend articles based on health data
 4. **Data Management**: View or manage imported external data
 
@@ -162,7 +162,7 @@ Find relevant articles from knowledge base index:
 ```javascript
 function searchKnowledgeBase(topic) {
   // Read knowledge base index
-  const kbIndex = readFile('.claude/skills/wellally-tech/knowledge-base/index.md');
+  const kbIndex = readFile('.claude/skills/synapsemd/knowledge-base/index.md');
 
   // Find matching articles
   const articles = kbIndex.categories.filter(cat =>
@@ -180,13 +180,13 @@ const results = {
   articles: [
     {
       title: "Hypertension Monitoring and Management",
-      url: "https://wellally.tech/knowledge-base/chronic-disease/hypertension-monitoring",
+      url: "https://synapsemd.com/knowledge-base/chronic-disease/hypertension-monitoring",
       category: "Chronic Disease Management",
       description: "Learn how to effectively monitor and manage blood pressure"
     },
     {
       title: "Blood Pressure Lowering Strategies",
-      url: "https://wellally.tech/knowledge-base/chronic-disease/bp-lowering-strategies",
+      url: "https://synapsemd.com/knowledge-base/chronic-disease/bp-lowering-strategies",
       category: "Chronic Disease Management",
       description: "Improve blood pressure levels through lifestyle changes"
     }
@@ -319,13 +319,13 @@ Data Time Range: 2025-01-01 to 2025-01-22
 
 💡 Next Steps:
 • Use /health-trend to analyze imported data
-• Use /wellally-tech for personalized article recommendations
+• Use /synapsemd for personalized article recommendations
 ```
 
 ### Knowledge Base Query Output
 
 ```
-📚 WellAlly Knowledge Base Search Results
+📚 SynapseMD Knowledge Base Search Results
 
 Search Topic: Hypertension Management
 Articles Found: 2
@@ -334,12 +334,12 @@ Articles Found: 2
 
 1. Hypertension Monitoring and Management
    Category: Chronic Disease Management
-   Link: https://wellally.tech/knowledge-base/chronic-disease/hypertension-monitoring
+   Link: https://synapsemd.com/knowledge-base/chronic-disease/hypertension-monitoring
    Description: Learn how to effectively monitor and manage blood pressure
 
 2. Blood Pressure Lowering Strategies
    Category: Chronic Disease Management
-   Link: https://wellally.tech/knowledge-base/chronic-disease/bp-lowering-strategies
+   Link: https://synapsemd.com/knowledge-base/chronic-disease/bp-lowering-strategies
    Description: Improve blood pressure levels through lifestyle modifications
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -350,7 +350,7 @@ Articles Found: 2
 • Medication Adherence
 
 💡 Tips:
-Click links to visit [WellAlly.tech](https://www.wellally.tech/) platform for full articles
+Click links to visit [SynapseMD](https://www.synapsemd.com/) platform for full articles
 ```
 
 ### Intelligent Recommendation Output
@@ -368,13 +368,13 @@ Current Status: Average blood pressure 142/92 mmHg (elevated)
 
 Recommended Articles:
 1. Hypertension Monitoring and Management
-   https://wellally.tech/knowledge-base/chronic-disease/hypertension-monitoring
+   https://synapsemd.com/knowledge-base/chronic-disease/hypertension-monitoring
 
 2. Blood Pressure Lowering Strategies
-   https://wellally.tech/knowledge-base/chronic-disease/bp-lowering-strategies
+   https://synapsemd.com/knowledge-base/chronic-disease/bp-lowering-strategies
 
 3. Antihypertensive Medication Adherence Guide
-   https://wellally.tech/knowledge-base/chronic-disease/medication-adherence
+   https://synapsemd.com/knowledge-base/chronic-disease/medication-adherence
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -384,10 +384,10 @@ Current Status: Average sleep duration 5.8 hours (insufficient)
 
 Recommended Articles:
 1. Sleep Hygiene Basics
-   https://wellally.tech/knowledge-base/sleep/sleep-hygiene
+   https://synapsemd.com/knowledge-base/sleep/sleep-hygiene
 
 2. Improve Sleep Quality
-   https://wellally.tech/knowledge-base/sleep/sleep-quality-improvement
+   https://synapsemd.com/knowledge-base/sleep/sleep-quality-improvement
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -397,12 +397,12 @@ Current Status: Daily average steps 9,234 (good)
 
 Related Reading:
 1. Maintain Active Lifestyle
-   https://wellally.tech/knowledge-base/fitness/active-lifestyle
+   https://synapsemd.com/knowledge-base/fitness/active-lifestyle
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Summary: 5 related articles recommended
-Visit [WellAlly.tech](https://www.wellally.tech/) Knowledge Base for full content
+Visit [SynapseMD](https://www.synapsemd.com/) Knowledge Base for full content
 ```
 
 ## Data Sources
@@ -427,7 +427,7 @@ Visit [WellAlly.tech](https://www.wellally.tech/) Knowledge Base for full conten
 | `data/sleep/sleep-records.json` | Sleep records | Apple Health, Fitbit, Oura |
 | `data/fitness/recovery.json` | Recovery data | Oura Ring (readiness) |
 
-## WellAlly.tech Knowledge Base
+## SynapseMD Knowledge Base
 
 ### Knowledge Base Structure
 
@@ -634,7 +634,7 @@ import json
 **Output**: Execute import workflow, generate import report
 
 ### Example 2: Query Knowledge Base
-**User**: "WellAlly platform articles about sleep"
+**User**: "SynapseMD platform articles about sleep"
 **Output**: Return sleep-related knowledge base article links
 
 ### Example 3: Get Personalized Recommendations
@@ -663,9 +663,9 @@ import json
 
 ## Reference Resources
 
-- **WellAlly.tech**: https://www.wellally.tech/
-- **WellAlly Knowledge Base**: https://wellally.tech/knowledge-base/
-- **WellAlly Blog**: https://wellally.tech/blog/
+- **SynapseMD**: https://www.synapsemd.com/
+- **SynapseMD Knowledge Base**: https://synapsemd.com/knowledge-base/
+- **SynapseMD Blog**: https://synapsemd.com/blog/
 - **Apple HealthKit**: https://developer.apple.com/documentation/healthkit
 - **Fitbit API**: https://dev.fitbit.com/
 - **Oura Ring API**: https://cloud.ouraring.com/api/
@@ -678,8 +678,8 @@ A: No. Imported data will be appended to existing data, not overwritten. Duplica
 **Q: Can I import data from multiple platforms?**
 A: Yes. You can import data from Apple Health, Fitbit, Oura, and other platforms simultaneously, the system will merge all data.
 
-**Q: Are WellAlly.tech knowledge base articles offline?**
-A: No. Knowledge base articles are referenced via URLs, requiring network connection to access the [WellAlly.tech](https://www.wellally.tech/) platform.
+**Q: Are SynapseMD knowledge base articles offline?**
+A: No. Knowledge base articles are referenced via URLs, requiring network connection to access the [SynapseMD](https://www.synapsemd.com/) platform.
 
 **Q: Where are API credentials stored?**
 A: API credentials are encrypted and stored in local configuration files, not uploaded to any server.

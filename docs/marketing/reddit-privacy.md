@@ -14,7 +14,7 @@ As developers, we know how this works. Your health data is valuable. Very valuab
 
 ## A Different Approach
 
-I built **Claude-Ally-Health** - a personal health information system that:
+I built **SynapseMD** - a personal health information system that:
 
 ✅ **Never uploads to the cloud** - Everything stays on your machine
 ✅ **No account required** - It's your files on your disk
@@ -60,12 +60,12 @@ This project is my attempt to build a health management tool that:
 ## Try It Out
 
 ```bash
-git clone https://github.com/huifer/Claude-Ally-Health
-cd Claude-Ally-Health
+git clone https://github.com/huifer/SynapseMD
+cd SynapseMD
 # Follow README to set up Claude Code
 ```
 
-**GitHub**: https://github.com/huifer/Claude-Ally-Health
+**GitHub**: https://github.com/huifer/SynapseMD
 
 ---
 

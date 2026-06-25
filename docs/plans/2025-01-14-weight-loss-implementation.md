@@ -13,7 +13,7 @@
 ## Project Structure
 
 ```
-Claude-Ally-Health/
+SynapseMD/
 ├── .claude/
 │   ├── commands/
 │   │   ├── fitness.md          # Extended: add weightloss commands

@@ -523,4 +523,4 @@ Manage ophthalmic medications (integrated with the medication management system)
 
 **Command version**: v1.0
 **Creation date**: 2026-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD

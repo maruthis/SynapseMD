@@ -1110,4 +1110,4 @@ Personalized screening plan based on risk level:
 
 **Version**: v1.0.0
 **Last Updated**: 2025-01-06
-**Maintainer**: WellAlly Tech
+**Maintainer**: SynapseMD
