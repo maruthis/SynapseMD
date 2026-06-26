@@ -1,7 +1,7 @@
 # SynapseMD - Personal Health Information System
 
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
-[![Chinese](https://img.shields.io/badge/lang-Chinese-red.svg)](README.zh-CN.md)
+[![Chinese](https://img.shields.io/badge/lang-Chinese-red.svg)](mydocs/README.zh-CN.md)
 
 [![GitHub stars](https://img.shields.io/github/stars/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD)
 [![GitHub forks](https://img.shields.io/github/forks/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD)
@@ -91,8 +91,8 @@ my-his/
 
 ## Quick Navigation
 
-- 📖 [Complete User Guide](docs/user-guide.md) (Chinese) | [docs/user-guide.en.md](docs/user-guide.en.md) (English) - Detailed command usage instructions and examples
-- 📋 [Data Structure Specification](docs/data-structures.md) (Chinese) | [docs/data-structures.en.md](docs/data-structures.en.md) (English) - JSON data format and field descriptions
+- 📖 [Complete User Guide](docs/user-guide.md) — Detailed command usage instructions and examples
+- 📋 [Data Structure Specification](docs/data-structures.md) — JSON data format and field descriptions
 - 🔧 [Technical Implementation Details](docs/technical-details.md) (Chinese) - System architecture and technical details
 - ⚠️ [Safety Guidelines and Usage Limitations](docs/safety-guidelines.md) (Chinese) - Safety principles and disclaimer
 
@@ -131,7 +131,7 @@ my-his/
 | `/consult` | Multi-disciplinary consultation | Comprehensive analysis across 13 specialties |
 | `/specialist` | Single specialist consultation | Consult specific specialty experts |
 
-> 💡 For detailed usage, refer to [Complete User Guide](docs/user-guide.en.md)
+> 💡 For detailed usage, refer to [Complete User Guide](docs/user-guide.md)
 
 ## Technical Features
 

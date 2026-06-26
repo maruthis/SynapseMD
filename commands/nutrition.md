@@ -437,7 +437,7 @@ Oats are a highly nutrient-dense whole grain, suitable as a healthy staple food.
 
 **How it works**:
 1. **Food recognition**: System identifies food names from input
-2. **Database query**: Query `data/food-database.json` for nutritional data
+2. **Database query**: Query `data/reference/food-database.json` for nutritional data
 3. **Portion calculation**: Automatically calculate nutrients based on serving size
 4. **Cooking impact**: Consider the impact of cooking on nutrition
 5. **Auto-record**: Record nutritional data to log

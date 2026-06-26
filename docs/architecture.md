@@ -62,7 +62,8 @@ SynapseMD/
 │   └── test*.sh                # Shell: integration tests
 │
 ├── specialists/                # 18 medical specialty consultation templates
-├── todo/                       # Development roadmap (not shipped to users)
+├── mydocs/                     # Internal docs and development roadmap
+│   └── todo/                   # Not shipped to users
 ├── Report/                     # Output folder for generated health reports
 │
 ├── README.md
@@ -266,67 +267,62 @@ The project already has MCP integration configured (`claude-flow`, `ruv-swarm`).
 
 ## 6. Optimizing the Project Structure
 
-### Current Duplication Problem
+> **Status: Implemented.** The optimizations below are active in this repository.
 
-The root `commands/`, `skills/`, and `specialists/` directories are **manually copied** to `.claude/` on every change. This creates three risks:
-- Edits to root files don't propagate automatically → stale `.claude/` copies
-- Merge conflicts if both copies are edited independently
-- Doubled storage for the same content (~2.4 MB duplicated)
+### Duplication Problem (Resolved)
 
-### Recommended Solution: Symlinks
-
-Replace the `.claude/` copies with symlinks pointing to the root directories:
+The root `commands/`, `skills/`, and `specialists/` directories were manually copied to `.claude/`. This is now replaced with symlinks — a single source of truth with no sync step.
 
 ```bash
-# Remove copied directories
-rm -rf .claude/commands .claude/skills .claude/specialists
-
-# Replace with symlinks
-ln -s $(pwd)/commands .claude/commands
-ln -s $(pwd)/skills .claude/skills
-ln -s $(pwd)/specialists .claude/specialists
+.claude/commands    -> ../commands
+.claude/skills      -> ../skills
+.claude/specialists -> ../specialists
 ```
 
-After this, editing `commands/allergy.md` is immediately reflected in `.claude/commands/allergy.md` — no sync step needed.
-
-> **Note:** Verify that your Claude Code version supports symlinked command directories before switching.
-
-### Recommended Folder Layout (Optimized)
+### Current Folder Layout
 
 ```
 SynapseMD/
 │
 ├── .claude/
 │   ├── settings.local.json
-│   ├── commands  -> ../commands    (symlink)
-│   ├── skills    -> ../skills      (symlink)
-│   └── specialists -> ../specialists (symlink)
+│   ├── commands      -> ../commands    (symlink)
+│   ├── skills        -> ../skills      (symlink)
+│   └── specialists   -> ../specialists (symlink)
 │
-├── commands/                       # Source of truth
-├── skills/                         # Source of truth
-├── specialists/                    # Source of truth
+├── commands/                         # Source of truth
+├── skills/                           # Source of truth
+├── specialists/                      # Source of truth (flat .md files)
 │
-├── data/                           # Live user data (gitignored)
-│   └── (copied from data-example/ on first run)
+├── data/                             # Live user data (gitignored except reference/)
+│   ├── reference/                    # Committed read-only databases
+│   │   ├── food-database.json
+│   │   └── vaccine-database.json
+│   └── (copied from data-example/ via scripts/setup-data.sh)
 │
-├── data-example/                   # Templates and test fixtures only
+├── data-example/                     # Example tracker templates only
+├── mydocs/                           # Internal docs, roadmap, Chinese README
+│   └── todo/                         # Development roadmap (not shipped)
 │
-├── docs/                           # Documentation
-├── scripts/                        # Automation
-└── tests/                          # Rename todo/ test-related scripts here
+├── docs/                             # Shipped documentation
+├── scripts/                          # Automation (incl. setup-data.sh)
+└── platform/                         # Enterprise API (optional)
 ```
 
-### Additional Optimizations
+### Applied Optimizations
 
-1. **Gitignore `data/`** — user health data should never be committed. Add `data/` to `.gitignore` and only commit `data-example/` as fixtures.
+1. **Symlinks** — `.claude/` points to root `commands/`, `skills/`, `specialists/`.
+2. **Gitignore `data/`** — user health data excluded; `data/reference/` is committed.
+3. **Consolidated docs** — `user-guide.md` and `data-structures.md` are the canonical English docs (`.en` duplicates removed).
+4. **Moved `todo/`** — relocated to `mydocs/todo/` (internal roadmap, not part of shipped product).
+5. **Split reference databases** — `food-database.json`, `vaccine-database.json`, etc. live in `data/reference/`.
+6. **Normalized specialists** — both root and `.claude/specialists/` use flat `.md` files via symlink.
 
-2. **Consolidate duplicate `.md` pairs** — several docs exist in both Chinese and English (`user-guide.md` + `user-guide.en.md`, `data-structures.md` + `data-structures.en.md`). Since the project is now English-only, delete the Chinese versions and remove the `.en` suffix.
+**First-time data setup:**
 
-3. **Move `todo/` out of the repo** — `todo/` is a development roadmap, not part of the shipped product. Move it to a GitHub Project board or a private notes folder.
-
-4. **Split `data-example/` from test fixtures** — large reference databases (`food-database.json` 91 KB, `vaccine-database.json` 32 KB) should live in `data/` (static reference data), separate from example user tracker files. These databases are not user data — they're looked up read-only.
-
-5. **Normalize specialist mirroring** — `.claude/specialists/` contains subdirectories while `specialists/` contains flat `.md` files. Reconcile this by either converting both to flat files or both to subdirectories.
+```bash
+./scripts/setup-data.sh
+```
 
 ---
 

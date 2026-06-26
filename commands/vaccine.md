@@ -145,7 +145,7 @@ Extract from natural language:
 
 #### 2. Find Vaccine in Database
 
-Match the vaccine from `data/vaccine-database.json`:
+Match the vaccine from `data/reference/vaccine-database.json`:
 
 **Matching rules:**
 - Exact match: vaccine name is identical
@@ -865,7 +865,7 @@ Retrieve detailed vaccine information from the database.
 
 ### Data Structure
 
-**File path:** `data/vaccine-database.json`
+**File path:** `data/reference/vaccine-database.json`
 
 ```json
 {
@@ -1062,7 +1062,7 @@ Add to the global index `data/index.json`:
 ```json
 {
   "vaccination_records": "data/vaccinations.json",
-  "vaccine_database": "data/vaccine-database.json",
+  "vaccine_database": "data/reference/vaccine-database.json",
   "statistics": {
     "vaccination_count": 0
   }

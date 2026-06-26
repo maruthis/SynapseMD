@@ -1,7 +1,9 @@
 # ============================================================
 # MEDICAL DATA PRIVACY — never commit real patient data
 # ============================================================
-data/
+data/*
+!data/reference/
+!data/reference/**
 Report/
 Medical Report/
 emergency-cards/

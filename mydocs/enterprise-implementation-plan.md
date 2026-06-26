@@ -386,7 +386,7 @@ Once that path is safe, expand horizontally into FHIR migration, RAG, governance
 
 - [Enterprise Architecture Blueprint](../docs/enterprise-architecture.md)
 - [Architecture & Developer Guide](../docs/architecture.md)
-- [Implementation Roadmap](../todo/implementation-roadmap.md)
+- [Implementation Roadmap](../mydocs/todo/implementation-roadmap.md)
 
 ---
 

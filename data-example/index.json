@@ -3,7 +3,7 @@
   "radiation_records": "data/radiation-records.json",
   "allergy_records": "data/allergies.json",
   "vaccination_records": "data/vaccinations.json",
-  "vaccine_database": "data/vaccine-database.json",
+  "vaccine_database": "data/reference/vaccine-database.json",
   "interaction_db": "data/interactions/interaction-db.json",
   "interaction_logs": "data/interactions/interaction-logs",
   "cycle_tracker": "data/cycle-tracker.json",

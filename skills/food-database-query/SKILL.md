@@ -24,7 +24,7 @@ This skill provides comprehensive nutrition food database query functionality, s
 ## Data Sources
 
 ### Primary Database
-- **File**: `data/food-database.json`
+- **File**: `data/reference/food-database.json`
 - **Content**: Detailed nutrition data for 50 common foods
 - **Structure**: Each food contains 30+ nutrient indicators
 
@@ -763,7 +763,7 @@ RDA_FEMALE = {
 ## Technical Implementation
 
 ### File Locations
-- Database: `data/food-database.json`
+- Database: `data/reference/food-database.json`
 - Categories: `data/food-categories.json`
 - Commands: `.claude/commands/nutrition.md`
 - Skill: `.claude/skills/food-database-query/SKILL.md`

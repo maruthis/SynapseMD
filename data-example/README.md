@@ -10,9 +10,9 @@ This directory contains sample data files for the health tracking system.
 
 | Filename | Description | Purpose |
 |----------|-------------|---------|
-| [food-database.json](./food-database.json) | Food nutrition database | Nutrition data for 50 common foods |
-| [food-categories.json](./food-categories.json) | Food classification system | 10 major categories, 30+ subcategories |
-| [nutritional-reference.json](./nutritional-reference.json) | Nutrient reference values | RDA for various populations, special diet guidelines |
+| [food-database.json](../data/reference/food-database.json) | Food nutrition database | Nutrition data for 50 common foods |
+| [food-categories.json](../data/reference/food-categories.json) | Food classification system | 10 major categories, 30+ subcategories |
+| [nutritional-reference.json](../data/reference/nutritional-reference.json) | Nutrient reference values | RDA for various populations, special diet guidelines |
 | [nutrition-tracker.json](./nutrition-tracker.json) | Nutrition tracking main data | User nutrition goals and assessments |
 | [nutrition-logs/](./nutrition-logs/) | Nutrition log directory | Daily dietary records |
 
@@ -147,7 +147,7 @@ Detailed instructions on how to:
 
 Contributions to data improvements are welcome!
 
-1. Review [README-food-database.md](./README-food-database.md)
+1. Review [README-food-database.md](../data/reference/README-food-database.md)
 2. Prepare food data (use authoritative sources)
 3. Validate JSON format
 4. Submit a Pull Request

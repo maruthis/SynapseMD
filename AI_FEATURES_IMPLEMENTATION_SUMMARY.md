@@ -309,7 +309,7 @@ python3 scripts/ai_prediction.py
 6. `scripts/ai_prediction.py` - Risk prediction engine
 7. `scripts/generate_ai_report.py` - Report generator
 8. `scripts/test-ai-features.sh` - Test script
-9. `todo/21-ai-features.md` - Requirements document (updated)
+9. `mydocs/todo/21-ai-features.md` - Requirements document (updated)
 
 ---
 
@@ -356,7 +356,7 @@ python3 scripts/ai_prediction.py
 
 ### Documentation Maintenance
 
-- Requirements document: `todo/21-ai-features.md`
+- Requirements document: `mydocs/todo/21-ai-features.md`
 - Skill documentation: `.claude/skills/ai-analyzer/SKILL.md`
 - Command documentation: `.claude/commands/ai.md`
 - Implementation plan: `.claude/plans/curried-yawning-valiant.md`

@@ -12,7 +12,7 @@
 # SynapseMD
 
 [![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
-[![Chinese](https://img.shields.io/badge/lang-Chinese-red.svg)](README.zh-CN.md)
+[![Chinese](https://img.shields.io/badge/lang-Chinese-red.svg)](mydocs/README.zh-CN.md)
 [![GitHub stars](https://img.shields.io/github/stars/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -65,8 +65,8 @@ claude-code .
 
 ## 📖 Documentation
 
-- [User Guide](docs/user-guide.en.md)
-- [Data Structures](docs/data-structures.en.md)
+- [User Guide](docs/user-guide.md)
+- [Data Structures](docs/data-structures.md)
 - [Technical Details](docs/technical-details.md)
 - [API Reference](docs/api-reference.md)
 

@@ -613,17 +613,17 @@ def embed_clinical_document(text: str, doc_id: str, source: str) -> dict:
 ### Responsible AI Framework
 
 ```
-┌────────────────────────────────────────────────────────────┐
-│              Responsible AI Pillars                        │
-│                                                            │
-│  Fairness     │ Bias detection across age/gender/race      │
-│  Reliability  │ Confidence scores, uncertainty quantify    │
-│  Safety       │ Medical guardrails, harm detection         │
-│  Privacy      │ PHI anonymization (see §5)                 │
-│  Inclusiveness│ Multi-language, accessibility              │
-│  Transparency │ Explainability, reasoning traces           │
-│  Accountability│ Human-in-the-loop, audit trail            │
-└────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│              Responsible AI Pillars                          │
+│                                                              │
+│  Fairness       │ Bias detection across age/gender/race      │
+│  Reliability    │ Confidence scores, uncertainty quantify    │
+│  Safety         │ Medical guardrails, harm detection         │
+│  Privacy        │ PHI anonymization (see §5)                 │
+│  Inclusiveness  │ Multi-language, accessibility              │
+│  Transparency   │ Explainability, reasoning traces           │
+│  Accountability │ Human-in-the-loop, audit trail             │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ### Reasoning Capture (Chain-of-Thought Audit)
@@ -1016,9 +1016,9 @@ PHI Token Vault (HashiCorp Vault — separate deployment)
 └────────────────────────────────────────────────────────────────────────┘
 
 External:
-  Anthropic API (Claude) — BAA required
-  OpenAI API (GPT-4o)   — BAA required for healthcare
-  Google Health AI       — BAA required
+  Anthropic API (Claude)  — BAA required
+  OpenAI API (GPT-4o)     — BAA required for healthcare
+  Google Health AI        — BAA required
 ```
 
 ### Cost Model (Indicative, AWS)
