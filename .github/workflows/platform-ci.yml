@@ -4,16 +4,17 @@ on:
   push:
     paths:
       - "platform/**"
+      - "tests/**"
+      - "pyproject.toml"
   pull_request:
     paths:
       - "platform/**"
+      - "tests/**"
+      - "pyproject.toml"
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: platform
 
     steps:
       - uses: actions/checkout@v4
@@ -23,13 +24,15 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
+        working-directory: platform
         run: pip install -e ".[dev]"
 
       - name: Lint
-        run: ruff check synapsemd_platform tests
+        run: ruff check platform/synapsemd_platform tests
 
       - name: Tests
-        run: pytest -v --cov=synapsemd_platform --cov-report=term-missing
+        run: pytest -v
 
       - name: Dependency audit
+        working-directory: platform
         run: pip-audit || true

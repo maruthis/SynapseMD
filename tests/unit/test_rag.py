@@ -1,0 +1,38 @@
+import pytest
+
+from synapsemd_platform.rag.retrieval import (
+    InMemoryVectorStore,
+    KnowledgeChunk,
+    RAGEngine,
+    _cosine_similarity,
+    _hash_embed,
+)
+
+
+def test_hash_embed_dimensions() -> None:
+    vec = _hash_embed("test text", dims=32)
+    assert len(vec) == 32
+
+
+def test_cosine_similarity_zero_norm() -> None:
+    assert _cosine_similarity([0.0, 0.0], [1.0, 1.0]) == 0.0
+
+
+def test_vector_store_upsert_and_search() -> None:
+    store = InMemoryVectorStore()
+    store.upsert(KnowledgeChunk(id="1", text="hypertension diet", source="AHA"))
+    store.upsert(KnowledgeChunk(id="2", text="sleep hygiene tips", source="Sleep KB"))
+    results = store.search("blood pressure food", top_k=1)
+    assert len(results) == 1
+
+
+def test_rag_engine_build_context_empty() -> None:
+    rag = RAGEngine()
+    assert rag.build_context("unknown query") == ""
+
+
+def test_rag_engine_build_context_with_data() -> None:
+    rag = RAGEngine()
+    rag.ingest("doc-1", "Exercise lowers blood pressure.", "Fitness KB")
+    context = rag.build_context("blood pressure")
+    assert "Fitness KB" in context
