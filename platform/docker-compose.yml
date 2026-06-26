@@ -9,8 +9,19 @@ services:
       - DATABASE_URL=postgresql+asyncpg://synapsemd:synapsemd@postgres:5432/synapsemd
       - JWT_SECRET=dev-secret-change-in-production
       - AUDIT_USE_MEMORY=true
+      - FHIR_BASE_URL=http://hapi-fhir:8080/fhir
+      - FHIR_LOCAL_STORE=/data/fhir
+      - RAG_VECTOR_STORE=file
+      - RAG_VECTOR_STORE_PATH=/data/rag
+      - LLM_DEFAULT_PROVIDER=mock
+      - APP_ENV=development
+    volumes:
+      - fhir_data:/data/fhir
+      - rag_data:/data/rag
     depends_on:
-      - postgres
+      postgres:
+        condition: service_started
+    profiles: ["core", "full", "mcp"]
 
   postgres:
     image: postgres:16-alpine
@@ -23,6 +34,106 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./migrations/001_rls.sql:/docker-entrypoint-initdb.d/001_rls.sql
+    profiles: ["core", "full", "mcp", "infra"]
+
+  mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile.mcp
+    environment:
+      - SYNAPSEMD_ACCESS_TOKEN=${SYNAPSEMD_ACCESS_TOKEN:-}
+      - FHIR_LOCAL_STORE=/data/fhir
+      - RAG_VECTOR_STORE=file
+      - RAG_VECTOR_STORE_PATH=/data/rag
+      - LLM_DEFAULT_PROVIDER=mock
+    volumes:
+      - fhir_data:/data/fhir
+      - rag_data:/data/rag
+    depends_on:
+      - api
+    profiles: ["mcp", "full"]
+
+  openapi-bridge:
+    build:
+      context: ..
+      dockerfile: deploy/openapi-bridge/Dockerfile
+    ports:
+      - "8100:8100"
+    environment:
+      - FHIR_LOCAL_STORE=/data/fhir
+      - RAG_VECTOR_STORE=file
+      - RAG_VECTOR_STORE_PATH=/data/rag
+    volumes:
+      - fhir_data:/data/fhir
+      - rag_data:/data/rag
+    depends_on:
+      - api
+    profiles: ["full"]
+
+  hapi-fhir:
+    image: hapiproject/hapi:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - hapi.fhir.server_address=http://localhost:8080/fhir
+    profiles: ["full", "infra"]
+
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.2.4
+    command:
+      - redpanda
+      - start
+      - --overprovisioned
+      - --smp
+      - "1"
+      - --memory
+      - 1G
+      - --reserve-memory
+      - 0M
+      - --node-id
+      - "0"
+      - --kafka-addr
+      - PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr
+      - PLAINTEXT://redpanda:9092
+    ports:
+      - "9092:9092"
+    profiles: ["full", "infra"]
+
+  vault:
+    image: hashicorp/vault:1.17
+    cap_add:
+      - IPC_LOCK
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=dev-root-token
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+    ports:
+      - "8200:8200"
+    profiles: ["full", "infra"]
+
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    ports:
+      - "3001:3001"
+    environment:
+      - STORAGE_DIR=/app/server/storage
+    volumes:
+      - anythingllm_data:/app/server/storage
+    profiles: ["full"]
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "3000:8080"
+    environment:
+      - WEBUI_AUTH=false
+    volumes:
+      - openwebui_data:/app/backend/data
+    profiles: ["full"]
 
 volumes:
   pgdata:
+  fhir_data:
+  rag_data:
+  anythingllm_data:
+  openwebui_data:

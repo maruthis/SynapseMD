@@ -21,19 +21,32 @@ class Settings(BaseSettings):
 
     vault_url: str = ""
     vault_token: str = ""
+    vault_enabled: bool = False
 
     fhir_base_url: str = "http://localhost:8080/fhir"
     fhir_local_store: str = "./data/fhir"
+    fhir_use_hapi: bool = False
 
     kafka_bootstrap_servers: str = "localhost:9092"
+    kafka_audit_topic: str = "synapsemd.audit.events"
     audit_use_memory: bool = True
+    audit_use_kafka: bool = False
 
     llm_default_provider: str = "mock"
     anthropic_api_key: str = ""
+    anthropic_base_url: str = "https://api.anthropic.com"
+    anthropic_baa_signed: bool = False
     openai_api_key: str = ""
+    openai_base_url: str = "https://api.openai.com/v1"
+    openai_baa_signed: bool = False
+    google_api_key: str = ""
+    google_base_url: str = "https://generativelanguage.googleapis.com"
+    google_baa_signed: bool = False
 
-    rag_vector_store: str = "memory"
+    rag_vector_store: str = "memory"  # memory | file
+    rag_vector_store_path: str = "./data/rag"
     rag_embedding_model: str = "local-hash"
+    org_intelligence_enabled: bool = False
 
     presidio_enabled: bool = False
     phi_block_on_failure: bool = True
@@ -41,6 +54,8 @@ class Settings(BaseSettings):
     kms_master_key_id: str = ""
     enable_metrics: bool = True
     enable_tracing: bool = True
+
+    mcp_enabled: bool = True
 
 
 @lru_cache

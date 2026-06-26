@@ -13,7 +13,7 @@ from synapsemd_platform.governance.guardrails import (
 from synapsemd_platform.llm.providers import LLMOrchestrator, hash_prompt
 from synapsemd_platform.llm.router import DataSensitivity, HealthLLMRouter
 from synapsemd_platform.observability.metrics import GUARDRAIL_BLOCK_COUNT, LLM_LATENCY, PHI_BLOCK_COUNT
-from synapsemd_platform.rag.retrieval import RAGEngine
+from synapsemd_platform.rag.retrieval import get_rag_engine
 
 
 class CommandOrchestrator:
@@ -24,22 +24,7 @@ class CommandOrchestrator:
         self.router = HealthLLMRouter()
         self.llm = LLMOrchestrator()
         self.guardrails = MedicalGuardrails()
-        self.rag = RAGEngine()
-        self._seed_rag()
-
-    def _seed_rag(self) -> None:
-        self.rag.ingest(
-            "hypertension-guideline",
-            "AHA 2023 guidelines recommend lifestyle modification and regular blood pressure monitoring.",
-            "AHA 2023 Hypertension Guidelines",
-            {"evidence_level": "A"},
-        )
-        self.rag.ingest(
-            "sleep-hygiene",
-            "Sleep hygiene includes consistent schedule, limiting screens before bed, and 7-9 hours for adults.",
-            "SynapseMD Knowledge Base",
-            {"evidence_level": "B"},
-        )
+        self.rag = get_rag_engine()
 
     async def execute(
         self,
@@ -68,7 +53,7 @@ class CommandOrchestrator:
             )
             raise
 
-        rag_context = self.rag.build_context(anon.anonymized_text or command)
+        rag_context = self.rag.build_context(anon.anonymized_text or command, tenant_id=tenant_id)
         prompt = f"Command: {command}\nContext:\n{rag_context}\n\nUser data:\n{anon.anonymized_text}"
 
         decision = self.router.route(command, DataSensitivity.ANONYMIZED, len(prompt))
@@ -77,7 +62,7 @@ class CommandOrchestrator:
 
         citations = [
             Citation(source=chunk.source, url=f"https://synapsemd.com/kb/{chunk.id}")
-            for chunk in self.rag.retrieve(command)
+            for chunk in self.rag.retrieve(command, tenant_id=tenant_id)
         ]
         reasoning = ReasoningSummary(
             interaction_id=interaction_id,

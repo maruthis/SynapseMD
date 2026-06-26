@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synapsemd-mcp
+  namespace: synapsemd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: synapsemd-mcp
+  template:
+    metadata:
+      labels:
+        app: synapsemd-mcp
+    spec:
+      containers:
+        - name: mcp
+          image: synapsemd/mcp:latest
+          envFrom:
+            - configMapRef:
+                name: synapsemd-config
+            - secretRef:
+                name: synapsemd-secrets
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

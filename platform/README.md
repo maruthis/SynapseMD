@@ -37,5 +37,24 @@ pytest -v
 ## Docker
 
 ```bash
-docker compose up --build
+# Core stack
+docker compose --profile core up --build
+
+# Full stack (MCP + HAPI + Kafka + Vault + UI)
+docker compose --profile full up --build
+```
+
+See [docker-compose.profiles.md](docker-compose.profiles.md) for profile details.
+
+## MCP Server
+
+```bash
+export SYNAPSEMD_ACCESS_TOKEN=<jwt-from-login>
+synapsemd-mcp
+```
+
+## Kubernetes
+
+```bash
+kubectl apply -k ../deploy/k8s/overlays/staging
 ```

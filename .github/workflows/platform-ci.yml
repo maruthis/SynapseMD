@@ -5,11 +5,13 @@ on:
     paths:
       - "platform/**"
       - "tests/**"
+      - "deploy/**"
       - "pyproject.toml"
   pull_request:
     paths:
       - "platform/**"
       - "tests/**"
+      - "deploy/**"
       - "pyproject.toml"
 
 jobs:

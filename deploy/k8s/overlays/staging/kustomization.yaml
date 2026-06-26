@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../base
+
+patches:
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: synapsemd-config
+      data:
+        APP_ENV: "staging"
+        LLM_DEFAULT_PROVIDER: "mock"
+        ANTHROPIC_BAA_SIGNED: "false"

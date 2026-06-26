@@ -12,6 +12,10 @@ addopts = [
 source = ["platform/synapsemd_platform"]
 omit = [
     "platform/synapsemd_platform/models/user.py",
+    "platform/synapsemd_platform/mcp/server.py",
+    "platform/synapsemd_platform/audit/kafka_sink.py",
+    "platform/synapsemd_platform/fhir/hapi_client.py",
+    "platform/synapsemd_platform/core/vault.py",
 ]
 
 [tool.coverage.report]

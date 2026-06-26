@@ -27,3 +27,7 @@ Maps SynapseMD platform controls to regulatory frameworks. See [enterprise-archi
 - CC6: MFA, SSO via OIDC, RBAC
 - CC8: GitOps, PR approvals, signed commits
 - PI1: Medical guardrails on all LLM outputs
+
+## Initial Release
+
+See [release-gates.md](release-gates.md) for the pre-release checklist covering PHI safety, tenant isolation, clinical safety, and operations.

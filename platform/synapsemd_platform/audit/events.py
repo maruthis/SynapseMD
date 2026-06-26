@@ -5,6 +5,7 @@ import json
 from typing import Any
 from uuid import uuid4
 
+from synapsemd_platform.audit.kafka_sink import KafkaAuditSink
 from synapsemd_platform.core.config import get_settings
 
 
@@ -22,6 +23,12 @@ class AuditProducer:
     def __init__(self) -> None:
         self.settings = get_settings()
         self._memory_events: list[dict[str, Any]] = []
+        self._kafka_sink: KafkaAuditSink | None = None
+        if self.settings.audit_use_kafka:
+            self._kafka_sink = KafkaAuditSink(
+                self.settings.kafka_bootstrap_servers,
+                self.settings.kafka_audit_topic,
+            )
 
     def _sign(self, payload: dict[str, Any]) -> str:
         body = json.dumps(payload, sort_keys=True, default=str)
@@ -44,10 +51,14 @@ class AuditProducer:
         record["signature"] = self._sign(record)
         if self.settings.audit_use_memory:
             self._memory_events.append(record)
+        if self._kafka_sink is not None:
+            self._kafka_sink.publish(record)
         return record
 
-    def get_events(self) -> list[dict[str, Any]]:
-        return list(self._memory_events)
+    def get_events(self, tenant_id: str | None = None) -> list[dict[str, Any]]:
+        if tenant_id is None:
+            return list(self._memory_events)
+        return [e for e in self._memory_events if e.get("tenant_id") == tenant_id]
 
 
 audit_producer = AuditProducer()

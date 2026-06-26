@@ -45,8 +45,9 @@ async def migrate_data(
 
 
 @router.get("/admin/audit", dependencies=[Depends(require_scope("audit"))])
-async def list_audit_events() -> dict:
-    return {"events": audit_producer.get_events()}
+async def list_audit_events(ctx: RequestContext = Depends(get_request_ctx)) -> dict:
+    events = audit_producer.get_events(tenant_id=str(ctx.tenant_id))
+    return {"events": events}
 
 
 @router.get("/review/queue", dependencies=[Depends(require_scope("read:org"))])

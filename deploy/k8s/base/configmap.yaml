@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: synapsemd-config
+  namespace: synapsemd
+data:
+  APP_ENV: "staging"
+  API_PREFIX: "/api/v1"
+  AUDIT_USE_MEMORY: "false"
+  AUDIT_USE_KAFKA: "true"
+  KAFKA_BOOTSTRAP_SERVERS: "redpanda:9092"
+  KAFKA_AUDIT_TOPIC: "synapsemd.audit.events"
+  FHIR_USE_HAPI: "true"
+  FHIR_BASE_URL: "http://hapi-fhir:8080/fhir"
+  RAG_VECTOR_STORE: "file"
+  RAG_VECTOR_STORE_PATH: "/data/rag"
+  LLM_DEFAULT_PROVIDER: "anthropic"
+  PRESIDIO_ENABLED: "true"
+  VAULT_ENABLED: "true"
+  VAULT_URL: "http://vault:8200"
+  ORG_INTELLIGENCE_ENABLED: "false"
