@@ -100,13 +100,14 @@ my-his/
 
 1. Ensure Claude Code is installed
 2. Open Claude Code in the current directory
-3. First-time setup: `/profile set 175 70 1990-01-01`
-4. Save first report: `/save-report /path/to/image.jpg`
-5. Record radiation: `/radiation add CT chest`
-6. Record surgery: `/surgery Gallbladder removal surgery in August last year due to gallstones`
-7. Save discharge summary: `/discharge @medical-reports/discharge-summary.jpg`
-8. Query all records: `/query all`
-9. Start MDT consultation: `/consult`
+3. Initialize live data: `./scripts/setup-data.sh` (copies templates from `data-example/` into `data/`)
+4. First-time setup: `/profile set 175 70 1990-01-01`
+5. Save first report: `/save-report /path/to/image.jpg`
+6. Record radiation: `/radiation add CT chest`
+7. Record surgery: `/surgery Gallbladder removal surgery in August last year due to gallstones`
+8. Save discharge summary: `/discharge @medical-reports/discharge-summary.jpg`
+9. Query all records: `/query all`
+10. Start MDT consultation: `/consult`
 
 ## Data Privacy
 

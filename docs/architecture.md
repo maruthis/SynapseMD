@@ -120,7 +120,7 @@ Each tracker file (e.g., `fitness-tracker.json`) contains both current state and
 
 ### `docs/`
 Static documentation. Notable files:
-- `data-structures.en.md` — comprehensive JSON schema reference for all tracker files
+- `data-structures.md` — comprehensive JSON schema reference for all tracker files
 - `drug-interaction-database.md` — A/B/C/D/X severity classification system
 - `safety-guidelines.md` — medical boundaries and disclaimer requirements
 - `womens-health-*.md` — implementation notes for the women's health module
@@ -185,18 +185,14 @@ When a user opens the project in Claude Code, the CLI:
 3. Makes skills available as invocable sub-agents via the Skill tool
 4. Loads specialists as additional context for consultation commands
 
-**The `.claude/` directory is the active workspace.** The root `commands/`, `skills/`, and `specialists/` folders are the source — sync them to `.claude/` after changes:
+**The `.claude/` directory is the active workspace.** Root `commands/`, `skills/`, and `specialists/` are the source of truth and are symlinked into `.claude/` — no manual sync is needed after edits.
 
 ```bash
-# Sync a single command after editing
-cp commands/medication.md .claude/commands/medication.md
-
-# Sync all commands
-cp commands/*.md .claude/commands/
-
-# Sync a skill
-cp -r skills/health-trend-analyzer/ .claude/skills/
+# Verify symlinks (should show ../commands, ../skills, ../specialists)
+ls -la .claude/commands .claude/skills .claude/specialists
 ```
+
+Edit files in the root directories (e.g. `commands/medication.md`); changes are immediately visible at `.claude/commands/medication.md`.
 
 ### How Commands Are Executed
 
