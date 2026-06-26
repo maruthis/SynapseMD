@@ -38,50 +38,50 @@ The current SynapseMD system is a single-user, file-based CLI tool. This documen
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          CLIENT LAYER                                        │
-│  Web App (React)    Mobile (iOS/Android)    EHR Plugin    API Clients        │
+│                          CLIENT LAYER                                       │
+│  Web App (React)    Mobile (iOS/Android)    EHR Plugin    API Clients       │
 └────────────────────────────┬────────────────────────────────────────────────┘
                              │ HTTPS / WSS
 ┌────────────────────────────▼────────────────────────────────────────────────┐
-│                       API GATEWAY & IDENTITY                                 │
+│                       API GATEWAY & IDENTITY                                │
 │  Rate Limiting   Auth (OAuth2/OIDC)   RBAC   Audit Logging   API Versioning │
-└───────┬───────────────────┬───────────────────────┬──────────────────────────┘
+└───────┬───────────────────┬───────────────────────┬─────────────────────────┘
         │                   │                       │
-┌───────▼──────┐   ┌────────▼────────┐   ┌─────────▼──────────┐
+┌───────▼──────┐   ┌────────▼────────┐   ┌──────────▼─────────┐
 │  Command     │   │  Skills /       │   │  Admin &           │
 │  Service     │   │  Analyzer API   │   │  Compliance API    │
 │  (59 cmds)   │   │  (22 analyzers) │   │  (audit, reports)  │
-└───────┬──────┘   └────────┬────────┘   └─────────┬──────────┘
+└───────┬──────┘   └────────┬────────┘   └──────────┬─────────┘
         │                   │                       │
 ┌───────▼───────────────────▼───────────────────────▼──────────────────────────┐
-│                      PHI ANONYMIZATION LAYER                                  │
-│  De-identification Engine   Tokenization Vault   Synthetic Data Generator     │
+│                      PHI ANONYMIZATION LAYER                                 │
+│  De-identification Engine   Tokenization Vault   Synthetic Data Generator    │
 └───────────────────────────────────┬──────────────────────────────────────────┘
                                     │
 ┌───────────────────────────────────▼──────────────────────────────────────────┐
-│                         AI ORCHESTRATION LAYER                                │
-│                                                                               │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────────┐   │
-│  │  LLM Router      │  │  RAG Engine      │  │  AI Governance           │   │
-│  │  (model select)  │  │  (clinical KB)   │  │  (explain, audit, guard) │   │
-│  └────────┬─────────┘  └────────┬─────────┘  └───────────┬──────────────┘   │
-│           │                     │                         │                   │
+│                         AI ORCHESTRATION LAYER                               │
+│                                                                              │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────────┐    │
+│  │  LLM Router      │  │  RAG Engine      │  │  AI Governance           │    │
+│  │  (model select)  │  │  (clinical KB)   │  │  (explain, audit, guard) │    │
+│  └────────┬─────────┘  └────────┬─────────┘  └────────────┬─────────────┘    │
+│           │                     │                         │                  │
 │  ┌────────▼─────────────────────▼─────────────────────────▼──────────────┐   │
-│  │                        LLM Fleet                                       │   │
+│  │                        LLM Fleet                                      │   │
 │  │  Claude Health  │  GPT-4o Health  │  Med-PaLM 2  │  Custom SLM        │   │
-│  └────────────────────────────────────────────────────────────────────────┘   │
+│  └───────────────────────────────────────────────────────────────────────┘   │
 └───────────────────────────────────┬──────────────────────────────────────────┘
                                     │
-┌───────────────────────────────────▼──────────────────────────────────────────┐
-│                           DATA LAYER                                          │
-│                                                                               │
+┌───────────────────────────────────▼─────────────────────────────────────────┐
+│                           DATA LAYER                                        │
+│                                                                             │
 │  ┌──────────────┐  ┌──────────────┐  ┌───────────────┐  ┌────────────────┐  │
 │  │  Clinical DB │  │  Vector DB   │  │  Event Store  │  │  Blob Storage  │  │
 │  │  (FHIR)      │  │  (embeddings)│  │  (audit log)  │  │  (reports,imgs)│  │
 │  │  PostgreSQL  │  │  Weaviate/   │  │  Kafka /      │  │  S3 / Azure    │  │
 │  │  + HAPI FHIR │  │  Pinecone    │  │  Event Hubs   │  │  Blob          │  │
 │  └──────────────┘  └──────────────┘  └───────────────┘  └────────────────┘  │
-└───────────────────────────────────────────────────────────────────────────────┘
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -302,25 +302,25 @@ Raw Health Record (PHI)
 │  MRNs, phone numbers in free text     │
 └────────────────────┬──────────────────┘
                      │
-        ▼
+                     ▼
 ┌───────────────────────────────────────┐
 │  Step 2: Tokenization                 │
 │  Replace PHI with stable tokens:      │
 │  "John Smith" → {TOKEN:patient:a3f2}  │
-│  "1990-05-15" → {TOKEN:dob:b7c1}     │
+│  "1990-05-15" → {TOKEN:dob:b7c1}      │
 │  Token ↔ Real value stored in         │
 │  HashiCorp Vault (separate service)   │
 └────────────────────┬──────────────────┘
                      │
-        ▼
+                     ▼
 ┌───────────────────────────────────────┐
 │  Step 3: Generalization               │
-│  Specific dates → age ranges           │
-│  ZIP codes → region codes              │
+│  Specific dates → age ranges          │
+│  ZIP codes → region codes             │
 │  Rare conditions → category codes     │
 └────────────────────┬──────────────────┘
                      │
-        ▼
+                     ▼
 ┌───────────────────────────────────────┐
 │  Step 4: Validation                   │
 │  Re-run NER detector on output        │
@@ -328,7 +328,7 @@ Raw Health Record (PHI)
 │  If PHI detected → block + alert      │
 └────────────────────┬──────────────────┘
                      │
-        ▼
+                     ▼
    Anonymized record → LLM
 ```
 
@@ -478,18 +478,18 @@ class HealthLLMRouter:
 For organizations that cannot send data to cloud LLM providers (e.g., military health, certain EU jurisdictions):
 
 ```
-┌─────────────────────────────────────────────────┐
-│  On-Premise GPU Cluster                         │
-│                                                 │
+┌────────────────────────────────────────────────┐
+│  On-Premise GPU Cluster                        │
+│                                                │
 │  ┌─────────────┐    ┌──────────────────────┐   │
 │  │ Meditron-70B│    │  Custom Fine-tuned   │   │
 │  │ (EPFL)      │    │  SLM (org-specific)  │   │
 │  │ 4× A100 GPU │    │  2× A100 GPU         │   │
 │  └─────────────┘    └──────────────────────┘   │
-│                                                 │
+│                                                │
 │  Served via: vLLM / Ollama / TGI               │
 │  API: OpenAI-compatible (/v1/chat/completions) │
-└─────────────────────────────────────────────────┘
+└────────────────────────────────────────────────┘
 ```
 
 The LLM router simply points to the internal endpoint — all command/skill definitions remain unchanged.
@@ -513,7 +513,7 @@ RAG (Retrieval-Augmented Generation) grounds LLM responses in authoritative, cur
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│                  Clinical Knowledge Base                    │
+│                  Clinical Knowledge Base                   │
 │                                                            │
 │  Public Sources (ingested + chunked + embedded):           │
 │  ├── PubMed abstracts (37M papers via E-utilities API)     │
@@ -528,7 +528,7 @@ RAG (Retrieval-Augmented Generation) grounds LLM responses in authoritative, cur
 │  ├── Internal clinical protocols & pathways                │
 │  ├── Payer coverage policies                               │
 │  ├── Anonymized historical patient outcomes                │
-│  └── Physician notes (de-identified, for SLM fine-tuning) │
+│  └── Physician notes (de-identified, for SLM fine-tuning)  │
 └────────────────────────────────────────────────────────────┘
 ```
 
@@ -539,47 +539,47 @@ Query (anonymized)
       │
       ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Step 1: Query Understanding                              │
-│  Extract intent, medical entities (symptoms, drugs,       │
-│  conditions), and required knowledge domains              │
-│  Tool: MedSpaCy NER + UMLS concept normalization          │
+│  Step 1: Query Understanding                             │
+│  Extract intent, medical entities (symptoms, drugs,      │
+│  conditions), and required knowledge domains             │
+│  Tool: MedSpaCy NER + UMLS concept normalization         │
 └───────────────────────────┬──────────────────────────────┘
                             │
-      ▼
+                            ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Step 2: Hybrid Retrieval                                 │
+│  Step 2: Hybrid Retrieval                                │
 │                                                          │
-│  ┌─────────────────┐    ┌────────────────────────────┐  │
-│  │ Semantic Search │    │  Keyword / BM25 Search     │  │
-│  │ (vector sim.)   │    │  (exact medical terms)     │  │
-│  │ Weaviate /      │    │  Elasticsearch /           │  │
-│  │ Pinecone        │    │  OpenSearch                │  │
-│  └────────┬────────┘    └─────────────┬──────────────┘  │
+│  ┌─────────────────┐    ┌────────────────────────────┐   │
+│  │ Semantic Search │    │  Keyword / BM25 Search     │   │
+│  │ (vector sim.)   │    │  (exact medical terms)     │   │
+│  │ Weaviate /      │    │  Elasticsearch /           │   │
+│  │ Pinecone        │    │  OpenSearch                │   │
+│  └────────┬────────┘    └─────────────┬──────────────┘   │
 │           └─────────────┬─────────────┘                  │
-│                         ▼                                 │
-│              Reciprocal Rank Fusion                       │
-│              (merge + re-rank results)                    │
+│                         ▼                                │
+│              Reciprocal Rank Fusion                      │
+│              (merge + re-rank results)                   │
 └───────────────────────────┬──────────────────────────────┘
                             │
-      ▼
+                            ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Step 3: Relevance Filtering & Citation Extraction        │
+│  Step 3: Relevance Filtering & Citation Extraction       │
 │  - Cross-encoder re-ranking (top 10 → top 3)             │
-│  - Extract source DOI, guideline name, evidence level     │
-│  - Flag outdated sources (> 5 years for rapidly evolving  │
-│    fields; > 10 years for stable guidelines)              │
+│  - Extract source DOI, guideline name, evidence level    │
+│  - Flag outdated sources (> 5 years for rapidly evolving │
+│    fields; > 10 years for stable guidelines)             │
 └───────────────────────────┬──────────────────────────────┘
                             │
-      ▼
+                            ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Step 4: Context Injection                                │
-│  Prepend retrieved chunks to LLM prompt:                  │
-│  SYSTEM: You are a health AI. Use ONLY the following      │
+│  Step 4: Context Injection                               │
+│  Prepend retrieved chunks to LLM prompt:                 │
+│  SYSTEM: You are a health AI. Use ONLY the following     │
 │  verified clinical sources to answer. Cite each claim.   │
 │  [Source 1: AHA 2023 Hypertension Guidelines, p.14]...   │
 └───────────────────────────┬──────────────────────────────┘
                             │
-      ▼
+                            ▼
    LLM Response with inline citations
 ```
 
@@ -838,7 +838,7 @@ Events stream to: **Kafka → S3 Glacier** (7-year HIPAA retention) and are inde
 
 ```
 ┌──────────────────────────────────────────────────────┐
-│               Observability Stack                     │
+│               Observability Stack                    │
 │                                                      │
 │  Metrics:   Prometheus → Grafana                     │
 │  Traces:    OpenTelemetry → Jaeger / Tempo           │
@@ -888,10 +888,10 @@ Internet → WAF (AWS Shield / Cloudflare) → API Gateway
                     Command Service     Skill Service     Admin API
                             │
                     ┌───────▼─────────────────────────────┐
-                    │  Data Layer (private subnet, no      │
-                    │  internet access, VPC-only)          │
-                    │  PostgreSQL | FHIR | Vector DB        │
-                    └──────────────────────────────────────┘
+                    │  Data Layer (private subnet, no     │
+                    │  internet access, VPC-only)         │
+                    │  PostgreSQL | FHIR | Vector DB      │
+                    └─────────────────────────────────────┘
 ```
 
 ### Encryption Key Hierarchy
@@ -986,34 +986,34 @@ PHI Token Vault (HashiCorp Vault — separate deployment)
 
 ```
 ┌─────────────────── AWS Region (us-east-1) ─────────────────────────────┐
-│                                                                         │
+│                                                                        │
 │  ┌── Public Subnet ──────────────────────────────────────────────────┐ │
 │  │  CloudFront CDN → WAF → ALB → ECS Fargate (API Gateway service)   │ │
 │  └───────────────────────────────────────────────────────────────────┘ │
-│                                                                         │
+│                                                                        │
 │  ┌── Private Subnet (app tier) ──────────────────────────────────────┐ │
-│  │  ECS Fargate:                                                      │ │
+│  │  ECS Fargate:                                                     │ │
 │  │  ├── command-service (auto-scaled, 2-20 tasks)                    │ │
 │  │  ├── skill-service (GPU-optional for local SLM)                   │ │
 │  │  ├── anonymization-service (Presidio)                             │ │
 │  │  ├── rag-service (retrieval + embedding)                          │ │
 │  │  └── audit-service (Kafka producer)                               │ │
 │  └───────────────────────────────────────────────────────────────────┘ │
-│                                                                         │
+│                                                                        │
 │  ┌── Private Subnet (data tier — no internet) ────────────────────── ┐ │
 │  │  Amazon HealthLake (FHIR R4)                                      │ │
 │  │  Amazon Aurora PostgreSQL (operational data, RLS enabled)         │ │
-│  │  Amazon OpenSearch (audit log index)                               │ │
+│  │  Amazon OpenSearch (audit log index)                              │ │
 │  │  Amazon MSK (Kafka — audit event streaming)                       │ │
 │  │  Amazon S3 Glacier (7-year audit retention)                       │ │
 │  │  Amazon Weaviate via ECS (vector DB — in VPC)                     │ │
 │  │  HashiCorp Vault on ECS (token vault)                             │ │
 │  └───────────────────────────────────────────────────────────────────┘ │
-│                                                                         │
-│  Cross-cutting:                                                         │
+│                                                                        │
+│  Cross-cutting:                                                        │
 │  AWS KMS (per-tenant keys)  │  Secrets Manager  │  CloudTrail          │
-│  AWS Shield Advanced        │  GuardDuty         │  Security Hub        │
-└─────────────────────────────────────────────────────────────────────────┘
+│  AWS Shield Advanced        │  GuardDuty         │  Security Hub       │
+└────────────────────────────────────────────────────────────────────────┘
 
 External:
   Anthropic API (Claude) — BAA required

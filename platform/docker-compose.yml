@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://synapsemd:synapsemd@postgres:5432/synapsemd
+      - JWT_SECRET=dev-secret-change-in-production
+      - AUDIT_USE_MEMORY=true
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: synapsemd
+      POSTGRES_PASSWORD: synapsemd
+      POSTGRES_DB: synapsemd
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./migrations/001_rls.sql:/docker-entrypoint-initdb.d/001_rls.sql
+
+volumes:
+  pgdata:

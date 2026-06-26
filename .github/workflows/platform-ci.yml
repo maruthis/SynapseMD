@@ -1,0 +1,35 @@
+name: SynapseMD Platform CI
+
+on:
+  push:
+    paths:
+      - "platform/**"
+  pull_request:
+    paths:
+      - "platform/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: platform
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check synapsemd_platform tests
+
+      - name: Tests
+        run: pytest -v --cov=synapsemd_platform --cov-report=term-missing
+
+      - name: Dependency audit
+        run: pip-audit || true
