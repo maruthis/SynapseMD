@@ -661,6 +661,7 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full contribution checklist.
 
 | You changed… | Update… |
 |--------------|---------|
+| End-user onboarding steps | [getting-started.md](getting-started.md) |
 | New command usage | [user-guide.md](user-guide.md) |
 | New JSON schema | [data-structures.md](data-structures.md) |
 | Architecture / deployment | [architecture.md](architecture.md) |

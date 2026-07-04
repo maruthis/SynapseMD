@@ -73,6 +73,7 @@ pytest -v                                       # platform tests (if platform to
 
 ## Questions
 
+- **End-user setup:** [docs/getting-started.md](docs/getting-started.md)
 - Architecture: [docs/architecture.md](docs/architecture.md)
 - Extension how-to: [docs/developer-guide.md](docs/developer-guide.md)
 - Platform API: [platform/README.md](platform/README.md)

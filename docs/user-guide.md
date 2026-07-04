@@ -1,5 +1,7 @@
 # User Guide
 
+> **New to SynapseMD?** Start with the step-by-step [Getting Started Guide](getting-started.md) before using the commands below.
+
 ## Quick Start
 
 1. Ensure Claude Code is installed

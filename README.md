@@ -25,7 +25,7 @@ Both modes share the same Module 21 AI prediction engine (`platform/synapsemd_pl
 
 ---
 
-## How SynapseMD is differnt
+## How SynapseMD is different
 
 SynapseMD isn’t a typical app where “the code” lives in one layer. The product is the extension surface:
 
@@ -86,16 +86,19 @@ SynapseMD/
 
 ## Quick Start (Local CLI)
 
-1. Install [Claude Code](https://claude.ai/code)
-2. Open Claude Code in this directory
-3. Initialize data: `./scripts/setup-data.sh`
+**New user?** Follow the step-by-step guide: **[docs/getting-started.md](docs/getting-started.md)**
+
+Summary:
+
+1. Install [Claude Code](https://claude.ai/code) or [Cursor](https://cursor.com/)
+2. Clone this repo and run `./scripts/setup-data.sh` and `./scripts/link-claude-workspace.sh`
+3. Open the project in Claude Code or Cursor
 4. Set profile: `/profile set 175 70 1990-01-01`
 5. Save a report: `/save-report /path/to/image.jpg`
 6. Run AI analysis: `/ai analyze last_quarter`
-7. Predict risk: `/ai predict hypertension`
-8. Query records: `/query all`
+7. Query records: `/query all`
 
-See [docs/user-guide.md](docs/user-guide.md) for full command documentation.
+Full command reference: [docs/user-guide.md](docs/user-guide.md)
 
 ---
 
@@ -161,6 +164,7 @@ Full list: 60+ commands in [commands/](commands/).
 
 | Topic | Link |
 |-------|------|
+| **Getting started (end users)** | [docs/getting-started.md](docs/getting-started.md) |
 | **Developer guide** | [docs/developer-guide.md](docs/developer-guide.md) |
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | User guide | [docs/user-guide.md](docs/user-guide.md) |

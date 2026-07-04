@@ -292,6 +292,7 @@ For cloud storage, replace local filesystem tools with tenant-scoped object stor
 
 | Document | Purpose |
 |----------|---------|
+| [getting-started.md](getting-started.md) | End-user setup and first-week workflow |
 | [developer-guide.md](developer-guide.md) | Extension recipes and checklists |
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | PR checklist and setup |
 | [data-structures.md](data-structures.md) | JSON schema reference |
