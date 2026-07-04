@@ -90,12 +90,17 @@ CLI equivalent docs: `commands/ai.md` · Full integration summary: `mydocs/AI_FE
 ## Tests
 
 ```bash
-# From repo root (recommended — includes platform coverage gate ≥95%)
+# From repo root (recommended — enforces ≥95% coverage gate)
 cd .. && pytest -v
+
+# Release gate + eval regression suites
+pytest tests/release/ tests/eval/ -v
 
 # Platform package only
 pytest -v
 ```
+
+Current baseline: **239 tests**, **≥97% coverage** on `synapsemd_platform`.
 
 ## Docker
 
