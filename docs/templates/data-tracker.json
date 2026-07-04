@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "domain": "my-feature",
+    "description": "Example tracker for my-feature domain — replace with real fields"
+  },
+  "current": {},
+  "records": [],
+  "statistics": {
+    "total_records": 0,
+    "last_updated": null
+  }
+}

@@ -25,6 +25,19 @@ Both modes share the same Module 21 AI prediction engine (`platform/synapsemd_pl
 
 ---
 
+## How SynapseMD is differnt
+
+SynapseMD isn’t a typical app where “the code” lives in one layer. The product is the extension surface:
+
+| Artifact | What it defines |
+| --- | --- |
+| commands/ | User-facing behavior, CRUD, routing |
+| skills/ | Deep analysis and reports |
+| specialists/ | Clinical lens for MDT |
+| data-example/ + data/ | Schemas and persistence |
+| scripts/ | Deterministic logic escape hatches |
+| platform/ | REST/MCP/tenant execution (optional but growing) |
+
 ## System Features
 
 ### Local CLI
@@ -148,8 +161,11 @@ Full list: 60+ commands in [commands/](commands/).
 
 | Topic | Link |
 |-------|------|
+| **Developer guide** | [docs/developer-guide.md](docs/developer-guide.md) |
+| Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | User guide | [docs/user-guide.md](docs/user-guide.md) |
 | Data structures | [docs/data-structures.md](docs/data-structures.md) |
+| Architecture | [docs/architecture.md](docs/architecture.md) |
 | Platform & AI API | [platform/README.md](platform/README.md) |
 | MCP / UI integration | [docs/ui-mcp-integration.md](docs/ui-mcp-integration.md) |
 | Release gates | [docs/release-gates.md](docs/release-gates.md) |
@@ -157,6 +173,7 @@ Full list: 60+ commands in [commands/](commands/).
 | Drug interactions | [docs/drug-interaction-database.md](docs/drug-interaction-database.md) |
 | Safety guidelines | [docs/safety-guidelines.md](docs/safety-guidelines.md) |
 | Technical details | [docs/technical-details.md](docs/technical-details.md) |
+
 
 ---
 
