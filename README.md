@@ -1,192 +1,201 @@
-# SynapseMD - Personal Health Information System
+# SynapseMD — Personal Health Information System
 
-[![English](https://img.shields.io/badge/lang-English-blue.svg)](README.md)
-[![Chinese](https://img.shields.io/badge/lang-Chinese-red.svg)](mydocs/README.zh-CN.md)
-
-[![GitHub stars](https://img.shields.io/github/stars/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD)
-[![GitHub forks](https://img.shields.io/github/forks/huifer/SynapseMD?style=social)](https://github.com/huifer/SynapseMD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Star History Chart](https://api.star-history.com/svg?repos=huifer/SynapseMD&type=date&legend=top-left)](https://www.star-history.com/#huifer/SynapseMD&type=date&legend=top-left)
+[![Platform CI](https://img.shields.io/badge/tests-266%20passed-brightgreen.svg)](platform/README.md)
+[![Coverage](https://img.shields.io/badge/coverage-%E2%89%A598%25-brightgreen.svg)](pyproject.toml)
 
-A file-based personal health data management system using Claude Code CLI tools for data management.
+SynapseMD is a file-based personal health data management system with an optional **enterprise platform** for multi-tenant, PHI-safe deployments. Use Claude Code slash commands locally, or run the FastAPI platform with REST API and MCP tools for chatbot UIs.
 
-**GitHub**: https://github.com/huifer/SynapseMD
+**GitHub**: https://github.com/maruthis/SynapseMD
 
-> **⚠️ Disclaimer**: This project is NOT affiliated with, endorsed by, or associated with [Anthropic](https://www.anthropic.com/) or [Claude.ai](https://claude.ai/). This is an independent open-source project developed by [SynapseMD](https://www.synapsemd.com/).
+> **Disclaimer**: This project is not affiliated with, endorsed by, or associated with [Anthropic](https://www.anthropic.com/) or [Claude.ai](https://claude.ai/). It is an independent open-source project developed by [SynapseMD](https://www.synapsemd.com/).
 >
-> **📝 Note**: This project uses GLM's `mcp__4_5v_mcp__analyze_image` for image recognition.
+> **Note**: Local image recognition may use GLM's `mcp__4_5v_mcp__analyze_image` where configured.
 
-## Project Developer
+---
 
-This project is developed and maintained by [SynapseMD](https://www.synapsemd.com/).
+## Two Ways to Use SynapseMD
+
+| Mode | Best for | Entry point |
+|------|----------|-------------|
+| **CLI (local)** | Personal health repo, Cursor/Claude workflows | `/commands` + `data/` JSON files |
+| **Platform** | Multi-tenant API, audit, chatbot integration | `platform/` FastAPI + MCP server |
+
+Both modes share the same Module 21 AI prediction engine (`platform/synapsemd_platform/ai/prediction.py`).
+
+---
 
 ## System Features
 
-- 📁 Pure file-based storage, no database required
-- 🖼️ Intelligent medical report image recognition
-- 📊 Automatic biochemical test data and reference range extraction
-- 🔍 Structured medical imaging data extraction
-- 🔪 Surgical history and implant management
-- 📋 Structured discharge summary storage
-- 👨‍⚕️ Multi-Disciplinary Team (MDT) consultation system
-- 🔬 13 medical specialist intelligent analysis
-- ☢️ Medical radiation dose tracking and management
-- 💊 **Intelligent drug interaction detection** (New)
-- 🚨 **Five-level severity warning system** (A/B/C/D/X)
-- 👤 User basic profile management
-- 💾 Local storage, completely private data
-- 🚀 Claude Code command operations, no programming required
+### Local CLI
 
-## Directory Structure
+- File-based JSON storage — no database required for personal use
+- Medical report image recognition and structured extraction
+- MDT consultation across 13 medical specialties
+- Drug interaction detection (A/B/C/D/X severity levels)
+- Radiation dose tracking, surgery history, discharge summaries
+- **Module 21 AI**: analyze, predict, chat, report, status via `/ai` commands
+
+### Enterprise Platform
+
+- Multi-tenant JWT auth with RBAC and tenant isolation
+- FHIR-backed health data with anonymization before LLM calls
+- REST API at `/api/v1/*` including `/api/v1/ai/*`
+- MCP server with 11 tools (including `ai_status`, `ai_predict`, `ai_analyze`, `ai_chat`, `ai_report`)
+- Audit events (hash-only PHI storage), medical guardrails, human review queue
+- Docker Compose profiles and Kubernetes overlays for staging/production
+
+---
+
+## Repository Structure
 
 ```
-my-his/
-├── .claude/
-│   ├── commands/
-│   │   ├── save-report.md    # Save medical report command
-│   │   ├── query.md          # Query records command
-│   │   ├── profile.md        # User profile settings command
-│   │   ├── radiation.md      # Radiation exposure management command
-│   │   ├── surgery.md        # Surgery history record command
-│   │   ├── discharge.md      # Discharge summary management command
-│   │   ├── medication.md     # Medication record management command
-│   │   ├── interaction.md    # Drug interaction detection command
-│   │   ├── consult.md        # Multi-disciplinary consultation command
-│   │   └── specialist.md     # Single specialist consultation command
-│   └── specialists/
-│       ├── cardiology.md            # Cardiology specialist Skill
-│       ├── endocrinology.md         # Endocrinology specialist Skill
-│       ├── gastroenterology.md      # Gastroenterology specialist Skill
-│       ├── nephrology.md            # Nephrology specialist Skill
-│       ├── hematology.md            # Hematology specialist Skill
-│       ├── respiratory.md           # Respiratory medicine specialist Skill
-│       ├── neurology.md             # Neurology specialist Skill
-│       ├── oncology.md              # Oncology specialist Skill
-│       ├── general.md               # General practice specialist Skill
-│       └── consultation-coordinator.md # Consultation coordinator
-├── data/
-│   ├── profile.json          # User basic profile
-│   ├── radiation-records.json # Radiation exposure records
-│   ├── allergies.json        # Allergy history records
-│   ├── interactions/         # Drug interaction database
-│   │   ├── interaction-db.json      # Interaction rules main database
-│   │   └── interaction-logs/        # Check history records
-│   ├── medications/          # Medication record data
-│   ├── lab-results/          # Biochemical test data
-│   │   └── YYYY-MM/
-│   │       └── YYYY-MM-DD_test_name.json
-│   ├── imaging/              # Medical imaging data
-│   │   └── YYYY-MM/
-│   │       ├── YYYY-MM-DD_test_name_body_part.json
-│   │       └── images/       # Original image backup
-│   ├── surgery-records/      # Surgery history data
-│   │   └── YYYY-MM/
-│   │       └── YYYY-MM-DD_surgery_name.json
-│   ├── discharge-summaries/  # Discharge summary data
-│   │   └── YYYY-MM/
-│   │       └── YYYY-MM-DD_main_diagnosis.json
-│   └── index.json            # Global index file
-└── README.md
+SynapseMD/
+├── commands/              # Slash command definitions (/ai, /profile, /consult, …)
+├── skills/                # Analyzer skills (ai-analyzer, nutrition, sleep, …)
+├── specialists/           # Medical specialty skill definitions
+├── data/                  # Local health data (gitignored — use setup script)
+├── data-example/          # Templates seeded by ./scripts/setup-data.sh
+├── scripts/               # CLI helpers (ai_prediction.py, setup-data.sh, …)
+├── platform/              # Enterprise FastAPI package (synapsemd_platform)
+│   └── synapsemd_platform/
+│       ├── ai/            # AIPredictionEngine, tenant adapter, AIService
+│       ├── api/           # REST routes (/ai, /auth, /commands, admin)
+│       ├── mcp/           # MCP tools + shared dispatch
+│       └── services/      # Command orchestrator, tenant service
+├── tests/                 # unit/, integration/, e2e/, release/, eval/
+├── deploy/                # OpenAPI bridge, K8s manifests
+├── docs/                  # User guide, release gates, runbooks, compliance
+└── pyproject.toml         # Root pytest config (≥95% coverage gate)
 ```
 
-## Quick Navigation
+---
 
-- 📖 [Complete User Guide](docs/user-guide.md) — Detailed command usage instructions and examples
-- 📋 [Data Structure Specification](docs/data-structures.md) — JSON data format and field descriptions
-- 🔧 [Technical Implementation Details](docs/technical-details.md) (Chinese) - System architecture and technical details
-- ⚠️ [Safety Guidelines and Usage Limitations](docs/safety-guidelines.md) (Chinese) - Safety principles and disclaimer
+## Quick Start (Local CLI)
 
-## Quick Start
+1. Install [Claude Code](https://claude.ai/code)
+2. Open Claude Code in this directory
+3. Initialize data: `./scripts/setup-data.sh`
+4. Set profile: `/profile set 175 70 1990-01-01`
+5. Save a report: `/save-report /path/to/image.jpg`
+6. Run AI analysis: `/ai analyze last_quarter`
+7. Predict risk: `/ai predict hypertension`
+8. Query records: `/query all`
 
-1. Ensure Claude Code is installed
-2. Open Claude Code in the current directory
-3. Initialize live data: `./scripts/setup-data.sh` (copies templates from `data-example/` into `data/`)
-4. First-time setup: `/profile set 175 70 1990-01-01`
-5. Save first report: `/save-report /path/to/image.jpg`
-6. Record radiation: `/radiation add CT chest`
-7. Record surgery: `/surgery Gallbladder removal surgery in August last year due to gallstones`
-8. Save discharge summary: `/discharge @medical-reports/discharge-summary.jpg`
-9. Query all records: `/query all`
-10. Start MDT consultation: `/consult`
+See [docs/user-guide.md](docs/user-guide.md) for full command documentation.
+
+---
+
+## Quick Start (Platform)
+
+```bash
+cd platform
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+cp .env.example .env
+uvicorn synapsemd_platform.api.main:app --reload
+```
+
+API docs: http://localhost:8000/docs
+
+```bash
+# From repo root — full test suite (266 tests, ≥95% coverage)
+pytest -v
+
+# MCP server (after login token)
+export SYNAPSEMD_ACCESS_TOKEN=<jwt-from-/api/v1/auth/login>
+synapsemd-mcp
+```
+
+See [platform/README.md](platform/README.md) for AI API, MCP tools, and Docker/K8s usage.
+
+---
+
+## Module 21 — AI Health Assistant
+
+| CLI | REST API | MCP tool |
+|-----|----------|----------|
+| `/ai status` | `GET /api/v1/ai/status` | `ai_status` |
+| `/ai analyze` | `POST /api/v1/ai/analyze` | `ai_analyze` |
+| `/ai predict` | `POST /api/v1/ai/predict` | `ai_predict` |
+| `/ai chat` | `POST /api/v1/ai/chat` | `ai_chat` |
+| `/ai report` | `POST /api/v1/ai/report` | `ai_report` |
+
+Risk predictions: hypertension, diabetes, cardiovascular, nutritional deficiency, sleep disorders (evidence-based scoring models).
+
+Docs: [commands/ai.md](commands/ai.md) · [docs/ui-mcp-integration.md](docs/ui-mcp-integration.md) · [docs/release-gates.md](docs/release-gates.md)
+
+---
+
+## Core Commands
+
+| Command | Description |
+|---------|-------------|
+| `/profile` | User height, weight, birth date |
+| `/save-report` | Save biochemical or imaging reports |
+| `/medication` | Medication plans and records |
+| `/interaction` | Drug interaction detection |
+| `/query` | Multi-condition health data queries |
+| `/consult` | Multi-disciplinary consultation (13 specialties) |
+| `/specialist` | Single specialty consultation |
+| `/ai` | AI analyze, predict, chat, report, status |
+
+Full list: 60+ commands in [commands/](commands/).
+
+---
+
+## Documentation
+
+| Topic | Link |
+|-------|------|
+| User guide | [docs/user-guide.md](docs/user-guide.md) |
+| Data structures | [docs/data-structures.md](docs/data-structures.md) |
+| Platform & AI API | [platform/README.md](platform/README.md) |
+| MCP / UI integration | [docs/ui-mcp-integration.md](docs/ui-mcp-integration.md) |
+| Release gates | [docs/release-gates.md](docs/release-gates.md) |
+| Enterprise architecture | [docs/enterprise-architecture.md](docs/enterprise-architecture.md) |
+| Drug interactions | [docs/drug-interaction-database.md](docs/drug-interaction-database.md) |
+| Safety guidelines | [docs/safety-guidelines.md](docs/safety-guidelines.md) |
+| Technical details | [docs/technical-details.md](docs/technical-details.md) |
+
+---
+
+## Testing & Quality
+
+```bash
+pytest -v                              # Full suite (266 tests)
+pytest tests/release/ tests/eval/ -v   # Release gates + model eval
+```
+
+- **Coverage**: ≥95% enforced on `synapsemd_platform` (current: ~99%)
+- **CI**: `.github/workflows/platform-ci.yml` — lint, tests, release/eval jobs
+- **E2E**: tenant → AI analyze → audit trail verification in `tests/e2e/`
+
+---
 
 ## Data Privacy
 
-- All data stored on local filesystem
-- No uploads to any cloud services
-- No external database dependencies
-- Completely private management
+**Local CLI**: All data stays on your filesystem. No cloud uploads. No external database.
 
-## Core Commands Overview
+**Platform**: Tenant-scoped storage, JWT auth, PHI anonymization before LLM calls, audit logs store hashes only. See [docs/runbooks/phi-handling.md](docs/runbooks/phi-handling.md).
 
-| Command | Function | Description |
-|---------|----------|-------------|
-| `/profile` | User basic parameters | Set height, weight, birth date |
-| `/save-report` | Save medical report | Support biochemical and imaging tests |
-| `/radiation` | Radiation management | Record and track radiation exposure |
-| `/surgery` | Surgery history | Record surgery information and implants |
-| `/discharge` | Discharge summary | Save and structure discharge summaries |
-| `/medication` | Medication management | Manage medication plans and records |
-| `/interaction` | Interaction detection | Detect drug interactions |
-| `/allergy` | Allergy history management | Record and manage allergy history |
-| `/query` | Query records | Multi-condition medical data queries |
-| `/consult` | Multi-disciplinary consultation | Comprehensive analysis across 13 specialties |
-| `/specialist` | Single specialist consultation | Consult specific specialty experts |
+---
 
-> 💡 For detailed usage, refer to [Complete User Guide](docs/user-guide.md)
+## Safety Statement
 
-## Technical Features
+This system follows medical safety principles:
 
-- **Storage Method**: JSON files + filesystem directory structure
-- **Command System**: Claude Code Slash Commands
-- **Expert System**: Multi-specialty Skill definitions + Subagent architecture
-- **Consultation Coordination**: Parallel processing + opinion integration algorithms
-- **Image Recognition**: AI visual analysis
-- **Data Extraction**: Intelligent text recognition and structuring
-- **Radiation Calculation**: Body surface area adjustment + exponential decay model
+1. Does not provide specific medication dosages
+2. Does not directly prescribe prescription drugs
+3. Does not predict life prognosis
+4. Does not replace physician diagnosis
 
-> 🔧 For more technical details, refer to [Technical Implementation Details](docs/technical-details.md) (Chinese)
+All AI and analysis output is for reference only. Consult a qualified healthcare professional for medical decisions. In an emergency, seek immediate medical attention.
 
-## ⚠️ Important Safety Statement
-
-This system strictly follows medical safety principles:
-
-1. **Does not provide specific medication dosages**
-2. **Does not directly prescribe prescription drugs**
-3. **Does not predict life prognosis**
-4. **Does not replace doctor diagnosis**
-
-All analysis reports from this system are for reference only and should not be used as a basis for medical diagnosis. All medical decisions require consultation with professional doctors. In case of emergency, seek immediate medical attention.
-
-> ⚠️ For complete safety principles and usage limitations, refer to [Safety Guidelines Document](docs/safety-guidelines.md) (Chinese)
-
-## 💊 Drug Interaction Database
-
-The system includes intelligent drug interaction detection, supporting drug-drug, drug-disease, drug-dose, and drug-food interaction detection using a five-level severity classification system (A/B/C/D/X).
-
-**Core Features:**
-- 🔍 Automatically detect interactions in current medication combinations
-- 🚨 Severity-graded warnings (A/B/C/D/X)
-- 📋 Provide detailed management recommendations and monitoring indicators
-- 💾 Support custom rules and history records
-
-**Quick Start:**
-```bash
-# Check interactions for current medications
-/interaction check
-
-# List all interaction rules
-/interaction list
-
-# View absolute contraindication rules
-/interaction list X
-```
-
-> 📖 **Detailed Documentation**: [Drug Interaction Database Complete Guide](docs/drug-interaction-database.md) (Chinese)
->
-> 🩺 **Professional Contributions**: Medical professionals are welcome to help improve the database → [Contribution Guidelines](docs/drug-interaction-database.md#professional-contribution-guidelines) (Chinese)
+---
 
 ## License
 
-This project is open-sourced under the [MIT License](LICENSE).
+Open source under the [MIT License](LICENSE).
 
-**Important Disclaimer**: This system is for personal health management only and should not be used as a basis for medical diagnosis.
+**Important**: For personal health management and informational use only — not a basis for medical diagnosis.

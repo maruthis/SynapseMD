@@ -100,7 +100,7 @@ pytest tests/release/ tests/eval/ -v
 pytest -v
 ```
 
-Current baseline: **239 tests**, **≥97% coverage** on `synapsemd_platform`.
+Current baseline: **266 tests**, **≥98% coverage** on `synapsemd_platform`.
 
 ## Docker
 

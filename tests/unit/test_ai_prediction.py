@@ -318,3 +318,146 @@ def test_run_cli_demo(capsys) -> None:
     captured = capsys.readouterr()
     assert "AI risk prediction demo" in captured.out
 
+
+def test_main_entrypoint(capsys) -> None:
+    from synapsemd_platform.ai.prediction import main
+
+    main()
+    captured = capsys.readouterr()
+    assert "AI risk prediction demo" in captured.out
+
+
+def _profile_age(age_years: int, **extra) -> dict:
+    birth = (datetime.now() - timedelta(days=365 * age_years)).strftime("%Y-%m-%d")
+    profile = {
+        "basic_info": {"birth_date": birth, "gender": "male"},
+        "calculated": {"bmi": 22},
+        "lifestyle": {"activity_level": "moderate", "smoking": False, "diet_quality": "good"},
+        "family_history": {},
+        "medical_history": {},
+        "vitals": {"blood_pressure": [{"systolic": 115, "diastolic": 75}]},
+        "lab_results": {
+            "fasting_glucose": [{"value": 5.0}],
+            "total_cholesterol": [{"value": 180}],
+            "hdl_cholesterol": [{"value": 60}],
+        },
+    }
+    profile.update(extra)
+    return profile
+
+
+def test_hypertension_age_and_bp_branches() -> None:
+    profile = _profile_age(50, calculated={"bmi": 24.5})
+    profile["vitals"] = {"blood_pressure": [{"systolic": 125, "diastolic": 82}]}
+    engine = AIPredictionEngine(user_profile=profile, ai_config={})
+    result = engine.predict_hypertension_risk()
+    assert result["risk_level"] in {"low", "moderate", "high"}
+
+
+def test_diabetes_middle_age_branches() -> None:
+    profile = _profile_age(45, calculated={"bmi": 27})
+    profile["lab_results"]["fasting_glucose"] = [{"value": 5.8}]
+    engine = AIPredictionEngine(user_profile=profile, ai_config={})
+    result = engine.predict_diabetes_risk()
+    assert result["probability"] >= 0
+
+
+def test_cardiovascular_male_midlife_branches() -> None:
+    profile = _profile_age(40, calculated={"bmi": 24})
+    profile["vitals"] = {"blood_pressure": [{"systolic": 125, "diastolic": 80}]}
+    profile["lab_results"]["total_cholesterol"] = [{"value": 210}]
+    engine = AIPredictionEngine(user_profile=profile, ai_config={})
+    result = engine.predict_cardiovascular_risk()
+    assert result["risk_level"] in {"low", "moderate", "high"}
+
+
+def test_cardiovascular_female_age_branches_extended() -> None:
+    birth = (datetime.now() - timedelta(days=365 * 50)).strftime("%Y-%m-%d")
+    profile = {
+        "basic_info": {"birth_date": birth, "gender": "female"},
+        "calculated": {"bmi": 24},
+        "lifestyle": {"smoking": False},
+        "medical_history": {},
+        "vitals": {"blood_pressure": [{"systolic": 122, "diastolic": 78}]},
+        "lab_results": {"total_cholesterol": [{"value": 205}], "hdl_cholesterol": [{"value": 55}]},
+    }
+    engine = AIPredictionEngine(user_profile=profile, ai_config={})
+    result = engine.predict_cardiovascular_risk()
+    assert "probability" in result
+
+
+def test_nutritional_single_deficiency_moderate(
+    low_risk_profile: dict, nutrition_data_deficient: dict
+) -> None:
+    nutrition_data_deficient["daily_records"][0]["nutrients"]["calcium"]["rda_ratio"] = 0.9
+    nutrition_data_deficient["daily_records"][0]["nutrients"]["iron"]["rda_ratio"] = 0.9
+    engine = AIPredictionEngine(
+        user_profile=low_risk_profile,
+        ai_config={},
+        nutrition_data=nutrition_data_deficient,
+    )
+    result = engine.predict_nutritional_deficiency_risk()
+    assert result["risk_level"] == "moderate"
+
+
+def test_nutritional_multiple_deficiencies_high(
+    low_risk_profile: dict, nutrition_data_deficient: dict
+) -> None:
+    engine = AIPredictionEngine(
+        user_profile=low_risk_profile,
+        ai_config={},
+        nutrition_data=nutrition_data_deficient,
+    )
+    result = engine.predict_nutritional_deficiency_risk()
+    assert result["risk_level"] == "high"
+
+
+def test_sleep_moderate_poor_days(low_risk_profile: dict) -> None:
+    records = []
+    for i in range(7):
+        quality = "poor" if i < 3 else "good"
+        records.append(
+            {
+                "sleep_quality": {"subjective_quality": quality},
+                "sleep_metrics": {"sleep_duration_hours": 6.5, "sleep_efficiency": 88},
+            }
+        )
+    engine = AIPredictionEngine(
+        user_profile=low_risk_profile,
+        ai_config={},
+        sleep_data={"sleep_records": records},
+    )
+    result = engine.predict_sleep_disorder_risk()
+    assert result["sleep_metrics"]["poor_sleep_days"] == 3
+
+
+def test_load_sleep_data_from_file(low_risk_profile: dict, tmp_path) -> None:
+    sleep_file = tmp_path / "sleep-tracker.json"
+    sleep_file.write_text(
+        '{"sleep_records": [{"sleep_quality": {"subjective_quality": "good"}, '
+        '"sleep_metrics": {"sleep_duration_hours": 7, "sleep_efficiency": 90}}]}',
+        encoding="utf-8",
+    )
+    engine = AIPredictionEngine(
+        user_profile=low_risk_profile,
+        ai_config={},
+        supplemental_data_dir=tmp_path,
+    )
+    assert engine._load_sleep_data() is not None
+
+
+def test_high_probability_generates_level3_recommendation(high_risk_profile: dict) -> None:
+    engine = AIPredictionEngine(user_profile=high_risk_profile, ai_config={})
+    result = engine.predict_hypertension_risk()
+    levels = [r["level"] for r in result.get("recommendations", []) if isinstance(r, dict)]
+    assert 3 in levels
+
+
+def test_prevention_measures_unknown_risk_type() -> None:
+    engine = AIPredictionEngine(user_profile={}, ai_config={})
+    assert engine._get_prevention_measures("unknown") == []
+
+
+def test_risk_level_moderate_threshold() -> None:
+    assert AIPredictionEngine._risk_level_from_probability(0.2, high=0.3, moderate=0.1) == "moderate"
+
