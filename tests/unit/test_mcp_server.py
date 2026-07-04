@@ -12,10 +12,13 @@ async def test_mcp_list_tools() -> None:
     names = {t.name for t in tools}
     assert "execute_command" in names
     assert "list_commands" in names
+    assert "ai_status" in names
+    assert "ai_predict" in names
+    assert len(names) == 11
 
 
 @pytest.mark.asyncio
-async def test_mcp_dispatch_list_commands(monkeypatch: pytest.MonkeyPatch) -> None:
+async def test_mcp_dispatch_list_commands_includes_ai(monkeypatch: pytest.MonkeyPatch) -> None:
     from synapsemd_platform.mcp.schemas import McpAuthContext
     from uuid import uuid4
 
@@ -27,4 +30,4 @@ async def test_mcp_dispatch_list_commands(monkeypatch: pytest.MonkeyPatch) -> No
     )
     monkeypatch.setattr("synapsemd_platform.mcp.server.resolve_auth_context", lambda: ctx)
     result = await _dispatch("list_commands", {})
-    assert result["count"] > 0
+    assert "ai" in result["commands"]

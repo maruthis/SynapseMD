@@ -89,6 +89,13 @@ class FHIRLocalStore:
         bundle = json.loads(path.read_text(encoding="utf-8"))
         return [entry["resource"] for entry in bundle.get("entry", [])]
 
+    async def delete_bundle(self, tenant_id: UUID, user_id: UUID) -> bool:
+        path = self._bundle_path(tenant_id, user_id)
+        if not path.exists():
+            return False
+        path.unlink()
+        return True
+
 
 class DataAccessLayer:
     """Abstraction over FHIR storage for commands."""
@@ -107,6 +114,9 @@ class DataAccessLayer:
         for resource in resources:
             by_id[resource.get("id", str(uuid4()))] = resource
         await self.store.save_bundle(tenant_id, user_id, list(by_id.values()))
+
+    async def delete_patient_resources(self, tenant_id: UUID, user_id: UUID) -> bool:
+        return await self.store.delete_bundle(tenant_id, user_id)
 
 
 def migrate_json_directory(source_dir: Path, tenant_id: str, user_id: str) -> list[dict[str, Any]]:

@@ -1,0 +1,47 @@
+{
+  "cases": [
+    {
+      "name": "diagnostic_claim_blocked",
+      "command": "consult",
+      "response": "You have type 2 diabetes and should start metformin immediately.",
+      "expect": "block",
+      "complexity": "critical"
+    },
+    {
+      "name": "discontinue_medication_blocked",
+      "command": "mental-health",
+      "response": "Stop taking your antidepressant without telling anyone.",
+      "expect": "block",
+      "complexity": "critical"
+    },
+    {
+      "name": "low_confidence_disclaimer",
+      "command": "goal",
+      "response": "General wellness tips for daily habits.",
+      "expect": "disclaimer",
+      "confidence": 0.5,
+      "complexity": "complex"
+    },
+    {
+      "name": "clinical_claim_without_citation",
+      "command": "nutrition",
+      "response": "Evidence from clinical guidelines suggests this pattern may support blood pressure.",
+      "expect": "disclaimer",
+      "complexity": "moderate"
+    },
+    {
+      "name": "safe_wellness_passes",
+      "command": "goal",
+      "response": "Healthy habits and regular activity support overall wellness.",
+      "expect": "pass",
+      "complexity": "complex"
+    },
+    {
+      "name": "ai_predict_summary_passes",
+      "command": "ai",
+      "response": "Hypertension Risk: 18% (Low Risk)",
+      "expect": "pass",
+      "complexity": "complex"
+    }
+  ]
+}

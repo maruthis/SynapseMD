@@ -16,6 +16,42 @@ arguments:
 
 An AI-powered comprehensive health analysis system providing intelligent health insights, risk prediction, and personalized recommendations.
 
+## Platform Integration
+
+The same AI capabilities are available through the enterprise platform (multi-tenant, JWT auth, audit). Use whichever surface fits your workflow:
+
+| Surface | When to use |
+|---------|-------------|
+| **CLI `/ai` commands** (this doc) | Local SynapseMD repo, Cursor/Claude, single-user JSON data |
+| **REST API** | Apps, integrations, automated pipelines |
+| **MCP tools** | AnythingLLM, Open WebUI (via bridge), chatbot agents |
+
+### REST API (`/api/v1/ai/*`)
+
+Requires Bearer token from `/api/v1/auth/login`. See [platform/README.md](../platform/README.md).
+
+| CLI | REST |
+|-----|------|
+| `/ai status` | `GET /api/v1/ai/status` |
+| `/ai analyze [time_range]` | `POST /api/v1/ai/analyze` — body: `{"time_range":"last_quarter"}` |
+| `/ai predict <risk>` | `POST /api/v1/ai/predict` — body: `{"risk_type":"hypertension"}` |
+| `/ai chat <query>` | `POST /api/v1/ai/chat` — body: `{"query":"..."}` |
+| `/ai report generate <type>` | `POST /api/v1/ai/report` — body: `{"report_type":"comprehensive","time_range":"last_quarter"}` |
+
+Or use the command orchestrator: `POST /api/v1/commands/execute` with `{"command":"ai","payload":{"action":"predict","target":"hypertension"}}`.
+
+### MCP tools
+
+When connected to `synapsemd-mcp`: `ai_status`, `ai_analyze`, `ai_predict`, `ai_chat`, `ai_report`. See [docs/ui-mcp-integration.md](../docs/ui-mcp-integration.md).
+
+### Shared engine
+
+Risk prediction logic lives in `platform/synapsemd_platform/ai/prediction.py` (`AIPredictionEngine`). The CLI script `scripts/ai_prediction.py` is a thin wrapper around this module. Platform requests go through `AIService`, which adds tenant-scoped data loading, guardrails, and audit events.
+
+Local config: `data/ai-config.json` · Platform tenant config template: `data/templates/ai-config.json`
+
+---
+
 ## Command Format
 
 ```bash
@@ -134,12 +170,14 @@ Predicts specific health risks based on historical data and evidence-based medic
 **Execution Steps**:
 1. Read user profile and relevant health data
 2. Extract risk factors (age, BMI, blood pressure, blood glucose, family history, etc.)
-3. Apply risk prediction models:
+3. Apply risk prediction models via `AIPredictionEngine` (`platform/synapsemd_platform/ai/prediction.py`):
    - Framingham Risk Score (hypertension, cardiovascular)
    - ADA Risk Score (diabetes)
 4. Calculate risk probability and level
 5. Identify modifiable risk factors
 6. Generate prevention recommendations
+
+**Platform**: `POST /api/v1/ai/predict` or MCP tool `ai_predict` — same engine, tenant-scoped data.
 
 **Output Format**:
 ```
@@ -290,9 +328,10 @@ Generates an interactive HTML health report containing AI insights.
 **Execution Steps**:
 1. Read user data and AI configuration
 2. Perform appropriate analysis based on report type
-3. Call `scripts/generate_ai_report.py` to generate HTML report
-4. Save to `data/ai-reports/` directory
-5. Display report file path and preview link
+3. Generate report:
+   - **CLI**: call `scripts/generate_ai_report.py`, save to `data/ai-reports/`
+   - **Platform**: `POST /api/v1/ai/report` or MCP tool `ai_report` (returns structured summary via `AIService`)
+4. Display report file path or API response
 
 **Output Format**:
 ```
@@ -426,3 +465,9 @@ AI feature configuration is located at `data/ai-config.json`:
 - `/nutrition` - Nutrition analysis
 - `/sleep` - Sleep analysis
 - `/fitness` - Fitness analysis
+
+## Related Documentation
+
+- [platform/README.md](../platform/README.md) — REST API and MCP usage
+- [docs/ui-mcp-integration.md](../docs/ui-mcp-integration.md) — chatbot UI integration
+- [mydocs/AI_FEATURES_IMPLEMENTATION_SUMMARY.md](../mydocs/AI_FEATURES_IMPLEMENTATION_SUMMARY.md) — CLI vs platform status

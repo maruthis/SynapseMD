@@ -5,6 +5,7 @@ import json
 from typing import Any
 from uuid import uuid4
 
+from synapsemd_platform.anonymization.scrubber import scrub_audit_payload
 from synapsemd_platform.audit.kafka_sink import KafkaAuditSink
 from synapsemd_platform.core.config import get_settings
 
@@ -39,15 +40,17 @@ class AuditProducer:
         ).hexdigest()
 
     async def emit(self, event: AuditEventPayload) -> dict[str, Any]:
-        record = {
-            "event_id": f"evt_{uuid4().hex[:12]}",
-            "event_type": event.event_type,
-            "tenant_id": event.tenant_id,
-            "user_id": event.user_id,
-            "resource": event.resource,
-            "ai": event.ai,
-            "outcome": event.outcome,
-        }
+        record = scrub_audit_payload(
+            {
+                "event_type": event.event_type,
+                "tenant_id": event.tenant_id,
+                "user_id": event.user_id,
+                "resource": event.resource,
+                "ai": event.ai,
+                "outcome": event.outcome,
+            }
+        )
+        record["event_id"] = f"evt_{uuid4().hex[:12]}"
         record["signature"] = self._sign(record)
         if self.settings.audit_use_memory:
             self._memory_events.append(record)

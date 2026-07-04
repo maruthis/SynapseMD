@@ -7,94 +7,94 @@ from mcp.server.stdio import stdio_server
 from mcp.types import TextContent, Tool
 
 from synapsemd_platform.mcp.context import McpAuthError, resolve_auth_context
-from synapsemd_platform.mcp.schemas import ExecuteCommandInput, QueryFhirInput, SearchKnowledgeInput
-from synapsemd_platform.mcp import tools as mcp_tools
+from synapsemd_platform.mcp.dispatch import MCP_TOOL_NAMES, dispatch_tool
 
 server = Server("synapsemd")
 
 
 @server.list_tools()
 async def list_tools() -> list[Tool]:
+    schemas: dict[str, dict[str, Any]] = {
+        "list_commands": {"type": "object", "properties": {}, "required": []},
+        "execute_command": {
+            "type": "object",
+            "properties": {
+                "command": {"type": "string"},
+                "context_text": {"type": "string"},
+                "payload": {"type": "object"},
+            },
+            "required": ["command"],
+        },
+        "get_profile_summary": {"type": "object", "properties": {}, "required": []},
+        "query_fhir_records": {
+            "type": "object",
+            "properties": {
+                "resource_type": {"type": "string"},
+                "limit": {"type": "integer", "minimum": 1, "maximum": 100},
+            },
+            "required": [],
+        },
+        "search_clinical_knowledge": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string"},
+                "top_k": {"type": "integer", "minimum": 1, "maximum": 10},
+                "include_org_intelligence": {"type": "boolean"},
+            },
+            "required": ["query"],
+        },
+        "get_audit_summary": {
+            "type": "object",
+            "properties": {"limit": {"type": "integer", "minimum": 1, "maximum": 200}},
+            "required": [],
+        },
+        "ai_status": {"type": "object", "properties": {}, "required": []},
+        "ai_analyze": {
+            "type": "object",
+            "properties": {"time_range": {"type": "string"}},
+            "required": [],
+        },
+        "ai_predict": {
+            "type": "object",
+            "properties": {"risk_type": {"type": "string"}},
+            "required": [],
+        },
+        "ai_chat": {
+            "type": "object",
+            "properties": {"query": {"type": "string"}},
+            "required": ["query"],
+        },
+        "ai_report": {
+            "type": "object",
+            "properties": {
+                "report_type": {"type": "string"},
+                "time_range": {"type": "string"},
+            },
+            "required": [],
+        },
+    }
+    descriptions: dict[str, str] = {
+        "list_commands": "List available SynapseMD health commands",
+        "execute_command": "Execute a health command through the PHI-safe orchestrator",
+        "get_profile_summary": "Get FHIR patient profile summary for the authenticated user",
+        "query_fhir_records": "Query tenant-scoped FHIR resources for the authenticated user",
+        "search_clinical_knowledge": "Search clinical knowledge base and optional org intelligence",
+        "get_audit_summary": "Get recent audit events for the tenant (auditor scope required)",
+        "ai_status": "Get Module 21 AI feature status for the authenticated user",
+        "ai_analyze": "Run comprehensive AI health analysis with risk predictions",
+        "ai_predict": "Predict a specific health risk (hypertension, diabetes, cardiovascular, etc.)",
+        "ai_chat": "Ask a natural-language health question with PHI-safe processing",
+        "ai_report": "Generate an AI health report summary",
+    }
     return [
-        Tool(
-            name="list_commands",
-            description="List available SynapseMD health commands",
-            inputSchema={"type": "object", "properties": {}, "required": []},
-        ),
-        Tool(
-            name="execute_command",
-            description="Execute a health command through the PHI-safe orchestrator",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "command": {"type": "string"},
-                    "context_text": {"type": "string"},
-                    "payload": {"type": "object"},
-                },
-                "required": ["command"],
-            },
-        ),
-        Tool(
-            name="get_profile_summary",
-            description="Get FHIR patient profile summary for the authenticated user",
-            inputSchema={"type": "object", "properties": {}, "required": []},
-        ),
-        Tool(
-            name="query_fhir_records",
-            description="Query tenant-scoped FHIR resources for the authenticated user",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "resource_type": {"type": "string"},
-                    "limit": {"type": "integer", "minimum": 1, "maximum": 100},
-                },
-                "required": [],
-            },
-        ),
-        Tool(
-            name="search_clinical_knowledge",
-            description="Search clinical knowledge base and optional org intelligence",
-            inputSchema={
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string"},
-                    "top_k": {"type": "integer", "minimum": 1, "maximum": 10},
-                    "include_org_intelligence": {"type": "boolean"},
-                },
-                "required": ["query"],
-            },
-        ),
-        Tool(
-            name="get_audit_summary",
-            description="Get recent audit events for the tenant (auditor scope required)",
-            inputSchema={
-                "type": "object",
-                "properties": {"limit": {"type": "integer", "minimum": 1, "maximum": 200}},
-                "required": [],
-            },
-        ),
+        Tool(name=name, description=descriptions[name], inputSchema=schemas[name])
+        for name in MCP_TOOL_NAMES
     ]
 
 
 async def _dispatch(name: str, arguments: dict[str, Any]) -> dict[str, Any]:
     ctx = resolve_auth_context()
-    if name == "list_commands":
-        return (await mcp_tools.list_commands(ctx)).model_dump()
-    if name == "execute_command":
-        body = ExecuteCommandInput(**arguments)
-        return (await mcp_tools.execute_command(ctx, body)).model_dump()
-    if name == "get_profile_summary":
-        return (await mcp_tools.get_profile_summary(ctx)).model_dump()
-    if name == "query_fhir_records":
-        body = QueryFhirInput(**arguments)
-        return (await mcp_tools.query_fhir_records(ctx, body)).model_dump()
-    if name == "search_clinical_knowledge":
-        body = SearchKnowledgeInput(**arguments)
-        return (await mcp_tools.search_clinical_knowledge(ctx, body)).model_dump()
-    if name == "get_audit_summary":
-        limit = int(arguments.get("limit", 50))
-        return (await mcp_tools.get_audit_summary(ctx, limit=limit)).model_dump()
-    raise ValueError(f"Unknown tool: {name}")
+    return await dispatch_tool(name, ctx, arguments)
 
 
 @server.call_tool()

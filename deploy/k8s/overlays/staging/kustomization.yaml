@@ -14,3 +14,7 @@ patches:
         APP_ENV: "staging"
         LLM_DEFAULT_PROVIDER: "mock"
         ANTHROPIC_BAA_SIGNED: "false"
+        PRESIDIO_ENABLED: "true"
+        PHI_BLOCK_ON_FAILURE: "true"
+        AUDIT_USE_KAFKA: "true"
+        ORG_INTELLIGENCE_ENABLED: "false"

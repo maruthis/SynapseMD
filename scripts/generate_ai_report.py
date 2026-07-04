@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Any, Optional
-from ai_prediction import AIPredictionEngine
+from synapsemd_platform.ai.prediction import AIPredictionEngine
 
 
 class AIHealthReportGenerator:

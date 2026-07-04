@@ -1,4 +1,8 @@
 from synapsemd_platform.api.schemas import (
+    AiAnalyzeRequest,
+    AiChatRequest,
+    AiPredictRequest,
+    AiReportRequest,
     CommandExecuteRequest,
     CommandExecuteResponse,
     LoginRequest,
@@ -38,3 +42,10 @@ def test_schema_models() -> None:
         human_review_required=False,
     )
     assert response.command == "goal"
+
+
+def test_ai_schema_models() -> None:
+    assert AiPredictRequest(risk_type="hypertension").risk_type == "hypertension"
+    assert AiAnalyzeRequest().time_range == "last_quarter"
+    assert AiChatRequest(query="hello").query == "hello"
+    assert AiReportRequest().report_type == "comprehensive"

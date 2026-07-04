@@ -8,7 +8,7 @@ SynapseMD uses an **MCP server** as the integration contract for chatbot UIs. An
 AnythingLLM / Open WebUI  →  MCP client  →  SynapseMD MCP Server  →  Platform services
 ```
 
-The MCP server calls the same service layer as the FastAPI API (`CommandOrchestrator`, `RAGEngine`, `DataAccessLayer`, `audit_producer`). No business logic is duplicated in the UI layer.
+The MCP server calls the same service layer as the FastAPI API (`AIService`, `CommandOrchestrator`, `RAGEngine`, `DataAccessLayer`, `audit_producer`). No business logic is duplicated in the UI layer.
 
 ## Compatibility Spike Results
 
@@ -31,10 +31,13 @@ The MCP server calls the same service layer as the FastAPI API (`CommandOrchestr
 | `query_fhir_records` | `read:own` | Query tenant-scoped FHIR bundle |
 | `search_clinical_knowledge` | `read:own` | Search clinical + org RAG knowledge |
 | `get_audit_summary` | `audit` | Recent audit events for tenant |
+| `ai_status` | `read:own` | Module 21 AI feature status |
+| `ai_analyze` | `write:own` | Comprehensive AI health analysis |
+| `ai_predict` | `write:own` | Evidence-based health risk prediction |
+| `ai_chat` | `write:own` | Natural-language health Q&A (PHI-safe) |
+| `ai_report` | `write:own` | AI health report summary |
 
 ## Authentication
-
-MCP clients pass a SynapseMD JWT via environment variable or request header:
 
 - `SYNAPSEMD_ACCESS_TOKEN` — bearer token from `/api/v1/auth/login`
 - `SYNAPSEMD_TENANT_ID` — optional explicit tenant override (must match token)
@@ -62,4 +65,31 @@ If Open WebUI cannot attach MCP directly, run the OpenAPI bridge:
 cd deploy/openapi-bridge && uvicorn bridge:app --port 8100
 ```
 
-Configure Open WebUI custom tool endpoint: `http://openapi-bridge:8100/tools/execute_command`
+Configure Open WebUI custom tool endpoint: `http://openapi-bridge:8100/tools/invoke`
+
+Example:
+
+```bash
+curl -X POST http://localhost:8100/tools/invoke \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"tool":"ai_predict","arguments":{"risk_type":"hypertension"}}'
+```
+
+## PHI boundary (chat UIs)
+
+Chatbot clients (AnythingLLM, Open WebUI) MUST NOT become the system of record for PHI:
+
+| Data | Stored in UI | Stored in platform |
+|------|--------------|-------------------|
+| FHIR bundles / profile JSON | ❌ No | ✅ Yes (`FHIR_LOCAL_STORE` / HAPI) |
+| Raw lab/imaging records | ❌ No | ✅ Yes |
+| Conversation transcripts | ⚠️ UI may cache chat text | Audit stores hashes only |
+| JWT / session token | ✅ UI session only | Validated per request |
+
+**Rules**
+
+1. All health data reads/writes go through MCP tools or REST API — never paste PHI into UI system prompts
+2. MCP `execute_command` and `ai_*` tools receive JWT; platform enforces tenant isolation
+3. Open WebUI bridge passes Bearer token per request; no platform credentials in UI config files
+4. Validate locally: [mydocs/qa/anythingllm-validation.md](../mydocs/qa/anythingllm-validation.md), [mydocs/qa/openwebui-validation.md](../mydocs/qa/openwebui-validation.md)

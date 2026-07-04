@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from synapsemd_platform.api.routes import admin, auth, commands
+from synapsemd_platform.api.routes import admin, ai, auth, commands
 from synapsemd_platform.core.config import get_settings
 from synapsemd_platform.core.database import init_db
 
@@ -26,6 +26,7 @@ def create_app() -> FastAPI:
     )
     app.include_router(admin.router)
     app.include_router(auth.router, prefix=settings.api_prefix)
+    app.include_router(ai.router, prefix=settings.api_prefix)
     app.include_router(commands.router, prefix=settings.api_prefix)
     return app
 

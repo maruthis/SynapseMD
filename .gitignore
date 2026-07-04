@@ -51,6 +51,7 @@ build/
 coverage/
 *.lcov
 htmlcov/
+.coverage
 
 # ============================================================
 # Claude Code & MCP
@@ -92,3 +93,7 @@ service-account*.json
 *.swp
 *.swo
 *~
+
+
+mydocs/
+mydocs/*

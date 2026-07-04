@@ -1,5 +1,4 @@
-from pathlib import Path
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 from synapsemd_platform.anonymization.engine import AnonymizationEngine, hash_content
 from synapsemd_platform.audit.events import AuditEventPayload, audit_producer
@@ -37,6 +36,14 @@ class CommandOrchestrator:
     ) -> dict:
         interaction_id = f"int_{uuid4().hex[:12]}"
         payload = payload or {}
+
+        if command == "ai":
+            return await self._execute_ai_command(
+                payload=payload,
+                context_text=context_text,
+                user_id=user_id,
+                tenant_id=tenant_id,
+            )
 
         try:
             anon = self.anonymizer.anonymize_for_llm(context_text, user_id)
@@ -120,4 +127,62 @@ class CommandOrchestrator:
             "disclaimer": guardrail.disclaimer if guardrail.requires_disclaimer else None,
             "reasoning_trace": reasoning.to_dict(),
             "blocked": guardrail.blocked,
+        }
+
+    async def _execute_ai_command(
+        self,
+        *,
+        payload: dict,
+        context_text: str,
+        user_id: str,
+        tenant_id: str,
+    ) -> dict:
+        import json
+
+        from synapsemd_platform.services.ai_service import AIService
+
+        service = AIService()
+        action = payload.get("action", "status")
+        target = payload.get("target", "")
+        options = payload.get("options", {})
+        tenant_uuid = UUID(tenant_id)
+        user_uuid = UUID(user_id)
+
+        if action == "status":
+            result = await service.status(tenant_uuid, user_uuid)
+        elif action == "predict":
+            result = await service.predict(tenant_uuid, user_uuid, target or "hypertension")
+        elif action == "analyze":
+            result = await service.analyze(
+                tenant_uuid,
+                user_uuid,
+                time_range=options.get("time_range", "last_quarter"),
+            )
+        elif action == "chat":
+            query = payload.get("query") or context_text or target
+            result = await service.chat(tenant_uuid, user_uuid, query)
+        elif action == "report":
+            result = await service.report(
+                tenant_uuid,
+                user_uuid,
+                report_type=target or "comprehensive",
+                time_range=options.get("time_range", "last_quarter"),
+            )
+        else:
+            raise ValueError(f"Unknown AI action: {action}")
+
+        interaction_id = f"int_{uuid4().hex[:12]}"
+        human_review = bool(result.get("human_review_required")) if isinstance(result, dict) else False
+        disclaimer = result.get("disclaimer") if isinstance(result, dict) else None
+
+        return {
+            "interaction_id": interaction_id,
+            "command": "ai",
+            "response": json.dumps(result, default=str),
+            "model_used": "synapsemd-ai",
+            "confidence": 0.85 if not result.get("error") else 0.5,
+            "human_review_required": human_review,
+            "disclaimer": disclaimer,
+            "reasoning_trace": {"action": action, "target": target, "options": options},
+            "blocked": bool(result.get("blocked")) if isinstance(result, dict) else False,
         }

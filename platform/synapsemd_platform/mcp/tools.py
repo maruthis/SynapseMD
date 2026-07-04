@@ -1,11 +1,17 @@
 from uuid import UUID
 
+from synapsemd_platform.ai.data_adapter import TenantIsolationError
 from synapsemd_platform.api.routes.commands import AVAILABLE_COMMANDS
 from synapsemd_platform.audit.events import audit_producer
 from synapsemd_platform.core.config import get_settings
 from synapsemd_platform.fhir.migration import DataAccessLayer, FHIRLocalStore
-from synapsemd_platform.mcp.context import McpAuthContext, require_scope
+from synapsemd_platform.mcp.context import McpAuthContext, McpAuthError, require_scope
 from synapsemd_platform.mcp.schemas import (
+    AiActionResult,
+    AiAnalyzeInput,
+    AiChatInput,
+    AiPredictInput,
+    AiReportInput,
     AuditSummaryResult,
     ExecuteCommandInput,
     ExecuteCommandResult,
@@ -18,9 +24,29 @@ from synapsemd_platform.mcp.schemas import (
     KnowledgeHit,
 )
 from synapsemd_platform.rag.retrieval import get_rag_engine
+from synapsemd_platform.services.ai_service import AIService
 from synapsemd_platform.services.command_orchestrator import CommandOrchestrator
 
 _orchestrator = CommandOrchestrator()
+_ai_service = AIService()
+
+
+def _ai_action_result(action: str, result: dict) -> AiActionResult:
+    return AiActionResult(
+        action=action,
+        result=result,
+        disclaimer=result.get("disclaimer"),
+        human_review_required=bool(result.get("human_review_required")),
+    )
+
+
+async def _run_ai_action(ctx: McpAuthContext, action: str, run) -> AiActionResult:
+    require_scope(ctx, "write:own")
+    try:
+        result = await run()
+    except TenantIsolationError as exc:
+        raise McpAuthError(str(exc)) from exc
+    return _ai_action_result(action, result)
 
 
 async def list_commands(ctx: McpAuthContext) -> ListCommandsResult:
@@ -89,6 +115,52 @@ async def search_clinical_knowledge(
 async def get_audit_summary(ctx: McpAuthContext, limit: int = 50) -> AuditSummaryResult:
     require_scope(ctx, "audit")
     events = [
-        e for e in audit_producer.get_events() if e.get("tenant_id") == str(ctx.tenant_id)
+        e for e in audit_producer.get_events(tenant_id=str(ctx.tenant_id))
     ][-limit:]
     return AuditSummaryResult(events=events, count=len(events))
+
+
+async def ai_status(ctx: McpAuthContext) -> AiActionResult:
+    require_scope(ctx, "read:own")
+    try:
+        result = await _ai_service.status(ctx.tenant_id, ctx.user_id)
+    except TenantIsolationError as exc:
+        raise McpAuthError(str(exc)) from exc
+    return _ai_action_result("status", result)
+
+
+async def ai_predict(ctx: McpAuthContext, body: AiPredictInput) -> AiActionResult:
+    return await _run_ai_action(
+        ctx,
+        "predict",
+        lambda: _ai_service.predict(ctx.tenant_id, ctx.user_id, body.risk_type),
+    )
+
+
+async def ai_analyze(ctx: McpAuthContext, body: AiAnalyzeInput) -> AiActionResult:
+    return await _run_ai_action(
+        ctx,
+        "analyze",
+        lambda: _ai_service.analyze(ctx.tenant_id, ctx.user_id, time_range=body.time_range),
+    )
+
+
+async def ai_chat(ctx: McpAuthContext, body: AiChatInput) -> AiActionResult:
+    return await _run_ai_action(
+        ctx,
+        "chat",
+        lambda: _ai_service.chat(ctx.tenant_id, ctx.user_id, body.query),
+    )
+
+
+async def ai_report(ctx: McpAuthContext, body: AiReportInput) -> AiActionResult:
+    return await _run_ai_action(
+        ctx,
+        "report",
+        lambda: _ai_service.report(
+            ctx.tenant_id,
+            ctx.user_id,
+            report_type=body.report_type,
+            time_range=body.time_range,
+        ),
+    )

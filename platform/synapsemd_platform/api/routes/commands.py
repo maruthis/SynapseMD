@@ -9,7 +9,7 @@ router = APIRouter(prefix="/commands", tags=["commands"])
 orchestrator = CommandOrchestrator()
 
 AVAILABLE_COMMANDS = [
-    "goal", "consult", "specialist", "nutrition", "fitness", "sleep",
+    "ai", "goal", "consult", "specialist", "nutrition", "fitness", "sleep",
     "mental-health", "interaction", "profile", "query", "health-trend-analyzer",
 ]
 

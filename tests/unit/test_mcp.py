@@ -40,6 +40,7 @@ async def test_mcp_list_commands(auth_ctx: McpAuthContext) -> None:
     result = await mcp_tools.list_commands(auth_ctx)
     assert result.count > 0
     assert "goal" in result.commands
+    assert "ai" in result.commands
 
 
 @pytest.mark.asyncio
@@ -54,3 +55,13 @@ async def test_mcp_execute_command(auth_ctx: McpAuthContext) -> None:
 async def test_mcp_audit_requires_scope(auth_ctx: McpAuthContext) -> None:
     with pytest.raises(McpAuthError, match="Missing scope"):
         await mcp_tools.get_audit_summary(auth_ctx)
+
+
+def test_resolve_auth_context_success(auth_ctx: McpAuthContext) -> None:
+    import os
+
+    token = os.environ.get("SYNAPSEMD_ACCESS_TOKEN", "")
+    assert token
+    ctx = resolve_auth_context()
+    assert ctx.user_id == auth_ctx.user_id
+    assert ctx.tenant_id == auth_ctx.tenant_id

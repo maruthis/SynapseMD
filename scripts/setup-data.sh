@@ -37,4 +37,11 @@ ln -sf reference/food-database.json "$DATA_DIR/food-database.json" 2>/dev/null |
 ln -sf reference/vaccine-database.json "$DATA_DIR/vaccine-database.json" 2>/dev/null || \
   cp "$REFERENCE_DIR/vaccine-database.json" "$DATA_DIR/vaccine-database.json"
 
+# AI config template (optional local dev)
+mkdir -p "$DATA_DIR/ai-config"
+if [[ ! -f "$DATA_DIR/ai-config.json" ]]; then
+  cp "$ROOT/data/templates/ai-config.json" "$DATA_DIR/ai-config.json"
+  echo "  seeded: data/ai-config.json"
+fi
+
 echo "Done. Live data: $DATA_DIR | Reference DBs: $REFERENCE_DIR"

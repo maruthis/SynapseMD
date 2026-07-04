@@ -188,6 +188,53 @@ async def test_review_queue_and_decide_success(
 
 
 @pytest.mark.asyncio
+async def test_admin_export_not_found(client: AsyncClient, tenant_id: str) -> None:
+    from uuid import uuid4
+
+    await client.post(
+        f"/api/v1/auth/tenants/{tenant_id}/users",
+        json={"email": "export-admin2@test.com", "password": "securepass1", "role": "admin"},
+    )
+    login = await client.post(
+        "/api/v1/auth/login",
+        json={"email": "export-admin2@test.com", "password": "securepass1", "tenant_id": tenant_id},
+    )
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    response = await client.get(f"/admin/export/{uuid4()}", headers=headers)
+    assert response.status_code == 404
+
+
+@pytest.mark.asyncio
+async def test_admin_export_and_erase(client: AsyncClient, tenant_id: str) -> None:
+    reg = await client.post(
+        f"/api/v1/auth/tenants/{tenant_id}/users",
+        json={"email": "erase-me@test.com", "password": "securepass1", "role": "patient"},
+    )
+    user_id = reg.json()["id"]
+
+    await client.post(
+        f"/api/v1/auth/tenants/{tenant_id}/users",
+        json={"email": "erase-admin@test.com", "password": "securepass1", "role": "admin"},
+    )
+    login = await client.post(
+        "/api/v1/auth/login",
+        json={"email": "erase-admin@test.com", "password": "securepass1", "tenant_id": tenant_id},
+    )
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+
+    export = await client.get(f"/admin/export/{user_id}", headers=headers)
+    assert export.status_code == 200
+    assert export.json()["user_id"] == user_id
+
+    erase = await client.post(f"/admin/users/{user_id}/erase", headers=headers)
+    assert erase.status_code == 200
+    assert erase.json()["status"] == "erased"
+
+    erase_again = await client.post(f"/admin/users/{user_id}/erase", headers=headers)
+    assert erase_again.json()["status"] == "already_erased"
+
+
+@pytest.mark.asyncio
 async def test_commands_phi_block_returns_422(client: AsyncClient, patient_auth: dict) -> None:
     from unittest.mock import patch
 

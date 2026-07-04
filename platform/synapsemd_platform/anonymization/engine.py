@@ -44,10 +44,21 @@ class TokenVault:
 class AnonymizationEngine:
     def __init__(self, vault: TokenVault | None = None) -> None:
         self.settings = get_settings()
-        self.vault = vault or TokenVault()
+        self.vault = vault or self._create_token_vault()
         self._presidio = None
         if self.settings.presidio_enabled:
             self._init_presidio()
+
+    def _create_token_vault(self) -> TokenVault:
+        if (
+            self.settings.vault_enabled
+            and self.settings.vault_url
+            and self.settings.vault_token
+        ):
+            from synapsemd_platform.anonymization.vault_store import VaultTokenVault
+
+            return VaultTokenVault(self.settings.vault_url, self.settings.vault_token)
+        return TokenVault()
 
     def _init_presidio(self) -> None:
         try:
@@ -112,6 +123,8 @@ class AnonymizationEngine:
 
         anonymized = anonymizer.anonymize(text=text, analyzer_results=results, operators=operators)
         self.vault.store_tokens(user_id, token_map)
+        if not self.validate_no_phi(anonymized.text) and self.settings.phi_block_on_failure:
+            raise ValueError("PHI detected after anonymization — blocking LLM call")
         return AnonymizationResult(
             anonymized_text=anonymized.text,
             token_map=token_map,

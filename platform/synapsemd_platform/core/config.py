@@ -56,6 +56,7 @@ class Settings(BaseSettings):
     enable_tracing: bool = True
 
     mcp_enabled: bool = True
+    legacy_data_root: str = "./data"
 
 
 @lru_cache

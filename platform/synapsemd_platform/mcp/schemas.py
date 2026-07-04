@@ -71,3 +71,27 @@ class SearchKnowledgeResult(BaseModel):
 class AuditSummaryResult(BaseModel):
     events: list[dict[str, Any]]
     count: int
+
+
+class AiAnalyzeInput(BaseModel):
+    time_range: str = "last_quarter"
+
+
+class AiPredictInput(BaseModel):
+    risk_type: str = "hypertension"
+
+
+class AiChatInput(BaseModel):
+    query: str = Field(min_length=1)
+
+
+class AiReportInput(BaseModel):
+    report_type: str = "comprehensive"
+    time_range: str = "last_quarter"
+
+
+class AiActionResult(BaseModel):
+    action: str
+    result: dict[str, Any]
+    disclaimer: str | None = None
+    human_review_required: bool = False

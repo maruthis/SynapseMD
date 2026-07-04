@@ -19,3 +19,4 @@ data:
   VAULT_ENABLED: "true"
   VAULT_URL: "http://vault:8200"
   ORG_INTELLIGENCE_ENABLED: "false"
+  PHI_BLOCK_ON_FAILURE: "true"

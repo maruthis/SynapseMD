@@ -16,7 +16,11 @@ patches:
         ANTHROPIC_BAA_SIGNED: "true"
         OPENAI_BAA_SIGNED: "true"
         GOOGLE_BAA_SIGNED: "true"
-        ORG_INTELLIGENCE_ENABLED: "true"
+        PRESIDIO_ENABLED: "true"
+        PHI_BLOCK_ON_FAILURE: "true"
+        AUDIT_USE_KAFKA: "true"
+        AUDIT_USE_MEMORY: "false"
+        ORG_INTELLIGENCE_ENABLED: "false"
   - patch: |-
       apiVersion: apps/v1
       kind: Deployment

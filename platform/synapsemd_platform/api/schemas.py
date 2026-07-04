@@ -61,3 +61,27 @@ class ReviewDecisionRequest(BaseModel):
 
 class MigrateRequest(BaseModel):
     source_directory: str
+
+
+class AiAnalyzeRequest(BaseModel):
+    time_range: str = "last_quarter"
+
+
+class AiPredictRequest(BaseModel):
+    risk_type: str = Field(description="hypertension, diabetes, cardiovascular, nutritional_deficiency, sleep_disorder, or all")
+
+
+class AiChatRequest(BaseModel):
+    query: str = Field(min_length=1)
+
+
+class AiReportRequest(BaseModel):
+    report_type: str = "comprehensive"
+    time_range: str = "last_quarter"
+
+
+class AiActionResponse(BaseModel):
+    action: str
+    result: dict
+    disclaimer: str | None = None
+    human_review_required: bool = False
