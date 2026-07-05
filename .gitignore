@@ -93,6 +93,3 @@ service-account*.json
 *.swp
 *.swo
 *~
-
-mydocs/
-mydocs/*
