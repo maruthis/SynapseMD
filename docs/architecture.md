@@ -107,7 +107,7 @@ Schema reference: [data-structures.md](data-structures.md).
 
 Enterprise FastAPI application: multi-tenant auth, FHIR storage, PHI anonymization, command orchestrator, MCP server, Module 21 AI REST routes, audit events.
 
-See [platform/README.md](../platform/README.md) and [enterprise-architecture.md](enterprise-architecture.md).
+See [platform/README.md](../platform/README.md), [release-gates.md](release-gates.md), and [compliance-controls.md](compliance-controls.md).
 
 ### `tests/`
 
@@ -296,5 +296,5 @@ For cloud storage, replace local filesystem tools with tenant-scoped object stor
 | [developer-guide.md](developer-guide.md) | Extension recipes and checklists |
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | PR checklist and setup |
 | [data-structures.md](data-structures.md) | JSON schema reference |
-| [enterprise-architecture.md](enterprise-architecture.md) | Platform deep dive |
+| [platform/README.md](../platform/README.md) | Enterprise platform API and deployment |
 | [ui-mcp-integration.md](ui-mcp-integration.md) | MCP and chatbot wiring |

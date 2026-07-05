@@ -326,13 +326,157 @@ Full command reference: [User Guide](user-guide.md) · Browse all commands in th
 
 ---
 
-## Optional — Enterprise platform (not required for personal use)
+## Optional — Chat UI (AnythingLLM or Open WebUI)
 
-Most end users only need the local CLI workflow above. The **platform** is for clinics, teams, or chatbot integrations that need REST API, multi-tenant auth, and audit logs.
+Prefer a **web chat** instead of slash commands in Claude Code? SynapseMD connects to two self-hosted chat UIs. Both talk to the same platform backend — your health data stays on SynapseMD, not in the chat app.
 
-If your organization hosts SynapseMD for you, they will provide API credentials and a UI (e.g. AnythingLLM, Open WebUI). See [platform/README.md](../platform/README.md).
+```text
+Local CLI path:     Claude Code / Cursor  →  commands/  →  data/ (JSON files)
 
-Personal users can skip the platform entirely.
+Chat UI path:       AnythingLLM or Open WebUI  →  platform  →  FHIR + AI tools
+```
+
+| UI | Best for | Integration |
+|----|----------|-------------|
+| **AnythingLLM** | Native MCP support, simpler tool wiring | Direct MCP server (`synapsemd-mcp`) |
+| **Open WebUI** | Popular chat UI, rich plugins | OpenAPI bridge (`deploy/openapi-bridge/`) |
+
+**Full Open WebUI guide:** [open-webui-setup.md](open-webui-setup.md)
+
+### Prerequisites (both UIs)
+
+1. **Docker** installed
+2. SynapseMD repo cloned
+3. ~4 GB free RAM for the full stack
+
+### Shared setup — start platform and get a login token
+
+These steps are the same for AnythingLLM and Open WebUI:
+
+```bash
+cd SynapseMD/platform
+docker compose --profile full up --build
+```
+
+| Service | URL |
+|---------|-----|
+| SynapseMD API | http://localhost:8000/docs |
+| OpenAPI bridge (Open WebUI) | http://localhost:8100 |
+| AnythingLLM | http://localhost:3001 |
+| Open WebUI | http://localhost:3000 |
+
+**Create your SynapseMD account** (once):
+
+```bash
+# Create tenant
+TENANT=$(curl -s -X POST http://localhost:8000/api/v1/auth/tenants \
+  -H "Content-Type: application/json" \
+  -d '{"name":"My Health","plan":"starter"}')
+TENANT_ID=$(echo "$TENANT" | python3 -c "import sys,json; print(json.load(sys.stdin)['id'])")
+
+# Register user
+curl -s -X POST "http://localhost:8000/api/v1/auth/tenants/$TENANT_ID/users" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"me@example.com","password":"securepass1","role":"patient"}'
+
+# Login — save the token
+TOKEN=$(curl -s -X POST http://localhost:8000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"me@example.com\",\"password\":\"securepass1\",\"tenant_id\":\"$TENANT_ID\"}" \
+  | python3 -c "import sys,json; print(json.load(sys.stdin)['access_token'])")
+echo "$TOKEN"
+```
+
+Verify tools work:
+
+```bash
+curl -s -X POST http://localhost:8100/tools/invoke \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"tool":"ai_status","arguments":{}}'
+```
+
+### Configure AnythingLLM
+
+AnythingLLM connects **directly** to SynapseMD’s MCP server (recommended integration).
+
+1. Open **http://localhost:3001** and complete the AnythingLLM setup wizard
+2. Create or open a **Workspace**
+3. Go to **Workspace Settings** → **Agent Skills** → **MCP Servers** (or **Tools** → **MCP**, depending on version)
+4. Add a new MCP server:
+
+   | Field | Value |
+   |-------|-------|
+   | **Name** | `SynapseMD` |
+   | **Type** | `stdio` |
+   | **Command** | Path to MCP binary (see below) |
+   | **Environment** | `SYNAPSEMD_ACCESS_TOKEN=<your token from above>` |
+
+5. **Command options** (pick one):
+
+   **Option A — MCP on your host** (AnythingLLM desktop app or host-installed):
+
+   ```bash
+   cd SynapseMD/platform
+   python -m venv .venv && source .venv/bin/activate
+   pip install -e ".[mcp]"
+   export SYNAPSEMD_ACCESS_TOKEN="$TOKEN"
+   which synapsemd-mcp   # use this full path in AnythingLLM
+   ```
+
+   In AnythingLLM MCP config:
+   - Command: `/path/to/.venv/bin/synapsemd-mcp`
+   - Env: `SYNAPSEMD_ACCESS_TOKEN=<token>`
+
+   **Option B — Docker Compose** (AnythingLLM in browser, MCP via bridge fallback):
+
+   If stdio MCP across containers is awkward, use the **OpenAPI bridge** from Open WebUI instead — call `http://localhost:8100/tools/invoke` from AnythingLLM custom tools, same as Open WebUI.
+
+6. Enable the MCP server for your workspace agent
+7. Start a chat and ask, for example:
+   - *“Use SynapseMD to check my AI status”*
+   - *“Predict my hypertension risk using SynapseMD”*
+   - *“Ask SynapseMD: how is my sleep data?”*
+
+**Available MCP tools:** `ai_chat`, `ai_analyze`, `ai_predict`, `ai_report`, `ai_status`, `get_profile_summary`, `query_fhir_records`, `execute_command`, and more. See [ui-mcp-integration.md](ui-mcp-integration.md).
+
+### Configure Open WebUI
+
+Open WebUI uses the **OpenAPI bridge** (not MCP directly).
+
+1. Open **http://localhost:3000** and create your Open WebUI account
+2. Add SynapseMD **Functions** (Python tool plugins) that call the bridge
+3. Paste your `$TOKEN` and set bridge URL to `http://openapi-bridge:8100`
+
+**Step-by-step with copy-paste function examples:** [open-webui-setup.md](open-webui-setup.md)
+
+Quick test from terminal (same as Open WebUI functions use internally):
+
+```bash
+curl -s -X POST http://localhost:8100/tools/invoke \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"tool":"ai_chat","arguments":{"query":"Summarize my available health data"}}'
+```
+
+### Chat UI safety reminders
+
+- **Do not paste** lab reports, diagnoses, or IDs into the chat system prompt — use SynapseMD tools instead
+- All AI output is **informational only**, not medical advice ([safety-guidelines.md](safety-guidelines.md))
+- Chat UIs may store **conversation text** locally; health records stay on the **platform**
+- Keep your `$TOKEN` private; re-login if it leaks
+
+### CLI vs chat UI — which to use?
+
+| Use CLI (Claude Code) if… | Use chat UI if… |
+|---------------------------|-----------------|
+| You want local JSON files only | You prefer a browser chat |
+| You use slash commands daily | Your org hosts the platform for you |
+| No Docker / platform needed | You want AnythingLLM or Open WebUI |
+
+You can use **both**: CLI for local authoring and data entry; chat UI for conversational access to the platform.
+
+See also: [platform/README.md](../platform/README.md) · [ui-mcp-integration.md](ui-mcp-integration.md)
 
 ---
 
@@ -403,6 +547,8 @@ All analysis, AI output, and consultation reports are **for personal reference a
 | Document | When to use it |
 |----------|----------------|
 | [User Guide](user-guide.md) | Detailed command reference and examples |
+| [Open WebUI Setup](open-webui-setup.md) | Step-by-step Open WebUI + SynapseMD configuration |
+| [UI & MCP Integration](ui-mcp-integration.md) | AnythingLLM MCP and architecture details |
 | [Drug Interaction Database](drug-interaction-database.md) | How interaction severity levels work |
 | [Safety Guidelines](safety-guidelines.md) | Medical boundaries and disclaimers |
 | [commands/ai.md](../commands/ai.md) | Full AI command options |

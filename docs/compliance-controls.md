@@ -1,6 +1,6 @@
 # Compliance Controls Mapping
 
-Maps SynapseMD platform controls to regulatory frameworks. See [enterprise-architecture.md](enterprise-architecture.md) for full details.
+Maps SynapseMD platform controls to regulatory frameworks. See [architecture.md](architecture.md), [release-gates.md](release-gates.md), and [platform/README.md](../platform/README.md) for details.
 
 ## HIPAA Technical Safeguards
 

@@ -67,6 +67,8 @@ cd deploy/openapi-bridge && uvicorn bridge:app --port 8100
 
 Configure Open WebUI custom tool endpoint: `http://openapi-bridge:8100/tools/invoke`
 
+**End-user setup guide:** [open-webui-setup.md](open-webui-setup.md) — account creation, Functions, examples, troubleshooting.
+
 Example:
 
 ```bash

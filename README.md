@@ -165,6 +165,7 @@ Full list: 60+ commands in [commands/](commands/).
 | Topic | Link |
 |-------|------|
 | **Getting started (end users)** | [docs/getting-started.md](docs/getting-started.md) |
+| **Open WebUI setup** | [docs/open-webui-setup.md](docs/open-webui-setup.md) |
 | **Developer guide** | [docs/developer-guide.md](docs/developer-guide.md) |
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | User guide | [docs/user-guide.md](docs/user-guide.md) |
@@ -173,7 +174,6 @@ Full list: 60+ commands in [commands/](commands/).
 | Platform & AI API | [platform/README.md](platform/README.md) |
 | MCP / UI integration | [docs/ui-mcp-integration.md](docs/ui-mcp-integration.md) |
 | Release gates | [docs/release-gates.md](docs/release-gates.md) |
-| Enterprise architecture | [docs/enterprise-architecture.md](docs/enterprise-architecture.md) |
 | Drug interactions | [docs/drug-interaction-database.md](docs/drug-interaction-database.md) |
 | Safety guidelines | [docs/safety-guidelines.md](docs/safety-guidelines.md) |
 | Technical details | [docs/technical-details.md](docs/technical-details.md) |

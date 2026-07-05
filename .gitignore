@@ -94,6 +94,5 @@ service-account*.json
 *.swo
 *~
 
-
 mydocs/
 mydocs/*
