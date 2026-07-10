@@ -12,6 +12,91 @@
 6. Query all records: `/query all`
 7. Start MDT consultation: `/consult`
 
+## Using `data-example/` for testing
+
+SynapseMD keeps **sample health data** in `data-example/` and your **live records** in `data/`. Commands always read and write `data/` — never edit `data-example/` for day-to-day use.
+
+| Directory | Purpose | Committed to Git? |
+|-----------|---------|-------------------|
+| `data-example/` | Sample trackers, logs, and schemas for demos and testing | Yes |
+| `data/` | Your live personal health records | No (gitignored) |
+
+Use `data-example/` when you want to try commands, AI analysis, or consultations **without entering your own medical data first**.
+
+### What is in `data-example/`
+
+About 50 sample files covering major domains, including:
+
+- **Profile & core:** `profile.json`, `allergies.json`, `radiation-records.json`, `index.json`
+- **Chronic care:** `hypertension-tracker.json`, `diabetes-tracker.json`, `copd-tracker.json`
+- **Lifestyle:** `sleep-tracker.json`, `nutrition-tracker.json`, `fitness-tracker.json` (+ dated logs under `*-logs/`)
+- **Life stages:** pregnancy, postpartum, menopause, child health, men’s health trackers
+- **Other modules:** mental health, travel, occupational, TCM, rehabilitation, screening, and more
+
+Many trackers already contain **realistic sample values** (for example blood pressure readings, sleep schedules, nutrition goals). `profile.json` in the example set may still have empty fields — set them with `/profile` after seeding.
+
+Full file list: [data-example/README.md](../data-example/README.md). Schema reference: [data-structures.md](data-structures.md).
+
+### Seed `data/` from examples (first time)
+
+From the repo root:
+
+```bash
+./scripts/setup-data.sh
+```
+
+This copies `data-example/` → `data/` **only if** `data/profile.json` does not already exist. It also links reference databases (food, vaccines) and seeds `data/ai-config.json`.
+
+Then open Claude Code or Cursor in the repo and try:
+
+```bash
+/profile set 175 70 1973-01-01
+/query all
+/sleep status
+/nutrition status
+/ai analyze last_quarter
+/consult recent 5
+```
+
+### Refresh sample data for a clean test (overwrite)
+
+`setup-data.sh` will **not** overwrite an existing `data/` folder. To reset to the sample set for testing:
+
+```bash
+# Optional but recommended: back up your current live data first
+cp -r data/ ~/Backups/SynapseMD-data-$(date +%Y-%m-%d)
+
+# Replace live data with a fresh copy of the examples
+rm -rf data/
+./scripts/setup-data.sh
+```
+
+Or copy only the domains you need (keeps the rest of `data/` intact):
+
+```bash
+cp data-example/hypertension-tracker.json data/
+cp -r data-example/sleep-logs data/
+cp data-example/sleep-tracker.json data/
+```
+
+### Suggested test flows with sample data
+
+| Goal | After seeding, try |
+|------|--------------------|
+| Confirm data loaded | `/query all` · `/profile view` |
+| Lifestyle modules | `/sleep status` · `/nutrition status` · `/fitness status` |
+| Chronic disease | `/hypertension status` · `/diabetes status` |
+| Drug safety | `/medication list` · `/interaction check` |
+| AI (Module 21) | `/ai status` · `/ai analyze last_quarter` · `/ai predict hypertension` |
+| MDT consult | `/consult recent 5` · `/specialist cardio recent 3` |
+
+### Rules for testing
+
+1. **Do not commit** files under `data/` — that folder is for local use only.
+2. **Do not put real PHI into `data-example/`** — keep examples synthetic or anonymized.
+3. **Back up `data/`** before a force refresh if you have real records you care about.
+4. Sample data is for **learning and demos** — not a substitute for your own clinical records or medical advice.
+
 ## Core Command Usage
 
 ### 0. Set User Basic Parameters (Required for First-Time Use)
@@ -177,6 +262,7 @@ Use the `/specialist` command to consult a specific specialty:
 ## Important Notes
 
 - First-time use requires setting basic parameters (height, weight, birth date)
+- For demos and testing without your own records, seed from `data-example/` (see [Using data-example for testing](#using-data-example-for-testing))
 - Ensure medical report images are clear and readable
 - Supported image formats: JPG, PNG
 - Regularly backup the `data/` directory
