@@ -169,6 +169,7 @@ Full list: 60+ commands in [commands/](commands/).
 | **Developer guide** | [docs/developer-guide.md](docs/developer-guide.md) |
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | User guide | [docs/user-guide.md](docs/user-guide.md) |
+| Commands catalog | [docs/commands-catalog.md](docs/commands-catalog.md) |
 | Data structures | [docs/data-structures.md](docs/data-structures.md) |
 | Architecture | [docs/architecture.md](docs/architecture.md) |
 | Platform & AI API | [platform/README.md](platform/README.md) |
