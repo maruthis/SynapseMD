@@ -45,11 +45,15 @@ services:
       - "8081:8081"
     environment:
       - MCP_TRANSPORT=sse
+      - JWT_SECRET=dev-secret-change-in-production
+      - DATABASE_URL=postgresql+asyncpg://synapsemd:synapsemd@postgres:5432/synapsemd
+      - AUDIT_USE_MEMORY=true
       - SYNAPSEMD_ACCESS_TOKEN=${SYNAPSEMD_ACCESS_TOKEN:-}
       - FHIR_LOCAL_STORE=/data/fhir
       - RAG_VECTOR_STORE=file
       - RAG_VECTOR_STORE_PATH=/data/rag
       - LLM_DEFAULT_PROVIDER=mock
+      - APP_ENV=development
     volumes:
       - fhir_data:/data/fhir
       - rag_data:/data/rag

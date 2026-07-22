@@ -398,45 +398,19 @@ curl -s -X POST http://localhost:8100/tools/invoke \
 
 ### Configure AnythingLLM
 
-AnythingLLM connects **directly** to SynapseMD’s MCP server (recommended integration).
+AnythingLLM connects **directly** to SynapseMD’s MCP server (SSE or stdio).
 
-1. Open **http://localhost:3001** and complete the AnythingLLM setup wizard
-2. Create or open a **Workspace**
-3. Go to **Workspace Settings** → **Agent Skills** → **MCP Servers** (or **Tools** → **MCP**, depending on version)
-4. Add a new MCP server:
+**Full step-by-step guide (Docker Compose, Desktop, JWT, troubleshooting):** [anythingllm-setup.md](anythingllm-setup.md)
 
-   | Field | Value |
-   |-------|-------|
-   | **Name** | `SynapseMD` |
-   | **Type** | `stdio` |
-   | **Command** | Path to MCP binary (see below) |
-   | **Environment** | `SYNAPSEMD_ACCESS_TOKEN=<your token from above>` |
+Quick summary:
 
-5. **Command options** (pick one):
-
-   **Option A — MCP on your host** (AnythingLLM desktop app or host-installed):
-
-   ```bash
-   cd SynapseMD/platform
-   python -m venv .venv && source .venv/bin/activate
-   pip install -e ".[mcp]"
-   export SYNAPSEMD_ACCESS_TOKEN="$TOKEN"
-   which synapsemd-mcp   # use this full path in AnythingLLM
-   ```
-
-   In AnythingLLM MCP config:
-   - Command: `/path/to/.venv/bin/synapsemd-mcp`
-   - Env: `SYNAPSEMD_ACCESS_TOKEN=<token>`
-
-   **Option B — Docker Compose** (AnythingLLM in browser, MCP via bridge fallback):
-
-   If stdio MCP across containers is awkward, use the **OpenAPI bridge** from Open WebUI instead — call `http://localhost:8100/tools/invoke` from AnythingLLM custom tools, same as Open WebUI.
-
-6. Enable the MCP server for your workspace agent
-7. Start a chat and ask, for example:
-   - *“Use SynapseMD to check my AI status”*
-   - *“Predict my hypertension risk using SynapseMD”*
-   - *“Ask SynapseMD: how is my sleep data?”*
+1. Start stack: `cd platform && docker compose --profile full up -d` (or `--profile mcp`)
+2. Create tenant/user/JWT (see guide — remember `echo` after `VAR=$(curl …)`)
+3. Set `SYNAPSEMD_ACCESS_TOKEN` in `platform/.env` and recreate `mcp`
+4. Add MCP in AnythingLLM `plugins/anythingllm_mcp_servers.json`:
+   - Compose AnythingLLM → `"type":"sse","url":"http://mcp:8081/sse"`
+   - Desktop → `"type":"sse","url":"http://localhost:8081/sse"`
+5. **Agent Skills → MCP Servers → Refresh**, then chat with `@agent`
 
 **Available MCP tools:** `ai_chat`, `ai_analyze`, `ai_predict`, `ai_report`, `ai_status`, `get_profile_summary`, `query_fhir_records`, `execute_command`, and more. See [ui-mcp-integration.md](ui-mcp-integration.md).
 
@@ -548,6 +522,7 @@ All analysis, AI output, and consultation reports are **for personal reference a
 | Document | When to use it |
 |----------|----------------|
 | [User Guide](user-guide.md) | Detailed command reference and examples |
+| [AnythingLLM Setup](anythingllm-setup.md) | Step-by-step AnythingLLM + SynapseMD MCP |
 | [Open WebUI Setup](open-webui-setup.md) | Step-by-step Open WebUI + SynapseMD configuration |
 | [UI & MCP Integration](ui-mcp-integration.md) | AnythingLLM MCP and architecture details |
 | [Drug Interaction Database](drug-interaction-database.md) | How interaction severity levels work |

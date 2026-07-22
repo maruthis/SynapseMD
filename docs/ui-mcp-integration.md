@@ -17,7 +17,7 @@ The MCP server calls the same service layer as the FastAPI API (`AIService`, `Co
 | **AnythingLLM** | Native MCP agent support | Direct MCP (stdio or SSE) | Best fit for local/dev; configure workspace MCP server |
 | **Open WebUI** | Function tools / OpenAPI | MCP via external client or OpenAPI bridge | Use `deploy/openapi-bridge/` if UI cannot attach MCP directly |
 
-**Default for local/dev:** AnythingLLM with direct MCP attachment.
+**Default for local/dev:** AnythingLLM with direct MCP attachment — full guide: [anythingllm-setup.md](anythingllm-setup.md).
 
 **Fallback:** Open WebUI + OpenAPI function bridge exposing the same tool schemas.
 

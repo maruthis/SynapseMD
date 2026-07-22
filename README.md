@@ -165,6 +165,7 @@ Full list: 60+ commands in [commands/](commands/).
 | Topic | Link |
 |-------|------|
 | **Getting started (end users)** | [docs/getting-started.md](docs/getting-started.md) |
+| **AnythingLLM setup** | [docs/anythingllm-setup.md](docs/anythingllm-setup.md) |
 | **Open WebUI setup** | [docs/open-webui-setup.md](docs/open-webui-setup.md) |
 | **Developer guide** | [docs/developer-guide.md](docs/developer-guide.md) |
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
