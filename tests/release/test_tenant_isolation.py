@@ -135,3 +135,6 @@ def test_rls_migration_defines_tenant_policy() -> None:
     assert "ENABLE ROW LEVEL SECURITY" in sql
     assert "tenant_isolation" in sql
     assert "app.tenant_id" in sql
+    # PostgreSQL does not support CREATE POLICY IF NOT EXISTS
+    assert "CREATE POLICY IF NOT EXISTS" not in sql
+    assert "to_regclass('public.ai_interactions')" in sql

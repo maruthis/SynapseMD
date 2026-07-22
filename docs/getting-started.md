@@ -440,17 +440,18 @@ AnythingLLM connects **directly** to SynapseMD’s MCP server (recommended integ
 
 **Available MCP tools:** `ai_chat`, `ai_analyze`, `ai_predict`, `ai_report`, `ai_status`, `get_profile_summary`, `query_fhir_records`, `execute_command`, and more. See [ui-mcp-integration.md](ui-mcp-integration.md).
 
-### Configure Open WebUI
+### Configure Open WebUI (v0.10.2)
 
-Open WebUI uses the **OpenAPI bridge** (not MCP directly).
+Open WebUI **v0.10.2** can use the **OpenAPI bridge** and/or **MCP SSE**. Compose pins `ghcr.io/open-webui/open-webui:v0.10.2`.
 
-1. Open **http://localhost:3000** and create your Open WebUI account
-2. Add SynapseMD **Functions** (Python tool plugins) that call the bridge
-3. Paste your `$TOKEN` and set bridge URL to `http://openapi-bridge:8100`
+1. Open **http://localhost:3000**
+2. Preferred: **Workspace → Tools** → create a SynapseMD toolkit (Valves for JWT + bridge URL)
+3. Optional: **Settings → Connections** / **Admin Settings → Tools** → MCP SSE at `http://mcp:8081/sse` (global) or `http://localhost:8081/sse` (user)
+4. In chat, use **＋** to enable tools; set **Function Calling → Native** for best results
 
-**Step-by-step with copy-paste function examples:** [open-webui-setup.md](open-webui-setup.md)
+**Step-by-step with Valves examples and troubleshooting:** [open-webui-setup.md](open-webui-setup.md)
 
-Quick test from terminal (same as Open WebUI functions use internally):
+Quick test from terminal (same call Workspace Tools make):
 
 ```bash
 curl -s -X POST http://localhost:8100/tools/invoke \

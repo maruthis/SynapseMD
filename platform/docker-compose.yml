@@ -40,7 +40,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.mcp
+    command: ["synapsemd-mcp", "--transport", "sse", "--host", "0.0.0.0", "--port", "8081"]
+    ports:
+      - "8081:8081"
     environment:
+      - MCP_TRANSPORT=sse
       - SYNAPSEMD_ACCESS_TOKEN=${SYNAPSEMD_ACCESS_TOKEN:-}
       - FHIR_LOCAL_STORE=/data/fhir
       - RAG_VECTOR_STORE=file
@@ -49,6 +53,12 @@ services:
     volumes:
       - fhir_data:/data/fhir
       - rag_data:/data/rag
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8081/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     depends_on:
       - api
     profiles: ["mcp", "full"]
@@ -60,9 +70,16 @@ services:
     ports:
       - "8100:8100"
     environment:
+      # Must match api JWT_SECRET or Bearer tokens from /auth/login fail validation
+      - JWT_SECRET=dev-secret-change-in-production
+      - DATABASE_URL=postgresql+asyncpg://synapsemd:synapsemd@postgres:5432/synapsemd
+      - AUDIT_USE_MEMORY=true
+      - FHIR_BASE_URL=http://hapi-fhir:8080/fhir
       - FHIR_LOCAL_STORE=/data/fhir
       - RAG_VECTOR_STORE=file
       - RAG_VECTOR_STORE_PATH=/data/rag
+      - LLM_DEFAULT_PROVIDER=mock
+      - APP_ENV=development
     volumes:
       - fhir_data:/data/fhir
       - rag_data:/data/rag
@@ -122,7 +139,7 @@ services:
     profiles: ["full"]
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:v0.10.2
     ports:
       - "3000:8080"
     environment:

@@ -48,14 +48,21 @@ Dev mode: use `synapsemd-mcp --dev-token` with pre-provisioned tenant credential
 
 ```bash
 # API only
-cd platform && docker compose up api postgres
+cd platform && docker compose --profile core up
 
 # Full stack with MCP + AnythingLLM
 cd platform && docker compose --profile full up
 
-# MCP server standalone (stdio)
+# MCP server standalone (stdio — for Cursor/Claude Code)
 synapsemd-mcp
+
+# MCP server over HTTP/SSE (Docker default; keeps container running)
+synapsemd-mcp --transport sse --port 8081
+# Health: http://localhost:8081/health
+# SSE endpoint: http://localhost:8081/sse
 ```
+
+**Note:** The Compose `mcp` service uses SSE. Plain `synapsemd-mcp` (stdio) exits immediately in Docker because there is no attached client on stdin — that is expected, not a crash.
 
 ## Open WebUI Bridge
 
@@ -67,7 +74,7 @@ cd deploy/openapi-bridge && uvicorn bridge:app --port 8100
 
 Configure Open WebUI custom tool endpoint: `http://openapi-bridge:8100/tools/invoke`
 
-**End-user setup guide:** [open-webui-setup.md](open-webui-setup.md) — account creation, Functions, examples, troubleshooting.
+**End-user setup guide:** [open-webui-setup.md](open-webui-setup.md) — Open WebUI **v0.10.2**, Workspace Tools + Valves, MCP SSE, troubleshooting.
 
 Example:
 

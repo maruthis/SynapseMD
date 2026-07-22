@@ -8,4 +8,4 @@ COPY synapsemd_platform ./synapsemd_platform
 
 RUN pip install --no-cache-dir ".[mcp]"
 
-CMD ["synapsemd-mcp"]
+CMD ["synapsemd-mcp", "--transport", "sse", "--host", "0.0.0.0", "--port", "8081"]

@@ -17,6 +17,15 @@ async def test_mcp_list_tools() -> None:
     assert len(names) == 11
 
 
+def test_create_sse_app_exposes_health_and_sse_routes() -> None:
+    from synapsemd_platform.mcp.server import create_sse_app
+
+    app = create_sse_app()
+    paths = {getattr(route, "path", None) for route in app.routes}
+    assert "/health" in paths
+    assert "/sse" in paths
+
+
 @pytest.mark.asyncio
 async def test_mcp_dispatch_list_commands_includes_ai(monkeypatch: pytest.MonkeyPatch) -> None:
     from synapsemd_platform.mcp.schemas import McpAuthContext

@@ -15,8 +15,13 @@ app = FastAPI(title="SynapseMD OpenAPI Bridge", version="0.1.0")
 def _ctx_from_token(authorization: str | None) -> McpAuthContext:
     if not authorization or not authorization.lower().startswith("bearer "):
         raise HTTPException(status_code=401, detail="Bearer token required")
-    token = authorization.split(" ", 1)[1]
-    claims = decode_access_token(token)
+    token = authorization.split(" ", 1)[1].strip()
+    if not token:
+        raise HTTPException(status_code=401, detail="Bearer token required")
+    try:
+        claims = decode_access_token(token)
+    except ValueError as exc:
+        raise HTTPException(status_code=401, detail="Invalid or expired token") from exc
     return McpAuthContext(
         user_id=claims.sub,
         tenant_id=claims.org,
@@ -52,3 +57,5 @@ async def invoke_tool(
         raise HTTPException(status_code=403, detail=str(exc)) from exc
     except ValueError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
