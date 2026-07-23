@@ -143,6 +143,46 @@ Docs: [commands/ai.md](commands/ai.md) · [docs/ui-mcp-integration.md](docs/ui-m
 
 ---
 
+## LLM Choice
+
+LLM selection applies to the **platform** command orchestrator (REST `/commands/execute` and MCP tools that go through it). There are two layers:
+
+### 1. Provider — environment
+
+In `platform/.env` (see `platform/.env.example`):
+
+```env
+LLM_DEFAULT_PROVIDER=mock    # mock | anthropic | openai | google
+ANTHROPIC_API_KEY=
+OPENAI_API_KEY=
+GOOGLE_API_KEY=
+# *_BAA_SIGNED=true required when APP_ENV is staging or production
+```
+
+| Location | Typical default |
+|----------|-----------------|
+| Local / Docker Compose | `mock` |
+| K8s staging | `mock` |
+| K8s production | `anthropic` (+ BAA flags) |
+
+Implemented in `platform/synapsemd_platform/llm/providers.py` via `create_provider()`.
+
+### 2. Model ID — routing table
+
+Which Claude/GPT/etc. model is used for a given task is decided by `HealthLLMRouter` in [`platform/synapsemd_platform/llm/router.py`](platform/synapsemd_platform/llm/router.py) (complexity × data sensitivity → model + fallback).
+
+### What this does *not* control
+
+| Path | Where the model comes from |
+|------|----------------------------|
+| Local CLI slash commands | Cursor / Claude Code model settings |
+| Module 21 `/ai` predict & analyze scoring | Local engine in `platform/.../ai/prediction.py` (`synapsemd-ai`) |
+| AnythingLLM / Open WebUI chat | That UI’s own model picker |
+
+Full detail: [platform/README.md — LLM Choice](platform/README.md#llm-choice) · [docs/baa-tracking.md](docs/baa-tracking.md)
+
+---
+
 ## Core Commands
 
 | Command | Description |
@@ -171,6 +211,8 @@ Full list: 60+ commands in [commands/](commands/).
 | Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | User guide | [docs/user-guide.md](docs/user-guide.md) |
 | Commands catalog | [docs/commands-catalog.md](docs/commands-catalog.md) |
+| **Executive briefing (slides)** | [docs/presentations/executive-briefing.html](docs/presentations/executive-briefing.html) |
+| Medium article (draft) | [docs/marketing/medium-article.md](docs/marketing/medium-article.md) |
 | Data structures | [docs/data-structures.md](docs/data-structures.md) |
 | Architecture | [docs/architecture.md](docs/architecture.md) |
 | Platform & AI API | [platform/README.md](platform/README.md) |

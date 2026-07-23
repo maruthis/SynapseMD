@@ -87,6 +87,58 @@ synapsemd_platform/
 
 CLI equivalent docs: `commands/ai.md` · Full integration summary: `mydocs/AI_FEATURES_IMPLEMENTATION_SUMMARY.md`
 
+## LLM Choice
+
+LLM selection has two layers: **which provider** to call, and **which model ID** that provider uses.
+
+### Provider (environment)
+
+Set in `platform/.env` (template: `.env.example`):
+
+```env
+LLM_DEFAULT_PROVIDER=mock    # mock | anthropic | openai | google
+ANTHROPIC_API_KEY=
+ANTHROPIC_BASE_URL=https://api.anthropic.com
+ANTHROPIC_BAA_SIGNED=false
+OPENAI_API_KEY=
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_BAA_SIGNED=false
+GOOGLE_API_KEY=
+GOOGLE_BASE_URL=https://generativelanguage.googleapis.com
+GOOGLE_BAA_SIGNED=false
+APP_ENV=development
+```
+
+| Setting | Role |
+|---------|------|
+| `LLM_DEFAULT_PROVIDER` | Default backend used by `create_provider()` in `llm/providers.py` |
+| `*_API_KEY` / `*_BASE_URL` | Credentials and endpoints for that provider |
+| `*_BAA_SIGNED` | Required `true` when `APP_ENV` is `staging` or `production` (see [docs/baa-tracking.md](../docs/baa-tracking.md)) |
+
+Also configured in:
+
+| Location | Typical value |
+|----------|----------------|
+| `docker-compose.yml` (`api` / `mcp`) | `LLM_DEFAULT_PROVIDER=mock` |
+| `deploy/k8s/overlays/staging/` | `mock` |
+| `deploy/k8s/overlays/production/` | `anthropic` (+ BAA flags `true`) |
+
+`mock` returns deterministic stub text — fine for local Docker and unit tests.
+
+### Model ID (routing table)
+
+Concrete model names are chosen by **`HealthLLMRouter`** in `synapsemd_platform/llm/router.py` based on command complexity and data sensitivity (e.g. `claude-haiku-4-5`, `claude-sonnet-4-6`, `claude-opus-4-8`, with fallbacks such as `gpt-4o`).
+
+The command orchestrator calls `LLMOrchestrator.execute(prompt, decision)` with that `RoutingDecision`. To change which Claude/GPT/etc. model is used for a given complexity tier, edit `ROUTING_TABLE` in `llm/router.py`.
+
+### What this does *not* control
+
+| Path | LLM selection |
+|------|----------------|
+| Module 21 `/api/v1/ai/*` predict/analyze | Mostly local scoring in `ai/prediction.py` (`synapsemd-ai`), not the external provider |
+| Local CLI slash commands | Model configured in Cursor / Claude Code |
+| AnythingLLM / Open WebUI chat | Their own model settings; SynapseMD MCP tools that hit the orchestrator still use `LLM_DEFAULT_PROVIDER` + the router |
+
 ## Tests
 
 ```bash
