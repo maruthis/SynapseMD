@@ -4,6 +4,8 @@ This guide is the **starting point for extending SynapseMD**. It explains where 
 
 For system diagrams and deployment models, see [architecture.md](architecture.md). For JSON field reference, see [data-structures.md](data-structures.md). For end-user command usage, see [user-guide.md](user-guide.md).
 
+**Clinicians / SMEs:** start with the worked gout + rheumatology walkthrough — [sme-guide-add-command-skill-specialist.md](sme-guide-add-command-skill-specialist.md) — then use the recipes below for checklists.
+
 ---
 
 ## Table of Contents
@@ -668,6 +670,7 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full contribution checklist.
 | Platform API / MCP | [platform/README.md](../platform/README.md), [ui-mcp-integration.md](ui-mcp-integration.md) |
 | Release / compliance impact | [release-gates.md](release-gates.md) |
 | Extension conventions | This guide ([developer-guide.md](developer-guide.md)) |
+| SME worked example (command + skill + specialist) | [sme-guide-add-command-skill-specialist.md](sme-guide-add-command-skill-specialist.md) |
 
 **Do not duplicate** full command specs in the user guide — link to `commands/<name>.md` or show short examples only.
 
