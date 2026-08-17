@@ -27,10 +27,11 @@ kubectl apply -k deploy/k8s/overlays/production
 | `synapsemd-api` | FastAPI platform (2 replicas staging, 3 prod) |
 | `synapsemd-mcp` | MCP server for chatbot UIs |
 | ConfigMap | Non-secret environment configuration |
-| Secret | JWT, DB, Vault, LLM API keys |
+| NetworkPolicies | Default-deny + API/MCP/DNS/LLM egress allowlist (`deploy/k8s/base/network-policies.yaml`) |
+| Secret | JWT (current + previous for rotation), DB, Vault, LLM API keys |
 
 External managed services (recommended for production):
-- PostgreSQL (Aurora / Cloud SQL) — apply `platform/migrations/001_rls.sql` after schema init
+- PostgreSQL HA (Aurora / Cloud SQL primary + sync replica, encrypted PITR) — apply `platform/migrations/001_rls.sql` after schema init
 - Kafka (MSK / Event Hubs)
 - Vault (HashiCorp Cloud / cloud KMS)
 - HAPI FHIR or managed FHIR

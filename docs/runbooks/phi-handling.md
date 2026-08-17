@@ -2,23 +2,24 @@
 
 ## Overview
 
-SynapseMD processes PHI through a layered defense: anonymization before LLM calls, hash-only audit storage, optional Vault token persistence, and Presidio in non-dev environments.
+SynapseMD processes PHI through a layered defense: anonymization before LLM calls, hash-only audit storage, optional Vault token persistence, Presidio in non-dev environments, and object-store blobs that never land in Postgres (URI + SHA-256 only).
 
 ## Configuration
 
 | Variable | Dev default | Staging/Prod |
 |----------|-------------|--------------|
-| `PRESIDIO_ENABLED` | `false` | `true` |
+| `PRESIDIO_ENABLED` | `false` (explicit in tests) | unset → **on** (`presidio_is_enabled()`) |
 | `PHI_BLOCK_ON_FAILURE` | `true` | `true` |
-| `VAULT_ENABLED` | `false` | `true` |
-| `VAULT_URL` | — | `http://vault:8200` |
+| `VAULT_ENABLED` | `false` | `true` (memory token vault is forbidden) |
+| `VAULT_URL` | — | Vault address |
 
 ## Anonymization flow
 
 1. User context enters `AnonymizationEngine.anonymize_for_llm()`
-2. Presidio (if enabled) or regex patterns tokenize emails, phones, SSNs, dates, names
-3. Token map stored in `TokenVault` (memory) or `VaultTokenVault` (production)
-4. Post-anonymization validation runs; if PHI remains and `PHI_BLOCK_ON_FAILURE=true`, the LLM call is blocked
+2. Presidio (staging/prod default) or regex patterns tokenize emails, phones, SSNs, dates, names, MRN, accession, Indian phones
+3. Token map stored in `VaultTokenVault` (required in staging/prod) or in-memory `TokenVault` (dev/tests only)
+4. Post-anonymization validation runs; if PHI remains and `PHI_BLOCK_ON_FAILURE=true`, the LLM call is blocked — no provider HTTP
+5. `ModelPolicyEngine` may still refuse the call (BAA, residency, budget, allowlist) before the provider is invoked
 
 ## Audit policy
 
@@ -34,7 +35,7 @@ export VAULT_ADDR=http://localhost:8200
 vault kv put secret/synapsemd/tokens/<user_id> TOKEN_EMAIL_abc=redacted@example.com
 ```
 
-Token paths: `secret/data/synapsemd/tokens/{user_id}` (KV v2)
+Token paths: `secret/data/synapsemd/tokens/{tenant_id}/{user_id}` (KV v2)
 
 ## Incident: suspected PHI leakage
 

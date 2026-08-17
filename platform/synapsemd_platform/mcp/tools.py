@@ -59,13 +59,19 @@ async def execute_command(ctx: McpAuthContext, body: ExecuteCommandInput) -> Exe
     if body.command not in AVAILABLE_COMMANDS:
         raise ValueError(f"Unknown command: {body.command}")
 
-    result = await _orchestrator.execute(
-        command=body.command,
-        context_text=body.context_text,
-        user_id=str(ctx.user_id),
-        tenant_id=str(ctx.tenant_id),
-        payload=body.payload,
-    )
+    from synapsemd_platform.auth.policy import AuthzDenied
+
+    try:
+        result = await _orchestrator.execute(
+            command=body.command,
+            context_text=body.context_text,
+            user_id=str(ctx.user_id),
+            tenant_id=str(ctx.tenant_id),
+            payload=body.payload,
+            llm_processing=ctx.llm_processing,
+        )
+    except AuthzDenied as exc:
+        raise McpAuthError(exc.reason) from exc
     return ExecuteCommandResult(**{k: result[k] for k in ExecuteCommandResult.model_fields})
 
 

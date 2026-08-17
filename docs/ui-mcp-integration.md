@@ -25,7 +25,7 @@ The MCP server calls the same service layer as the FastAPI API (`AIService`, `Co
 
 | Tool | Scope | Description |
 |---|---|---|
-| `list_commands` | `read:own` | List available health commands |
+| `list_commands` | `read:own` | List available health commands (same ids as `PLATFORM_COMMANDS` / `GET /admin/commands`) |
 | `execute_command` | `write:own` | Run anonymized command through orchestrator |
 | `get_profile_summary` | `read:own` | Summarize FHIR Patient resource for user |
 | `query_fhir_records` | `read:own` | Query tenant-scoped FHIR bundle |
@@ -99,6 +99,7 @@ Chatbot clients (AnythingLLM, Open WebUI) MUST NOT become the system of record f
 **Rules**
 
 1. All health data reads/writes go through MCP tools or REST API — never paste PHI into UI system prompts
-2. MCP `execute_command` and `ai_*` tools receive JWT; platform enforces tenant isolation
-3. Open WebUI bridge passes Bearer token per request; no platform credentials in UI config files
-4. Validate locally: [mydocs/qa/anythingllm-validation.md](../mydocs/qa/anythingllm-validation.md), [mydocs/qa/openwebui-validation.md](../mydocs/qa/openwebui-validation.md)
+2. MCP `execute_command` and `ai_*` tools receive JWT; platform enforces tenant isolation, anonymizes before any LLM, and applies catalog/BAA policy (`ModelPolicyEngine`)
+3. `/ai predict` is in-process scoring and never calls an external LLM
+4. Open WebUI bridge passes Bearer token per request; no platform credentials in UI config files
+5. Validate locally: [mydocs/qa/anythingllm-validation.md](../mydocs/qa/anythingllm-validation.md), [mydocs/qa/openwebui-validation.md](../mydocs/qa/openwebui-validation.md)

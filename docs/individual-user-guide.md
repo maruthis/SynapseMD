@@ -56,7 +56,7 @@ SynapseMD is artifact-driven:
 | **Specialists** | `specialists/*.md` | Clinical lenses for `/consult` / `/specialist` |
 | **Data vault** | `data/` | Your JSON records (gitignored) |
 | **Templates** | `data-example/` | Schemas copied by setup |
-| **Optional platform** | `platform/` | Local FastAPI + MCP so chat UIs can call tools |
+| **Optional platform** | `platform/` | Local FastAPI + Postgres + MCP so chat UIs can call tools |
 
 ### 2.2 Path A — IDE only (no Docker required)
 
@@ -84,11 +84,12 @@ You (browser)
        → SynapseMD MCP SSE (:8081/sse)
             → Platform API (:8000)
                  → JWT auth (single tenant/user for personal use)
-                 → AI tools / command execute
-                 → local data / FHIR store (Compose stack)
+                 → HealthDataService (profile / allergy / gout → Postgres + FHIR JSONB)
+                 → AI tools / other command execute
+                 → Postgres SoR (`HEALTH_STORE=postgres` on Compose `core`/`full`)
 ```
 
-Open WebUI / AnythingLLM are **thin chat UIs**. They must **not** become the system of record for labs or PHI dumps in prompts.
+Open WebUI / AnythingLLM are **thin chat UIs**. They must **not** become the system of record for labs or PHI dumps in prompts. Compose sets Postgres as the platform store; the local JSON vault remains for Path A (IDE).
 
 ### 2.4 How a command runs (IDE)
 
@@ -221,6 +222,8 @@ Details: [getting-started.md](getting-started.md).
 cd platform
 cp .env.example .env   # set secrets / LLM provider as needed
 docker compose --profile full up --build -d
+# Compose sets HEALTH_STORE=postgres; Alembic runs on API start
+# API-only: docker compose --profile core up --build
 ```
 
 Useful endpoints for personal use:
@@ -257,7 +260,7 @@ Full steps: [open-webui-setup.md](open-webui-setup.md).
 
 ## 6. Commands and usage
 
-**Total: 59 slash commands** (source: `commands/`).  
+**Total: 60 slash commands** (source: `commands/`).  
 Full table: [commands-catalog.md](commands-catalog.md). Definitions: `commands/<name>.md`.
 
 ### How to read usage
@@ -369,7 +372,8 @@ IDE still gives the richest `/consult` and `/save-report` experience today.
 
 - **Not a physician.** Outputs are informational decision support.
 - **No prescribing / no dosages / no mortality prognosis** in specialist flows.
-- **Local-first:** personal `data/` stays on disk; chat UIs should not store the clinical graph.
+- **Local-first (IDE):** personal `data/` stays on disk; chat UIs should not store the clinical graph.
+- **Local platform:** Compose Postgres is the store for profile / allergy / gout; still single-machine, not a multi-tenant production deployment.
 - **Identity:** do not merge lab PDFs from different patients into one vault without labeling.
 - **Emergencies:** call emergency services — do not rely on SynapseMD.
 

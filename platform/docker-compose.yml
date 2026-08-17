@@ -7,8 +7,11 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=postgresql+asyncpg://synapsemd:synapsemd@postgres:5432/synapsemd
+      - HEALTH_STORE=postgres
       - JWT_SECRET=dev-secret-change-in-production
-      - AUDIT_USE_MEMORY=true
+      - JWT_EXPIRE_MINUTES=15
+      - CORS_ORIGINS=*
+      - AUDIT_USE_MEMORY=false
       - FHIR_BASE_URL=http://hapi-fhir:8080/fhir
       - FHIR_LOCAL_STORE=/data/fhir
       - RAG_VECTOR_STORE=file
@@ -20,7 +23,7 @@ services:
       - rag_data:/data/rag
     depends_on:
       postgres:
-        condition: service_started
+        condition: service_healthy
     profiles: ["core", "full", "mcp"]
 
   postgres:
@@ -31,9 +34,13 @@ services:
       POSTGRES_DB: synapsemd
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U synapsemd -d synapsemd"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./migrations/001_rls.sql:/docker-entrypoint-initdb.d/001_rls.sql
     profiles: ["core", "full", "mcp", "infra"]
 
   mcp:
@@ -47,7 +54,8 @@ services:
       - MCP_TRANSPORT=sse
       - JWT_SECRET=dev-secret-change-in-production
       - DATABASE_URL=postgresql+asyncpg://synapsemd:synapsemd@postgres:5432/synapsemd
-      - AUDIT_USE_MEMORY=true
+      - HEALTH_STORE=postgres
+      - AUDIT_USE_MEMORY=false
       - SYNAPSEMD_ACCESS_TOKEN=${SYNAPSEMD_ACCESS_TOKEN:-}
       - FHIR_LOCAL_STORE=/data/fhir
       - RAG_VECTOR_STORE=file
@@ -77,7 +85,8 @@ services:
       # Must match api JWT_SECRET or Bearer tokens from /auth/login fail validation
       - JWT_SECRET=dev-secret-change-in-production
       - DATABASE_URL=postgresql+asyncpg://synapsemd:synapsemd@postgres:5432/synapsemd
-      - AUDIT_USE_MEMORY=true
+      - HEALTH_STORE=postgres
+      - AUDIT_USE_MEMORY=false
       - FHIR_BASE_URL=http://hapi-fhir:8080/fhir
       - FHIR_LOCAL_STORE=/data/fhir
       - RAG_VECTOR_STORE=file
@@ -131,6 +140,16 @@ services:
     ports:
       - "8200:8200"
     profiles: ["full", "infra"]
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    command: ["start-dev"]
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "8082:8080"
+    profiles: ["infra"]
 
   anythingllm:
     image: mintplexlabs/anythingllm:latest

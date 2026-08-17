@@ -29,12 +29,43 @@ class UserResponse(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+    expires_in: int | None = None
+    refresh_token: str | None = None
 
 
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
     tenant_id: UUID
+
+
+class RefreshRequest(BaseModel):
+    refresh_token: str
+
+
+class OidcLoginRequest(BaseModel):
+    tenant_id: UUID
+    redirect_uri: str | None = None
+
+
+class OidcCallbackRequest(BaseModel):
+    code: str
+    state: str
+
+
+class OidcTokenRequest(BaseModel):
+    id_token: str
+    tenant_id: UUID
+
+
+class ConsentUpdateRequest(BaseModel):
+    purpose: str = "llm_processing"
+    granted: bool
+
+
+class BreakGlassRequest(BaseModel):
+    reason: str = Field(min_length=3)
+    minutes: int = Field(default=15, ge=1, le=60)
 
 
 class CommandExecuteRequest(BaseModel):
@@ -85,3 +116,23 @@ class AiActionResponse(BaseModel):
     result: dict
     disclaimer: str | None = None
     human_review_required: bool = False
+
+
+class TenantModelPolicyRequest(BaseModel):
+    allowlist: list[str] | None = None
+    residency: str | None = None
+    baa_required: bool = False
+    budget_tokens_per_day: int | None = None
+    pinned_commands: dict[str, str] = Field(default_factory=dict)
+
+
+class DsrCreateRequest(BaseModel):
+    subject_user_id: UUID
+    request_type: str = Field(pattern="^(access|erase|correct)$")
+    correction: dict = Field(default_factory=dict)
+
+
+class LegalHoldRequest(BaseModel):
+    reason: str = Field(min_length=3)
+    user_id: UUID | None = None
+    active: bool = True

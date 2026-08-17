@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "domain": "gout",
+    "description": "Gout flare diary — joints, severity, triggers, optional uric acid notes"
+  },
+  "flares": [
+    {
+      "id": "gout-2026-07-01-001",
+      "recorded_at": "2026-07-01T08:30:00+05:30",
+      "onset": "2026-07-01",
+      "joint": "first MTP",
+      "side": "right",
+      "severity": "severe",
+      "triggers": ["seafood", "alcohol"],
+      "uric_acid_mg_dl": 7.8,
+      "status": "resolved",
+      "notes": "Woke with pain; difficulty walking; improved over 4 days",
+      "last_updated": "2026-07-05T10:00:00+05:30"
+    },
+    {
+      "id": "gout-2026-07-20-001",
+      "recorded_at": "2026-07-20T22:15:00+05:30",
+      "onset": "2026-07-20",
+      "joint": "ankle",
+      "side": "left",
+      "severity": "moderate",
+      "triggers": ["dehydration"],
+      "uric_acid_mg_dl": null,
+      "status": "active",
+      "notes": "After long walk in heat; swelling overnight",
+      "last_updated": "2026-07-20T22:15:00+05:30"
+    }
+  ],
+  "statistics": {
+    "total_flares": 2,
+    "active_flares": 1,
+    "severe_count": 1,
+    "last_flare_date": "2026-07-20",
+    "last_updated": "2026-07-20T22:15:00+05:30"
+  }
+}

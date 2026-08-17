@@ -509,3 +509,84 @@ Where:
   ]
 }
 ```
+
+## Gout Flare Diary Data Structure
+
+Path: `data/gout-tracker.json` (example: `data-example/gout-tracker.json`)
+
+```json
+{
+  "metadata": {
+    "schema_version": "1.0",
+    "domain": "gout",
+    "description": "Gout flare diary — joints, severity, triggers, optional uric acid notes"
+  },
+  "flares": [
+    {
+      "id": "gout-2026-07-01-001",
+      "recorded_at": "2026-07-01T08:30:00+05:30",
+      "onset": "2026-07-01",
+      "joint": "first MTP",
+      "side": "right",
+      "severity": "severe",
+      "triggers": ["seafood", "alcohol"],
+      "uric_acid_mg_dl": 7.8,
+      "status": "resolved",
+      "notes": "Woke with pain; difficulty walking",
+      "last_updated": "2026-07-05T10:00:00+05:30"
+    }
+  ],
+  "statistics": {
+    "total_flares": 1,
+    "active_flares": 0,
+    "severe_count": 1,
+    "last_flare_date": "2026-07-01",
+    "last_updated": "2026-07-05T10:00:00+05:30"
+  }
+}
+```
+
+### Field Description
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `flares[].id` | string | Unique id, e.g. `gout-YYYY-MM-DD-NNN` |
+| `flares[].onset` | string (date) | Flare start date |
+| `flares[].joint` | string | Prefer standardized labels (e.g. `first MTP`) |
+| `flares[].side` | string | `left` / `right` / `bilateral` / `unspecified` |
+| `flares[].severity` | string | `mild` / `moderate` / `severe` |
+| `flares[].triggers` | string[] | Observational keywords |
+| `flares[].uric_acid_mg_dl` | number \| null | Optional lab note; never invent |
+| `flares[].status` | string | `active` / `resolving` / `resolved` |
+| `statistics.*` | — | Maintained by `/gout` command on write |
+
+Related: `commands/gout.md`, `skills/gout-analyzer/SKILL.md`, `specialists/rheumatology.md`.
+
+## Platform SoR mapping (profile / allergy / gout)
+
+Enterprise deployments store the JSON documents above as typed rows. `HEALTH_STORE=json` keeps the file vault; `postgres` is the system of record; `dual` reads Postgres first then JSON. `POST /admin/migrate` upserts these domain tables from a JSON vault directory (not FHIR files only).
+
+| JSON path | Table | Notes |
+|-----------|--------|--------|
+| `data/profile.json` | `patient_profiles` | `payload` JSON + `fhir` Patient JSONB + indexed gender/height/weight/birth_date |
+| `data/allergies.json` | `allergies` | One row per allergen; `record_id` matches JSON `id`; `fhir` AllergyIntolerance |
+| `data/gout-tracker.json` | `gout_flares` | One row per flare; `record_id` matches JSON `id`; `fhir` Observation (LOINC 3084-1) |
+| — | `stored_objects` | Object-store URI + SHA-256 only; blob never in Postgres |
+| — | `command_catalog` | Seeded command id / sensitivity / scopes (`GET /admin/commands`) |
+
+All three tables are tenant+user scoped with PostgreSQL RLS (`SET LOCAL app.tenant_id` / `app.user_id`). Writes go through `HealthDataService` (`POST /api/v1/commands/execute`). Compose `core` defaults to `HEALTH_STORE=postgres`.
+
+### API payloads (platform)
+
+```json
+{ "command": "profile", "payload": { "action": "upsert", "basic_info": { "gender": "M", "height": 175, "weight": 70 } } }
+{ "command": "profile", "payload": { "action": "get" } }
+
+{ "command": "allergy", "payload": { "action": "add", "allergen": "penicillin", "severity": "severe" } }
+{ "command": "allergy", "payload": { "action": "list" } }
+
+{ "command": "gout", "payload": { "action": "add", "joint": "left ankle", "severity": "moderate" } }
+{ "command": "gout", "payload": { "action": "list" } }
+```
+
+Use `@example.com` emails when registering API users. Local CLI continues to read/write the JSON files above; the platform does not write `data/*.json` when `HEALTH_STORE=postgres`.

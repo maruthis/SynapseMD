@@ -68,6 +68,10 @@ async def test_command_orchestrator_success() -> None:
     )
     assert result["command"] == "goal"
     assert result["blocked"] is False
+    from synapsemd_platform.audit.events import audit_producer
+
+    types = [event["event_type"] for event in audit_producer.get_events()]
+    assert "ai.routing.decided" in types
 
 
 @pytest.mark.asyncio
@@ -97,18 +101,20 @@ async def test_command_orchestrator_guardrail_block() -> None:
 @pytest.mark.asyncio
 async def test_command_orchestrator_phi_block() -> None:
     orchestrator = CommandOrchestrator()
-    with patch.object(
-        orchestrator.anonymizer,
-        "anonymize_for_llm",
-        side_effect=ValueError("PHI detected"),
-    ):
-        with pytest.raises(ValueError):
-            await orchestrator.execute(
-                command="goal",
-                context_text="bad",
-                user_id="user-1",
-                tenant_id="tenant-1",
-            )
+    with patch.object(orchestrator.llm, "execute", AsyncMock()) as mock_llm:
+        with patch.object(
+            orchestrator.anonymizer,
+            "anonymize_for_llm",
+            side_effect=ValueError("PHI detected"),
+        ):
+            with pytest.raises(ValueError):
+                await orchestrator.execute(
+                    command="goal",
+                    context_text="bad",
+                    user_id="user-1",
+                    tenant_id="tenant-1",
+                )
+        mock_llm.assert_not_called()
 
 
 @pytest.mark.asyncio
@@ -133,3 +139,36 @@ async def test_command_orchestrator_with_disclaimer() -> None:
                 tenant_id="tenant-1",
             )
     assert result["disclaimer"] is not None or result["human_review_required"] is True
+
+
+@pytest.mark.asyncio
+async def test_command_orchestrator_health_profile(tmp_path, monkeypatch: pytest.MonkeyPatch) -> None:
+    from uuid import uuid4
+
+    from synapsemd_platform.core.config import get_settings
+
+    monkeypatch.setenv("HEALTH_STORE", "json")
+    monkeypatch.setenv("LEGACY_DATA_ROOT", str(tmp_path))
+    get_settings.cache_clear()
+    orchestrator = CommandOrchestrator()
+    tenant_id = str(uuid4())
+    user_id = str(uuid4())
+    result = await orchestrator.execute(
+        command="profile",
+        context_text="",
+        user_id=user_id,
+        tenant_id=tenant_id,
+        payload={"action": "upsert", "basic_info": {"gender": "M", "height": 175}},
+    )
+    assert result["command"] == "profile"
+    assert result["model_used"] == "health-data"
+    assert result["blocked"] is False
+    listed = await orchestrator.execute(
+        command="allergy",
+        context_text="",
+        user_id=user_id,
+        tenant_id=tenant_id,
+        payload={"action": "list"},
+    )
+    assert listed["command"] == "allergy"
+    get_settings.cache_clear()

@@ -12,9 +12,10 @@
 
 | SLO | Target | Measurement |
 |-----|--------|-------------|
-| Latency p95 | < 15s | `llm_latency_seconds` |
-| PHI block rate | monitored, no fixed SLO | `phi_block_total` |
-| Guardrail block rate | monitored | `guardrail_block_total` |
+| Latency p95 | < 15s | `synapsemd_llm_latency_seconds` |
+| PHI block rate | monitored, no fixed SLO | `synapsemd_phi_blocks_total` |
+| Guardrail block rate | monitored | `synapsemd_guardrail_blocks_total` |
+| Anonymize failures | page on spike | `synapsemd_anonymize_failures_total` |
 
 ## MCP
 
@@ -27,14 +28,16 @@
 
 | SLO | Target | Measurement |
 |-----|--------|-------------|
-| Event delivery | 99.9% | Kafka consumer lag |
+| Durable write | 100% when `AUDIT_USE_MEMORY=false` | `synapsemd_audit_write_failures_total` (page on any increase) |
+| Chain integrity | 100% | `verify_chain` on tenant-day stream; HMAC `event_hash` |
 | Signing integrity | 100% | All events have `signature` field |
+| Optional SIEM copy | best-effort | Kafka consumer lag (not the SoR) |
 
 ## Review queue
 
 | SLO | Target | Measurement |
 |-----|--------|-------------|
-| Time to first review | < 4 hours (business hours) | `review_queue` pending age |
+| Time to first review | < 4 hours (business hours) | `synapsemd_review_queue_oldest_seconds` |
 | Backlog | < 20 pending items | `GET /review/queue` |
 
 ## Error budget

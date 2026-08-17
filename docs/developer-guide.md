@@ -83,13 +83,24 @@ Test a command: `/profile set 175 70 1990-01-01`
 
 ### Platform development (optional)
 
+**Docker Desktop (Postgres SoR — recommended):**
+
+```bash
+cd platform
+docker compose --profile core up --build
+# http://localhost:8000/docs  — HEALTH_STORE=postgres, Alembic on start
+```
+
+**Python venv (SQLite + JSON vault for unit tests):**
+
 ```bash
 cd platform
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 cp .env.example .env
 uvicorn synapsemd_platform.api.main:app --reload
-pytest -v    # from repo root
+# from repo root; RLS + Alembic need Docker Postgres:
+POSTGRES_TEST_URL=postgresql+asyncpg://synapsemd:synapsemd@localhost:5432/synapsemd_test pytest -v
 ```
 
 See [local-development.md](local-development.md) and [platform/README.md](../platform/README.md).
@@ -108,8 +119,11 @@ User input (slash command or natural language)
         │              skills/*/SKILL.md  (how to analyze — reports, patterns)
         │              specialists/*.md   (clinical lens — MDT opinions)
         │
-        ├── reads/writes ──▶  data/*.json  (persistence — schema only, no logic)
+        ├── reads/writes ──▶  data/*.json  (CLI persistence — schema only, no logic)
         └── invokes ──▶  scripts/*.py      (deterministic computation)
+
+Platform path: CommandOrchestrator → HealthDataService → Postgres (HEALTH_STORE=postgres)
+               or LegacyJsonAdapter (HEALTH_STORE=json). Profile / allergy / gout skip the LLM.
 ```
 
 | Layer | Owns | Must not |
@@ -117,9 +131,10 @@ User input (slash command or natural language)
 | **Commands** | User intent, CRUD, output format, routing to skills | Embed deep analysis algorithms |
 | **Skills** | Multi-file analysis, pattern detection, HTML/Markdown reports | Handle interactive UX or CRUD |
 | **Specialists** | Domain clinical interpretation, safety boundaries | Read raw data directly in MDT flow |
-| **Data (JSON)** | Stored values and history arrays | Logic, computed fields, business rules |
+| **Data (JSON)** | Local CLI stored values and history arrays | Logic, computed fields, business rules |
+| **Data (Postgres)** | Platform SoR for registered health commands (RLS) | Become the local IDE vault |
 | **Scripts** | Batch math, report generation, test harnesses | Replace command UX |
-| **Platform** | Auth, tenant isolation, PHI anonymization, audit, REST/MCP | Duplicate command markdown logic |
+| **Platform** | Auth, tenancy, RLS, PHI anonymization, audit, REST/MCP, adapters | Duplicate command markdown logic |
 
 Full architecture and deployment models: [architecture.md](architecture.md).
 
@@ -245,7 +260,7 @@ User-facing feature: add/list/update/delete records, run a workflow, or route to
 - [ ] Schema documented in `data-structures.md` if new fields were added
 - [ ] Safety disclaimers present for clinical/mental-health modules
 - [ ] `user-guide.md` updated with usage examples
-- [ ] Platform: added to `AVAILABLE_COMMANDS` if API/MCP access needed (see [Recipe 11](#11-recipe-wire-to-the-platform))
+- [ ] Platform: added to `PLATFORM_COMMANDS` in `models/commands.py` if API/MCP access needed (see [Recipe 11](#11-recipe-wire-to-the-platform))
 
 ### Reference implementations
 
@@ -516,16 +531,18 @@ The command must be executable via REST API (`POST /api/v1/commands/execute`), M
 
 ### Steps
 
-1. **Register the command** in `platform/synapsemd_platform/api/routes/commands.py`:
+1. **Register the command** in `platform/synapsemd_platform/models/commands.py` (`PLATFORM_COMMANDS`). That list seeds `command_catalog` and `AVAILABLE_COMMANDS` (API + MCP). After deploy, `GET /admin/commands` lists the table (auto-seeds if empty).
 
-   ```python
-   AVAILABLE_COMMANDS = [
-       "ai", "goal", "consult", ...,
-       "my-feature",   # add here
-   ]
-   ```
+2. **Health-data CRUD (optional)** — if the command persists structured records (like `/profile`, `/allergy`, `/gout`):
+   - Add a domain table + Alembic revision (do not rely on `create_all` to ALTER existing Compose volumes)
+   - Store a FHIR JSONB projection on write (`fhir/projection.py`)
+   - Implement adapter methods on `HealthDataService` (`services/health_data.py`, `adapters/`)
+   - Handle the command in `command_orchestrator.py` **before** the LLM path (no anonymize/route)
+   - Set `HEALTH_STORE=postgres` in Compose; keep `json` for local CLI and unit tests
+   - PDFs/reports go to the object store (`OBJECT_STORE_BACKEND`); Postgres keeps URI + SHA-256 only
+   - Add RLS coverage in `tests/release/test_rls_postgres.py` (tests use a non-superuser role; Compose `POSTGRES_USER` is a superuser and bypasses RLS)
 
-2. **Set LLM routing complexity** in `platform/synapsemd_platform/llm/router.py`:
+3. **Set LLM routing complexity** in `platform/synapsemd_platform/llm/router.py` (skip for HealthDataService CRUD):
 
    ```python
    CRITICAL_COMMANDS = {"consult", "specialist", "mental-health", "psych-assess"}
@@ -540,42 +557,44 @@ The command must be executable via REST API (`POST /api/v1/commands/execute`), M
    | Profile, simple queries | `SIMPLE_COMMANDS` | Fast, low-cost model |
    | Everything else | (default) | `MODERATE` |
 
-3. **Special execution path** — only if the command needs structured API beyond generic orchestration (like `/ai`):
+4. **Special execution path** — only if the command needs structured API beyond generic orchestration (like `/ai`):
    - Add handler in `platform/synapsemd_platform/services/command_orchestrator.py`
    - Add REST routes in `platform/synapsemd_platform/api/routes/`
    - Add MCP tools in `platform/synapsemd_platform/mcp/tools.py` and register in `mcp/dispatch.py`
 
-4. **Document platform usage** — add a "Platform Integration" section to the command markdown (see `commands/ai.md`).
+5. **Document platform usage** — add a "Platform Integration" section to the command markdown (see `commands/ai.md`).
 
-5. **Add tests**
+6. **Add tests**
    - Unit: `tests/unit/test_*_routes.py`
    - E2E: `tests/e2e/` for audit trail verification
    - Release: `tests/release/` for PHI/tenant gates if handling sensitive data
 
-6. **Update platform docs** — [platform/README.md](../platform/README.md), [ui-mcp-integration.md](ui-mcp-integration.md).
+7. **Update platform docs** — [platform/README.md](../platform/README.md), [ui-mcp-integration.md](ui-mcp-integration.md), [data-structures.md](data-structures.md) SoR mapping.
 
 ### Platform execution flow
 
 ```
-POST /api/v1/commands/execute  { "command": "goal", "context_text": "..." }
+POST /api/v1/commands/execute
         │
         ▼
   CommandOrchestrator
-        ├── anonymize context (Presidio)
-        ├── route to LLM (HealthLLMRouter)
-        ├── apply medical guardrails
-        └── emit audit event (hash-only PHI)
+        ├── profile / allergy / gout → HealthDataService (Postgres or JSON adapter)
+        └── other commands
+              ├── anonymize context (Presidio)
+              ├── route to LLM (HealthLLMRouter)
+              ├── apply medical guardrails
+              └── emit audit event (hash-only PHI)
 ```
 
-Generic orchestration reads the command name and anonymized context — it does **not** re-parse `commands/*.md` at runtime. Keep command markdown as the spec for LLM agents; platform routes add auth, tenancy, and safety.
+Health-data CRUD does **not** call the LLM. Generic orchestration reads the command name and anonymized context — it does **not** re-parse `commands/*.md` at runtime. Keep command markdown as the spec for LLM agents; platform routes add auth, tenancy, persistence, and safety.
 
 ### Checklist
 
-- [ ] Command added to `AVAILABLE_COMMANDS`
-- [ ] Complexity set in `HealthLLMRouter` (`CRITICAL` / `COMPLEX` / `SIMPLE`)
+- [ ] Command added to `PLATFORM_COMMANDS` in `models/commands.py`
+- [ ] Health-data path wired (`HealthDataService` + Alembic + RLS tests) **or** complexity set in `HealthLLMRouter`
 - [ ] Dedicated REST/MCP handlers added if generic orchestration is insufficient
 - [ ] "Platform Integration" section in command markdown
-- [ ] Tests added (unit + e2e where audit/PHI applies)
+- [ ] Tests added (unit + e2e where audit/PHI applies; RLS if new tenant tables)
 - [ ] Platform docs updated
 
 ### Module 21 AI reference
@@ -642,8 +661,10 @@ claude
 ### Automated tests
 
 ```bash
-pytest -v                                    # full platform suite (266+ tests)
-pytest tests/unit/ -v                        # unit tests only
+pytest -v                                    # full platform suite (426 tests, ~98% coverage)
+# RLS + Alembic + append-only trigger (Docker Postgres; use a dedicated test DB):
+POSTGRES_TEST_URL=postgresql+asyncpg://synapsemd:synapsemd@localhost:5432/synapsemd_test pytest -v
+pytest tests/unit/ -v                        # unit tests only (SQLite)
 pytest tests/release/ tests/eval/ -v         # release gates + model eval
 ./scripts/validate-command.sh my-feature   # command structure lint
 ./scripts/test-my-feature.sh                 # optional domain-specific script
@@ -666,8 +687,8 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full contribution checklist.
 | End-user onboarding steps | [getting-started.md](getting-started.md) |
 | New command usage | [user-guide.md](user-guide.md) |
 | New JSON schema | [data-structures.md](data-structures.md) |
-| Architecture / deployment | [architecture.md](architecture.md) |
-| Platform API / MCP | [platform/README.md](../platform/README.md), [ui-mcp-integration.md](ui-mcp-integration.md) |
+| Architecture / deployment | [architecture.md](architecture.md), [enterprise-platform-architecture.md](enterprise-platform-architecture.md) |
+| Platform API / MCP | [platform/README.md](../platform/README.md), [ui-mcp-integration.md](ui-mcp-integration.md), [local-development.md](local-development.md) |
 | Release / compliance impact | [release-gates.md](release-gates.md) |
 | Extension conventions | This guide ([developer-guide.md](developer-guide.md)) |
 | SME worked example (command + skill + specialist) | [sme-guide-add-command-skill-specialist.md](sme-guide-add-command-skill-specialist.md) |
@@ -687,7 +708,8 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full contribution checklist.
 | New JSON shape without `data-example/` template | Add template + document in `data-structures.md` |
 | Computed fields stored in JSON | Compute at runtime in command/skill |
 | Clinical module without disclaimers | Add safety section; run validation script |
-| CLI command without platform registration | Add to `AVAILABLE_COMMANDS` when API access needed |
+| CLI command without platform registration | Add to `PLATFORM_COMMANDS` in `models/commands.py` when API access needed |
+| Platform CRUD that still hits the LLM | Route through `HealthDataService` like profile / allergy / gout |
 | Committing `data/` live files | Only commit `data-example/` and `data/reference/` |
 | Specialist reads raw lab dumps in MDT | Pass summarized context from consult coordinator |
 
@@ -696,6 +718,8 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full contribution checklist.
 ## Quick links
 
 - [Architecture](architecture.md)
+- [Enterprise platform design](enterprise-platform-architecture.md)
+- [Local platform / Docker](local-development.md)
 - [Data structures](data-structures.md)
 - [User guide](user-guide.md)
 - [Platform README](../platform/README.md)

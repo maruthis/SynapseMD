@@ -84,6 +84,20 @@ async def test_ai_service_predict(mock_adapter) -> None:
 
 
 @pytest.mark.asyncio
+async def test_ai_service_predict_never_calls_llm(mock_adapter) -> None:
+    from unittest.mock import AsyncMock, patch
+
+    adapter, tenant_id, user_id = mock_adapter
+    service = AIService(adapter=adapter)
+    with patch(
+        "synapsemd_platform.llm.providers.LLMOrchestrator.execute",
+        new_callable=AsyncMock,
+    ) as mock_exec:
+        await service.predict(tenant_id, user_id, "hypertension")
+    mock_exec.assert_not_called()
+
+
+@pytest.mark.asyncio
 async def test_ai_service_analyze(mock_adapter) -> None:
     adapter, tenant_id, user_id = mock_adapter
     service = AIService(adapter=adapter)

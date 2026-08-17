@@ -30,6 +30,7 @@ Based on abnormal indicators and symptoms, invite relevant specialty experts:
 | Somatization symptoms, pain without evident cause | Psychiatry/Psychology |
 | Emotion-related physical symptoms (palpitations, chest tightness, etc.) | Psychiatry/Psychology + relevant internal medicine |
 | Fractures, arthritis, abnormal bone density, sports injuries | Orthopedics |
+| Recurrent monoarticular flares, elevated uric acid, gout diary signals | Rheumatology |
 | Rashes, skin lesions, elevated IgE, eosinophilia | Dermatology |
 | Pediatric diseases, abnormal growth and development, nutritional disorders | Pediatrics |
 | Menstrual abnormalities, sex hormone abnormalities, gynecological tumor markers | Gynecology |

@@ -70,7 +70,7 @@ Most health AI products encode workflows inside closed services and UI screens. 
 | **Skill** | `skills/*/SKILL.md` | **How** to analyze a domain in depth (reusable across commands) |
 | **Specialist** | `specialists/*.md` | **Clinical perspective** for MDT-style consults |
 | **Data schema** | `data-example/` → `data/` | Persistence contracts for each domain |
-| **Platform** | `platform/` | Optional enterprise rails (auth, FHIR, MCP, anonymize, audit) |
+| **Platform** | `platform/` | Optional enterprise rails (auth, Postgres + RLS, FHIR, MCP, anonymize, audit) |
 
 ### Why this matters commercially
 
@@ -113,7 +113,7 @@ Owned primarily as **code** in `platform/`, `scripts/`, and agent tooling:
 | Model routing | Complexity / sensitivity → provider tier |
 | Guardrails & human review | Clinical safety posture for critical flows |
 | Deterministic AI scoring | Module 21 risk engine (`synapsemd-ai`) |
-| Storage adapters | Local JSON vault · FHIR-backed platform |
+| Storage adapters | Local JSON vault · Postgres SoR (`HEALTH_STORE`) · FHIR JSONB on write · object store (URI + hash) |
 | Deployment | Docker Compose profiles · K8s overlays |
 
 ### Domain features (the product surface — change often)
@@ -186,7 +186,7 @@ Scalability is **staged**, not all-or-nothing:
 |-------------|----------------------|---------------|
 | **1. Personal / laptop** | JSON vault + IDE agent | Individual, developer, single clinician |
 | **2. Clinic assistant** | Same artifacts + local platform + MCP chat UI | Doctor personal assistant, small practice |
-| **3. Multi-tenant product** | FastAPI, JWT, FHIR, RLS, anonymization, audit | B2B / org pilots |
+| **3. Multi-tenant product** | FastAPI, JWT, Postgres + RLS, FHIR, anonymization, audit | B2B / org pilots |
 | **4. Enterprise ops** | Compose → Kubernetes, SLOs, release gates, connectors roadmap | Regulated deployments |
 
 ### What scales without rewriting domain packs
@@ -273,11 +273,11 @@ SynapseMD supports multiple ingestion styles into one vault / platform model:
 | Ingestion path | Mechanism | Output |
 |----------------|-----------|--------|
 | **Lab / imaging reports** | `/save-report` (PDF/image → structured extract) | `biochemical-tests/` or `imaging-examinations/` + `index.json` |
-| **Manual structured entry** | Domain commands (`/allergy add`, `/medication add`, `/symptom`, …) | Domain JSON trackers |
+| **Manual structured entry** | Domain commands (`/allergy add`, `/medication add`, `/symptom`, …) | Domain JSON trackers (CLI) or Postgres rows (platform) |
 | **Lifestyle & wearables-style logging** | `/sleep`, `/fitness`, `/nutrition`, `/diet`, `/goal` | Tracker JSON |
 | **Assessment instruments** | Mental health, cognitive, screening commands | Scored records |
 | **Family / history narratives** | `/family`, `/surgery`, `/discharge` | Structured history |
-| **Platform / API (chat or apps)** | REST / MCP tools with auth | Tenant-scoped store (FHIR path on platform) |
+| **Platform / API (chat or apps)** | REST / MCP with JWT; `HealthDataService` for profile / allergy / gout | Tenant-scoped Postgres (RLS) + FHIR JSONB; object-store URI + hash; other domains still JSON/FHIR until they get adapters |
 | **Templates & migration** | `setup-data.sh`, example schemas, FHIR migration tooling | Consistent schemas |
 
 **Design principles for ingestion**

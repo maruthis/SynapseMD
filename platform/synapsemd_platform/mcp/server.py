@@ -14,7 +14,7 @@ from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.routing import Mount, Route
 
-from synapsemd_platform.mcp.context import McpAuthError, resolve_auth_context
+from synapsemd_platform.mcp.context import McpAuthError, redact_secrets, resolve_auth_context
 from synapsemd_platform.mcp.dispatch import MCP_TOOL_NAMES, dispatch_tool
 
 server = Server("synapsemd")
@@ -112,9 +112,9 @@ async def call_tool(name: str, arguments: dict[str, Any] | None) -> list[TextCon
         result = await _dispatch(name, args)
         return [TextContent(type="text", text=json.dumps(result, indent=2))]
     except McpAuthError as exc:
-        return [TextContent(type="text", text=json.dumps({"error": str(exc)}))]
+        return [TextContent(type="text", text=json.dumps({"error": redact_secrets(str(exc))}))]
     except Exception as exc:
-        return [TextContent(type="text", text=json.dumps({"error": str(exc)}))]
+        return [TextContent(type="text", text=json.dumps({"error": redact_secrets(str(exc))}))]
 
 
 async def run_stdio() -> None:

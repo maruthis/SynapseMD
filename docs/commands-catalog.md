@@ -2,7 +2,9 @@
 
 Complete list of slash commands defined in [`commands/`](../commands/) (also available via `.claude/commands` symlink).
 
-**Total: 59 commands**
+**Total: 60 commands**
+
+On the enterprise platform, `/profile`, `/allergy`, and `/gout` persist via `HealthDataService` (Postgres when `HEALTH_STORE=postgres`) with a FHIR JSONB projection on write. The seeded catalog is `GET /admin/commands` (`models/commands.py`). Other commands still go through the LLM orchestrator.
 
 > **New to SynapseMD?** See [Getting Started](getting-started.md) and the [User Guide](user-guide.md) for usage examples.
 
@@ -69,6 +71,7 @@ Complete list of slash commands defined in [`commands/`](../commands/) (also ava
 | `/hypertension` | Manage hypertension monitoring data, assess target organ damage and cardiovascular risk | `record/trend/average/history/status/risk/target/heart/kidney/retina/medication [info…]` |
 | `/diabetes` | Manage diabetes blood glucose monitoring, HbA1c tracking, and complication screening | `record/hba1c/trend/tir/hypo/screening/target/achievement/medication [info…]` |
 | `/copd` | Manage COPD lung function monitoring, symptom assessment, and acute exacerbation records | `fev1/cat/mmrc/symptom/exacerbation/medication/vaccine/status/assessment [info…]` |
+| `/gout` | Log and review gout flare episodes; pattern analysis via gout-analyzer skill | `add/list/update/delete/analyze/status [info…]` |
 
 ## Women's Health
 
@@ -172,6 +175,7 @@ Complete list of slash commands defined in [`commands/`](../commands/) (also ava
 | `/fitness` | Lifestyle & Wearable Health Data | `record/history/stats/goal/analysis/prescription/precautions [info…]` |
 | `/get-profile` | Patient Info | `(no args)` |
 | `/goal` | Lifestyle & Wearable Health Data | `set/progress/habit/review/report/achieve/complete/adjust [info…]` |
+| `/gout` | Chronic Disease Management | `add/list/update/delete/analyze/status [info…]` |
 | `/growth` | Child & Adolescent Health | `record/status/percentile/velocity/check/history [info…] [date]` |
 | `/hypertension` | Chronic Disease Management | `record/trend/average/history/status/risk/target/heart/kidney/retina/medication [info…]` |
 | `/interaction` | Allergies, Medications & Interactions | `check/list/add/update/delete/history [drugs…]` |

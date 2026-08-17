@@ -1,6 +1,6 @@
 # User Guide
 
-> **New to SynapseMD?** Start with the step-by-step [Getting Started Guide](getting-started.md) before using the commands below.
+> **New to SynapseMD?** Start with the step-by-step [Getting Started Guide](getting-started.md) before using the commands below. Local CLI writes `data/*.json`. The optional platform persists `/profile`, `/allergy`, and `/gout` in Postgres (FHIR JSONB on write) — see [local-development.md](local-development.md).
 
 ## Quick Start
 
@@ -28,7 +28,7 @@ Use `data-example/` when you want to try commands, AI analysis, or consultations
 About 50 sample files covering major domains, including:
 
 - **Profile & core:** `profile.json`, `allergies.json`, `radiation-records.json`, `index.json`
-- **Chronic care:** `hypertension-tracker.json`, `diabetes-tracker.json`, `copd-tracker.json`
+- **Chronic care:** `hypertension-tracker.json`, `diabetes-tracker.json`, `copd-tracker.json`, `gout-tracker.json`
 - **Lifestyle:** `sleep-tracker.json`, `nutrition-tracker.json`, `fitness-tracker.json` (+ dated logs under `*-logs/`)
 - **Life stages:** pregnancy, postpartum, menopause, child health, men’s health trackers
 - **Other modules:** mental health, travel, occupational, TCM, rehabilitation, screening, and more
@@ -85,7 +85,7 @@ cp data-example/sleep-tracker.json data/
 |------|--------------------|
 | Confirm data loaded | `/query all` · `/profile view` |
 | Lifestyle modules | `/sleep status` · `/nutrition status` · `/fitness status` |
-| Chronic disease | `/hypertension status` · `/diabetes status` |
+| Chronic disease | `/hypertension status` · `/diabetes status` · `/gout status` · `/gout analyze` |
 | Drug safety | `/medication list` · `/interaction check` |
 | AI (Module 21) | `/ai status` · `/ai analyze last_quarter` · `/ai predict hypertension` |
 | MDT consult | `/consult recent 5` · `/specialist cardio recent 3` |

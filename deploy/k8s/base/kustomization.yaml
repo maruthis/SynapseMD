@@ -9,3 +9,4 @@ resources:
   - secret.yaml
   - api-deployment.yaml
   - mcp-deployment.yaml
+  - network-policies.yaml

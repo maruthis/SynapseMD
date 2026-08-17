@@ -17,6 +17,7 @@ Based on the specialty specified by the user, launch the corresponding specialis
 | resp | Pulmonology | respiratory.md | Pulmonary infections, lung nodules |
 | neuro | Neurology | neurology.md | Cerebrovascular disease, headache, dizziness |
 | onco | Oncology | oncology.md | Tumor markers, cancer screening |
+| rheum | Rheumatology | rheumatology.md | Gout, crystal arthropathy, inflammatory joint signals |
 
 ### Surgery and Specialist Systems
 | Specialty code | Specialty name | Skill file | Area of expertise |
@@ -48,6 +49,7 @@ Based on the specialty specified by the user, launch the corresponding specialis
 /specialist derma date 2025-12-31
 /specialist pedia recent 5
 /specialist gyne all
+/specialist rheum recent 5
 ```
 
 ## Execution Process
@@ -74,6 +76,7 @@ For specific specialties, also read relevant chronic disease management data:
 - **endo (Endocrinology)**: Read `data/diabetes-tracker.json` (diabetes management data)
 - **resp (Pulmonology)**: Read `data/copd-tracker.json` (COPD management data)
 - **nephro (Nephrology)**: Read hypertension and diabetes management data (assess renal risk)
+- **rheum (Rheumatology)**: Read `data/gout-tracker.json` (gout flare diary)
 
 **Data reading priority:**
 1. Chronic disease management data (if available)
@@ -107,6 +110,7 @@ You are a {{specialty name}} specialist. Please perform a medical data analysis 
 - endo: data/diabetes-tracker.json
 - resp: data/copd-tracker.json
 - nephro: data/hypertension-tracker.json + data/diabetes-tracker.json
+- rheum: data/gout-tracker.json
 }}
 
 ### Recent Examination Data
@@ -180,6 +184,7 @@ Available specialties:
 - resp: Pulmonology
 - neuro: Neurology
 - onco: Oncology
+- rheum: Rheumatology
 
 **Surgery and Specialist Systems**
 - ortho: Orthopedics
@@ -208,6 +213,7 @@ Please use /save-report to save your medical examination records first, then pro
 #### Choose by Symptom
 - **Chest pain, palpitations** → cardio (Cardiology)
 - **Joint pain, fracture** → ortho (Orthopedics)
+- **Gout flare, big-toe / monoarticular pain, high uric acid diary** → rheum (Rheumatology)
 - **Rash, itching** → derma (Dermatology)
 - **Irregular periods** → gyne (Gynecology)
 - **Children's health** → pedia (Pediatrics)
@@ -215,6 +221,7 @@ Please use /save-report to save your medical examination records first, then pro
 #### Choose by Test Result
 - **Abnormal blood lipids** → cardio (Cardiology)
 - **Abnormal bone density** → ortho (Orthopedics)
+- **Elevated uric acid / gout diary signals** → rheum (Rheumatology)
 - **Abnormal sex hormones** → gyne (Gynecology)
 
 ### 2. Parameter Selection Guide
@@ -239,6 +246,12 @@ Please use /save-report to save your medical examination records first, then pro
 #### Case 3: Women's Health
 ```bash
 /specialist gyne all
+```
+
+#### Case 4: Gout / Rheumatology
+```bash
+/gout list
+/specialist rheum recent 5
 ```
 
 ## Start Execution

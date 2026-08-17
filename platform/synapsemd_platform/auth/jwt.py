@@ -1,29 +1,26 @@
-import bcrypt
 from datetime import UTC, datetime, timedelta
-from enum import Enum
 from uuid import UUID
 
+import bcrypt
 from jose import JWTError, jwt
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
+from synapsemd_platform.auth.roles import ROLE_SCOPES, Role, scopes_for_roles
 from synapsemd_platform.core.config import get_settings
 
-settings = get_settings()
-
-
-class Role(str, Enum):
-    PATIENT = "patient"
-    CLINICIAN = "clinician"
-    ADMIN = "admin"
-    AUDITOR = "auditor"
-
-
-ROLE_SCOPES: dict[Role, set[str]] = {
-    Role.PATIENT: {"read:own", "write:own"},
-    Role.CLINICIAN: {"read:own", "write:own", "read:org"},
-    Role.ADMIN: {"read:own", "write:own", "read:org", "admin"},
-    Role.AUDITOR: {"read:org", "audit"},
-}
+__all__ = [
+    "Role",
+    "ROLE_SCOPES",
+    "TokenClaims",
+    "hash_password",
+    "verify_password",
+    "create_access_token",
+    "decode_access_token",
+    "has_scope",
+    "has_role",
+    "scopes_for_roles",
+    "_scopes_for_roles",
+]
 
 
 class TokenClaims(BaseModel):
@@ -32,6 +29,10 @@ class TokenClaims(BaseModel):
     roles: list[str]
     scope: list[str]
     exp: datetime | None = None
+    amr: list[str] = Field(default_factory=list)
+    purpose: str = "treatment"
+    llm_processing: bool = True
+    token_use: str = "access"
 
 
 def hash_password(password: str) -> str:
@@ -49,31 +50,52 @@ def create_access_token(
     roles: list[str],
     scopes: list[str] | None = None,
     expires_minutes: int | None = None,
+    amr: list[str] | None = None,
+    purpose: str = "treatment",
+    llm_processing: bool = True,
 ) -> str:
+    settings = get_settings()
     expire = datetime.now(UTC) + timedelta(minutes=expires_minutes or settings.jwt_expire_minutes)
     payload = {
         "sub": str(user_id),
         "org": str(tenant_id),
         "roles": roles,
-        "scope": scopes or _scopes_for_roles(roles),
+        "scope": scopes or scopes_for_roles(roles),
         "exp": expire,
         "iss": settings.oidc_issuer or "synapsemd-local",
         "aud": settings.oidc_audience,
+        "amr": amr or ["pwd"],
+        "purpose": purpose,
+        "llm_processing": llm_processing,
+        "token_use": "access",
     }
     return jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
 
 
 def decode_access_token(token: str) -> TokenClaims:
-    try:
-        payload = jwt.decode(
-            token,
-            settings.jwt_secret,
-            algorithms=[settings.jwt_algorithm],
-            audience=settings.oidc_audience,
-            options={"verify_aud": bool(settings.oidc_audience)},
-        )
-    except JWTError as exc:
-        raise ValueError("Invalid token") from exc
+    settings = get_settings()
+    secrets = [settings.jwt_secret]
+    if settings.jwt_secret_previous:
+        secrets.append(settings.jwt_secret_previous)
+    payload = None
+    last_error: Exception | None = None
+    for secret in secrets:
+        try:
+            payload = jwt.decode(
+                token,
+                secret,
+                algorithms=[settings.jwt_algorithm],
+                audience=settings.oidc_audience,
+                options={"verify_aud": bool(settings.oidc_audience)},
+            )
+            break
+        except JWTError as exc:
+            last_error = exc
+    if payload is None:
+        raise ValueError("Invalid token") from last_error
+
+    if payload.get("token_use", "access") != "access":
+        raise ValueError("Invalid token")
 
     return TokenClaims(
         sub=UUID(payload["sub"]),
@@ -81,21 +103,19 @@ def decode_access_token(token: str) -> TokenClaims:
         roles=payload.get("roles", []),
         scope=payload.get("scope", []),
         exp=datetime.fromtimestamp(payload["exp"], tz=UTC) if "exp" in payload else None,
+        amr=list(payload.get("amr") or []),
+        purpose=str(payload.get("purpose") or "treatment"),
+        llm_processing=bool(payload.get("llm_processing", True)),
+        token_use=str(payload.get("token_use") or "access"),
     )
 
 
 def _scopes_for_roles(roles: list[str]) -> list[str]:
-    scopes: set[str] = set()
-    for role_name in roles:
-        try:
-            scopes.update(ROLE_SCOPES[Role(role_name)])
-        except ValueError:
-            continue
-    return sorted(scopes)
+    return scopes_for_roles(roles)
 
 
 def has_scope(claims: TokenClaims, required: str) -> bool:
-    return required in claims.scope or "admin" in claims.roles
+    return required in claims.scope or "admin" in claims.roles or "tenant_admin" in claims.roles
 
 
 def has_role(claims: TokenClaims, *roles: str) -> bool:

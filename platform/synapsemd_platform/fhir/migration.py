@@ -7,9 +7,18 @@ from pathlib import Path
 from typing import Any
 from uuid import UUID, uuid4
 
+from synapsemd_platform.fhir.projection import (
+    allergies_to_fhir,
+    allergy_to_fhir,
+    gout_flare_to_observation,
+    observation_from_tracker,
+    profile_to_patient,
+)
+
 FHIR_MAPPINGS: dict[str, str] = {
     "profile.json": "Patient",
     "allergies.json": "AllergyIntolerance",
+    "gout-tracker.json": "Observation",
     "medications": "MedicationRequest",
     "fitness-logs": "Observation",
     "radiation-records.json": "ImagingStudy",
@@ -18,52 +27,17 @@ FHIR_MAPPINGS: dict[str, str] = {
     "interactions": "ClinicalUseDefinition",
 }
 
-
-def profile_to_patient(profile: dict[str, Any], patient_id: str, tenant_id: str) -> dict[str, Any]:
-    basic = profile.get("basic_info", {})
-    return {
-        "resourceType": "Patient",
-        "id": patient_id,
-        "meta": {"tag": [{"system": "https://synapsemd.com/tenant", "code": tenant_id}]},
-        "gender": basic.get("gender") or "unknown",
-        "birthDate": basic.get("birth_date"),
-    }
-
-
-def allergies_to_fhir(allergies_doc: dict[str, Any], patient_ref: str) -> list[dict[str, Any]]:
-    resources = []
-    for item in allergies_doc.get("allergies", []):
-        resources.append(
-            {
-                "resourceType": "AllergyIntolerance",
-                "id": str(uuid4()),
-                "patient": {"reference": patient_ref},
-                "code": {
-                    "text": item.get("allergen", item.get("name", "unknown")),
-                },
-                "criticality": item.get("severity", "low"),
-            }
-        )
-    return resources
-
-
-def observation_from_tracker(
-    tracker: dict[str, Any],
-    *,
-    patient_ref: str,
-    loinc_code: str,
-    display: str,
-) -> dict[str, Any]:
-    return {
-        "resourceType": "Observation",
-        "id": str(uuid4()),
-        "status": "final",
-        "code": {
-            "coding": [{"system": "http://loinc.org", "code": loinc_code, "display": display}],
-        },
-        "subject": {"reference": patient_ref},
-        "valueQuantity": tracker.get("value"),
-    }
+__all__ = [
+    "FHIR_MAPPINGS",
+    "FHIRLocalStore",
+    "DataAccessLayer",
+    "allergies_to_fhir",
+    "allergy_to_fhir",
+    "gout_flare_to_observation",
+    "migrate_json_directory",
+    "observation_from_tracker",
+    "profile_to_patient",
+]
 
 
 class FHIRLocalStore:
@@ -76,10 +50,16 @@ class FHIRLocalStore:
     def _bundle_path(self, tenant_id: UUID, user_id: UUID) -> Path:
         return self.base_path / str(tenant_id) / f"{user_id}.json"
 
-    async def save_bundle(self, tenant_id: UUID, user_id: UUID, resources: list[dict[str, Any]]) -> None:
+    async def save_bundle(
+        self, tenant_id: UUID, user_id: UUID, resources: list[dict[str, Any]]
+    ) -> None:
         path = self._bundle_path(tenant_id, user_id)
         path.parent.mkdir(parents=True, exist_ok=True)
-        bundle = {"resourceType": "Bundle", "type": "collection", "entry": [{"resource": r} for r in resources]}
+        bundle = {
+            "resourceType": "Bundle",
+            "type": "collection",
+            "entry": [{"resource": r} for r in resources],
+        }
         path.write_text(json.dumps(bundle, indent=2), encoding="utf-8")
 
     async def load_bundle(self, tenant_id: UUID, user_id: UUID) -> list[dict[str, Any]]:
@@ -132,6 +112,59 @@ def migrate_json_directory(source_dir: Path, tenant_id: str, user_id: str) -> li
     allergies_path = source_dir / "allergies.json"
     if allergies_path.exists():
         allergies = json.loads(allergies_path.read_text(encoding="utf-8"))
-        resources.extend(allergies_to_fhir(allergies, patient_ref))
+        resources.extend(allergies_to_fhir(allergies, patient_ref, tenant_id))
+
+    gout_path = source_dir / "gout-tracker.json"
+    if gout_path.exists():
+        gout = json.loads(gout_path.read_text(encoding="utf-8"))
+        for flare in gout.get("flares") or []:
+            resources.append(
+                gout_flare_to_observation(flare, patient_ref=patient_ref, tenant_id=tenant_id)
+            )
 
     return resources
+
+
+async def migrate_domain_tables(source_dir: Path, tenant_id: UUID, user_id: UUID) -> dict[str, int]:
+    """Upsert profile / allergy / gout rows from a JSON vault directory (A-8)."""
+    from synapsemd_platform.services.health_data import get_health_data_service
+
+    service = get_health_data_service()
+    counts = {"profile": 0, "allergies": 0, "gout_flares": 0}
+
+    profile_path = source_dir / "profile.json"
+    if profile_path.exists():
+        profile = json.loads(profile_path.read_text(encoding="utf-8"))
+        await service.execute(
+            "profile",
+            {"action": "upsert", "profile": profile},
+            tenant_id,
+            user_id,
+        )
+        counts["profile"] = 1
+
+    allergies_path = source_dir / "allergies.json"
+    if allergies_path.exists():
+        doc = json.loads(allergies_path.read_text(encoding="utf-8"))
+        for item in doc.get("allergies") or []:
+            await service.execute(
+                "allergy",
+                {"action": "add", "record": item},
+                tenant_id,
+                user_id,
+            )
+            counts["allergies"] += 1
+
+    gout_path = source_dir / "gout-tracker.json"
+    if gout_path.exists():
+        doc = json.loads(gout_path.read_text(encoding="utf-8"))
+        for flare in doc.get("flares") or []:
+            await service.execute(
+                "gout",
+                {"action": "add", "record": flare},
+                tenant_id,
+                user_id,
+            )
+            counts["gout_flares"] += 1
+
+    return counts

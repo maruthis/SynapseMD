@@ -156,6 +156,50 @@ class GoogleHealthProvider(LLMProvider):
         )
 
 
+class VllmProvider(LLMProvider):
+    """BYOM OpenAI-compatible vLLM endpoint with optional mTLS (D-10)."""
+
+    def __init__(
+        self,
+        base_url: str,
+        default_model: str,
+        *,
+        cert: str | None = None,
+        key: str | None = None,
+    ) -> None:
+        self.base_url = base_url.rstrip("/")
+        self.default_model = default_model
+        self.cert = cert
+        self.key = key
+
+    async def complete(self, prompt: str, decision: RoutingDecision) -> LLMResponse:
+        start = time.perf_counter()
+        cert = (self.cert, self.key) if self.cert and self.key else None
+        async with httpx.AsyncClient(timeout=60.0, cert=cert) as client:
+            response = await client.post(
+                f"{self.base_url}/chat/completions",
+                json={
+                    "model": decision.model or self.default_model,
+                    "max_tokens": decision.max_tokens,
+                    "temperature": decision.temperature,
+                    "messages": [{"role": "user", "content": prompt}],
+                },
+            )
+            response.raise_for_status()
+            data = response.json()
+        content = data["choices"][0]["message"]["content"]
+        usage = data.get("usage", {})
+        latency = int((time.perf_counter() - start) * 1000)
+        return LLMResponse(
+            content=content,
+            model=decision.model,
+            provider="vllm",
+            tokens_in=usage.get("prompt_tokens", 0),
+            tokens_out=usage.get("completion_tokens", 0),
+            latency_ms=latency,
+        )
+
+
 class BaaGateError(Exception):
     pass
 
@@ -192,6 +236,14 @@ def create_provider(provider_name: str | None = None) -> LLMProvider:
             raise ValueError("GOOGLE_API_KEY is required")
         return GoogleHealthProvider(settings.google_api_key, settings.google_base_url)
 
+    if name == "vllm":
+        return VllmProvider(
+            settings.vllm_base_url,
+            settings.vllm_model,
+            cert=settings.vllm_mtls_cert or None,
+            key=settings.vllm_mtls_key or None,
+        )
+
     raise ValueError(f"Unknown LLM provider: {name}")
 
 
@@ -200,8 +252,9 @@ class LLMOrchestrator:
         self.provider = provider or create_provider()
 
     async def execute(self, prompt: str, decision: RoutingDecision) -> LLMResponse:
+        provider = self._provider_for(decision)
         try:
-            return await self.provider.complete(prompt, decision)
+            return await provider.complete(prompt, decision)
         except Exception:
             if decision.fallback_model and decision.fallback_model != decision.model:
                 fallback_decision = RoutingDecision(
@@ -212,8 +265,18 @@ class LLMOrchestrator:
                     require_human_review=decision.require_human_review,
                     fallback_model=decision.model,
                 )
-                return await self.provider.complete(prompt, fallback_decision)
+                return await provider.complete(prompt, fallback_decision)
             raise
+
+    def _provider_for(self, decision: RoutingDecision) -> LLMProvider:
+        settings = get_settings()
+        if decision.provider == "vllm":
+            return create_provider("vllm")
+        if settings.llm_default_provider == "mock":
+            return self.provider
+        if decision.provider in {"anthropic", "openai", "google"}:
+            return create_provider(decision.provider)
+        return self.provider
 
 
 def hash_prompt(prompt: str) -> str:

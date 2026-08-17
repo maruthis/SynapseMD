@@ -72,3 +72,21 @@ def test_token_vault_deanonymize() -> None:
     base.store_tokens("user-1", {"TOKEN_EMAIL_abc": "test@example.com"})
     result = base.deanonymize("user-1", "Email: TOKEN_EMAIL_abc", {"TOKEN_EMAIL_abc": "x"})
     assert "test@example.com" in result
+
+
+def test_vault_secret_path_is_tenant_scoped() -> None:
+    vault = VaultTokenVault("http://vault:8200", "test-token")
+    assert "tokens/tenant-a/user-1" in vault._secret_path("user-1", "tenant-a")
+
+
+def test_vault_delete_tokens() -> None:
+    vault = VaultTokenVault("http://vault:8200", "test-token")
+    vault._memory_cache["tenant-a:user-1"] = {"TOKEN_EMAIL_abc": "a@b.com"}
+    response = MagicMock()
+    response.status_code = 204
+    response.raise_for_status = MagicMock()
+    with patch("synapsemd_platform.anonymization.vault_store.httpx.Client") as mock_client:
+        mock_client.return_value.__enter__.return_value.delete.return_value = response
+        removed = vault.delete_tokens("user-1", tenant_id="tenant-a")
+    assert removed == 1
+    assert "tenant-a:user-1" not in vault._memory_cache

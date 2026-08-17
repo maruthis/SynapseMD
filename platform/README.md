@@ -4,6 +4,16 @@ Multi-tenant, PHI-safe, FHIR-backed health API implementing all enterprise archi
 
 ## Quick Start
 
+**Docker Desktop (Postgres SoR — recommended):**
+
+```bash
+cd platform
+docker compose --profile core up --build
+# API: http://localhost:8000/docs   Postgres: localhost:5432
+```
+
+**Python venv (SQLite + JSON vault for unit tests):**
+
 ```bash
 cd platform
 python -m venv .venv && source .venv/bin/activate
@@ -28,6 +38,11 @@ API docs: http://localhost:8000/docs
 | 7 | `governance/guardrails.py`, review API | ✅ |
 | 8 | Docker, Terraform stub, compliance docs | ✅ |
 | 21 | `ai/`, `services/ai_service.py`, REST + MCP | ✅ |
+| A (slice) | Alembic, Postgres RLS, HealthDataService (profile/allergy/gout) | ✅ in progress |
+| B | OIDC, 15-min JWT + refresh, PDP, MFA, CORS allowlist, password login off in staging/prod | ✅ |
+| C | OTel, PHI-free logs, hash-chained Postgres audit, JSONL export, alert rules | ✅ |
+| D | Presidio default, model catalog + tenant policy, BAA registry, vLLM stub | ✅ |
+| E | DSR + legal hold, NetworkPolicies, specialist workers, HA/PITR runbooks | ✅ |
 
 ## Module 21 — AI Health Assistant
 
@@ -152,17 +167,22 @@ pytest tests/release/ tests/eval/ -v
 pytest -v
 ```
 
-Current baseline: **266 tests**, **≥98% coverage** on `synapsemd_platform`.
+Current baseline: **329+ tests**, **~98% coverage** on `synapsemd_platform`. CI includes Postgres RLS and Alembic.
+
+Target enterprise design (Postgres SoR, SSO, audit, model catalog): [docs/enterprise-platform-architecture.md](../docs/enterprise-platform-architecture.md).  
+Implementation plan (phases A–E): [docs/enterprise-platform-implementation-plan.md](../docs/enterprise-platform-implementation-plan.md).
 
 ## Docker
 
 ```bash
-# Core stack
+# Core stack (Postgres 16 + API; Alembic runs on API start)
 docker compose --profile core up --build
 
 # Full stack (MCP + HAPI + Kafka + Vault + UI)
 docker compose --profile full up --build
 ```
+
+Set `HEALTH_STORE=postgres` (Compose default) so `/profile`, `/allergy`, and `/gout` persist in Postgres with a FHIR JSONB projection on write. `POST /admin/migrate` upserts those domain tables as well as FHIR files. PDFs and reports go to the object store (`OBJECT_STORE_BACKEND=memory|s3`); Postgres keeps URI + hash only. `GET /admin/commands` lists the seeded command catalog. Local IDE/CLI keeps `HEALTH_STORE=json`.
 
 See [docker-compose.profiles.md](docker-compose.profiles.md) for profile details.
 
@@ -196,6 +216,57 @@ curl -X POST http://localhost:8100/tools/invoke \
 ```
 
 See [docs/ui-mcp-integration.md](../docs/ui-mcp-integration.md) for the full tool contract and Docker profiles.
+
+## Auth (Phase B)
+
+| Mode | Notes |
+|------|--------|
+| Password `/api/v1/auth/login` | Development only (`APP_ENV` not staging/production) |
+| OIDC | `POST /auth/oidc/login` (PKCE) → IdP → `/auth/oidc/callback` or `/auth/oidc/token` |
+| Access JWT | 15 minutes; refresh via `/auth/refresh` (rotated opaque token) |
+| MFA | Privileged roles require `amr` containing `mfa` when `APP_ENV=production` |
+| CORS | `CORS_ORIGINS` allowlist; `*` stripped in staging/prod |
+| MCP | Short-lived JWT in `SYNAPSEMD_ACCESS_TOKEN` — tokens are redacted from tool errors |
+
+Optional Keycloak: `docker compose --profile infra up keycloak` (`http://localhost:8082`).
+
+## Observability and audit (Phase C)
+
+| Piece | Notes |
+|-------|--------|
+| Traces | OpenTelemetry span `commands.execute`; `ENABLE_TRACING=true` |
+| Correlation | Every response includes `X-Request-ID` and `X-Trace-ID` |
+| Logs | JSON + PHI filter (names, emails, MRN, lab-like values) |
+| Audit SoR | Postgres `audit_events` when `AUDIT_USE_MEMORY=false` (Compose `core` and K8s). Tests keep in-memory. |
+| Integrity | Per-tenant per-day HMAC hash chain (`prev_hash` / `event_hash`); append-only trigger |
+| Export | `GET /admin/audit` (filter) and `GET /admin/audit/export` (JSONL), scope `audit` |
+| Archive | `jobs/audit_archive.py` monthly JSONL to object store; skips when `AUDIT_LEGAL_HOLD=true` |
+| Kafka | Optional copy only (`AUDIT_USE_KAFKA`); not the system of record |
+
+## PHI and models (Phase D)
+
+| Piece | Notes |
+|-------|--------|
+| Presidio | On by default when `APP_ENV` is staging/production unless `PRESIDIO_ENABLED` is set |
+| Recognizers | MRN, accession, Indian phone (`anonymization/recognizers.py`) plus regex email/phone/SSN/name |
+| Token vault | Memory vault raises in staging/prod; Vault KV path `tokens/{tenant}/{user}` |
+| Catalog | `GET /admin/models` — mock, Anthropic, OpenAI, Google, vLLM |
+| Tenant policy | `GET/PUT /admin/models/policy` — allowlist, residency, `baa_required`, budget, `pinned_commands` |
+| Routing | `ModelPolicyEngine.route` after anonymize; audit `ai.routing.decided` (model id + reason codes + prompt hash) |
+| BAA | `baa_records` table plus env flags; unsigned + prod (or tenant `baa_required`) denies |
+| Module 21 | `/ai predict` stays in-process; `AI_NARRATIVE_OVERLAY` defaults off |
+
+## Privacy ops and HA (Phase E)
+
+| Piece | Notes |
+|-------|--------|
+| DSR | `POST /privacy/dsr` — `access` / `erase` / `correct`; certificate is ids + counts only |
+| Legal hold | `POST /privacy/legal-hold` — blocks erase and WORM archive delete |
+| Tokens / objects | Erase deletes Vault maps and `objects/{tenant}/{user}/` prefix |
+| JWT rotation | `JWT_SECRET_PREVIOUS` dual-verify window |
+| MDT workers | `/consult` fans out specialist markdown prompts and merges sections |
+| Network | Default-deny NetworkPolicies; HTTPS egress for LLM |
+| HA | Managed primary + replica + encrypted PITR — [backup-restore.md](../docs/runbooks/backup-restore.md) |
 
 ## Kubernetes
 

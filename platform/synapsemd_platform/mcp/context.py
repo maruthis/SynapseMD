@@ -1,12 +1,19 @@
 import os
+import re
 from uuid import UUID
 
 from synapsemd_platform.auth.jwt import decode_access_token, has_scope
 from synapsemd_platform.mcp.schemas import McpAuthContext
 
+_JWT_RE = re.compile(r"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
+
 
 class McpAuthError(Exception):
     pass
+
+
+def redact_secrets(text: str) -> str:
+    return _JWT_RE.sub("[REDACTED]", text)
 
 
 def resolve_auth_context() -> McpAuthContext:
@@ -26,6 +33,8 @@ def resolve_auth_context() -> McpAuthContext:
         tenant_id=tenant_id,
         roles=list(claims.roles),
         scopes=list(claims.scope),
+        llm_processing=claims.llm_processing,
+        purpose=claims.purpose,
     )
 
 

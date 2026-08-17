@@ -4,7 +4,8 @@ from uuid import UUID, uuid4
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from synapsemd_platform.auth.jwt import ROLE_SCOPES, Role, hash_password
+from synapsemd_platform.auth.jwt import hash_password
+from synapsemd_platform.auth.roles import ROLE_SCOPES, Role
 from synapsemd_platform.models.tenant import Tenant, User
 
 

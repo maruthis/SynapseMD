@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 from uuid import UUID
 
+from synapsemd_platform.core.config import get_settings
 from synapsemd_platform.fhir.migration import DataAccessLayer
 
 TENANT_TAG_SYSTEM = "https://synapsemd.com/tenant"
@@ -46,14 +47,17 @@ class TenantHealthDataAdapter:
 
         legacy_dir = self._legacy_user_dir(tenant_id, user_id)
         data_sources: list[str] = []
-
-        profile = self._profile_from_fhir(resources)
+        profile = await self._profile_from_postgres(tenant_id, user_id)
         if profile:
-            data_sources.append("fhir:Patient")
+            data_sources.append("postgres:profile")
         else:
-            profile = self._load_legacy_json(legacy_dir / "profile.json")
+            profile = self._profile_from_fhir(resources)
             if profile:
-                data_sources.append("legacy:profile.json")
+                data_sources.append("fhir:Patient")
+            else:
+                profile = self._load_legacy_json(legacy_dir / "profile.json")
+                if profile:
+                    data_sources.append("legacy:profile.json")
 
         nutrition_data = self._load_legacy_json(legacy_dir / "nutrition-tracker.json")
         if nutrition_data:
@@ -81,6 +85,21 @@ class TenantHealthDataAdapter:
         if tenant_user.exists():
             return tenant_user
         return self.legacy_data_root
+
+    @staticmethod
+    async def _profile_from_postgres(tenant_id: UUID, user_id: UUID) -> dict[str, Any] | None:
+        mode = (get_settings().health_store or "json").lower()
+        if mode not in {"postgres", "dual"}:
+            return None
+        from synapsemd_platform.services.health_data import get_health_data_service
+
+        result = await get_health_data_service().execute(
+            "profile", {"action": "get"}, tenant_id, user_id
+        )
+        profile = result.get("profile") if isinstance(result, dict) else None
+        if isinstance(profile, dict) and profile:
+            return profile
+        return None
 
     @staticmethod
     def _load_legacy_json(path: Path) -> dict[str, Any] | None:

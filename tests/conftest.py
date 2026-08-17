@@ -20,6 +20,7 @@ from synapsemd_platform.core.database import init_db
 @pytest.fixture(autouse=True)
 def _clear_audit_events() -> None:
     audit_producer._memory_events.clear()
+    audit_producer._chain_heads.clear()
     get_settings.cache_clear()
 
 

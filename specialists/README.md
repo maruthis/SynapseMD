@@ -15,7 +15,7 @@ Each specialty has an independent Skill definition file containing:
 - Output format specifications
 - Sample analysis language
 
-**Supported 13 specialties + 1 coordinator:**
+**Supported specialties (representative) + coordinator:**
 - `cardiology.md` - Cardiology
 - `endocrinology.md` - Endocrinology
 - `gastroenterology.md` - Gastroenterology
@@ -24,12 +24,15 @@ Each specialty has an independent Skill definition file containing:
 - `respiratory.md` - Respiratory Medicine
 - `neurology.md` - Neurology
 - `oncology.md` - Oncology
-- `orthopedics.md` - Orthopedics [NEW]
-- `dermatology.md` - Dermatology [NEW]
-- `pediatrics.md` - Pediatrics [NEW]
-- `gynecology.md` - Gynecology [NEW]
+- `rheumatology.md` - Rheumatology (gout / inflammatory joint signals)
+- `orthopedics.md` - Orthopedics
+- `dermatology.md` - Dermatology
+- `pediatrics.md` - Pediatrics
+- `gynecology.md` - Gynecology
 - `psychiatry.md` - Psychiatry/Psychology
 - `general.md` - General Practice (Coordinator)
+- `geriatrics.md`, `urology.md`, and others as present under `specialists/`
+- `consultation-coordinator.md` - MDT merge
 
 ### 2. Consultation Coordinator (consultation-coordinator.md)
 

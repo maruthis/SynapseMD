@@ -27,7 +27,7 @@ You (browser)
          └─ MCP connection   →  synapsemd-mcp SSE (:8081) →  SynapseMD services
 ```
 
-Your health records stay on the **platform** (FHIR store). Open WebUI only shows chat messages — it must not become your health record system.
+Your health records stay on the **platform** (Postgres SoR for profile / allergy / gout, plus FHIR interchange). Open WebUI only shows chat messages — it must not become your health record system.
 
 > **Terminology note (v0.10):** **Tools** (`class Tools`) give the model callable abilities. **Functions** are a different plugin family (Pipes, Filters, Actions, and the new **Event** functions in 0.10.2). For SynapseMD health tools, use **Workspace → Tools**, not Functions.
 

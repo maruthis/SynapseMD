@@ -3,10 +3,11 @@
 ## System Architecture
 
 ### Storage Architecture
-- **Storage method**: JSON files + file system directory structure
-- **Data organization**: Hierarchical storage by examination type and date
-- **Index mechanism**: Global index file supports fast queries
-- **Backup strategy**: Original image backup maintains data integrity
+- **Local CLI**: JSON files + file system directory structure (`data/`)
+- **Enterprise platform**: PostgreSQL as system of record (`HEALTH_STORE=postgres`); JSON is an import/export adapter. Profile / allergy / gout rows store a FHIR JSONB projection. Object-store blobs stay out of Postgres (URI + SHA-256 in `stored_objects`). `GET /admin/commands` lists the seeded command catalog.
+- **Data organization**: Hierarchical storage by examination type and date (CLI); typed tables + RLS (platform)
+- **Index mechanism**: Global index file supports fast queries (CLI)
+- **Backup strategy**: Original image backup maintains data integrity (CLI); Postgres backups + CI identity dump/restore (`jobs/backup_restore.py`) for platform. Live staging PITR remains an operator drill.
 
 ### Command System
 - **Implementation**: Claude Code Slash Commands
@@ -53,10 +54,9 @@
 ## Data Privacy Design
 
 ### Privacy Protection Principles
-- **Local storage**: All data is stored on the local file system
-- **No cloud dependency**: Not uploaded to any cloud service
-- **No external database**: Does not rely on third-party databases
-- **Fully private**: Users have complete control over their data
+- **Local CLI**: All data is stored on the local file system; no cloud uploads; no external database
+- **Enterprise platform**: Tenant-scoped PostgreSQL with RLS; JWT auth; PHI anonymized before LLM calls
+- **Fully private (CLI)**: Users have complete control over their JSON vault
 
 ### Security Measures
 - **File permissions**: Relies on operating system file permission controls

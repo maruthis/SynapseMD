@@ -54,3 +54,36 @@ def test_google_requires_api_key(monkeypatch: pytest.MonkeyPatch) -> None:
     with pytest.raises(ValueError, match="GOOGLE_API_KEY"):
         create_provider("google")
     get_settings.cache_clear()
+
+
+def test_vllm_provider_created() -> None:
+    provider = create_provider("vllm")
+    assert provider is not None
+
+
+@pytest.mark.asyncio
+async def test_vllm_provider_complete_mocked() -> None:
+    from unittest.mock import AsyncMock, MagicMock, patch
+
+    from synapsemd_platform.llm.providers import VllmProvider
+    from synapsemd_platform.llm.router import RoutingDecision
+
+    provider = VllmProvider("http://vllm.local/v1", "local-model", cert="c.pem", key="k.pem")
+    response = MagicMock()
+    response.raise_for_status = MagicMock()
+    response.json.return_value = {
+        "choices": [{"message": {"content": "ok"}}],
+        "usage": {"prompt_tokens": 2, "completion_tokens": 1},
+    }
+    mock_client = MagicMock()
+    mock_client.__aenter__ = AsyncMock(return_value=mock_client)
+    mock_client.__aexit__ = AsyncMock(return_value=None)
+    mock_client.post = AsyncMock(return_value=response)
+    with patch("synapsemd_platform.llm.providers.httpx.AsyncClient", return_value=mock_client):
+        result = await provider.complete(
+            "hello",
+            RoutingDecision("vllm-local", "vllm", 128, 0.1, False, "vllm-local"),
+        )
+    assert result.provider == "vllm"
+    assert result.content == "ok"
+    mock_client.post.assert_awaited_once()

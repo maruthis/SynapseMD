@@ -9,6 +9,9 @@ class RequestContext:
     tenant_id: UUID
     roles: tuple[str, ...]
     scopes: tuple[str, ...]
+    amr: tuple[str, ...] = ()
+    purpose: str = "treatment"
+    llm_processing: bool = True
 
 
 _request_context: ContextVar[RequestContext | None] = ContextVar("request_context", default=None)

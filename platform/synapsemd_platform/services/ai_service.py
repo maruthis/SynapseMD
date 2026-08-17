@@ -81,6 +81,8 @@ class AIService:
         )
         result = engine.predict(risk_type)
         enriched = self._enrich_prediction_result(result, risk_type)
+        # D-11: scoring stays in-process. Narrative overlay is never applied here.
+        _ = get_settings().ai_narrative_overlay
         await self._audit_action(
             tenant_id=tenant_id,
             user_id=user_id,

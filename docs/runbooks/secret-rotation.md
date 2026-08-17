@@ -12,10 +12,19 @@
 ## JWT rotation (zero-downtime)
 
 1. Generate new secret: `openssl rand -hex 32`
-2. Update K8s Secret `synapsemd-secrets` with `JWT_SECRET_NEW`
-3. Deploy API with dual-verify window (if supported) or maintenance window
-4. Invalidate outstanding tokens (users re-login)
-5. Remove old secret
+2. Set `JWT_SECRET_PREVIOUS` to the **current** `JWT_SECRET` (dual-verify window).
+3. Set `JWT_SECRET` to the new value. Rolling restart API + MCP.
+4. Tokens signed with the previous secret still verify (`decode_access_token` tries current, then previous).
+5. After the 15-minute access TTL (+ refresh overlap), clear `JWT_SECRET_PREVIOUS`.
+6. Invalidate refresh sessions if the rotation is incident-driven: revoke `sessions` rows for the tenant.
+
+## Tenant DEK / Vault token-map rotation (staging drill)
+
+1. Create a new Vault key version / KMS key (`KMS_MASTER_KEY_ID`).
+2. Re-wrap token maps under `secret/synapsemd/tokens/{tenant}/{user}` (new `_kms_key_id` in the payload).
+3. Confirm a command execute still deanonymizes for a test user.
+4. Retire the old key version after the overlap window.
+5. Log the drill in `mydocs/ops-log.md` (date, operator, tenants touched, issues).
 
 ## LLM provider keys
 

@@ -131,10 +131,14 @@ def test_rag_org_intelligence_visible_when_opt_in(monkeypatch: pytest.MonkeyPatc
 def test_rls_migration_defines_tenant_policy() -> None:
     from pathlib import Path
 
+    from synapsemd_platform.core.rls import TENANT_USER_TABLES
+
     sql = Path("platform/migrations/001_rls.sql").read_text(encoding="utf-8")
     assert "ENABLE ROW LEVEL SECURITY" in sql
     assert "tenant_isolation" in sql
+    assert "tenant_user_isolation" in sql
     assert "app.tenant_id" in sql
-    # PostgreSQL does not support CREATE POLICY IF NOT EXISTS
     assert "CREATE POLICY IF NOT EXISTS" not in sql
-    assert "to_regclass('public.ai_interactions')" in sql
+    assert "patient_profiles" in sql
+    for table in TENANT_USER_TABLES:
+        assert table in sql

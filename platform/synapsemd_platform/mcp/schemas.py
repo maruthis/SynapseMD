@@ -9,6 +9,8 @@ class McpAuthContext(BaseModel):
     tenant_id: UUID
     roles: list[str] = Field(default_factory=list)
     scopes: list[str] = Field(default_factory=list)
+    llm_processing: bool = True
+    purpose: str = "treatment"
 
 
 class ListCommandsResult(BaseModel):

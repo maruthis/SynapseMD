@@ -17,14 +17,14 @@ System design, layer responsibilities, and deployment models. For **how to exten
 
 ## 1. Project Overview
 
-SynapseMD is a **file-based personal health data management system** with an optional **enterprise platform** (`platform/`). Locally, health data lives in JSON files and intelligence is provided by slash commands, skills, and specialists executed by Claude Code (or any compatible LLM agent).
+SynapseMD is a **file-based personal health data management system** with an optional **enterprise platform** (`platform/`). Locally, health data lives in JSON files and intelligence is provided by slash commands, skills, and specialists executed by Claude Code (or any compatible LLM agent). On the platform path, **PostgreSQL is the system of record**; JSON is an import/export adapter.
 
 **Dual runtime:**
 
-| Mode | Stack |
-|------|-------|
-| **Local CLI** | `commands/` + `skills/` + `specialists/` + `data/` |
-| **Enterprise platform** | FastAPI + JWT + FHIR + MCP + anonymization + audit |
+| Mode | Stack | Persistence |
+|------|-------|-------------|
+| **Local CLI** | `commands/` + `skills/` + `specialists/` + `data/` | `data/*.json` |
+| **Enterprise platform** | FastAPI + JWT + Postgres + FHIR + MCP + anonymization + audit | Postgres (`HEALTH_STORE=postgres`) |
 
 Both share Module 21 AI logic in `platform/synapsemd_platform/ai/prediction.py`.
 
@@ -106,13 +106,13 @@ Schema reference: [data-structures.md](data-structures.md).
 
 ### `platform/`
 
-Enterprise FastAPI application: multi-tenant auth, FHIR storage, PHI anonymization, command orchestrator, MCP server, Module 21 AI REST routes, audit events.
+Enterprise FastAPI application: multi-tenant auth, **Postgres + Alembic + RLS**, `HealthDataService` (profile / allergy / gout with FHIR JSONB on write), S3-compatible object store (URI + hash in DB), command catalog, PHI anonymization, command orchestrator, MCP server, Module 21 AI REST routes, audit events.
 
-See [platform/README.md](../platform/README.md), [release-gates.md](release-gates.md), and [compliance-controls.md](compliance-controls.md).
+Compose `core` profile runs API + Postgres 16 with `HEALTH_STORE=postgres`. See [local-development.md](local-development.md), [platform/README.md](../platform/README.md), [enterprise-platform-architecture.md](enterprise-platform-architecture.md), and [enterprise-platform-implementation-plan.md](enterprise-platform-implementation-plan.md).
 
 ### `tests/`
 
-266+ tests, ~99% coverage on `synapsemd_platform`. CI enforces ≥95% via `.github/workflows/platform-ci.yml`.
+426 tests, ~98% coverage on `synapsemd_platform`. CI enforces ≥95% via `.github/workflows/platform-ci.yml` (includes Postgres RLS + Alembic). Local Docker Desktop: set `POSTGRES_TEST_URL` to a `synapsemd_test` database — never the Compose app DB.
 
 ### `.claude/`
 
@@ -131,9 +131,10 @@ Repair symlinks: `./scripts/link-claude-workspace.sh`
 │ Commands        │ User intent parsing, data CRUD, routing to skills     │
 │ Skills          │ Deep analysis, pattern detection, HTML report output  │
 │ Specialists     │ Clinical domain expertise, MDT consultation logic     │
-│ Data (JSON)     │ Persistence — pure data, no logic                     │
+│ Data (JSON)     │ Local CLI persistence — pure data, no logic           │
+│ Data (Postgres) │ Platform SoR — RLS tenant isolation, Alembic schema   │
 │ Scripts         │ Batch processing, testing, standalone report gen      │
-│ Platform        │ Auth, tenancy, PHI safety, REST/MCP, audit            │
+│ Platform        │ Auth, tenancy, PHI safety, REST/MCP, audit, adapters  │
 │ .claude/        │ Runtime config — tool permissions, MCP, symlinks      │
 └─────────────────┴───────────────────────────────────────────────────────┘
 ```
@@ -145,7 +146,7 @@ Repair symlinks: `./scripts/link-claude-workspace.sh`
 3. **Specialists own the clinical lens** — interpret summaries in MDT flow, not raw dumps.
 4. **Data files are schema-only** — compute derived values at runtime in commands/skills.
 5. **Scripts are escape hatches** — deterministic logic shared with platform where possible.
-6. **Platform adds safety** — anonymization, audit, guardrails; does not duplicate markdown specs.
+6. **Platform adds safety and persistence** — anonymization, audit, guardrails, `HealthDataService`; does not duplicate markdown specs.
 
 Full extension rules: [developer-guide.md](developer-guide.md).
 
@@ -192,7 +193,7 @@ Any agent with filesystem tools (Read, Write, Bash, Glob) and multi-step markdow
 
 ## 6. Command Execution Flows
 
-**Local CLI is agent-driven** (markdown playbooks in `commands/`, `skills/`, `specialists/`). **Platform is code-orchestrated** (anonymize → route → LLM / Module 21). Skills and specialist fan-out as markdown happen on the CLI path; the platform does **not** re-parse those files at runtime for generic commands.
+**Local CLI is agent-driven** (markdown playbooks in `commands/`, `skills/`, `specialists/`). **Platform is code-orchestrated** (health-data CRUD → Postgres, or anonymize → route → LLM / Module 21). Skills and specialist fan-out as markdown happen on the CLI path; the platform does **not** re-parse those files at runtime for generic commands.
 
 ### 6.1 Overview (decision flow)
 
@@ -214,22 +215,30 @@ flowchart TD
   COORD --> OUT
   M21 --> OUT
 
-  PLAT --> AI{command == ai?}
-  AI -->|predict / analyze| M21P[AIPredictionEngine]
-  AI -->|other| ANON[Anonymize PHI]
+  PLAT --> KIND{command?}
+  KIND -->|profile / allergy / gout| HD[HealthDataService]
+  HD --> STORE{HEALTH_STORE}
+  STORE -->|postgres| PG[(PostgreSQL + RLS)]
+  STORE -->|json| JF[LegacyJsonAdapter]
+  STORE -->|dual| PG
+  KIND -->|ai| M21P[AIPredictionEngine]
+  KIND -->|other| ANON[Anonymize PHI]
   ANON --> RTR[HealthLLMRouter]
   RTR --> LLM[LLM Provider]
   LLM --> GR[Guardrails + deanonymize + audit]
   M21P --> AUD[Audit]
+  HD --> AUD
   GR --> OUT2[API / MCP response]
   AUD --> OUT2
+  PG --> OUT2
+  JF --> OUT2
 ```
 
 ### 6.2 What calls what
 
 | Command kind | Skills | Specialists | External LLM | Module 21 |
 |--------------|--------|-------------|--------------|-----------|
-| CRUD (`/allergy`, `/profile`, …) | No | No | CLI: agent LLM follows markdown steps | No |
+| CRUD (`/allergy`, `/profile`, `/gout`, …) | No | No | CLI: agent LLM follows markdown steps. Platform: `HealthDataService` (no LLM) | No |
 | Analyzer (deep `/sleep`, etc.) | Yes (`SKILL.md`) | No | CLI: agent + skill steps | No |
 | `/consult`, `/specialist` | No | Yes (parallel Tasks) | CLI: many LLM subagents | No |
 | `/ai predict` / `/ai analyze` | Optional report skill | No | Prefer **no** (local scoring) | Yes (`synapsemd-ai`) |
@@ -633,7 +642,13 @@ sequenceDiagram
   User->>Client: execute_command or ai_* tool
   Client->>API: JWT + tenant + payload
 
-  alt command == "ai" (predict / analyze)
+  alt command in profile / allergy / gout
+    API->>Orch: execute(command, payload)
+    Orch->>Orch: HealthDataService
+    Note over Orch: PostgresHealthAdapter or LegacyJsonAdapter
+    Orch->>Audit: health.command.executed (ids only)
+    API->>User: Structured JSON response
+  else command == "ai" (predict / analyze)
     API->>AI: AIService
     AI->>AI: AIPredictionEngine (synapsemd-ai)
     AI->>Audit: ai.*.completed
@@ -653,6 +668,7 @@ sequenceDiagram
 | Role | Path |
 |------|------|
 | Orchestrator | `platform/synapsemd_platform/services/command_orchestrator.py` |
+| Health data | `platform/synapsemd_platform/services/health_data.py`, `adapters/` |
 | AI facade | `platform/synapsemd_platform/services/ai_service.py` |
 | Module 21 | `platform/synapsemd_platform/ai/prediction.py` |
 | Router / providers | `platform/synapsemd_platform/llm/router.py`, `…/llm/providers.py` |
@@ -681,8 +697,10 @@ SynapseMD/
 ├── data-example/
 ├── docs/                             # includes developer-guide.md
 ├── scripts/                          # setup-data.sh, link-claude-workspace.sh, validate-command.sh
-├── tests/                            # 266+ tests
+├── tests/                            # 426 tests (unit / integration / e2e / release / eval)
 └── platform/                         # synapsemd_platform FastAPI package
+    ├── alembic/                      # schema migrations
+    └── synapsemd_platform/adapters/  # Postgres + JSON health stores
 ```
 
 **First-time setup:**
@@ -718,15 +736,27 @@ Run the FastAPI platform for multi-tenant API access and chatbot integration:
 
 ```bash
 cd platform
+docker compose --profile core up --build
+# HEALTH_STORE=postgres; Alembic runs on API start
+# http://localhost:8000/docs
+```
+
+Or without Docker (SQLite/JSON for inner-loop tests):
+
+```bash
+cd platform
 pip install -e ".[dev]"
 uvicorn synapsemd_platform.api.main:app --reload
 synapsemd-mcp   # MCP server for AnythingLLM / Open WebUI
 ```
 
 ```
-UI / Chatbot ──▶ MCP or REST ──▶ synapsemd_platform ──▶ FHIR + audit
+UI / Chatbot ──▶ MCP or REST ──▶ synapsemd_platform ──▶ Postgres + FHIR + audit
                                       │
-                                      ├── CommandOrchestrator (generic commands)
+                                      ├── HealthDataService (profile / allergy / gout + FHIR JSONB)
+                                      ├── Object store (URI + hash; blob not in Postgres)
+                                      ├── Command catalog (`GET /admin/commands`)
+                                      ├── CommandOrchestrator (generic LLM commands)
                                       ├── AIService (Module 21 /ai routes)
                                       └── PHI anonymization + guardrails
 ```
@@ -746,7 +776,7 @@ For cloud storage, replace local filesystem tools with tenant-scoped object stor
 | Concern | Recommendation |
 |---------|----------------|
 | **Auth** | Platform JWT with tenant isolation |
-| **Data isolation** | Per-tenant FHIR namespace |
+| **Data isolation** | PostgreSQL RLS (`app.tenant_id` / `app.user_id`) + per-tenant FHIR namespace |
 | **Privacy** | Anonymize before LLM; audit logs store hashes only |
 | **Model costs** | Route by command complexity (`HealthLLMRouter`) |
 | **Clinical safety** | Guardrails + human review queue for critical commands |
@@ -764,4 +794,6 @@ For cloud storage, replace local filesystem tools with tenant-scoped object stor
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | PR checklist and setup |
 | [data-structures.md](data-structures.md) | JSON schema reference |
 | [platform/README.md](../platform/README.md) | Enterprise platform API and deployment |
+| [enterprise-platform-architecture.md](enterprise-platform-architecture.md) | Target enterprise design: DB SoR, SSO, audit, models |
+| [enterprise-platform-implementation-plan.md](enterprise-platform-implementation-plan.md) | Phased build plan (A–E) for that design |
 | [ui-mcp-integration.md](ui-mcp-integration.md) | MCP and chatbot wiring |

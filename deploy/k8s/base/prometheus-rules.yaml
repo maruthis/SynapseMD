@@ -2,7 +2,7 @@ groups:
   - name: synapsemd-alerts
     rules:
       - alert: SynapseMDHighErrorRate
-        expr: rate(http_requests_total{status=~"5.."}[5m]) / rate(http_requests_total[5m]) > 0.01
+        expr: rate(synapsemd_http_requests_total{status=~"5.."}[5m]) / rate(synapsemd_http_requests_total[5m]) > 0.01
         for: 5m
         labels:
           severity: warning
@@ -10,7 +10,7 @@ groups:
           summary: SynapseMD API error rate above 1%
 
       - alert: SynapseMDPHIBlockSpike
-        expr: increase(phi_block_total[5m]) > 10
+        expr: increase(synapsemd_phi_blocks_total[5m]) > 10
         for: 2m
         labels:
           severity: critical
@@ -18,7 +18,7 @@ groups:
           summary: Elevated PHI block rate — possible anonymization failure or abuse
 
       - alert: SynapseMDGuardrailBlockSpike
-        expr: increase(guardrail_block_total[5m]) > 20
+        expr: increase(synapsemd_guardrail_blocks_total[5m]) > 20
         for: 5m
         labels:
           severity: warning
@@ -26,9 +26,33 @@ groups:
           summary: Guardrail blocks elevated — review command patterns
 
       - alert: SynapseMDLLMLatencyHigh
-        expr: histogram_quantile(0.95, rate(llm_latency_seconds_bucket[5m])) > 30
+        expr: histogram_quantile(0.95, rate(synapsemd_llm_latency_seconds_bucket[5m])) > 30
         for: 10m
         labels:
           severity: warning
         annotations:
           summary: LLM p95 latency above 30s
+
+      - alert: SynapseMDAuditWriteFailure
+        expr: increase(synapsemd_audit_write_failures_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Durable audit write failed — page on-call; events may be memory-only
+
+      - alert: SynapseMDAuthFailureSpike
+        expr: increase(synapsemd_auth_failures_total[5m]) > 50
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: Authentication failure spike — possible credential stuffing or IdP outage
+
+      - alert: SynapseMDAnonymizeFailureSpike
+        expr: increase(synapsemd_anonymize_failures_total[5m]) > 5
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: Anonymization failures blocking LLM calls

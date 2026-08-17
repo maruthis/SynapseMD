@@ -1,7 +1,7 @@
-"""Kafka-backed audit event producer (optional production path)."""
+"""Optional Kafka/SIEM copy of audit events. Postgres is the system of record (C-9)."""
 
-from typing import Any
 import json
+from typing import Any
 
 
 class KafkaAuditSink:

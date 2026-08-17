@@ -75,6 +75,46 @@ def test_has_scope_and_admin_bypass() -> None:
     assert not has_scope(patient, "admin")
 
 
+def test_decode_rejects_non_access_token() -> None:
+    settings = get_settings()
+    payload = {
+        "sub": str(uuid4()),
+        "org": str(uuid4()),
+        "roles": ["patient"],
+        "scope": ["read:own"],
+        "exp": datetime.now(UTC) + timedelta(minutes=5),
+        "aud": settings.oidc_audience,
+        "token_use": "refresh",
+    }
+    token = jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
+    with pytest.raises(ValueError, match="Invalid token"):
+        decode_access_token(token)
+
+
+def test_decode_accepts_previous_secret(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("JWT_SECRET", "new-secret-key-value")
+    monkeypatch.setenv("JWT_SECRET_PREVIOUS", "test-secret-key")
+    get_settings.cache_clear()
+    user_id = uuid4()
+    tenant_id = uuid4()
+    token = jwt.encode(
+        {
+            "sub": str(user_id),
+            "org": str(tenant_id),
+            "roles": ["patient"],
+            "scope": ["read:own"],
+            "exp": datetime.now(UTC) + timedelta(minutes=5),
+            "aud": get_settings().oidc_audience,
+            "token_use": "access",
+        },
+        "test-secret-key",
+        algorithm=get_settings().jwt_algorithm,
+    )
+    claims = decode_access_token(token)
+    assert claims.sub == user_id
+    get_settings.cache_clear()
+
+
 def test_has_role() -> None:
     claims = TokenClaims(sub=uuid4(), org=uuid4(), roles=["clinician"], scope=[])
     assert has_role(claims, "clinician")

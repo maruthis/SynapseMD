@@ -3,6 +3,8 @@
 **Audience:** Subject-matter experts (SMEs), clinicians, and clinical informatics leads who want to extend SynapseMD **without writing application code**.  
 **Companion (engineer detail):** [developer-guide.md](developer-guide.md) · Templates: [docs/templates/](templates/) · Runtime flows: [architecture.md §6.3](architecture.md#63-ide--cli--providing-and-invoking-commands-skills-specialists)
 
+> **Status:** The gout / rheumatology worked example is **shipped in this repo** (`commands/gout.md`, `skills/gout-analyzer/`, `specialists/rheumatology.md`, `data-example/gout-tracker.json`). Use the sections below as the authoring pattern for your next clinical domain — or try `/gout`, `/gout analyze`, and `/specialist rheum` directly after reloading the IDE/CLI.
+
 ---
 
 ## 1. What you are adding (plain language)
@@ -481,7 +483,8 @@ Optional engineer follow-ups (not required for local IDE use):
 
 - Document schema in [data-structures.md](data-structures.md)
 - Add a short usage line to [user-guide.md](user-guide.md) / [commands-catalog.md](commands-catalog.md)
-- Register the command for API/MCP in the platform (`AVAILABLE_COMMANDS`) — see [developer-guide.md §11](developer-guide.md#11-recipe-wire-to-the-platform)
+- Register the command for API/MCP in `platform/synapsemd_platform/models/commands.py` (`PLATFORM_COMMANDS`) — see [developer-guide.md §11](developer-guide.md#11-recipe-wire-to-the-platform)
+- For structured CRUD (like gout), persist via `HealthDataService` + FHIR JSONB + Alembic/RLS rather than the LLM orchestrator
 
 ---
 

@@ -47,6 +47,36 @@ async def test_adapter_loads_fhir_observations(dal, tenant_id, user_id) -> None:
 
 
 @pytest.mark.asyncio
+async def test_adapter_loads_postgres_profile(dal, tenant_id, user_id, monkeypatch) -> None:
+    from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+
+    from synapsemd_platform.adapters.postgres import PostgresHealthAdapter
+    from synapsemd_platform.core.config import get_settings
+    from synapsemd_platform.core.database import Base
+    from synapsemd_platform.models import clinical, trackers  # noqa: F401
+    from synapsemd_platform.services.health_data import HealthDataService
+
+    engine = create_async_engine("sqlite+aiosqlite:///:memory:")
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    factory = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+    postgres = PostgresHealthAdapter(factory)
+    await postgres.upsert_profile(tenant_id, user_id, {"basic_info": {"gender": "female"}})
+    monkeypatch.setenv("HEALTH_STORE", "postgres")
+    get_settings.cache_clear()
+    monkeypatch.setattr(
+        "synapsemd_platform.services.health_data.get_health_data_service",
+        lambda: HealthDataService(postgres),
+    )
+    adapter = TenantHealthDataAdapter(dal, legacy_data_root="/nonexistent")
+    ctx = await adapter.load(tenant_id, user_id)
+    assert ctx.user_profile["basic_info"]["gender"] == "female"
+    assert "postgres:profile" in ctx.data_sources
+    get_settings.cache_clear()
+    await engine.dispose()
+
+
+@pytest.mark.asyncio
 async def test_adapter_loads_legacy_json(dal, tenant_id, user_id, tmp_path) -> None:
     legacy_dir = tmp_path / "data" / str(tenant_id) / str(user_id)
     legacy_dir.mkdir(parents=True)

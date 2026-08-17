@@ -86,7 +86,7 @@ All output is for reference only. Consult a qualified healthcare professional fo
 
 ## Platform Integration (optional)
 
-If this command is registered in `AVAILABLE_COMMANDS`:
+If this command is registered in `PLATFORM_COMMANDS` (`models/commands.py`):
 
 ```bash
 curl -X POST http://localhost:8000/api/v1/commands/execute \

@@ -10,11 +10,14 @@
 | Alert | Condition | Action |
 |-------|-----------|--------|
 | `SynapseMDHighErrorRate` | 5xx rate > 1% for 5m | Check API logs, DB connectivity |
-| `SynapseMDPHIBlockSpike` | `phi_block_total` increase > 10/min | Review anonymization config; possible attack |
-| `SynapseMDGuardrailBlockSpike` | `guardrail_block_total` increase | Review recent command patterns |
+| `SynapseMDPHIBlockSpike` | `synapsemd_phi_blocks_total` increase > 10/5m | Review anonymization config; possible attack |
+| `SynapseMDGuardrailBlockSpike` | `synapsemd_guardrail_blocks_total` increase | Review recent command patterns |
+| `SynapseMDAuditWriteFailure` | any `synapsemd_audit_write_failures_total` increase | **Page** — durable audit write failed; events may be memory-only |
+| `SynapseMDAuthFailureSpike` | `synapsemd_auth_failures_total` increase > 50/5m | Credential stuffing or IdP outage |
+| `SynapseMDAnonymizeFailureSpike` | `synapsemd_anonymize_failures_total` increase > 5/5m | LLM path blocked; check Presidio/regex engine |
 | `SynapseMDReviewQueueBacklog` | pending review items > 50 | Page clinician on-call |
-| `SynapseMDLLMLatencyHigh` | p95 `llm_latency_seconds` > 30s | Check provider status; enable fallback |
-| `SynapseMDAuditKafkaLag` | consumer lag > 1000 | Check Redpanda/Kafka |
+| `SynapseMDLLMLatencyHigh` | p95 `synapsemd_llm_latency_seconds` > 30s | Check provider status; enable fallback |
+| `SynapseMDAuditKafkaLag` | consumer lag > 1000 | Check Redpanda/Kafka (optional copy; Postgres is SoR) |
 
 ## Prometheus rules
 

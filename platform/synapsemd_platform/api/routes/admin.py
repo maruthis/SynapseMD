@@ -1,20 +1,29 @@
+import json
+from datetime import UTC, datetime
 from pathlib import Path
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import PlainTextResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from synapsemd_platform.api.schemas import MigrateRequest, ReviewDecisionRequest
-from synapsemd_platform.audit.events import AuditEventPayload, audit_producer
+from synapsemd_platform.audit.events import AuditEventPayload, audit_producer, query_audit_events
 from synapsemd_platform.auth.middleware import get_request_ctx, require_scope
 from synapsemd_platform.core.config import get_settings
 from synapsemd_platform.core.context import RequestContext
 from synapsemd_platform.core.database import get_db_session
-from synapsemd_platform.fhir.migration import DataAccessLayer, FHIRLocalStore, migrate_json_directory
+from synapsemd_platform.core.rls import set_rls_context
+from synapsemd_platform.fhir.migration import (
+    DataAccessLayer,
+    FHIRLocalStore,
+    migrate_domain_tables,
+    migrate_json_directory,
+)
 from synapsemd_platform.models.review import ReviewQueueItem
 from synapsemd_platform.models.tenant import User
-from synapsemd_platform.observability.metrics import REQUEST_COUNT
+from synapsemd_platform.observability.metrics import REQUEST_COUNT, REVIEW_QUEUE_AGE
 
 router = APIRouter(tags=["admin"])
 
@@ -42,13 +51,107 @@ async def migrate_data(
     store = FHIRLocalStore(get_settings().fhir_local_store)
     dal = DataAccessLayer(store)
     await dal.upsert_resources(ctx.tenant_id, ctx.user_id, resources)
-    return {"migrated_resources": len(resources), "resource_types": [r["resourceType"] for r in resources]}
+    domain_rows = await migrate_domain_tables(source, ctx.tenant_id, ctx.user_id)
+    return {
+        "migrated_resources": len(resources),
+        "resource_types": [r["resourceType"] for r in resources],
+        "domain_rows": domain_rows,
+    }
+
+
+@router.get("/admin/commands", dependencies=[Depends(require_scope("admin"))])
+async def list_command_catalog(session: AsyncSession = Depends(get_db_session)) -> dict:
+    from synapsemd_platform.models.commands import CommandCatalogEntry, command_seed_rows
+
+    result = await session.execute(select(CommandCatalogEntry))
+    rows = result.scalars().all()
+    if not rows:
+        for item in command_seed_rows():
+            session.add(CommandCatalogEntry(**item))
+        await session.commit()
+        result = await session.execute(select(CommandCatalogEntry))
+        rows = result.scalars().all()
+    return {
+        "commands": [
+            {
+                "command_id": row.command_id,
+                "sensitivity": row.sensitivity,
+                "scopes": row.scopes,
+                "enabled": row.enabled,
+            }
+            for row in rows
+        ]
+    }
+
+
+@router.get("/admin/audit/export", dependencies=[Depends(require_scope("audit"))])
+async def export_audit_events(
+    ctx: RequestContext = Depends(get_request_ctx),
+    session: AsyncSession = Depends(get_db_session),
+    event_type: str | None = Query(default=None),
+    user_id: str | None = Query(default=None),
+    command: str | None = Query(default=None),
+    since: datetime | None = Query(default=None),
+    until: datetime | None = Query(default=None),
+) -> PlainTextResponse:
+    events = await _list_audit(
+        ctx,
+        session,
+        event_type=event_type,
+        user_id=user_id,
+        command=command,
+        since=since,
+        until=until,
+    )
+    body = "\n".join(json.dumps(event, default=str) for event in events)
+    if body:
+        body += "\n"
+    return PlainTextResponse(body, media_type="application/x-ndjson")
 
 
 @router.get("/admin/audit", dependencies=[Depends(require_scope("audit"))])
-async def list_audit_events(ctx: RequestContext = Depends(get_request_ctx)) -> dict:
-    events = audit_producer.get_events(tenant_id=str(ctx.tenant_id))
+async def list_audit_events(
+    ctx: RequestContext = Depends(get_request_ctx),
+    session: AsyncSession = Depends(get_db_session),
+    event_type: str | None = Query(default=None),
+    user_id: str | None = Query(default=None),
+    command: str | None = Query(default=None),
+    since: datetime | None = Query(default=None),
+    until: datetime | None = Query(default=None),
+) -> dict:
+    events = await _list_audit(
+        ctx,
+        session,
+        event_type=event_type,
+        user_id=user_id,
+        command=command,
+        since=since,
+        until=until,
+    )
     return {"events": events}
+
+
+async def _list_audit(
+    ctx: RequestContext,
+    session: AsyncSession,
+    *,
+    event_type: str | None,
+    user_id: str | None,
+    command: str | None,
+    since: datetime | None,
+    until: datetime | None,
+) -> list[dict]:
+    if not get_settings().audit_use_memory:
+        await set_rls_context(session, ctx.tenant_id, ctx.user_id)
+    return await query_audit_events(
+        tenant_id=str(ctx.tenant_id),
+        event_type=event_type,
+        user_id=user_id,
+        command=command,
+        since=since,
+        until=until,
+        session=None if get_settings().audit_use_memory else session,
+    )
 
 
 async def _get_tenant_user(
@@ -103,6 +206,11 @@ async def erase_user_data(
     if user.role == "erased":
         return {"user_id": str(user_id), "status": "already_erased"}
 
+    from synapsemd_platform.jobs.dsr import legal_hold_active
+
+    if await legal_hold_active(session, ctx.tenant_id, user_id):
+        raise HTTPException(status_code=409, detail="legal_hold")
+
     store = FHIRLocalStore(get_settings().fhir_local_store)
     dal = DataAccessLayer(store)
     deleted = await dal.delete_patient_resources(ctx.tenant_id, user_id)
@@ -128,6 +236,7 @@ async def review_queue(session: AsyncSession = Depends(get_db_session)) -> dict:
         select(ReviewQueueItem).where(ReviewQueueItem.status == "pending")
     )
     items = result.scalars().all()
+    _update_review_queue_age(items)
     return {
         "pending": [
             {
@@ -139,6 +248,18 @@ async def review_queue(session: AsyncSession = Depends(get_db_session)) -> dict:
             for i in items
         ]
     }
+
+
+def _update_review_queue_age(items: list) -> None:
+    now = datetime.now(UTC)
+    ages: list[float] = []
+    for item in items:
+        created = getattr(item, "created_at", None)
+        if not isinstance(created, datetime):
+            continue
+        stamp = created if created.tzinfo else created.replace(tzinfo=UTC)
+        ages.append((now - stamp).total_seconds())
+    REVIEW_QUEUE_AGE.set(max(ages) if ages else 0)
 
 
 @router.post("/review/{item_id}/decide", dependencies=[Depends(require_scope("read:org"))])

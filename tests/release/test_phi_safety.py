@@ -77,3 +77,11 @@ async def test_audit_emit_scrubs_phi_from_resource() -> None:
     assert "leak@example.com" not in str(event)
     assert "raw" not in event.get("ai", {})
     assert event["ai"]["prompt_hash"] == "hash1"
+
+
+def test_staging_presidio_on_by_default() -> None:
+    from synapsemd_platform.core.config import Settings
+
+    settings = Settings(app_env="staging", presidio_enabled=None)
+    assert settings.presidio_is_enabled() is True
+    assert settings.phi_block_on_failure is True

@@ -4,10 +4,10 @@
 
 | SOC 2 criteria | SynapseMD evidence |
 |----------------|-------------------|
-| CC6.1 Logical access | JWT + RBAC tests, `tests/unit/test_auth_*.py` |
+| CC6.1 Logical access | JWT + RBAC tests, RLS Postgres tests (`POSTGRES_TEST_URL`), `tests/unit/test_auth_*.py` |
 | CC6.2 Credential management | [secret-rotation.md](../runbooks/secret-rotation.md) |
 | CC7.2 System monitoring | `/metrics`, [slo.md](../slo.md), Prometheus rules |
-| CC8.1 Change management | GitHub PR reviews, CI (`platform-ci.yml`) |
+| CC8.1 Change management | GitHub PR reviews, CI (`platform-ci.yml`, 426 tests, ≥95% coverage) |
 | PI1.1 Processing integrity | Guardrails tests, eval harness |
 
 ## Artifact collection process
@@ -24,6 +24,7 @@ Store evidence in secure document repository (not in git). Reference paths in `m
 
 | Milestone | Target date | Status |
 |-----------|-------------|--------|
+| Evidence packet | 2026-08-17 | [hipaa-soc2-engagement.md](hipaa-soc2-engagement.md) |
 | Readiness assessment | (schedule) | Planned |
 | Type I audit | (schedule) | Planned |
 | Type II audit | (schedule) | Planned |

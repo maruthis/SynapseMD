@@ -157,7 +157,7 @@ For enterprises, the same artifacts sit behind:
 - MCP (SSE for Docker) plus an OpenAPI bridge for Open WebUI  
 - Docker Compose profiles and Kubernetes overlays  
 
-Quality bar today: **266+ automated tests**, **≥98% coverage** on the gate that ships with the repo.
+Quality bar today: **426 automated tests**, **~98% coverage** on the gate that ships with the repo.
 
 ---
 

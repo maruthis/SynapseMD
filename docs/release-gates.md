@@ -17,7 +17,7 @@ Evidence links: runbooks in [docs/runbooks/](runbooks/), tests in `tests/release
 - [x] JWT claims enforce `tenant_id` on every API and MCP tool call — `auth/middleware.py`, MCP `resolve_auth_context`
 - [x] Cross-tenant negative tests pass at API, FHIR, RAG, and audit layers — `tests/release/test_tenant_isolation.py`, `test_ai_tenant_isolation.py`
 - [x] Org intelligence RAG sources are tenant-scoped and opt-in — `rag/retrieval.py`, `ORG_INTELLIGENCE_ENABLED=false` in prod overlay
-- [x] PostgreSQL RLS policies applied (`platform/migrations/001_rls.sql`) — migration file + policy validation test
+- [x] PostgreSQL RLS policies applied (`platform/migrations/001_rls.sql`, Alembic through `0007_consent_columns`) — `tests/release/test_rls_postgres.py` (non-superuser role), `tests/unit/test_rls.py`. CI/local: `POSTGRES_TEST_URL` → `synapsemd_test`.
 
 ## Clinical Safety
 
@@ -42,7 +42,8 @@ Evidence links: runbooks in [docs/runbooks/](runbooks/), tests in `tests/release
 
 ## Operations
 
-- [ ] Database backup and restore drill completed — runbook: [runbooks/backup-restore.md](runbooks/backup-restore.md); log in [mydocs/ops-log.md](../mydocs/ops-log.md)
+- [x] CI identity dump/restore drill (`jobs/backup_restore.py`, `tests/unit/test_backup_restore.py`) — logged in [mydocs/ops-log.md](../mydocs/ops-log.md)
+- [ ] Live staging PITR clone drill completed — runbook: [runbooks/backup-restore.md](runbooks/backup-restore.md); log in [mydocs/ops-log.md](../mydocs/ops-log.md)
 - [x] Secret rotation runbook documented — [runbooks/secret-rotation.md](runbooks/secret-rotation.md)
 - [x] Incident response playbook documented — [runbooks/incident-response.md](runbooks/incident-response.md)
 - [ ] Rollback procedure tested for API and MCP deployments — procedure in [mydocs/ops-log.md](../mydocs/ops-log.md); drill pending
@@ -66,4 +67,4 @@ Evidence links: runbooks in [docs/runbooks/](runbooks/), tests in `tests/release
 
 ---
 
-**Progress**: 29 / 33 gates verified (4 require manual drill or external scheduling)
+**Progress**: 30 / 34 gates verified (4 require live staging drill, UI QA, or external scheduling)

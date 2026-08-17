@@ -144,3 +144,27 @@ def test_anonymize_for_llm_presidio_branch() -> None:
     ):
         result = engine.anonymize_for_llm("john@test.com", "user-1")
     assert result.phi_detected is True
+
+
+def test_anonymize_custom_mrn() -> None:
+    engine = AnonymizationEngine()
+    result = engine.anonymize_for_llm("Patient MRN:ABC12345 on file", "user-1")
+    assert "ABC12345" not in result.anonymized_text
+
+
+def test_memory_vault_forbidden_in_production() -> None:
+    vault = TokenVault()
+    with patch(
+        "synapsemd_platform.anonymization.engine.get_settings",
+        return_value=Settings(app_env="production"),
+    ):
+        with pytest.raises(ValueError, match="durable token vault"):
+            vault.store_tokens("u1", {"TOKEN_A": "secret"})
+
+
+def test_presidio_required_blocks_when_unavailable() -> None:
+    engine = AnonymizationEngine()
+    engine.settings = Settings(app_env="staging", presidio_enabled=True, phi_block_on_failure=True)
+    engine._presidio = None
+    with pytest.raises(ValueError, match="Presidio required"):
+        engine.anonymize_for_llm("hello", "user-1")

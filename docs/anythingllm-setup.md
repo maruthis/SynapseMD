@@ -26,7 +26,7 @@ You (browser / Desktop)
 | MCP SSE | http://localhost:8081/sse |
 | AnythingLLM (Compose) | http://localhost:3001 |
 
-Your health records stay on the **platform**. AnythingLLM is a chat shell — do not paste lab PDFs or SSNs into system prompts.
+Your health records stay on the **platform** (Postgres when Compose `core`/`full` is up: profile / allergy / gout with FHIR JSONB). AnythingLLM is a chat shell — do not paste lab PDFs or SSNs into system prompts.
 
 ---
 

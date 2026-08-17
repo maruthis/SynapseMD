@@ -20,6 +20,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: synapsemd
+          POSTGRES_PASSWORD: synapsemd
+          POSTGRES_DB: synapsemd_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U synapsemd -d synapsemd_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_TEST_URL: postgresql+asyncpg://synapsemd:synapsemd@localhost:5432/synapsemd_test
+
     steps:
       - uses: actions/checkout@v4
 
@@ -51,6 +69,24 @@ jobs:
   release-gates:
     runs-on: ubuntu-latest
     needs: test
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: synapsemd
+          POSTGRES_PASSWORD: synapsemd
+          POSTGRES_DB: synapsemd_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U synapsemd -d synapsemd_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_TEST_URL: postgresql+asyncpg://synapsemd:synapsemd@localhost:5432/synapsemd_test
 
     steps:
       - uses: actions/checkout@v4

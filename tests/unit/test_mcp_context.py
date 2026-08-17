@@ -5,7 +5,7 @@ from uuid import uuid4
 import pytest
 
 from synapsemd_platform.auth.jwt import create_access_token
-from synapsemd_platform.mcp.context import McpAuthError, resolve_auth_context
+from synapsemd_platform.mcp.context import McpAuthError, redact_secrets, resolve_auth_context
 
 
 def test_resolve_auth_context_tenant_mismatch(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -22,6 +22,18 @@ def test_resolve_auth_context_tenant_mismatch(monkeypatch: pytest.MonkeyPatch) -
     monkeypatch.setenv("SYNAPSEMD_TENANT_ID", str(other_tenant))
     with pytest.raises(McpAuthError, match="does not match"):
         resolve_auth_context()
+
+
+def test_redact_secrets_strips_jwt() -> None:
+    token = create_access_token(
+        user_id=uuid4(),
+        tenant_id=uuid4(),
+        roles=["patient"],
+        scopes=["read:own"],
+    )
+    redacted = redact_secrets(f"failed for {token}")
+    assert token not in redacted
+    assert "[REDACTED]" in redacted
 
 
 def test_resolve_auth_context_with_matching_tenant_override(monkeypatch: pytest.MonkeyPatch) -> None:

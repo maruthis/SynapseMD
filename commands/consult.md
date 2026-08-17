@@ -26,6 +26,7 @@ Based on the examination data and abnormal indicators, determine which specialty
 - Abnormal chest CT or infection indicators → Respiratory medicine
 - Abnormal cranial imaging → Neurology
 - Abnormal tumor markers → Oncology
+- Recurrent monoarticular flares, elevated uric acid, or gout diary signals → Rheumatology
 - Multi-system abnormalities → General medicine (as coordinator)
 
 ### Step 3: Concurrently Launch Specialty Analyses

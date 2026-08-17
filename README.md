@@ -1,10 +1,10 @@
 # SynapseMD — Personal Health Information System
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Platform CI](https://img.shields.io/badge/tests-266%20passed-brightgreen.svg)](platform/README.md)
+[![Platform CI](https://img.shields.io/badge/tests-329%2B%20passed-brightgreen.svg)](platform/README.md)
 [![Coverage](https://img.shields.io/badge/coverage-%E2%89%A598%25-brightgreen.svg)](pyproject.toml)
 
-SynapseMD is a file-based personal health data management system with an optional **enterprise platform** for multi-tenant, PHI-safe deployments. Use Claude Code slash commands locally, or run the FastAPI platform with REST API and MCP tools for chatbot UIs.
+SynapseMD is a file-based personal health data management system with an optional **enterprise platform** for multi-tenant, PHI-safe deployments. Use Claude Code slash commands locally (JSON vault), or run the FastAPI platform with **PostgreSQL** as the system of record, REST API, and MCP tools for chatbot UIs.
 
 **GitHub**: https://github.com/maruthis/SynapseMD
 
@@ -16,10 +16,10 @@ SynapseMD is a file-based personal health data management system with an optiona
 
 ## Two Ways to Use SynapseMD
 
-| Mode | Best for | Entry point |
-|------|----------|-------------|
-| **CLI (local)** | Personal health repo, Cursor/Claude workflows | `/commands` + `data/` JSON files |
-| **Platform** | Multi-tenant API, audit, chatbot integration | `platform/` FastAPI + MCP server |
+| Mode | Best for | Entry point | Persistence |
+|------|----------|-------------|-------------|
+| **CLI (local)** | Personal health repo, Cursor/Claude workflows | `/commands` + `data/` JSON files | `data/*.json` |
+| **Platform** | Multi-tenant API, audit, chatbot integration | `platform/` FastAPI + MCP | Postgres (`HEALTH_STORE=postgres`) |
 
 Both modes share the same Module 21 AI prediction engine (`platform/synapsemd_platform/ai/prediction.py`).
 
@@ -34,9 +34,9 @@ SynapseMD isn’t a typical app where “the code” lives in one layer. The pro
 | commands/ | User-facing behavior, CRUD, routing |
 | skills/ | Deep analysis and reports |
 | specialists/ | Clinical lens for MDT |
-| data-example/ + data/ | Schemas and persistence |
+| data-example/ + data/ | Schemas and local CLI persistence |
 | scripts/ | Deterministic logic escape hatches |
-| platform/ | REST/MCP/tenant execution (optional but growing) |
+| platform/ | REST/MCP/tenant execution; Postgres SoR in enterprise mode |
 
 ## System Features
 
@@ -51,12 +51,14 @@ SynapseMD isn’t a typical app where “the code” lives in one layer. The pro
 
 ### Enterprise Platform
 
-- Multi-tenant JWT auth with RBAC and tenant isolation
-- FHIR-backed health data with anonymization before LLM calls
+- Multi-tenant JWT auth with RBAC and **PostgreSQL row-level security**
+- `HealthDataService` adapters: Postgres SoR, JSON vault, or dual-read (`HEALTH_STORE`)
+- Profile, allergy, and gout commands persist in Postgres on the platform path
+- FHIR-backed interchange with anonymization before LLM calls
 - REST API at `/api/v1/*` including `/api/v1/ai/*`
 - MCP server with 11 tools (including `ai_status`, `ai_predict`, `ai_analyze`, `ai_chat`, `ai_report`)
 - Audit events (hash-only PHI storage), medical guardrails, human review queue
-- Docker Compose profiles and Kubernetes overlays for staging/production
+- Docker Compose (`core` = API + Postgres 16) and Kubernetes overlays
 
 ---
 
@@ -71,11 +73,13 @@ SynapseMD/
 ├── data-example/          # Templates seeded by ./scripts/setup-data.sh
 ├── scripts/               # CLI helpers (ai_prediction.py, setup-data.sh, …)
 ├── platform/              # Enterprise FastAPI package (synapsemd_platform)
+│   ├── alembic/           # Schema migrations (staging/prod)
 │   └── synapsemd_platform/
+│       ├── adapters/      # Postgres + JSON health stores
 │       ├── ai/            # AIPredictionEngine, tenant adapter, AIService
 │       ├── api/           # REST routes (/ai, /auth, /commands, admin)
 │       ├── mcp/           # MCP tools + shared dispatch
-│       └── services/      # Command orchestrator, tenant service
+│       └── services/      # Command orchestrator, HealthDataService
 ├── tests/                 # unit/, integration/, e2e/, release/, eval/
 ├── deploy/                # OpenAPI bridge, K8s manifests
 ├── docs/                  # User guide, release gates, runbooks, compliance
@@ -104,6 +108,17 @@ Full command reference: [docs/user-guide.md](docs/user-guide.md)
 
 ## Quick Start (Platform)
 
+**Docker Desktop (Postgres SoR — recommended for local platform testing):**
+
+```bash
+cd platform
+docker compose --profile core up --build
+# API: http://localhost:8000/docs   Postgres: localhost:5432
+# HEALTH_STORE=postgres is set in Compose
+```
+
+**Python venv (SQLite + JSON vault for unit tests):**
+
 ```bash
 cd platform
 python -m venv .venv && source .venv/bin/activate
@@ -115,7 +130,7 @@ uvicorn synapsemd_platform.api.main:app --reload
 API docs: http://localhost:8000/docs
 
 ```bash
-# From repo root — full test suite (266 tests, ≥95% coverage)
+# From repo root — full test suite (≥95% coverage)
 pytest -v
 
 # MCP server (after login token)
@@ -123,7 +138,7 @@ export SYNAPSEMD_ACCESS_TOKEN=<jwt-from-/api/v1/auth/login>
 synapsemd-mcp
 ```
 
-See [platform/README.md](platform/README.md) for AI API, MCP tools, and Docker/K8s usage.
+See [docs/local-development.md](docs/local-development.md) and [platform/README.md](platform/README.md).
 
 ---
 
@@ -188,6 +203,8 @@ Full detail: [platform/README.md — LLM Choice](platform/README.md#llm-choice) 
 | Command | Description |
 |---------|-------------|
 | `/profile` | User height, weight, birth date |
+| `/allergy` | Allergy history (add / list / update / delete) |
+| `/gout` | Gout flare diary; `/gout analyze` via gout-analyzer |
 | `/save-report` | Save biochemical or imaging reports |
 | `/medication` | Medication plans and records |
 | `/interaction` | Drug interaction detection |
@@ -215,6 +232,9 @@ Full list: 60+ commands in [commands/](commands/).
 | Medium article (draft) | [docs/marketing/medium-article.md](docs/marketing/medium-article.md) |
 | Data structures | [docs/data-structures.md](docs/data-structures.md) |
 | Architecture | [docs/architecture.md](docs/architecture.md) |
+| **Enterprise platform design** | [docs/enterprise-platform-architecture.md](docs/enterprise-platform-architecture.md) |
+| **Implementation plan (A–E)** | [docs/enterprise-platform-implementation-plan.md](docs/enterprise-platform-implementation-plan.md) |
+| Local platform / Docker | [docs/local-development.md](docs/local-development.md) |
 | Platform & AI API | [platform/README.md](platform/README.md) |
 | MCP / UI integration | [docs/ui-mcp-integration.md](docs/ui-mcp-integration.md) |
 | Release gates | [docs/release-gates.md](docs/release-gates.md) |
@@ -228,12 +248,12 @@ Full list: 60+ commands in [commands/](commands/).
 ## Testing & Quality
 
 ```bash
-pytest -v                              # Full suite (266 tests)
+pytest -v                              # Full suite (329+ tests)
 pytest tests/release/ tests/eval/ -v   # Release gates + model eval
 ```
 
 - **Coverage**: ≥95% enforced on `synapsemd_platform` (current: ~99%)
-- **CI**: `.github/workflows/platform-ci.yml` — lint, tests, release/eval jobs
+- **CI**: `.github/workflows/platform-ci.yml` — lint, tests, Postgres RLS/Alembic, release/eval jobs
 - **E2E**: tenant → AI analyze → audit trail verification in `tests/e2e/`
 
 ---
@@ -242,7 +262,7 @@ pytest tests/release/ tests/eval/ -v   # Release gates + model eval
 
 **Local CLI**: All data stays on your filesystem. No cloud uploads. No external database.
 
-**Platform**: Tenant-scoped storage, JWT auth, PHI anonymization before LLM calls, audit logs store hashes only. See [docs/runbooks/phi-handling.md](docs/runbooks/phi-handling.md).
+**Platform**: Tenant-scoped **PostgreSQL** (RLS), JWT auth, PHI anonymization before LLM calls, audit logs store hashes only. Local IDE JSON remains an adapter (`HEALTH_STORE=json`), not the production SoR. See [docs/runbooks/phi-handling.md](docs/runbooks/phi-handling.md).
 
 ---
 

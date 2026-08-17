@@ -10,7 +10,9 @@ Business Associate Agreements must be on file before enabling production LLM pro
 | OpenAI | `OPENAI_BAA_SIGNED` | `false` | `true` |
 | Google | `GOOGLE_BAA_SIGNED` | `false` | `true` |
 
-Enforced in code: `create_provider()` raises `BaaGateError` when `APP_ENV` is `staging` or `production` and BAA flag is false.
+Enforced in code: `ModelPolicyEngine` checks `baa_records` (falling back to `*_BAA_SIGNED` env flags). `create_provider()` still raises `BaaGateError` when `APP_ENV` is `staging` or `production` and the env flag is false.
+
+Tenant admins can set `baa_required: true` on `PUT /admin/models/policy` to forbid non-BAA catalog entries (including `mock`).
 
 ## Kustomize overlays
 
@@ -18,6 +20,8 @@ Enforced in code: `create_provider()` raises `BaaGateError` when `APP_ENV` is `s
 - **Production**: `deploy/k8s/overlays/production/` — `LLM_DEFAULT_PROVIDER=anthropic`, all BAA flags `true`
 
 ## Record keeping
+
+Rows in `baa_records` (`provider`, `signed`, `contract_ref`, `signed_at`) are the enforcement registry. The table below is the human log.
 
 | Provider | BAA signed date | Contract ref | Owner |
 |----------|-----------------|--------------|-------|

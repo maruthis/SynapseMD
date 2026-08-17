@@ -296,7 +296,8 @@ SynapseMD/
 ```
 
 - **`data/` is not uploaded anywhere** by SynapseMD itself
-- Data stays on your filesystem as JSON files
+- On the **local CLI**, data stays on your filesystem as JSON files
+- On the **platform** (`docker compose --profile core`), profile / allergy / gout live in PostgreSQL (`HEALTH_STORE=postgres`) with a FHIR JSONB projection on write. Other domains still use JSON/FHIR files until they get the same adapter treatment. `POST /admin/migrate` upserts those three domains from a JSON vault directory.
 - The `data/` folder is gitignored — it will not be pushed to GitHub if you fork the repo
 - **Back up regularly:**
 
@@ -333,8 +334,10 @@ Prefer a **web chat** instead of slash commands in Claude Code? SynapseMD connec
 ```text
 Local CLI path:     Claude Code / Cursor  →  commands/  →  data/ (JSON files)
 
-Chat UI path:       AnythingLLM or Open WebUI  →  platform  →  FHIR + AI tools
+Chat UI path:       AnythingLLM or Open WebUI  →  platform  →  Postgres + FHIR + AI tools
 ```
+
+API-only (no chat UI): `cd platform && docker compose --profile core up --build` — Compose sets `HEALTH_STORE=postgres`. Profile, allergy, and gout persist in Postgres with FHIR JSONB on write. Use `@example.com` emails when registering. After a rebuild, the API runs `alembic upgrade head` (through `0007_consent_columns` for existing volumes).
 
 | UI | Best for | Integration |
 |----|----------|-------------|

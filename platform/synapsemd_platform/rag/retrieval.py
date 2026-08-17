@@ -28,6 +28,17 @@ class InMemoryVectorStore:
         key = f"{chunk.tenant_id}:{chunk.id}"
         self._chunks[key] = chunk
 
+    def delete_for_user(self, tenant_id: str, user_id: str) -> int:
+        keys = [
+            key
+            for key, chunk in self._chunks.items()
+            if chunk.tenant_id == tenant_id
+            and str((chunk.metadata or {}).get("user_id") or "") == user_id
+        ]
+        for key in keys:
+            del self._chunks[key]
+        return len(keys)
+
     def search(
         self,
         query: str,
@@ -76,6 +87,12 @@ class FileVectorStore(InMemoryVectorStore):
     def upsert(self, chunk: KnowledgeChunk) -> None:
         super().upsert(chunk)
         self._persist()
+
+    def delete_for_user(self, tenant_id: str, user_id: str) -> int:
+        removed = super().delete_for_user(tenant_id, user_id)
+        if removed:
+            self._persist()
+        return removed
 
     def _persist(self) -> None:
         payload = [
@@ -219,3 +236,6 @@ class RAGEngine:
             return ""
         parts = [f"[Source: {c.source}] {c.text}" for c in chunks]
         return "\n\n".join(parts)
+
+    def purge_user_docs(self, tenant_id: str, user_id: str) -> int:
+        return self.store.delete_for_user(tenant_id, user_id)
